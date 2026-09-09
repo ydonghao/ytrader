@@ -1,0 +1,21 @@
+{
+  "name": "@ytrader/trading-portfolio",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@ytrader/arch-hooks": "0.0.1",
+    "@ytrader/arch-utils": "0.0.1",
+    "@ytrader/common-components": "0.0.1",
+    "zustand": "^5.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.3.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.0",
+    "@ytrader/config-tsconfig": "0.0.1",
+    "@ytrader/config-eslint": "0.0.1"
+  }
+}

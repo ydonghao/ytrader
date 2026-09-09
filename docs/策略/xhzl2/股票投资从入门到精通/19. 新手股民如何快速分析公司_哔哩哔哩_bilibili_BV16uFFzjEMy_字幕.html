@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新手股民如何快速分析公司</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">股票投资从入门到精通 · 第十九讲</div>
+  <h1 class="title">新手股民如何快速分析公司</h1>
+  <div class="meta">
+    <span>十分钟把垃圾公司淘汰掉</span>
+    <span>四步法：业绩、业务、财务、估值</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>快速分析的目的：先淘汰垃圾公司</li>
+    <li>第一步：看业绩增长趋势</li>
+    <li>没有成长性的公司不值钱</li>
+    <li>格力的案例：高股息也救不了零增长</li>
+    <li>美的的案例：业绩驱动股价</li>
+    <li>妖股为什么短暂上涨：幸存者偏差</li>
+    <li>长期收益率的构成：业绩+分红+估值</li>
+    <li>先看规模再看利润</li>
+    <li>第二步：看官网和财报判断业务</li>
+    <li>看不懂就放弃</li>
+    <li>第三步：看财务结构</li>
+    <li>茅台的财务特征</li>
+    <li>第四步：判断估值合理性</li>
+    <li>四步法总结</li>
+  </ol>
+</nav>
+
+<p class="lead">完全吃透一个上市公司有一定难度，但初步判断一家公司有没有投资价值、是否值得我们继续花精力研究，相对比较容易。今天就讲讲这个思路：拿到一个新公司，如何用 10 分钟把垃圾公司淘汰掉，把研究精力留给真正优质的公司。</p>
+
+<h2 id="s1">一、快速分析的目的：先淘汰垃圾公司</h2>
+
+<p>因为职业原因，我经常被朋友请教"你帮我看一下某某公司怎么样、能不能投"，而且大部分公司都是我之前没听过的。如果之前没了解过这个公司，我会怎么快速分析然后给出初步建议？今天就讲这个思路。</p>
+
+<h2 id="s2">二、第一步：看业绩增长趋势</h2>
+
+<p>一上来我会先看公司的业绩——买股票就是买公司，分析股票就是分析公司的业务。假设一个开公司的朋友邀请你合伙入股，你会怎么考虑？第一个肯定是要看一下公司业绩规模有多大，而且不仅看今年，去年、前年也都要看——<em>重点是要考察公司业务是否处于长期增长的趋势</em>。</p>
+
+<p>上市公司按季度公布业绩，我们可以把业绩数据收集起来做一个数据处理，形成趋势图。拿格力作为案例——这个公司是被问得比较多的，因为格力股价一直比较低，显得股息率很高，很多人问能不能长期持有、图它的高股息行不行。</p>
+
+<p>先不急着回答，看一下格力的业绩趋势图，是不是可以发现一个很明显的问题：<strong>最近 8 年来格力的业绩基本上都停止增长了</strong>。</p>
+
+<ul>
+  <li>2018 年：公司业绩差不多 <span class="num">1800 多亿</span></li>
+  <li>2026 年：公司业绩还是 <span class="num">1800 亿</span></li>
+</ul>
+
+<p>甚至最近两年多的时间里，格力的业绩还在持续同比下跌。<em>先告诉大家一个结论：没有成长性的公司是不值钱的。</em>所以格力这几年的股价一直没怎么涨。</p>
+
+<h2 id="s3">三、对比的杀伤力：美的 vs. 格力</h2>
+
+<p>没有对比就没有伤害。看一下家电龙头美的集团的数据：</p>
+
+<ul>
+  <li>2018 年：<span class="num">2500 亿</span></li>
+  <li>当前：<span class="num">4500 亿</span></li>
+</ul>
+
+<p>从美的的业绩趋势图上，可以看到一个很明显的成长性，和格力的对比差异非常明显。把两家公司的业绩放到同一个坐标系中观察——蓝色是美的、红色是格力——一下就高下立判。</p>
+
+<h3>业绩增长直接影响股价</h3>
+
+<p>公司的业绩增长可以直接影响股价。对比格力和美的的股价表现：两家公司 <span class="num">2018 年</span>的市值还是非常接近的，都在 <span class="num">3000 亿</span>左右；<span class="num">2019 年</span>牛市期间，格力市值甚至短期超过美的。不过越往后格力越不行——美的业绩持续增长、格力原地踏步，市值从 <span class="num">2019 年</span>之后开始分化：</p>
+
+<table>
+  <thead><tr><th>公司</th><th>2018 年市值</th><th>当前市值</th></tr></thead>
+  <tbody>
+    <tr><td>美的集团</td><td>约 3000 亿</td><td>5800 亿</td></tr>
+    <tr><td>格力电器</td><td>约 3000 亿</td><td>2200 亿</td></tr>
+  </tbody>
+</table>
+
+<p>差了差不多三倍。再观察公司市值和业绩的长期关系——以美的为案例，把市值和业绩叠在一个坐标系中，可以很明显看出：如果不考虑 <span class="num">2021 年</span>那波抱团股泡沫行情，美的集团的市值一直跟着业绩趋势走。</p>
+
+<div class="pull">公司的市值（也就是股价）<br>长期来看一定会跟着公司的业绩趋势走。</div>
+
+<p>我用工具批量生成这些图表，可以用很短时间把绝大部分公司的业绩和市值趋势图都看一遍，规律很容易总结。我十多年看下来，确实就是这样。</p>
+
+<h2 id="s4">四、关于妖股的解释</h2>
+
+<p>讲到这里可能有人跳出来杠一下：现在很多妖股的走势你怎么解释？明明业绩很垃圾的公司股价照样被炒得很高。</p>
+
+<h3>第一，流动性锁死</h3>
+
+<p>妖股通常是股本很小的小型公司，股票都集中在操盘团队手里，他们可以通过锁死流动性的方式、低成本地快速拉高股价。这是人为导致的股价和业绩不匹配。</p>
+
+<h3>第二，幸存者偏差</h3>
+
+<p>垃圾公司股价被爆拉大涨之后产生新闻效应，才会被你关注到。但在你看不到的地方，大量垃圾公司股价表现非常差，持续跌好几年，等公司业绩彻底不行了就直接退市。退市之后你自然看不到这些案例。</p>
+
+<p>而且那些股价大涨的垃圾公司，也就是炒热点的时候大涨一波——游资和机构才好把股票高价卖给散户割韭菜。过了风口股价就会跌回来，所以长期来看股价还是跟着业绩走。</p>
+
+<h3>案例：中青宝</h3>
+
+<p>看之前的妖股中青宝——老股民对这家公司都很熟，隔三差五被拉出来爆炒一下的垃圾公司。它的股价在 <span class="num">2021 年</span>被爆炒了一波，短期内翻了 <span class="num">五倍</span>，典型妖股走势。但时间拉长看，最后还是跌回来了。</p>
+
+<p>这家公司现在一年的业绩规模只有 <span class="num">2 亿</span>不到，已经到了退市边缘。我估计过一两年就会退市，一旦退市，这家公司就消失在 A 股历史中，后面的投资者很难发现它。</p>
+
+<h2 id="s5">五、长期收益率的构成</h2>
+
+<p>关于公司业绩增长，还有一个重要点：</p>
+
+<div class="pull">股票投资的长期收益率<br>≈ 公司业绩增长 + 公司分红 + 估值变化</div>
+
+<p>其中估值变化属于市场波动，是不确定的，我们先放一边。能确定的就是业绩增长和公司分红。大多数理性投资者对股票投资的合理预期目标是年化 <span class="num">15%</span>左右：</p>
+
+<ul>
+  <li><span class="num">3%</span>的收益率可以通过稳定的公司分红实现</li>
+  <li>剩下的 <span class="num">12%</span>要靠公司的业绩增长</li>
+</ul>
+
+<p>这是一个简单的因果关系——如果要取得长期稳定的 <span class="num">15%</span>投资收益，所选公司的业绩增长必须高于 <span class="num">10%</span>。</p>
+
+<h3>回到格力的案例</h3>
+
+<p>所以回到最开始的话题：格力电器虽然股息率高达 <span class="num">7%</span>，但业绩增长几乎为零，如果业绩问题不改善，长期持有达不到理想收益。而且最近两年业绩不仅没增长反而开始下滑——<em>股息率高是弥补不了业绩下滑的风险的</em>。</p>
+
+<p>比如上个月白酒公司洋河发公告取消了之前的高分红承诺——这是必然会发生的事。业绩规模都保不住了、钱都赚不到了，哪还有钱分给股东？无视公司的业绩风险，只盯着分红看，最后大概率业绩没了、分红也没了。</p>
+
+<h2 id="s6">六、先看规模再看利润</h2>
+
+<p>稍微补充一点：可能有朋友问，为什么先看公司业绩规模而不是看利润？开公司不就是为了赚钱，应该利润更重要吧？</p>
+
+<p>利润很重要，但利润只是一个结果的指标，在估值权重里重要程度低于公司规模和商业模式。而且并不是所有公司都有盈利——在某些情况下，不盈利的公司一样很有价值。比如当年京东高速增长时利润都是亏的，全都拿去搞物流了。</p>
+
+<p>举个通俗的例子：小 A 高中毕业就去上班，很早开始产生利润；小 B 继续读书，不仅不赚钱还要交学费，相当于利润是亏的，一直要等到读完大学甚至研究生后才出来找工作。按正常概率推测，小 B 未来工作中能产生的价值应该大于小 A。<strong>看企业也是一样，不用着急看利润，先看规模和商业模式。</strong></p>
+
+<h2 id="s7">七、第二步：看官网和财报判断业务</h2>
+
+<p>快速看完业绩，接着看公司官网和财报，重点是看业务描述——用大白话说就是看一下这个公司到底是做什么生意的。</p>
+
+<p>现在大公司的官网设计都挺好，一般都有产品信息介绍，一看就知道是干嘛的。财报中也有大量关于业务的描述性文字。看过这些内容，如果商业能力还 OK，应该能很快判断出公司的类型和商业模式——是产品型还是服务型，属于哪个产业，处于产业链的哪个环节。</p>
+
+<h3>三种判断</h3>
+
+<ul>
+  <li><strong>业务理解不了的公司建议直接放弃。</strong>我自己都是这样的。朋友让我帮忙看公司，发现业务看不懂，一般到这里就劝退了。比如我对医疗行业理解很弱，生活和工作经历完全不接触医疗行业，这属于我的知识盲区。比如药明康德——字面意思 CXO 即医药外包服务我是懂的，但业务细节推演不了，不知道是干啥的，那我经常被问就说"我不知道，解读不了"。</li>
+  <li><strong>判断公司类型。</strong>服务型公司大多数商业模式比较差、赚辛苦钱居多，所以一般不看服务型公司。产品型公司主要看产品有没有定价权——这个判断不完全主观，很多产品我们之前没接触过，可以先猜一下，然后看财务数据时去财务数据中找定价权的特征。</li>
+  <li><strong>看产品能否直接或间接接触。</strong>如果不行，这个公司也应该放弃——信息差太大，即便发挥超强调研能力硬着头皮研究，也是事倍功半，时间成本太高，很不划算。</li>
+</ul>
+
+<h2 id="s8">八、第三步：看公司的财务结构</h2>
+
+<p>看完业务，接着看公司的财务结构。在财务数据中可以找到和公司业务相互印证的细节——能做到这一点需要一些财务基本功。<strong>财务知识是投资盈利的必要不充分条件。</strong>意思就是懂财务不一定能赚钱，但不懂财务大概率赚不到钱——没有哪个投资高手是不懂财务的，这是基本功。不会的话赶紧去学，学到能解读财报的程度还是比较简单的，大概高中难度的水平。</p>
+
+<h3>案例：茅台的财务特征</h3>
+
+<p>直接拿茅台做案例，因为业务简单，很适合做业务和财务的对照讲解。大家都知道茅台好，但很多人不知道好在哪里——其实看了公司的资产结构，就能很直观地看到茅台厉害的地方。</p>
+
+<p>快速判断公司的财务结构，主要看现金和债务的情况——跟现实生活中看人的标准一样：<em>判断一个人有没有钱不是看外表光鲜亮丽，而是看荷包鼓不鼓、现金和优质资产多不多、有没有债务。</em>现在相亲市场都学聪明了，不光看有没有房有没有车，还要看是不是全款——别搞得有房有车但贷款压力很大，那也不行。</p>
+
+<p>看茅台的财务特征，最突出的是现金类资产特别多，说明公司业务赚钱。再看应收款——茅台产品供不应求，所以公司几乎没有什么应收款。这个指标可以反映公司的江湖地位：如果应收款很高，说明公司赚钱很难，项目做完款总是收不回来。<strong>公司的产品有没有定价权，核心就是看应收款高不高。</strong>应收款高的公司产品大概率不太行。</p>
+
+<p>所以我有一个很简单的判断标准：<em>公司的应收款如果比账上的现金还要高，那这个公司我大概率是不考虑的。</em></p>
+
+<h3>看完应收款看负债</h3>
+
+<p>核心是看公司的现金能不能够覆盖公司的短期债务（短期借款和应付款）。茅台几乎没有短期借款，只有 <span class="num">92 亿</span>应付款，和现金理财比起来这点钱可以忽略——财务数据非常健康。</p>
+
+<p>如果看到公司的现金覆盖不了短期债务，基本可以判断没什么投资价值，看到这种财务特征基本上就可以淘汰掉。</p>
+
+<h2 id="s9">九、第四步：判断估值合理性</h2>
+
+<p>看完行业、商业模式、财务结构，最后快速判断公司的估值是否在合理区间。</p>
+
+<h3>方法一：看市值和业绩走势是否匹配</h3>
+
+<p>回到业绩和市值的对比图，看公司市值和业绩趋势的走势是否匹配。看一个热门股——白银有色。只要看到公司的市值和业绩走势呈现出明显不匹配的状态，对投资新手来说最好直接淘汰掉，这不是新手可以处理的案例。</p>
+
+<p>出现这种情况，是市场对公司业绩产生了超级乐观的预期，直接全部兑现到股价上才会出现这样的涨幅。问题来了：</p>
+
+<ul>
+  <li>如果公司业绩发展顺利、兑现了市场预期，你在高位进场能获得的也只是一个普通收益率。</li>
+  <li>如果公司没有兑现市场预期，股价一定会回落到过去的合理水平，你高位买进去站岗的可能性非常大。</li>
+</ul>
+
+<p>所以出现这种股价走势的公司，<em>预期收益和要承担的风险是非常不对等的</em>。观察市值和业绩走势是否匹配，就是一个简单好用的估值方法。</p>
+
+<h3>方法二：市盈率高低</h3>
+
+<p>如果是利润稳定的大型公司，可以通过看市盈率高低来判定估值合理性。这个技巧我过去讲得非常多。把美的的市盈率趋势图拿出来看，只要公司的市盈率在均值以下，我们就可以快速判定为公司的估值目前是合理的。</p>
+
+<p>这个数据是一个统计类的分析——相当于我们统计了过去市场对这家公司估值的一个共识。虽然短期看共识会有波动，但长期看可以得到一个合理的估值范围。</p>
+
+<p>不过要强调一下：<strong>价格合理不代表这个公司可以买。</strong>因为投资主要看公司未来的成长性——现在的价格合理，买了之后如果公司未来业绩越来越差，那一样是要亏的。</p>
+
+<h3>成长型公司靠经验</h3>
+
+<p>如果是利润不稳定的成长型公司，PE 指标就不太准了，这个时候要做快速估值判断比较依赖经验。经验这个东西没啥好说的，就是靠个人日常积累。我自己做了一个公式列表，专门把公司的市值、业绩和利润放在一起对比——数据看多了，心里就会有一个以经验为主的估值模型：公司业绩多少、利润多少、商业模式如何，那它市值大概率是多少钱，心里就有个数。</p>
+
+<p><em>股票投资还是比较吃经验的工作。</em>对公司的估值判断时间长了，自然就能很快判断出公司当前的价格合不合适。</p>
+
+<h2 id="s10">十、四步法总结</h2>
+
+<p>到这一步，初步分析就做完了，是不是可以淘汰掉很多垃圾公司了？看到一个新公司，先花 <span class="num">10 分钟</span>把核心内容过一遍，就可以避免在垃圾公司上浪费太多时间，把研究精力留给真正优质的公司。</p>
+
+<blockquote>
+  <p><strong>快速分析分为四步。</strong></p>
+  <p><strong>第一步</strong>：看公司的业绩增长情况。业绩长期不增长的公司直接淘汰掉。如果对股票投资收益有明确目标，一定要选择业绩能持续增长的公司。</p>
+  <p><strong>第二步</strong>：看公司的业务。初步判断产品竞争力和商业模式。如果接触不到产品、或商业模式觉得不好，就可以淘汰掉。</p>
+  <p><strong>第三步</strong>：看公司的财务结构。重点考察三点：账上现金是否充裕、是否有大量应收款、现金能不能覆盖短期债务。</p>
+  <p><strong>第四步</strong>：初步判断公司估值。看业绩趋势和市值走势是否匹配；如果是利润稳定的大型公司可以通过市盈率判断；如果是利润不稳定的成长型公司可能需要用经验判断。</p>
+</blockquote>
+
+<p>我们可以先用这个方法快速判断一下，把垃圾公司都淘汰出去。剩下的拿不定主意的公司可以慢慢研究，因为投资不是一时半会的事，要做好长期跟踪研究的准备。今天的分享就到这里，下期再见。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化<br>
+  股票投资从入门到精通 · 系列
+</footer>
+
+</div>
+</body>
+</html>

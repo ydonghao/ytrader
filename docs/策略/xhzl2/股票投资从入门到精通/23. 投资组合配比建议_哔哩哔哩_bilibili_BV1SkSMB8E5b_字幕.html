@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投资组合配比建议</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">股票投资从入门到精通 · 第二十三讲</div>
+  <h1 class="title">投资组合配比建议</h1>
+  <div class="meta">
+    <span>从风险偏好看投资风格</span>
+    <span>四象限分类与四类投资者</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>先了解自己的风险偏好</li>
+    <li>风险偏好影响经营策略</li>
+    <li>选公司要匹配自己的风险偏好</li>
+    <li>用投资组合应对结构性行情</li>
+    <li>成长性 × 股东回报的四象限</li>
+    <li>第一象限：高成长 + 高回报</li>
+    <li>第二象限：低成长 + 高回报</li>
+    <li>第三象限：低成长 + 低回报</li>
+    <li>第四象限：高成长 + 低回报</li>
+    <li>四类投资者的配置比例</li>
+  </ol>
+</nav>
+
+<p class="lead">投资组合的配比是大家问得比较多的共性问题。之前讲投资课程时重点推荐过使用投资组合的方式，但当时在公司类型的配比上因为篇幅关系没展开，今天就稍微展开讲一下投资组合要怎么配。</p>
+
+<h2 id="s1">一、先了解自己的风险偏好</h2>
+
+<p>其实不用参考别人，而是先了解一下自己的风险偏好。每个投资者的风险偏好不一样——有的人完全不能接受本金亏损，亏一点点就感觉非常焦虑难受；有的人风险偏好比较高，特别是年轻气盛、有冲劲，可能愿意多承担一点风险，本金损失一点没关系，看能不能追求到比较高的收益率。</p>
+
+<h3>用打麻将做比喻</h3>
+
+<p>日常生活中风险偏好会影响各种行为，比如打麻将。我们听牌后对面打了一张刚好是你要的牌，这时不同风险偏好的人打法可能完全不一样：</p>
+
+<ul>
+  <li>风险偏好低的人可能直接胡牌——小赢也是赢，总比输了强。</li>
+  <li>风险偏好高的人可能不要这张牌，继续打下去做大牌，一把胡个大的。</li>
+</ul>
+
+<p>大家可以想一下自己打麻将时哪一种行为更多一点。</p>
+
+<h2 id="s2">二、风险偏好影响经营策略</h2>
+
+<p>在商业活动中风险偏好也会影响经营策略。举个例子——开奶茶店：</p>
+
+<blockquote>
+  <p><strong>商业案例</strong>：开一家奶茶店投资 <span class="num">50 万</span>，正常经营一年能赚 <span class="num">10 万</span>，<span class="num">5 年</span>时间回本。</p>
+</blockquote>
+
+<p>不同风险偏好的人会采取完全不同的经营策略。</p>
+
+<h3>风险偏好低的人</h3>
+
+<p>会先踏踏实实经营，把一家店先开好，利润装进口袋里，等钱攒得比较多了再考虑扩张、开分店。</p>
+
+<h3>风险偏好高的人</h3>
+
+<p>做生意会激进很多。一个店投资 50 万、一年赚 10 万——如果生意风险在可承担范围内，那就上杠杆搞：直接去贷款弄个 <span class="num">500 万</span>，一次性开十家店，这样一年不就可以赚 <span class="num">100 万</span>了吗？虽然要背很多贷款、承担额外风险，过程中如果发生意外搞不好就一夜回到解放前，但如果真的做成，生意规模不就一下子起来了。</p>
+
+<div class="pull">风险偏好的差异<br>会让我们在商业经营上选择完全不同的策略。</div>
+
+<h2 id="s3">三、选公司要匹配自己的风险偏好</h2>
+
+<p>买股票就是买公司，回到股票投资上其实也是一样。A 股市场目前总共有 <span class="num">5400 多家</span>上市公司，算上港股差不多 <span class="num">8000 多家</span>。<em>大家一定不要把股票市场当成一个整体来看——公司和公司之间的差别是非常大的。</em></p>
+
+<h3>从规模看差异</h3>
+
+<ul>
+  <li>A 股和港股市值最大的是腾讯，市值 <span class="num">5 万亿</span>左右</li>
+  <li>第二梯队是四大行和中国移动，差不多 <span class="num">2-3 万亿</span>规模</li>
+  <li>小公司非常多，业绩规模一年只有几个亿，比不上行业龙头一个项目组的业绩</li>
+</ul>
+
+<h3>从经营特征看差异</h3>
+
+<ul>
+  <li>有的公司业务没什么成长性，但生意已经成熟定型、利润丰厚，股东回报做得不错。</li>
+  <li>有的公司处于成长阶段，需要大量资金拓展业务——比如国内的芯片公司，研发上需要投入大量资本，能不能实现有效产出现在还打个问号。</li>
+</ul>
+
+<p>所以我们一定要选择和自己风险偏好匹配的公司。<strong>如果选的公司和自己的风险偏好不匹配，持股过程中会非常别扭。</strong></p>
+
+<h3>案例：长江电力 vs. 芯片股</h3>
+
+<p>风险偏好很高的人买了长江电力这种公司就会觉得很无聊。这个公司业绩不会有什么变化——它就是几座水电站，丰水期发电量高、业绩好一点，枯水期低一点，但差也差不了多少，除非长江水干了。一年到头涨不了几个点，股价变化基本上是由分红除权除出来的。</p>
+
+<p>而风险偏好比较低的人就喜欢这样的公司——业务稳稳当当，时间一到股息到手，预期收益率可以算出来，投资收益的确定性非常高。</p>
+
+<p>但风险偏好低的人买不了芯片类公司。这种公司当前业务还不成熟、未来不确定性很大，市场看法分歧大，所以市值很不稳定：一波行情来了股价涨上天，市场情绪消退又会暴跌。风险偏好低的人投资这样的公司就会搞得自己特别焦虑——总是盯着股价看，跌的时候焦虑要不要割肉，涨的时候又担心会跌回来，左右都不舒服。我相信大家一定都有这样的感受。</p>
+
+<h2 id="s4">四、用投资组合应对结构性行情</h2>
+
+<p>这几年 A 股都是结构性行情——前面几年是红利股的行情，今年是 AI 类科技公司的行情。如果在投资公司的类型选择上过于单一，其实会错失一些市场行情。</p>
+
+<p>比较好的解决方案是用投资组合的方式来做：</p>
+
+<ul>
+  <li>红利股配置一些</li>
+  <li>行业龙头公司、蓝筹股配置上</li>
+  <li>风口浪尖的公司也配置一点</li>
+</ul>
+
+<p>用现在比较时髦的话说：成年人我都买。不管是谁的行情，都能让账户有一点收益。</p>
+
+<h3>对冲波动，平滑曲线</h3>
+
+<p>现在市场上的轮动行情比较多：蓝筹股涨的时候芯片股回调，芯片股涨的时候蓝筹股低迷——这是市场热钱导致的。市场上的热钱就像碗里的水，在碗里来回晃荡，荡到这边另一边就会低一些。</p>
+
+<p>如果用投资组合的方式，不同类型公司之间股价涨跌会对冲一下。比如芯片类公司来一波行情，蓝筹类股票大概率回调，一个涨一个跌，波动对冲掉了。<em>这样做的效果是账户价值增长曲线会比较平滑，投资者心态也会更稳定，更容易做到长期持有，用平和的心态吃到企业内在价值成长的收益。</em></p>
+
+<h2 id="s5">五、成长性 × 股东回报的四象限</h2>
+
+<p>我们可以从成长性和股东回报这两个维度设计一个分析模型：横轴代表公司的成长性，纵轴代表公司的股东回报，形成一个四象限模型。四象限按逆时针排序，右上角是第一象限。</p>
+
+<table>
+  <thead><tr><th>象限</th><th>特征</th><th>典型公司</th></tr></thead>
+  <tbody>
+    <tr><td>第一象限（右上）</td><td>高成长 + 高回报</td><td>美的、海尔、保险、新能源车龙头</td></tr>
+    <tr><td>第二象限（左上）</td><td>低成长 + 高回报</td><td>白酒、银行、长江电力</td></tr>
+    <tr><td>第三象限（左下）</td><td>低成长 + 低回报</td><td>建筑、房地产</td></tr>
+    <tr><td>第四象限（右下）</td><td>高成长 + 低回报</td><td>芯片、AI 类公司</td></tr>
+  </tbody>
+</table>
+
+<h3>第一象限：高成长 + 高回报</h3>
+
+<p>这个区域的公司业绩成长非常好，每年能保持两位数左右的增长，而且有比较好的股东回报——公司有稳定的利润和分红。今年处于这个象限的公司有家电类的，比如美的和海尔，业绩增长不错，还保持了比较高的分红比例；还有保险行业，股东回报一直都比较高；以及新能源汽车和电池的龙头公司。</p>
+
+<h3>第二象限：低成长 + 高回报</h3>
+
+<p>成长性比较低，但公司业绩还算稳定、现金流比较好，成长性低暂时不影响股东回报。</p>
+
+<p>典型的有白酒公司——白酒在过去可以归类到第一象限，但这两年白酒行业很低迷，所以挪到第二象限来了。<em>这个分类不是一成不变的，我们只是看近几年的情况做一个初步分类。</em>可能过两年白酒行业回暖了，又会回到第一象限。</p>
+
+<p>银行也处于第二象限——这几年银行只是股价上涨比较多，公司业绩实际上没什么增长，毕竟银行是百业之母。还有一个典型行业是水电，代表公司是长江电力——没什么成长性但股东回报非常高，公司大部分利润都拿出来分红。</p>
+
+<h3>第三象限：低成长 + 低回报</h3>
+
+<p>公司在当前经济环境下既没成长性也没股东回报。<strong>处于这个象限的行业和公司就是我们从投资层面上要避免的。</strong>建筑行业和房地产行业应该都会分在这个类别——公司行业处于衰退中、或自身竞争力变弱了，没办法实现增长；同时要么因为盈利差没办法分红，要么即便有钱也倾向于留在账上应对风险，不会去回报股东。</p>
+
+<h3>第四象限：高成长 + 低回报</h3>
+
+<p>这类公司处于行业周期早期、快速扩张期，会将所有利润甚至额外的融资都投入到产品研发、市场扩张、产能建设中，以追求极致的增长速度，所以通常没有分红。<em>投资这类公司是投资未来，判断他们是否能成为未来的明星公司。</em></p>
+
+<p>目前芯片类公司、AI 类公司就处于第四象限。投资这类公司就是高风险高回报，股价波动性很大，适合风险承受能力强、追求资本快速增值的投资者。</p>
+
+<h2 id="s6">六、四类投资者的配置比例</h2>
+
+<p>我们可以使用投资组合的方式，根据自己的风险偏好和投资目标，选择合适的比例来配置这些公司。把投资者分为四个类型：防御型、稳健型、积极型、激进型。大家可以自己对号入座一下。</p>
+
+<h3>防御型投资者</h3>
+
+<p>风险偏好最低的一类人，投资目标以资产保值为主，追求本金绝对安全，投资收益能跑赢通胀或银行理财就行。</p>
+
+<table>
+  <thead><tr><th>类型</th><th>红利股</th><th>蓝筹股</th><th>创新类</th><th>说明</th></tr></thead>
+  <tbody>
+    <tr><td>防御型</td><td>70%</td><td>30%</td><td>0%</td><td>资产保值为主</td></tr>
+    <tr><td>稳健型</td><td>50%</td><td>40%</td><td>10%</td><td>超越通胀的市场平均回报</td></tr>
+    <tr><td>积极型</td><td>30%</td><td>50%</td><td>20%</td><td>高于市场平均，能容忍短期波动</td></tr>
+    <tr><td>激进型</td><td>0%</td><td>30%</td><td>70%</td><td>追求数倍回报，可接受大幅损失</td></tr>
+  </tbody>
+</table>
+
+<p>这些比例只是个人建议，大家可以根据自己的情况再微调。</p>
+
+<h3>稳健型投资者</h3>
+
+<p>风险偏好也比较低，希望本金在相对安全的情况下获取超越通胀的市场平均投资回报。合适的比例是 5:4:1——一半仓位分配给红利股，40% 配置给蓝筹股，10% 给创新型公司。</p>
+
+<h3>积极型投资者</h3>
+
+<p>风险偏好高一点点，愿意承担一些风险，希望收益率高于市场平均水平，能接受一定的高风险资产，也能容忍本金的短期波动。<em>我个人就属于这类投资者。</em>比较喜欢的比例是 3:5:2——</p>
+
+<ul>
+  <li>30% 仓位给红利型公司，因为它们是投资收益的底线</li>
+  <li>50% 仓位给各个行业的龙头公司（蓝筹股）</li>
+  <li>20% 给创新类公司。不过我今年的 20% 主要是电池和新能源车——AI 和芯片的估值太高了，有点超出我的风险承受范围</li>
+</ul>
+
+<h3>激进型投资者</h3>
+
+<p>希望短期内能够获得巨额利润，追求数倍的投资回报，能够接受本金的大幅损失。说实话我其实不太了解激进型投资者是咋想的，所以建议比例我是随便写的——<span class="num">0:3:7</span>。我感觉激进型投资者应该也不太会听取别人的建议，所以我就随便写一个比例就好了。</p>
+
+<h2 id="s7">七、总结</h2>
+
+<p>大家要先考虑清楚自己属于哪个类型的投资者、投资目标是什么，然后根据自己的需求选择需要配置公司的类型和比例。<em>投资方法和自己的性格匹配，才能比较轻松地实现理想的投资回报。</em></p>
+
+<p>今天分享的内容就这么多，是对投资组合方法的一个补充性分享。下期再见。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化<br>
+  股票投资从入门到精通 · 系列
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>可以选择的投资品种有哪些？</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">投资学习笔记</div>
+  <h1 class="title">可以选择的投资品种有哪些？</h1>
+  <div class="meta">
+    <span>投资品的不可能三角</span>
+    <span>五大投资品种逐一点评</span>
+    <span>普通人适合前三种</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>投资品的不可能三角：收益、流动性、风险</li>
+    <li>三类典型投资品的属性对比</li>
+    <li>结合自身需求选品种：一个案例</li>
+    <li>普通人能接触到的五大投资品种</li>
+    <li>品种一：债券（借条）</li>
+    <li>品种二：固定资产投资</li>
+    <li>品种三：股权投资</li>
+    <li>品种四：大宗商品期货（不推荐）</li>
+    <li>品种五：货币替代物（黄金、比特币）</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、投资品的不可能三角：收益、流动性、风险</h2>
+
+<p>今天给大家讲一下我们普通投资者可以选择的投资品种有哪些。在讲品种选择之前，我想先跟大家讲一个理论——<strong>投资品属性的不可能三角</strong>。</p>
+
+<p>任何投资品都有三个属性：<strong>预期收益、流动性和风险</strong>。一般情况下这三者是无法兼顾的。</p>
+
+<ul>
+  <li><strong>现金：</strong>流动性非常好，但预期收益低。</li>
+  <li><strong>房产：</strong>预期收益还可以、风险也还行，但流动性比较差——因为我们买房一般会持有很久。</li>
+  <li><strong>股票：</strong>预期收益很高、流动性也非常好，但风险也非常高。行情好的时候能挣很多钱，行情不好时也会亏很多钱。</li>
+</ul>
+
+<p>所以我们要<strong>先了解各种投资品的属性，再结合自身需求去选择投资品种</strong>。</p>
+
+<h2 id="s2">二、结合自身需求选品种：一个案例</h2>
+
+<p>讲一个案例。比如我现在手上有一大笔钱、又没有买房，预期是做一个长期稳定的投资，那这种情况肯定是去买房最合适。</p>
+
+<p>假设这个买房计划是半年之后才进行，那么这半年里钱肯定不能干放着——我会去存一个半年的定期，<strong>牺牲半年的流动性，来换取比活期更高的收益率</strong>。半年之后，我也可以没有风险地把这笔钱取出来，去完成买房这件事。</p>
+
+<p>这就是说：个人投资者在选择之前，要先根据自身情况去做合适的选择，<strong>而不是一上来就买股票或者买什么</strong>——先看一下自己的情况。</p>
+
+<h2 id="s3">三、普通人能接触到的五大投资品种</h2>
+
+<p>市场上我们投资者能接触到的投资主要有五种：</p>
+
+<ol>
+  <li>债券</li>
+  <li>固定资产</li>
+  <li>股权投资</li>
+  <li>大宗商品期货</li>
+  <li>货币替代物</li>
+</ol>
+
+<p>其中<strong>前三种适合普通人投资，后两种不推荐</strong>。下面逐一聊一下。</p>
+
+<h2 id="s4">四、品种一：债券（借条）</h2>
+
+<p>债券其实就是借条。我们在日常生活中可能都有向别人借钱、或者别人找我们借钱的场景，这就是一个简单的债券投资。换成公司属性，就是我们说的债券投资。</p>
+
+<p>债券表面上看起来简单，但<strong>真玩进去其实是一个非常复杂的投资</strong>，因为它涉及三个要素：</p>
+
+<ul>
+  <li><strong>利率是不断变化的。</strong>比如去年利率比较高、今年利率比较低，那去年借出去的钱能拿到较高的利率；今年突然需要用钱，要把这笔债券转让出去，应该收多少钱合适？这就涉及利率变化的复杂计算。</li>
+  <li><strong>提前赎回或转让的情况。</strong></li>
+  <li><strong>债券违约。</strong>这是有真实案例的——今年上半年和去年，有很多房地产公司的债券在市场上被打到三四折。市场认为它们违约风险非常高，花 <span class="num">30</span> 元就能买到面值 <span class="num">100</span> 的债券。如果到期真兑付了，收益非常高；但也可能最后违约，这 <span class="num">30</span> 块钱血本无归。</li>
+</ul>
+
+<p>所以债券一般是机构在做——他们有足够的能力做分析、搜集足够多的情报。<strong>其实不是很适合普通投资者。</strong></p>
+
+<h2 id="s5">五、品种二：固定资产投资</h2>
+
+<p>固定资产投资比如买住宅、买商铺、买写字楼都属于这一类。</p>
+
+<p>我的个人建议是：<strong>如果你没有买房，建议先去买房，等买了房之后再做其他投资。</strong></p>
+
+<p>原因有两个：</p>
+
+<ul>
+  <li><strong>心态问题。</strong>中国人是一个追求安稳的民族，老话说"无恒产者无恒心"。如果连房子都没有，去做其他高风险的投资，心态很容易受影响。</li>
+  <li><strong>买房是最好的投资训练。</strong>大家买房时会去考察房子本身的品质、户型、周边配套，以及未来街区升值空间。如果在买股票时也做像买房一样详细的研究，<strong>大部分人其实都可以获得比较好的收益</strong>。很多人买股票亏，就是因为实在是太草率了。</li>
+</ul>
+
+<h2 id="s6">六、品种三：股权投资</h2>
+
+<p>股权投资主要有两种形式：一种是跟朋友合伙创业，这也是一种股权投资；另一种是在二级市场购买上市公司的股票，也属于股权投资。</p>
+
+<p>这里有一个核心问题一定要搞明白——<strong>买股票就相当于买公司</strong>。把这个问题想明白，股票投资就会容易很多。本期教程是讲股票的，关于股票的特点这里就不展开了。</p>
+
+<h2 id="s7">七、品种四：大宗商品期货（不推荐）</h2>
+
+<p>大宗商品的期货投资，是给大型制造业公司用的——<strong>他们为了稳定自己原材料的价格，付出一定的保证金去预购未来的商品，通过这种方式锁定价格、降低经营风险</strong>。</p>
+
+<p>如果我们去做期货投资，相当于普通投资者去承担了连公司都不愿意承担的风险。所以<strong>绝对不要去碰期货投资</strong>。</p>
+
+<h2 id="s8">八、品种五：货币替代物（黄金、比特币）</h2>
+
+<h3>黄金：只能保值，不能增值</h3>
+
+<p>货币替代物里我们比较熟悉的是黄金。黄金是法定货币时代之前世界公认的货币。投资黄金能起到很好的保值作用，<strong>但也只限于保值</strong>。</p>
+
+<p>因为哪怕国家发生动乱，你可以买黄金保值，但你买了 <span class="num">1公斤</span> 黄金，它就永远只是 <span class="num">1公斤</span> 黄金，不会有任何增长。从财富增长的角度讲，<strong>投资黄金这种货币替代物，我觉得是没有必要的</strong>。</p>
+
+<h3>比特币：更像一种赌博</h3>
+
+<p>还有这几年比较流行的比特币。我个人觉得比特币更像一种赌博——因为我们去买比特币，<strong>没有任何价值分析思路在里面</strong>。你所期望的只是有没有另外一个人愿意用更高的价格买走你手中的比特币，中间没有所谓价值衡量。</p>
+
+<p>所以我本身不愿意把比特币和投资混为一谈，只是它也归属于货币类投资，就放在这里提一下。</p>
+
+<h2 id="s9">九、小结</h2>
+
+<p>今天主要讲的是普通人对于投资品种的选择。大家先建立起这样一个概念，<strong>再结合自身情况去选择合适自己的投资品种</strong>。</p>
+
+<p>这节课的内容就讲到这。如果感兴趣，可以加个关注，后续持续关注新的课程和消息。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>

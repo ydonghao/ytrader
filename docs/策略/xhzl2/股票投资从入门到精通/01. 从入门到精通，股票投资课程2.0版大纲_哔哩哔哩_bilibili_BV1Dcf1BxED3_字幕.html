@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>从入门到精通，股票投资课程2.0版大纲</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">股票投资从入门到精通 · 课程大纲</div>
+  <h1 class="title">从入门到精通，股票投资课程 2.0 版大纲</h1>
+  <div class="meta">
+    <span>四篇二十四章的整体框架</span>
+    <span>从基础认知到宏观周期</span>
+    <span>2024 新版课程导览</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>为什么要做 2.0 版</li>
+    <li>四篇章的整体结构</li>
+    <li>第一部分：基础认知篇</li>
+    <li>第二部分之一：公司经营篇</li>
+    <li>第二部分之二：二级市场篇</li>
+    <li>第三部分：高级软技能篇</li>
+    <li>持续迭代的课程理念</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、为什么要做 2.0 版</h2>
+
+<p>春节期间，我把投资课程的大纲重新梳理了一下，准备做一个 <span class="num">2.0</span> 的版本。</p>
+
+<p>去年我花了一些时间，做出了 <span class="num">1.0</span> 版本的投资课程。发出来的效果还是挺好的，流量方面非常不错；还有很多人私信告诉我，这个课程完全改变了他之前对股票的认知——以前他总觉得股票等同于赌博，看了课程之后才知道，<strong>原来股票投资基本等同于投资公司做生意</strong>，只要自身的商业能力是合格的，完全可以做到稳定盈利。</p>
+
+<p>但因为是第一次写这个课程，整体规划做得不太好。大多数内容都是写完一篇之后再接着想下一篇要讲啥；而且为了保持更新频率，基本上每周都要发一篇，所以有些内容做得比较仓促，<strong>课程的逻辑性和严谨性都还有很大的提升空间</strong>。</p>
+
+<p>另外，去年发布作品的过程中，我看到评论区有很多留言，提炼出来了一些共性问题，并针对这些共性问题补充做了几篇独立的小教学视频。这些内容我觉得都可以整合进来。</p>
+
+<p>所以我打算在 <span class="num">1.0</span> 版本的基础上，对课程进行一些补充、修改和重新录制。和去年一样，我先把新的课程大纲写好了，今天先带大家串一遍，方便新关注的朋友快速了解；听过 <span class="num">1.0</span> 版本的朋友可以选择性地略过。</p>
+
+<h2 id="s2">二、四篇章的整体结构</h2>
+
+<p>课程分为四个部分。去年的版本是分三个部分，新版本我把中段拆开了一部分专门讲公司经营，一部分专门讲二级市场。</p>
+
+<table>
+  <thead>
+    <tr><th>部分</th><th>主题</th><th>章节范围</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>第一部分</td><td>基础认知篇</td><td>第 1–5 章</td></tr>
+    <tr><td>第二部分·上</td><td>公司经营篇</td><td>第 6–12 章</td></tr>
+    <tr><td>第二部分·下</td><td>二级市场篇</td><td>第 13–19 章</td></tr>
+    <tr><td>第三部分</td><td>高级软技能与拓展篇</td><td>第 20–24 章</td></tr>
+  </tbody>
+</table>
+
+<h2 id="s3">三、第一部分：基础认知篇</h2>
+
+<p><strong>第一章</strong>告诉大家：投资对于我们普通人来说不是可选项，而是一个必选项。因为就算你啥也不干、啥也不投，实际上也是做出了一种投资选择——你选择持有法定货币作为资产保值的手段。这个选择其实是比较差的，因为最后通货膨胀都能吃掉你的大部分财富。</p>
+
+<p><strong>第二章</strong>讲常见的投资品种有哪些。因为这是股票投资的教学视频，所以教学内容就顺着股票这个投资品种往下讲。</p>
+
+<p><strong>第三章</strong>讲股票和证券交易所的起源，能让大家知道这个东西原本被设计出来是为了解决什么经济问题的，能让我们从本质上去了解股票投资。</p>
+
+<p>因为<em>买股票就是买公司</em>，所以<strong>第四章</strong>讲什么是公司、公司具体是如何运作的，以及公司的所属行业和产业链是什么。</p>
+
+<p>了解完公司和行业之后，<strong>第五章</strong>会告诉大家一家公司是如何成立的，如何从一家小公司一点点慢慢做大，最后成为我们可以直接投资的上市公司。</p>
+
+<h2 id="s4">四、第二部分之一：公司经营篇</h2>
+
+<p>课程的中段分为两个部分：一部分讲公司经营，一部分讲二级市场。我们先看公司经营的部分。</p>
+
+<p><strong>第六章</strong>讲如何分析公司的业务——彻底搞清楚一家公司是如何运作的，内容涉及公司的市场营销、产品的设计、生产和交付，还有最后的售后服务环节。</p>
+
+<p>以上这些业务环节的健康度，都能通过财务指标反映出来。所以<strong>第七章</strong>教大家了解公司的基础类财务指标，并根据这些财务指标判断公司的业务健康度。</p>
+
+<p>公司的业务是有优劣之分的。可能两家公司的业务规模和利润都差不多，但其中一家公司赚钱赚得很辛苦，每天累死累活，如果行业竞争加剧，利润可能会下滑；而另一家公司的业务可能很轻松，即便是面对竞争加剧，也能从容应对，公司未来持续高增长的可能性更大。<strong>这两家公司的核心区别，就在于两家公司的商业模式不一样。</strong></p>
+
+<p><strong>第八章</strong>讲如何分析公司的商业模式。商业模式的区别可以体现在公司的财务结构中，所以<strong>第九章</strong>讲公司的财务管理，从财务的视角看公司是如何运作的。</p>
+
+<p>财务管理的核心成果之一就是公司的财务报告。<strong>第十章</strong>讲解如何分析公司的年报，<strong>第十一章</strong>教大家如何分析财务三表，<strong>第十二章</strong>讲公司的战略分析——这部分内容我原先是放在高级篇章的，现在觉得放在公司经营的最后一章作为收尾更合适。</p>
+
+<h2 id="s5">五、第二部分之二：二级市场篇</h2>
+
+<p>讲完公司经营的内容后，从<strong>第十三章</strong>开始讲关于二级市场的内容，先讲如何对公司进行估值。</p>
+
+<p>前面第 6 到第 12 章讲的是公司经营的内容，这些都是公司估值分析的输入——我们根据公司的经营情况来判断公司的内在价值。很多股票新手刚进股市就容易在股价上犯迷糊，觉得这个东西涨跌都没规律，这就是因为你缺了一个环节：<strong>没有对公司进行估值分析，没有公司的内在价值作为参考</strong>，自然就判断不出来这家公司的股价是否合理、到底是高了还是低了。你没有一个合理的参考，肯定犯迷糊。</p>
+
+<p>学完公司估值之后，<strong>第十四章</strong>了解股票市场的定价机制。公司的股价实际上是市场上所有投资者的共识，它并不代表公司的真实价值，而投资者的共识往往是不靠谱的——市场经常会给垃圾公司一个很贵的价格，也会给优质公司一个很便宜的价格。这种情况过去经常发生。</p>
+
+<blockquote>
+  <p>如果你不了解股票市场的定价机制，而是套用生活中的商品定价思路去看，可能会觉得"贵的东西一定是好的，贵有贵的道理"。你要是这样想，就很容易踩大坑。</p>
+</blockquote>
+
+<p>既然公司有内在价值和市场报价两套价格机制，股票市场就衍生出了两种参与方法：你到底是追求公司的内在价值增长，还是追求股票的价格上涨？<strong>第十五章</strong>就讲这个问题——这两种不同的参与思路，通俗点讲，就是投资和投机的区别。所以<em>股票市场到底是赌场还是一个投资平台，这其实取决于你自己的认知和选择</em>。</p>
+
+<p>上市公司有很多种不同的类型：有创新行业的成长型公司，业绩增长很快但盈利不稳定，未来是否能稳定盈利还不确定；也有成熟行业的大型公司，业绩增长比较缓慢但盈利比较稳定。我们要投资哪种类型的公司？<strong>第十六章</strong>会告诉你：这取决于你自己的投资目标和风险偏好。</p>
+
+<p>确定了自己的投资目标和风险偏好之后，就可以开始选股了。A 股中目前差不多有 <span class="num">5400</span> 家上市公司，你不可能每一家都看一遍，所以我们需要一个选股的思路和方法，<strong>第十七章</strong>就讲这个方法。</p>
+
+<p>投资股票和我们上班不一样：上班你只能选择一家公司，但投资公司可以同时投资很多家公司。所以<strong>第十八章</strong>讲投资组合和长期配置。使用投资组合的方式，就可以规避满仓踏空的尴尬——<strong>东边不亮西边亮</strong>，你的投资组合中总有持仓公司能跟着好行情走的。另外，不同类型和不同行业的公司，它们的股价波动可以相互对冲抵消，能让账户波动更平稳一些。对于新手来说，账户波动平稳可以降低焦虑感，情绪就不容易被市场带着走，注意力就不用放在盯盘上，可以让我们更专注地研究公司的业务。</p>
+
+<p><strong>第十九章</strong>作为二级市场分析的收尾篇章，讲 A 股的指数体系：为什么要编制指数，这个东西如何指导我们的投资操作。</p>
+
+<h2 id="s6">六、第三部分：高级软技能与拓展篇</h2>
+
+<p>从<strong>第二十章</strong>开始，就进入到高级篇章了，内容主要是软技能和股市的拓展性知识。</p>
+
+<p><strong>第二十章</strong>讲股指期货和信用交易——资金量在七位数以上的投资者就需要了解这些。<strong>第二十一章</strong>讲股市的打新和可转债交易，A 股的打新目前属于制度性红利，牛市期间的新股申购差不多算是 A 股投资者的一个小福利。</p>
+
+<p><strong>第二十二章和第二十三章</strong>讲行为经济学和信息技术在股票投资中的应用——一个解决我们的心态问题，一个解决我们的技术问题。</p>
+
+<p>最后一个章节<strong>第二十四章</strong>讲宏观经济周期。它可以帮助我们判断经济的大方向，预判系统性风险。</p>
+
+<div class="pull">投资机会的时间窗并不是平均的，<br>而是呈现周期性质的。<br>宏观分析可以帮助我们抓到周期的规律。</div>
+
+<p>理想情况下，我们就能做到在经济转暖的时候下重注。所以我把宏观经济分析作为股票投资课程的收尾章节。</p>
+
+<h2 id="s7">七、持续迭代的课程理念</h2>
+
+<p>目前先把这个大纲作为投资课程 <span class="num">2.0</span> 的框架。课程合集里有些缺失的内容，我会尽快补充上来；后续我再重新录制的时候，应该还会有一些适当的优化调整，到时候再更新告诉大家。</p>
+
+<blockquote>
+  <p>目前我的水平就这样了——能做出来的东西，我不敢保证一定是完美的，但起码是我当前水平下能拿出来最好的。</p>
+  <p>后续有了更深度的理解和新的案例积累，我再接着去迭代开发这个课程。多迭代几个版本，应该会越来越好。</p>
+</blockquote>
+
+<p>反正就慢慢弄呗。学习投资这件事，本身也是一个漫长的过程。那新年第一期的内容就到这了，我们下期再见。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化<br>
+  股票投资从入门到精通 · 系列
+</footer>
+
+</div>
+</body>
+</html>

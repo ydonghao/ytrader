@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>回答粉丝问题，投资红利股需要考虑的一些细节</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">红利股投资 · 粉丝答疑</div>
+  <h1 class="title">回答粉丝问题，投资红利股需要考虑的一些细节</h1>
+  <div class="meta">
+    <span>银行股怎么选</span>
+    <span>红利 ETF vs 自建组合</span>
+    <span>低估值陷阱案例</span>
+    <span>本金不够怎么办</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>四个共性问题</li>
+    <li>问题一：买银行股长期拿股息行不行</li>
+    <li>银行股细节一：经营质量参差不齐</li>
+    <li>银行股细节二：现在价格不便宜，股息率不高</li>
+    <li>问题二：能不能直接买红利 ETF</li>
+    <li>ETF 的问题：A 股没那么多好公司</li>
+    <li>问题三：格力电器是不是低估值陷阱</li>
+    <li>补充案例：东方雨虹的掏空家底式分红</li>
+    <li>问题三续：中远海控是周期型公司</li>
+    <li>红利型公司的特征</li>
+    <li>问题四：本金不够怎么办</li>
+    <li>分红目标的复利推演</li>
+    <li>四个方法提升分红</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、四个共性问题</h2>
+
+<p>选择红利股我们要考虑哪些细节？我在元旦之前发了一个作品，讲如何通过买股票收股息来实现财务自由，很多人就在评论区提问，问一些操作上的细节。我看了一下评论区，大家问的问题基本上都是共性问题，所以我干脆再出一个视频统一回答一下，尽可能跟大家讲详细一些。</p>
+
+<p>我统计了一下，下面几个问题问得比较多：</p>
+
+<ol>
+  <li>买银行股，长期拿股息行不行？</li>
+  <li>能不能直接买红利 ETF？</li>
+  <li>格力电器、中远海控这两家公司被单独拿出来问得比较多。</li>
+  <li>本金不够怎么办？</li>
+</ol>
+
+<p>这些问题都挺简单的，几分钟就讲清楚了，我就顺着一个个讲。</p>
+
+<h2 id="s2">二、问题一：买银行股长期拿股息行不行</h2>
+
+<p>答案是<strong>当然可以</strong>，但是有很多细节你要考虑，不能无脑去买——无脑去买的话会血亏的。</p>
+
+<p>首先，银行是一个行业，不是指单个公司。在 A 股上市的银行一共有 <span class="num">42</span> 家，业绩规模最大的是工商银行，一年的业绩规模大概 <span class="num">8300</span> 亿；最小的应该是江阴银行，业绩规模只有 <span class="num">41</span> 亿。你看，这个头部和底部相比就差了 <span class="num">200</span> 倍——同样都是银行，差距就是非常大。</p>
+
+<h3>细节一：银行经营质量参差不齐</h3>
+
+<p>银行的经营质量是参差不齐的。评论区有些人提到民生银行，这几年业绩一直在下滑，属于经营比较垃圾的银行。直接看民生银行的业绩走势图：它在 <span class="num">20</span> 年的时候业绩规模还有 <span class="num">1900</span> 亿，现在就已经跌到了 <span class="num">1400</span> 亿，利润也在跟着往下跌，跌幅是比较大的。</p>
+
+<p>我们要投资银行，就投资一家最好的银行。单独评估公司好坏是很难的，但同类型的公司放在一起横向对比，还不知道谁好谁坏吗？我之前发过一个作品，详细讲解过如何分析银行的业务，看一下基本上就知道怎么选了。如果不想看，你直接问 AI 也行，问豆包或 DeepSeek 都可以——你就问"目前 A 股所有的上市银行，哪一家的综合实力最好"，这个不难找。</p>
+
+<h3>细节二：现在很多银行价格不便宜，股息率不高</h3>
+
+<p>很多银行现在的价格不便宜，股息率其实不高。因为这几年银行的业绩都没怎么增长，但股价涨了非常多，现在买已经不划算了。比如农业银行的股价在 <span class="num">23</span> 年之前才两块多，现在都已经七块多了——公司还是那个公司，农行的基本面这几年没啥变化，<em>但你现在去买它还有啥性价比呢？</em></p>
+
+<p>农业银行现在的股息率只有 <span class="num">3.24%</span>，作为红利股来看，这个股息率已经低到不能接受了。<strong>对于当前的银行来说，我觉得股息率低于 <span class="num">5%</span> 就不用看了。</strong></p>
+
+<p>有人可能会说：农行股息率不是还有 <span class="num">3.24%</span> 嘛，起码比存银行强吧？四大行又不会倒闭，确定性还是可以的。那四大行确实不太可能倒闭，但它股价有可能会跌啊——银行这个行业当前是没有成长性的，股价涨跌都很正常，从估值看，它跌的概率肯定比涨要大。抱着"买股收息"这样想法的投资者一定是低风险投资者，不可能接受本金大额损失，所以这个股价过高的问题一定要注意。</p>
+
+<h3>小结</h3>
+
+<p>第一个问题就比较简单：<em>买银行吃股息当然可以，但要选一家最好的银行，然后尽量在价格便宜的时候买。</em>股息率最低得到 <span class="num">4.5%</span> 以上吧？你这 <span class="num">3%</span> 点几的股息率，那还不如买成长股呢。</p>
+
+<h2 id="s3">三、问题二：能不能直接买红利 ETF</h2>
+
+<p>这个问题也比较简单。<strong>能不能买红利 ETF，主要看你自己有没有选股能力。</strong></p>
+
+<p>比如说第一个关于银行的问题，你有没有考虑过我刚才讲的那些细节？如果你之前都没有想过这些，那你就还是直接买 ETF 吧。虽然效果会差一点，但也不是不能用。ETF 本质上就是一揽子股票，比如现在热门的"红利低波 ETF"，就是选了 <span class="num">50</span> 个经营稳定、分红大方且股价波动小的公司做成了一个投资组合。</p>
+
+<h3>ETF 的问题：A 股没那么多好公司</h3>
+
+<p>我们现在大多数 ETF 的问题（包括红利低波，也包括其他一些 ETF），最大问题就是 <strong>A 股目前没有那么多好公司给你凑到一块，搞出一个质量很高的 ETF。</strong>你这 <span class="num">50</span> 家公司其中只有十几家是不错的，那剩下的都是来凑数的。</p>
+
+<p>比如当前红利低波指数的成分股里，就有刚讲的民生银行——这就是一个很垃圾的银行，你把它放进去了，那我们自己投资组合肯定不会选这个公司。然后还包括农行和工行，这两个银行当前估值都比较高，分红率只有 <span class="num">3%</span> 点几。公司肯定没啥问题，可以作为红利股，但是要看估值——便宜的才行，贵了就不划算了。</p>
+
+<p>我们自己如果有选股能力，自己去选红利股做投资组合，大概率效果是要比 ETF 好的，最起码省了一笔手续费。<em>所以第二个问题比较简单：大家要审视自己的能力，如果自己会选股，那就没有必要买 ETF，自己做投资组合就可以了；反之，那你就买 ETF 呗。</em></p>
+
+<h2 id="s4">四、问题三：格力电器是不是低估值陷阱</h2>
+
+<p>第三个问题是问几个典型公司的，比较有代表性，比如<strong>格力电器</strong>这家公司，还是明星公司。如果只看股息率的话，格力电器的股息率是挺高的，都已经 <span class="num">7.3%</span> 了。但它可能是低估值陷阱。</p>
+
+<h3>格力的主营业务受房地产影响很大</h3>
+
+<p>公司的主营业务受房地产行业的影响很大。因为空调不像别的家用电器——空调大多数都是在装修的时候弄的，置换周期比较长，不会随便换，不像冰箱、洗衣机这些直接放在客厅、阳台，想换就直接可以换掉。</p>
+
+<p>直接看一下格力的业绩走势图就很明显了：<em>房地产行业一不行，格力的业绩就原地踏步了。</em>公司在 <span class="num">2018</span> 年的时候业绩规模差不多是 <span class="num">1800</span> 亿，现在已经过去 <span class="num">8</span> 年了，公司业绩规模一点都没有增长。公司的股息率高，是因为它股价低；为什么股价低？大家不看好它呗。</p>
+
+<p>格力是产品型公司，它应该属于成长型公司，结果搞成现在这个样子——<strong>公司业绩 <span class="num">8</span> 年零增长，那作为产品型公司是很失败的。</strong>如果公司的业绩规模守不住，后面股价还是要跌的。业绩不行的公司分红往往是没有持续性的，这个道理很简单：你做生意规模越来越小，盈利能力越来越差，哪来的钱分给股东呢？</p>
+
+<h3>从资产负债表看分红能否持续</h3>
+
+<p>看一下格力电器的资产负债表就清楚了。格力之前的分红高是因为公司家底厚，在房地产实在牛的时候跟着赚了很多钱，兜里有钱分红才大方。现在看它的资产负债表，资金量越来越紧张了——看 <span class="num">25</span> 年半年报的数据，格力账上现金加理财差不多是 <span class="num">1400</span> 亿，但当前的短期借款和应付款加起来就超过 <span class="num">1500</span> 亿，<em>相当于你的现金覆盖不了你的短期债务。</em></p>
+
+<p>如果公司自身经营需要的现金流都不够了，那你觉得它还有钱分给股东吗？这个分红会不会持续呢？这种公司就是确定性不够高——你图它的分红，搞不好股价给你跌没了；还有可能公司因为业绩下滑、账上现金不够用，分红比例也会降低。我不是说它一定会这样发展，只是说这样发展的概率很大，<strong>这叫风险。</strong></p>
+
+<blockquote>
+  <p>我再次强调一下：红利股的投资者一定是低风险偏好的。你选这种公司，承担的风险就跟你的风险偏好不一致，那你就会很难受。如果风险触发——公司业绩下滑、股价下跌、分红也没了——那你这个是不能接受的。</p>
+</blockquote>
+
+<h2 id="s5">五、补充案例：东方雨虹的掏空家底式分红</h2>
+
+<p>再补充一个案例：东方雨虹。这家公司的股息率更高，达到惊人的 <span class="num">13%</span>。这家公司的情况跟格力比较类似，都是过去吃了房地产行业红利的公司，行业红利时代结束之后业绩就不太行了。</p>
+
+<p>东方雨虹的情况比格力更极端——格力还能说是业绩略有下滑但基本稳住，东方雨虹就已经出现了亏损的现象了。公司在 <span class="num">25</span> 年分红分了差不多 <span class="num">44</span> 亿，属于是"掏空家底式"的分红。我估计就是老板觉得生意不好做了，干脆账上的钱也不留那么多了，就通过分红把公司的钱都掏出来——老板拿这个钱还可以去搞别的生意，那这边的生意苟住就行了，反正后面也不用再怎么发展了。<strong>那他这个高分红就属于没有持续性。</strong></p>
+
+<div class="pull">分红只是公司经营的最后一个环节。<br>我们不能只盯着最后的结果看，<br>更重要的是它赚钱的过程：赚得轻不轻松、稳不稳定、能不能持续。</div>
+
+<h2 id="s6">六、问题三续：中远海控是周期型公司</h2>
+
+<p>再讲一下中远海控这个公司，也是评论区问得较多的一个公司，因为它股息率有 <span class="num">10%</span>。大家主要想知道买这个公司是不是能够安心吃它的高股息。其实还是一样的分析思路：先搞清楚这个公司的业务，知道它这个钱是怎么赚来的，自然就知道股息能不能持续了。</p>
+
+<h3>中远海控是吃了一次时代红利</h3>
+
+<p>中远海控是做集装箱航运的公司，业务比较简单。为什么现在分红这么高？先看业绩曲线：这个公司吃了一次时代红利。当年疫情我们这边防控做得比较严，所以产能提前恢复；后面西方陷入疫情麻烦时，就需要我们这边的物资。所以在 <span class="num">21</span> 年和 <span class="num">22</span> 年，航运需求爆单。同时又因为疫情，航运的运力投放比较慢，没跟上需求——需求大增但运力还那么多，导致运力涨价，量价齐升，让中远海控在这两年直接赚麻了。</p>
+
+<p>把公司当年的资产负债表调出来看：账上现金和理财一共有 <span class="num">2480</span> 亿，非常夸张。所以这个资金量就是公司最近几年高分红的来源和底气。但我们要考虑的问题是：<strong>公司的高分红是不是可以持续？</strong>从业绩图中可以看到，公司当年的高增长不具备持续性，它就是时代的红利，公司就赚了两年的快钱；到 <span class="num">23</span> 年的时候，公司业绩规模就已经跌回到疫情之前的水平了。</p>
+
+<h3>中远海控不属于红利型公司</h3>
+
+<p>我不是说这个公司不好。严格意义上讲，<em>中远海控并不属于红利类的公司。</em>红利型公司是有特征的：业务要稳定，不需要资本再投入，公司赚的钱就都可以分给股东。中远海控明显就不符合这些条件——它是一个周期型公司，业务是不稳定的。</p>
+
+<p>现在的地缘政治大家看了新闻多少都知道一点：在我们的"川皇"带领下，就是一个逆全球化的趋势，到处都是关税战和贸易壁垒，需求是不稳定的。供给方面呢，因为 <span class="num">21</span> 年和 <span class="num">22</span> 年航运公司都赚到大钱了，它们就会把这些钱拿来买新船、扩大业务能力。如果到了 <span class="num">2026</span> 年（今年），因为贸易战等原因全球贸易比较低迷、航运需求下降，然后新船的运力又开始投产，那海运价格是不是会降低？海运价格降低，公司利润不就低了吗？公司利润变低了，分红的金额是不是有可能下调？<strong>这不就是风险吗？</strong></p>
+
+<p>我没有专门研究过这个行业，只是临时判断可能会遇到这样的问题。如果我们是奔着"安心吃股息"去的，那你还愿意承担这些经营上的风险吗？所以它不是一个红利型公司，而是一个周期型公司，周期型公司风险是比较高的，红利股投资者一般是承担不了这个风险的。中远海控这个问题就明白了：先把公司的类型搞清楚。</p>
+
+<h2 id="s7">七、问题四：本金不够怎么办</h2>
+
+<p>最后讲第四个问题：本金不够怎么办？</p>
+
+<p>投资的第一桶金都是劳务性收入带来的，本金不够还能咋办呢？好好上班呗。然后克制一下自己的消费欲望，不要乱花钱，多攒钱投资。<strong>所以长期投资者都是比较抠的人——一想到今天花了 <span class="num">100</span> 块钱，如果拿来投资按复利增长的话，那未来就是一大笔钱了。</strong></p>
+
+<p>对于年龄较小的朋友来说，<span class="num">100</span> 万是比较多，但 <span class="num">5</span> 万 <span class="num">10</span> 万还是比较好攒的，慢慢来就行。大家入市的时候都差不多，都是 <span class="num">20</span> 几岁、几万块钱开始慢慢搞的。</p>
+
+<p>第二点，你要相信公司的成长性和复利的力量。优秀的公司可以保持每年两位数的增长。那现在是 <span class="num">3</span> 万块钱，公司的股价每年会涨。比如上期视频举例子讲的那家电气公司，公司在 <span class="num">2014</span> 年的时候市值只有 <span class="num">800</span> 亿，现在刚到 <span class="num">2026</span> 年，市值就已经 <span class="num">6000</span> 多亿了——相当于 <span class="num">14</span> 年投资 <span class="num">8</span> 万，现在变成 <span class="num">60</span> 万了，这还不算公司这几年的分红；如果分红的钱拿来再投资，金额还会更高。</p>
+
+<h2 id="s8">八、分红目标的复利推演</h2>
+
+<p>我们可以自己做一个跟踪表格，计算一下 <span class="num">2025</span> 年我们通过股票分红能拿多少钱，然后给自己的 <span class="num">2026</span> 年制定一个目标——就今年的分红我们希望能达到多少。</p>
+
+<p>比如说我们现在本金比较少，假设只有 <span class="num">10</span> 万块钱，<span class="num">2025</span> 年的分红就只有 <span class="num">5000</span>（按 <span class="num">5%</span> 股息率算）。那我们就给 <span class="num">2026</span> 年定一个投资目标：按分红增长 <span class="num">20%</span> 来计算，看一下今年能不能达到分红 <span class="num">6000</span> 元的目标。其实实现起来不难，有四个方法。</p>
+
+<h3>四个方法提升分红</h3>
+
+<ul>
+  <li><strong>方法一：</strong>只要公司的业绩和利润在提升，公司自身的分红就会上涨，也许就直接给你涨到 <span class="num">6000</span> 了。</li>
+  <li><strong>方法二（红利再投资）：</strong>这 <span class="num">5000</span> 的分红拿到手了就别乱花，再去买一些股票，是不是能够再多几百的分红？</li>
+  <li><strong>方法三（高切低操作）：</strong>如果我们持有的公司股价涨了一点，那股息率它可能就下降了，比如降到 <span class="num">4%</span>。那我们是不是可以把这个 <span class="num">4%</span> 的股票卖了，然后再去买股息率在 <span class="num">5%</span> 的公司？这是一个估值高切低的操作。在市值不变的情况下，卖掉高估的股票置换成低估的股票，分红就提高了。</li>
+  <li><strong>方法四（继续追加投资）：</strong>我们劳务性收入是稳定的嘛，赚了钱就别乱花了，继续去买优质的资产，提高我们的被动现金流。</li>
+</ul>
+
+<p>所以我们每年都要给自己的投资定一个目标，<em>以分红为主要的增长目标，我觉得是挺靠谱的。</em>那 <span class="num">2026</span> 年的目标就定为 <span class="num">6000</span>，然后每年的目标增长就是 <span class="num">20%</span>——<span class="num">27</span> 年就是 <span class="num">7200</span>，<span class="num">28</span> 年就是 <span class="num">8600</span>，以此类推。</p>
+
+<h3>复利的威力</h3>
+
+<p>按照这个比例算的话，<span class="num">10</span> 年大概就是 <span class="num">六</span> 倍多的增长。你 <span class="num">20</span> 多岁的时候一年的资产分红是 <span class="num">5000</span>，按这个增长速度，<span class="num">10</span> 年之后你 <span class="num">30</span> 多岁的时候，一年分红就是 <span class="num">3.1</span> 万；再过 <span class="num">10</span> 年等你 <span class="num">40</span> 岁的时候，一年分红就是 <span class="num">19</span> 万了——这个数字就已经比较高了。我们又不是到 <span class="num">40</span> 岁就死了，后面还有时间慢慢滚呢，后面就会越滚越大的。</p>
+
+<p>那有人会说 <span class="num">20%</span> 的比例太高，达不到怎么办？<strong>那 <span class="num">20%</span> 是目标嘛，要争取达到；达不到那就算了。</strong>但有这个目标做牵引，你就算是达不到 <span class="num">20%</span>，起码也能达到 <span class="num">15%</span>，持续增长的效果还是有的，无非就是时间年限稍微长一点。</p>
+
+<p>以公司分红为核心目标的话，就一定不会踩估值虚高的坑——估值虚高的公司，现金转化为现金流的效率是很低的，一看就知道。重点是我们注意低估值陷阱就行了。</p>
+
+<blockquote>
+  <p>最后无非就是说大家可能会觉得时间比较长，要 <span class="num">10</span> 年 <span class="num">20</span> 年。我觉得这个其实还好，长期投资者就这样的，必须是往 <span class="num">10</span> 年之后去看。而且这是一个只要踏踏实实努力，最后就一定能达到你目标的事情，无非就是时间长一点嘛，总比你瞎折腾强吧。</p>
+</blockquote>
+
+<p>差不多就这四个问题吧，先跟大家简单答疑一下。如果再有什么问题就在评论区留言，我看到共性的问题就会挑出来持续帮大家解答。那我们下期再见。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>

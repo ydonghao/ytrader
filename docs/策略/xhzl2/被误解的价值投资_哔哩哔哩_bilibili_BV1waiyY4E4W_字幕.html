@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>被误解的价值投资</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">投资学习笔记</div>
+  <h1 class="title">被误解的价值投资</h1>
+  <div class="meta">
+    <span>A 股适合价值投资吗</span>
+    <span>从白马股疯牛到四年熊市</span>
+    <span>格雷厄姆原本的意思</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>争议：A 股适合搞价值投资吗</li>
+    <li>价值投资一词流行的起点：19–20 年白马牛市</li>
+    <li>2018 年的那场大熊市有多惨</li>
+    <li>关键点一：通过基金入市，资金堆向白马</li>
+    <li>关键点二：《价值》这本书与望文生义</li>
+    <li>白马股翻倍的案例：招行、格力</li>
+    <li>误解形成：买好公司 = 价值投资</li>
+    <li>四年大熊市让价值投资跌下神坛</li>
+    <li>真正的源头：格雷厄姆与大萧条</li>
+    <li>价值投资的核心：报价低于价值才去买</li>
+    <li>"有价值的公司"本身就有语病</li>
+    <li>茅台案例：业绩稳定但市值大起大落</li>
+    <li>用正态分布判断估值高低</li>
+    <li>低价买高价值才是价值投资</li>
+    <li>核心能力：给上市公司估值</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、争议：A 股适合搞价值投资吗</h2>
+
+<p>我们的 A 股适合搞价值投资吗？这是目前争议比较大的一个问题。其实也谈不上争议很大，我感觉大部分人都觉得 A 股不适合搞价值投资——起码我从评论区看感觉是这样的。所以我今天跟大家分享一下，我对"价值投资是否适合 A 股"这个问题的看法。</p>
+
+<h2 id="s2">二、价值投资一词流行的起点：19–20 年白马牛市</h2>
+
+<p>价值投资这个词在我们这里开始流行，我感觉是从上一波牛市——也就是白马股结构性牛市开始的，时间点大概是 <span class="num">19</span> 年到 <span class="num">20</span> 年这两年时间。之前 A 股一直都有价值投资的说法，不过在 <span class="num">19</span> 年之前这个词汇还不是很流行。</p>
+
+<p>当时还处于房地产的大牛市中，房价一年比一年涨得快，所以大部分的关注点都在房地产投资上。当时还把房地产投资和股票投资放在一起比较，得出"买房投资正确，买股是败家的行为"。那个时候大家也还没有从 <span class="num">15</span> 年股灾的阴霾中走出来，所以在 <span class="num">19</span> 年之前参与股市的人其实并不多，股民还是一个比较小众的群体。</p>
+
+<h2 id="s3">三、2018 年的那场大熊市有多惨</h2>
+
+<p>我还记得 <span class="num">18</span> 年在川普上台之后跟我们打贸易战，那年 A 股的暴跌比现在惨多了。上证指数从 <span class="num">3587</span> 一波跌到了 <span class="num">2440</span> 点，一年的时间足足跌了 <span class="num">32%</span>。这个跌幅要是放在现在看，绝对是哭爹喊娘、骂声一片，但在当时其实并没有激起很大的水花。我估计现在的股市投资者，大多数没有经历过那一年的大熊市。</p>
+
+<p>但也正是因为 <span class="num">2018</span> 年跌得实在太厉害，所以 <span class="num">19</span> 年的时候股市从底部开始反弹，市场就有了一定的赚钱效应，民间的资金就开始考虑做股票投资了。当时还有一个情况是：房地产的投资虽然是大热门，但那个时候房价已经在高点了，很多人就开始质疑这个高房价；另外因为房地产价格大涨，参与的门槛也比较高，所以在 <span class="num">18、19</span> 年的时候选择投资房地产的资金在慢慢变少。那个时候股市的估值被贸易战打得很低，相比于房地产的高价位，<strong>股市的投资预期算下来还是不错的，赚钱效应还是很不错的</strong>。特别是在 <span class="num">19</span> 和 <span class="num">20</span> 那两年，随随便便搞一搞，每年都是 <span class="num">30%</span> 以上的增长。</p>
+
+<h2 id="s4">四、关键点一：通过基金入市，资金堆向白马</h2>
+
+<p>因为当年 <span class="num">15</span> 年的股灾实在是太痛苦了，然后在 <span class="num">18</span> 年又暴跌了一年，所以在 <span class="num">19</span> 年的时候大家对股票的警惕性还是非常高的，股票投资当年还是高风险投资的代名词。所以当时大部分人看到股市上涨之后，也没有像今年这样马上开户跑步进场，而是选了一个他们认为比较安全的、折中的方式——<strong>选择买基金进场</strong>。</p>
+
+<div class="pull">关键点就在这个地方：<br>没有直接开户入市，而是选择买基金。</div>
+
+<p>因为当时大部分基金的选股风格都是偏向于蓝筹股、白马股的，就是我们平时那些生活中都耳熟能详的行业龙头公司，比如茅台、万科、平安、格力这些公司。所以当年股市获得的增量资金全部都往这些公司上面堆，这些公司的股价就应声上涨，市场的赚钱效应非常明显。</p>
+
+<p>A 股历来都这样，只要有股票价格开始上涨，就有人开始吹捧和包装。当时市场上把这些公司称为"<strong>中国核心资产</strong>"，这个词你现在用百度搜一下都能找到当年大量的新闻。</p>
+
+<h3>当时的宏观大背景：美联储量化宽松</h3>
+
+<p>当时还有一个宏观大背景，就是为了应对疫情，美联储开始搞量化宽松，释放了天量的流动性出来。那个时候全球市场都获得了大量的流动性，股价全部都起飞了，而且不仅是投资品的价格，还有很多奢侈品的价格都开始涨价了——比如说那个劳力士的手表，绿水鬼都已经炒到 <span class="num">13 万</span> 了。我记得 <span class="num">15</span> 年我在日本玩的时候，那个绿水鬼也就 <span class="num">5 万多</span> 就可以买到。</p>
+
+<p>当时很多外资进入中国市场，我们的财经媒体就在那里叫嚣说"外资要来抄底中国优质资产，大家赶紧买，别让外资抄底"。这句话是不是特别耳熟？最近是不是也讲到过？<em>其实同样的话术都已经用过很多次了</em>。我们有点经验的老股民基点都很高，这种话术听了一点感觉都没有，它就是用来忽悠新人之前讲的。</p>
+
+<h2 id="s5">五、关键点二：《价值》这本书与望文生义</h2>
+
+<p>通过基金入市是第一个关键点，导致资金大部分都流向白马股。然后就是第二个关键点——<strong>当时有一个著名的投资人，在疫情封闭期间写了一本关于投资理念的书</strong>。那本书其实写得没什么问题，写得非常好，但题目取得很应景，就叫《价值》两个字。</p>
+
+<p>很多不认真读书的人就只看这个标题，很容易望文生义。价值嘛，这个好理解——就是大佬在教我们：股票投资就要买有价值的好公司。那什么是有价值的好公司呢？这还不简单，就是公司经营好、品牌有口碑、业绩持续增长的公司就是好公司呗，这不就是蓝筹股白马股吗？</p>
+
+<p>前面也提到过，这波行情大家进场都是通过基金的方式进场的，所以市场的增量资金都集中在基金偏好比较高的白马股上了。然后当年市场上的蓝筹股、白马股股价就上涨了非常多。</p>
+
+<h3>翻倍案例：招行、格力</h3>
+
+<ul>
+  <li><strong>招商银行</strong>：从 <span class="num">19</span> 年的低点 <span class="num">25</span> 块钱，两年时间内涨到 <span class="num">58</span>，足足涨了 <span class="num">132%</span>。</li>
+  <li><strong>格力电器</strong>：从 <span class="num">19</span> 年的低点 <span class="num">35</span> 块钱，一年的时间就涨到了 <span class="num">70</span>，直接翻倍。</li>
+</ul>
+
+<p>这种案例数不胜数。就是你现在知道的那些行业龙头公司，当年大部分股价都是翻倍的增长。结果就是大家一看说："哇，确实这些有价值的公司股价都能大涨，价值投资果然是对的呀！"现实情况给了我们"正确"的反馈。</p>
+
+<h2 id="s6">六、误解形成：买好公司 = 价值投资</h2>
+
+<p>所以在 <span class="num">2020</span> 年的时候，"价值投资"这四个字就被 A 股的股民奉为投资圣经。当时只要你买上一点白马股，或者买一些以白马股为主的基金，你就可以宣布自己是价值投资者。那个时候遍地都是信奉价值投资的股神，他们随便晒一下账户的收益都是翻倍以上的增长，那些甚至上了杠杆的人甚至能翻好几倍。</p>
+
+<p>其实这个时候，<strong>大家对价值投资这个事情已经产生了很大的误解</strong>——真的以为买那种公司经营稳定、业绩良好的公司就是价值投资，<em>然而丝毫没有注意到这些公司的估值已经涨上天了</em>。有一些人还是懂估值的，但是在当时的舆论环境下，大家普遍认为"真正优质的公司是可以通过高增长来消化目前的高估"。</p>
+
+<p>不过这个已经是 <span class="num">4</span> 年前的事情了，已经可以盖棺定论：现在大家都知道了，企业的高增长也很难消化这个高估值。</p>
+
+<h2 id="s7">七、四年大熊市让价值投资跌下神坛</h2>
+
+<p>最后就是大家开心了没多久，然后从 <span class="num">21</span> 年开始，就开启了这次长达 <span class="num">4</span> 年的大熊市。当年持有白马股和白马股基金的人，就一路被套到现在。即便是今年 <span class="num">10</span> 月份拉了一大波，大多数人也没有解套。</p>
+
+<div class="pull">这足足 4 年的时间，<br>已经足够让"价值投资"这四个字跌下神坛了。</div>
+
+<p>现在已经没有人愿意提这四个字了，仿佛就是一个笑话。取而代之的认知就是" A 股不适合价值投资，只适合投机"。</p>
+
+<p>那我的观点是：<strong>当年大家认为的"价值投资"其实理解就是错的</strong>。</p>
+
+<h2 id="s8">八、真正的源头：格雷厄姆与大萧条</h2>
+
+<p>那什么是真正的价值投资呢？我想先讲一下"价值投资"这个词是怎么来的。这个大部分人也应该都知道——价值投资这个词来源于巴菲特的老师，就是<strong>格雷厄姆</strong>。</p>
+
+<p>巴菲特今年都 <span class="num">94</span> 岁了，他的老师比他还大个 <span class="num">40</span> 多岁，已经不是我们这个时代人，都已经是 <span class="num">100</span> 年前的人了。按照我们这边的历史算，差不多属于大清朝末期的人。格雷厄姆活跃在股市的时候还是上个世纪 <span class="num">30</span> 年代的美国。</p>
+
+<p>我们理解他的投资思路，也要结合当时的时代背景去看。格雷厄姆是 <span class="num">1894</span> 年的人，等他到 <span class="num">35</span> 岁，正好是年富力强那年，就碰上了当时美国的大萧条时期，也就是 <span class="num">1929</span> 年到 <span class="num">1935</span> 年股价暴跌——就是在这样的条件下才磨练出来他的投资思路。<strong>经过极端行情的人，往往对风险的重视程度会更高</strong>，所以他就提出了"价值投资""安全边界"等说法，就是要考虑在极端情况下公司的经营情况会恶化到什么程度。那投资要保证安全的话，公司股价就要足够的低，才能抵消这个风险。</p>
+
+<h3>制造业为主：把厂房设备折算成钱</h3>
+
+<p>另外就是当年和现在不一样，当时的商业模式都比较简单，基本都是以制造业为主，公司的资产大多数都是一些厂房、设备。比如说巴菲特的伯克希尔，最开始就是一家纺织厂。</p>
+
+<p>所以当时格雷厄姆的思想其实是比较务实的。简单点理解就是：确认在公司里看嘛，把那些厂房的设备都折算成钱计算出来值多少钱；如果这个公司的股票价格算下来，比这些厂房设备折算出来的价格还要低一些的话，那就说明买这个公司的股票是比较安全的。<em>这个才是价值投资原本的意思</em>。</p>
+
+<p>格雷厄姆有本书叫《聪明的投资者》，也是一本畅销书。如果看过这本书的话，应该就不会对价值投资产生这么大的误解。</p>
+
+<h2 id="s9">九、价值投资的核心：报价低于价值才去买</h2>
+
+<p><strong>价值投资不是说"这个公司的业务很有价值，我们就要去买这个公司"，而是指这个公司的股价要足够的便宜，起码比公司的价值低才行。</strong></p>
+
+<p>"有价值的公司"这个说法本身就很有问题——请问哪个公司没有价值？哪怕是一个一年只能做十几万业绩的公司，它一样也是有价值的。包括任何物品都是有价值的：黄金有价值、白银有价值、一块石头也有价值（可以用于建筑材料），那一坨臭狗屎也是有价值的（可以作为植物的肥料）。<em>万事万物都有自己的价值</em>。</p>
+
+<p>所以价值投资的核心意义，不是指公司本身的价值，而是说<strong>市场给公司的报价跟这个公司的价值相比是不是足够的合理</strong>。如果说市场的报价比公司的实际价值低，我们才去投资，那这个可以说是价值投资。</p>
+
+<p>所以按这个说法的话，那 <span class="num">20</span> 年的白马股行情，哪里能称得上是价值投资？<strong>简直就是和价值投资相反的操作</strong>。因为那个时候公司的估值已经被炒到天上去了，而且大家都知道当时的估值非常高——因为当时大家的争论点是"优质公司的高估值是不是合理"，相当一部分坚持自己是价值投资的人，他们就认为优质公司的高估值是合理，因为高增长可以消化高估值。但现实就是这些所谓的价值投资者，马上就被市场教育了：大盘的转折点是 <span class="num">21</span> 年初，然后股市就经历了长达 <span class="num">4</span> 年的下跌趋势，一直在用股价下跌的方式来消化当年炒出来的高估值。<strong>用过高的价格买入优质的公司，一样会让投资损失惨重</strong>。</p>
+
+<h2 id="s10">十、股市真正难的地方：评估公司的价值</h2>
+
+<p>股市为啥这么难？核心原因就是<strong>大部分人都不知道如何评估公司的价值</strong>。</p>
+
+<p>这个不知道很正常，确实是有难度的。因为如果你自己没有经营过公司，不知道一个现代企业是如何运作的，外加不懂财务的话，是几乎不可能正确地评估出公司的合理价值。那既然你不懂如何评估公司的价值，你又如何知道市场给你的报价是否合理呢？<em>股市真正难的地方在这个地方</em>。</p>
+
+<h2 id="s11">十一、茅台案例：业绩稳定但市值大起大落</h2>
+
+<p>我还是拿茅台来举例讲解一下。为什么我举例很喜欢用茅台？不是说茅台有多好，而是<strong>茅台的业务足够简单，基本上所有的人都能理解</strong>。茅台的产品也很容易接触到，就算没喝过也能经常看到茅台，基本上算是 A 股中最容易理解的公司了。大家对于茅台的争议点，也仅仅在于说"未来喝酒的人会不会变少"，属于对行业发展趋势的分歧；至于公司本身大家的共识还是很高的，所以比较适合用来举例。</p>
+
+<h3>业绩：最近 5 年保持 15% 增长</h3>
+
+<p>我们可以先看茅台的业绩，看最近 <span class="num">8</span> 年（涵盖了 <span class="num">19</span> 年跟 <span class="num">20</span> 年的时间点）。可以看到茅台的业绩增长是非常稳定的，最近 <span class="num">5</span> 年的财务数据——利润、业绩、净资产的增长，基本上都保持在 <span class="num">15%</span> 的水平。这个是客观数据计算出来的结论，大家如果感兴趣的话都可以自己手工去算一下。</p>
+
+<h3>市值：21 年初明显高估</h3>
+
+<p>但是茅台的市值并不像它业绩这样一帆风顺。我们可以把茅台的市值和业绩叠到一个坐标系中去观察，很明显的发现：<em>茅台的股价在 21 年初的时候出现了明显的高估</em>。</p>
+
+<p>茅台属于行业毫无争议的龙头，业绩和利润都非常的稳定，这种公司我们可以用市盈率做估值高低的分析。我们可以看一下茅台过去 <span class="num">8</span> 年的时间市盈率的趋势是怎么走的——这种客观的数据看起来很清晰，什么时候估值比较高、什么时候估值比较低，把图形画出来基本上就一目了然了。</p>
+
+<h2 id="s12">十二、用正态分布判断估值高低</h2>
+
+<p>其实我们做上市公司的估值分析，也不一定要去估算公司的具体价值，如果能判断出相对高低的话其实也够用了。对于这种类型的数据，我们就可以引入<strong>正态分布公式</strong>来判断相对高低，可以根据公式再画两条参考线——就画一条高估线和一条低估线。正态分布是高考必考题，这里我就不多解释了。这样看的话估值高低就很清晰了。</p>
+
+<h2 id="s13">十三、低价买高价值才是价值投资</h2>
+
+<p>那回到我们今天价值投资的说法：<strong>用低于企业价值的价格去买才是价值投资；用高于企业价值的价格买，那就不是价值投资者了，而是接盘侠。</strong></p>
+
+<p>因为这个是历史数据，已经可以盖棺定论了：</p>
+
+<ul>
+  <li>如果说你在 <span class="num">18</span> 年年底买茅台的话，就是用低价去买入高价值的资产，那就可以算价值投资；</li>
+  <li>但如果说等到 <span class="num">21</span> 年初的时候，这个时候股价已经明显高估了，你再去买，那不就是冤大头吗？</li>
+</ul>
+
+<p>有些时候就不要自己骗自己了。觉得价值投资不适合 A 股，<strong>我觉得应该多从自己身上找原因——明明就是自己不懂估值，买东西买贵了而已</strong>。</p>
+
+<h2 id="s14">十四、核心能力：给上市公司估值</h2>
+
+<p>资本市场的核心功能之一就是给资产定价，我们职业投资人的核心能力其实也在这里——就是<strong>具备分析公司内在价值的能力</strong>。虽然说不一定分析得准，但大多数情况下还是能够判断出一个相对靠谱的价格区间。如果市场给的报价太离谱，我们是很容易分辨的。</p>
+
+<div class="pull">所以不要问"A 股适不适合价值投资"，<br>而是要问自己"具不具备给上市公司估值的能力"。</div>
+
+<p>如果自己不具备这个能力的话，是做不了股票投资的。因为你看不到企业的内在价值，所以你一进场就会被市场的报价所吸引，就是被这些 K 线图所吸引。<strong>市场的报价并不代表企业的真实价值</strong>，你光盯着一个错误的信息走，自然也只能得到错误的投资判断，最后就会不自觉地跟着 K 线的变化去玩——炒概念和追涨杀跌那一套了，就很容易成为那些被炒作机构所收割的韭菜。</p>
+
+<p>每个视频的最后我都会强调这个事情：<strong>股票投资是一个极其依赖专业和经验的工作</strong>。如果自身不具备相应的能力，一定要谨慎地对待炒股这件事情，自己要为自己的钱袋子负责。</p>
+
+<p>那本期的分享就到这儿吧。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>

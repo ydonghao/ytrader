@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股三季度财务数据分析解读</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">A股财报解读 · 三季度</div>
+  <h1 class="title">A股三季度财务数据分析解读</h1>
+  <div class="meta">
+    <span>各板块业绩复盘</span>
+    <span>大公司 vs 小公司</span>
+    <span>高估值的风险</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>整体符合预期：增长乏力</li>
+    <li>"发动机不行，骂转速表没用"</li>
+    <li>沪深300：三季度利润同比略跌</li>
+    <li>大公司能向供应链转移压力</li>
+    <li>中证500：利润已开始同比增长</li>
+    <li>创业板：业绩最好，但杀估值</li>
+    <li>最大亏损来自牛市追高估值</li>
+    <li>科创50：业绩不行、估值未跌</li>
+    <li>总结：中型公司已现回暖迹象</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、整体符合预期：增长乏力</h2>
+
+<p>今天我把三季度 A 股的财务数据盘点了一下。整体上看，还是符合预期的——<strong>增长乏力</strong>。从去年中旬之后，每个季度看财报都觉得没什么增长。</p>
+
+<p>之前我们还可以把增长疲软归因于疫情封控，本以为今年解封之后经济应该开始恢复，但实际结果还是有点让人失望。</p>
+
+<h2 id="s2">二、发动机不行，骂转速表没用</h2>
+
+<p>今年的 A 股，我的观点是：<strong>如果是经济不好的话，看股市是没什么用的，指望股市涨是不现实的</strong>。</p>
+
+<div class="pull">就像开车一样——<br>发动机不行，你去骂转速表是没有用的，还会显得人比较蠢。</div>
+
+<p>当然大家情绪上骂一骂也可以理解，情绪总归需要一个出口。</p>
+
+<h2 id="s3">三、沪深300：三季度利润同比略跌</h2>
+
+<p>看一下沪深300，<strong>三季度的利润同比是稍微下跌的</strong>。目前只能期待四季度的数据能够同比增长一些。从目前来看，我觉得概率还是比较大的——因为去年四季度大家都在生病，基数比较低，所以今年四季度同比增长应该没问题，希望这也能成为一个拐点。</p>
+
+<p>在利润不变的情况下，今年整个股市的波动其实就是大家预期的变化。去年初的时候大家觉得今年疫情结束了，可以放开手脚搞经济了，所以估值在今年一季度的时候上涨比较多；等到年中五六月份，大家发现经济依然比较疲软，估值就又掉下来了，目前掉到跟去年同期差不多的水平，走出了一个倒 V 字。上证50 跟沪深300 差不多。</p>
+
+<h2 id="s4">四、大公司能向供应链转移压力</h2>
+
+<p>我发现<strong>大公司的财务数据相比小公司，会明显滞后一些</strong>。今年我想了一下这个问题，觉得可能是大公司在遇到行情不好的时候，可以把经营压力向自己的供应链转移——比如压货、砍价、延迟付款等各种手段。所以是小公司的数据先出问题，然后才传导到大公司。</p>
+
+<p>那反过来是不是意味着，小公司的财务也会先体现回暖？</p>
+
+<h2 id="s5">五、中证500：利润已开始同比增长</h2>
+
+<p>今年在看中证500的数据时我就发现，<strong>三季度的数据中，中证500的利润已经开始同比增长</strong>——之前它一直处于持续下跌的状态。先从中证500的相关公司开始展现回暖迹象，我觉得大家可以关注一下这个点。</p>
+
+<h2 id="s6">六、创业板：业绩最好，但杀估值</h2>
+
+<p>再来看创业板。今年的话，<strong>创业板的成绩其实是相对最好的</strong>——不管是营收还是利润都是同比增长的，只是增速比之前要慢一点点。但之前市场给创业板的估值比较高，那今年就是单纯的杀估值了。</p>
+
+<p>我是一点点看着创业板的估值从 <span class="num">50 多</span>掉了一半下来。从这一点上也再次加强了我的一个经验认知：<em>一定要注意高估值的问题</em>。</p>
+
+<h3>最大的亏损来自牛市追高估值</h3>
+
+<p>在熊市的时候其实真亏不了多少钱——因为熊市股票估值低，咱买得也便宜；加上公司如果分红还行的话，填权就能补上来很多。<strong>最大的亏损其实是在牛市的时候去追高估值，吃了一个戴维斯双杀的暴击。</strong></p>
+
+<p>现在大部分的亏损，其实还是在拿 <span class="num">2021 年</span>年初的高点来对标。那一年的牛市其实是很不健康的——当时股市还在往上走，但相当于发动机已经转不动了，转速表却还在往上走，是不是要考虑这辆车是不是坏了？</p>
+
+<h2 id="s7">七、科创50：业绩不行、估值未跌</h2>
+
+<p>最后来看科创50。科创50其实没什么好说的，就是今年整个板块的公司业绩都不行。不过科创板大跌对一般人的影响不是很大，因为大部分人都没有过 <span class="num">50 万</span>的门槛。</p>
+
+<p>科创板的估值倒是没怎么掉，主要是杀业绩，估值还在 <span class="num">40 多</span>左右。往好的方面想，就是它的规模没掉，掉的是利润。这也可以理解：创新型公司的财务盈利本身就不太稳定，主要看的还是它的规模增长。如果业务规模不掉的话，我觉得它的估值能维持还是比较合理的。</p>
+
+<h2 id="s8">八、总结：中型公司已现回暖迹象</h2>
+
+<blockquote>
+  <p>以上是各板块三季度的财务情况。总结来说，<strong>在中型公司上已经看到回暖迹象</strong>，个别行业还是有一些亮点。我们继续期待四季度数据，看是否能够同比增长。</p>
+</blockquote>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化<br>
+  A股财报解读 · 系列
+</footer>
+
+</div>
+</body>
+</html>

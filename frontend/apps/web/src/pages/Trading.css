@@ -1,0 +1,103 @@
+.trading {
+  padding: 1.5rem 2rem;
+}
+
+.trading__content {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 1.5rem;
+}
+
+.trading__left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.trading__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.trading__side-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.trading__side-btn {
+  padding: 0.75rem;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.trading__side-btn:hover {
+  background: var(--color-surface-hover);
+}
+
+.trading__side-btn--active-buy {
+  background: var(--color-success);
+  border-color: var(--color-success);
+  color: #fff;
+}
+
+.trading__side-btn--active-sell {
+  background: var(--color-danger);
+  border-color: var(--color-danger);
+  color: #fff;
+}
+
+.trading__field {
+  display: flex;
+  flex-direction: column;
+}
+
+.trading__total {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--color-border);
+  font-weight: 500;
+}
+
+.trading__feedback {
+  padding: 0.625rem 0.875rem;
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+.trading__feedback--success {
+  background: var(--color-success-light);
+  color: var(--color-success);
+  border: 1px solid rgba(48, 209, 88, 0.3);
+}
+
+.trading__feedback--error {
+  background: var(--color-danger-light);
+  color: var(--color-danger);
+  border: 1px solid rgba(255, 69, 58, 0.3);
+}
+
+.trading__cancelling {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 1024px) {
+  .trading__content {
+    grid-template-columns: 1fr;
+  }
+}

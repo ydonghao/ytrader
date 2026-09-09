@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>炒股炒的是预期吗？</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">投资认知 · 预期与预期差</div>
+  <h1 class="title">炒股炒的是预期吗？</h1>
+  <div class="meta">
+    <span>预期 vs 预期差</span>
+    <span>迈瑞医疗的案例</span>
+    <span>南方航空的案例</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>只说对了一半：炒的是预期差</li>
+    <li>新手最大的问题：预期来自他人</li>
+    <li>正确做法：在市场之前形成预期差</li>
+    <li>案例一：迈瑞医疗的三个买入时间点</li>
+    <li>案例二：南方航空的预期反转</li>
+    <li>结论：预期一定要早于市场，并且正确</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、只说对了一半：炒的是预期差</h2>
+
+<p>"炒股炒的是预期"，这句话是对的吗？其实只说对了一半，还有后半句——完整的说法应该是：<strong>股价能反映市场对公司的预期，但我们炒股炒的是"预期差"。</strong></p>
+
+<p>上市公司中有很多非常优秀的企业，在过去十多年都能保持业绩规模持续的高增长。但很多投资者在投资这些公司的时候，一样也会出现亏损。造成这个亏损的原因，大概率就是没有搞清楚"预期"和"预期差"之间的区别。</p>
+
+<h3>预期是什么</h3>
+
+<p>预期在股市中的解释，就是我们对公司未来发展情况进行提前预估。比如说我们预估一家公司的业绩未来会大幅增长，即便这个公司当前的业绩可能表现得很差，我们也会提前去买入它的股票。当市场上买单大于卖单的时候，造成的现象就是在公司业绩增长之前，公司的股价就已经大涨上去了。所以大家就认为炒股炒的就是预期，只要预期达成一致了，股价就会涨。</p>
+
+<h2 id="s2">二、新手最大的问题：预期来自他人</h2>
+
+<p>问题在于实际操作的时候，新手股民最大的问题是自己没有独立分析公司的能力，所以对于公司的预期很有可能是听其他人说的。那说明这个时候大概率市场的预期已经形成共识了，并且反映到股价上去了。结果你这个时候再去买，自然而然就成接盘的了。</p>
+
+<p>这个时候你虽然对公司是有比较好的预期，但问题是市场上所有的人都这么认为——你的预期和市场的预期之间，没有形成一个"预期差"。当前的股价已经消化了这个预期，那你接下来就会面临这样的问题：</p>
+
+<ul>
+  <li>如果未来公司按照预期实际高增长了，但你买入之前股价已经透支了这个增长，所以买入后股价涨幅可能会很小，导致投资收益非常低。这个情况还算是比较好的，因为公司的业绩增长兑现了预期。</li>
+  <li>那有没有可能公司后续的增长没有按照预期走呢？那就是一个比较差的结果——公司的增长不达预期，结果会导致公司股价大跌，而你在之前高位买入，就会导致账户浮亏严重。</li>
+</ul>
+
+<h2 id="s3">三、正确做法：在市场之前形成预期差</h2>
+
+<p>正确的做法是：<strong>你必须在市场形成预期之前，就先独立完成判断，分析出这家公司未来可能会出现高增长的可能性。</strong>而这个时候，市场暂时是没有这个高增长的预期的，所以你的预期和市场的预期相比，形成了一个"预期差"。然后你在公司股价还没有上涨之前就买进去，这样才能实现比较大的投资收益。</p>
+
+<p>下面拿几个案例来讲一讲，预期和预期差之间的区别。</p>
+
+<h2 id="s4">四、案例一：迈瑞医疗的三个买入时间点</h2>
+
+<p>先讲一个公司：它上市之后，每个季度都保持了同比增长的业绩表现，毋庸置疑是优质公司——这家公司就是<strong>迈瑞医疗</strong>。</p>
+
+<p>我们先只看它的业绩增长趋势图。迈瑞医疗是 <span class="num">18</span> 年上市的，上市之后业绩保持持续增长，一直保持到 <span class="num">2024</span> 年三季度，已经是好得不能再好的成绩了。看到这种增长情况，大家会觉得它的股价表现怎么样？是不是也会跟着业绩一样能持续增长？但答案是否定的——公司股价从 <span class="num">21</span> 年开始就一直持续下跌，已经持续了 <span class="num">3</span> 年半，即便最近 <span class="num">10</span> 月份拉了一波，股价表现依然是比较差的。</p>
+
+<p>把公司的市值和业绩走势叠加在一起看，就能看得很清楚：这个公司是做医疗器械的，主要产品有呼吸机这类东西，所以是疫情期间最大的受益公司。这个基本面大家都应该能看得懂。既然大家都能看懂，那市场对于这个公司未来能够实现高增长的预期就很容易形成共识。所以在 <span class="num">20</span> 年（疫情第一年），公司股价增长非常快。</p>
+
+<p>在 <span class="num">4</span> 年之后回过头来看这个案例，就可以盖棺定论地评价了：</p>
+
+<ul>
+  <li><strong>第一个时间点（19 年 12 月之前）：</strong>疫情是突发事件，没有任何人能够预料到。所以如果你在 <span class="num">19</span> 年 <span class="num">12</span> 月份之前就判断出这个公司未来能够保持较高的业绩增长，那这个时候你的预期就和市场的预期产生了一个比较大的差异，你在这个时候买入投资回报是非常高的——因为疫情这件事是后面才发生的，市场才对公司的高增长产生了预期，而你提前就想到了，抢先一步买入。</li>
+  <li><strong>第二个时间点（20 年 5 月）：</strong>这个时候疫情的情况已经比较明朗，全国城市基本已经解封，进入疫情常态化时期。这时公司股价已经充分反映了大家对公司在疫情时代能够取得高增长的预期，再买就已经赚不到疫情导致股价增长的那部分收益了。不过因为未来公司的业绩增长确实比较好，所以长期持有收益率还是正数。</li>
+  <li><strong>第三个时间点（20 年四季度）：</strong>那是当年白马股炒作最后的阶段，公司股价已经严重虚高，市场对该公司的共识已经完全达成一致。这时再买入，就只能去搏最后的投机性收益，长期持有就会造成账面亏损。</li>
+</ul>
+
+<p>所以从迈瑞医疗这个案例中我们可以知道：<em>关于预期这个问题，你必须在市场之前形成，这样就可以形成一个预期差；然后等到后面市场的预期达成共识、再驱动股价上涨，你才能获得比较好的收益。</em>等到市场对这个预期产生共识的时候，股价已经通过上涨提前兑现了这个预期，你这个时候再产生预期，就和市场没有预期差了，自然拿不到比较好的投资收益。</p>
+
+<h2 id="s5">五、案例二：南方航空的预期反转</h2>
+
+<p>再来看一个案例：南方航空。这个案例比较好，因为航空公司业务简单，坐过飞机的人基本上都消费过他们的服务，业绩走势普通人都比较能分析出来。而且这几年经历了疫情的开始和结束，对航空公司业绩影响比较大，市场对航空公司业绩趋势产生了几次预期转变，所以拿这个公司来讲预期比较有有意思。</p>
+
+<h3>业绩非常符合预期，但股价和业绩出现偏差</h3>
+
+<p>先看南方航空的业绩：非常符合大家预期。疫情对航空公司的业绩影响是很直接的，所以疫情开始后业绩就开始下跌；当年我们疫情控制还可以，所以南航的业绩在降低一段时间之后就稳定了。等到年底疫情全面结束的时候，业绩就开始回升，目前已经基本恢复到疫情之前的水平。业绩方面很清晰。</p>
+
+<p>但公司的股价和业绩走势，就出现了一个很明显的偏差。把公司的业绩和市值叠到同一个坐标系中去观察，可以看到：</p>
+
+<ul>
+  <li>在 <span class="num">19</span> 年底疫情还没发生之前，南航的市值差不多维持在 <span class="num">800</span> 亿左右。</li>
+  <li>疫情发生后，市场快速达成共识——未来几年航空公司的业绩会大幅下降，所以南航的股价在疫情发生后几个月的时间就跌了 <span class="num">30%</span>，市值跌到了 <span class="num">600</span> 亿的规模。这个预期很容易形成共识，因为疫情会导致出行频率降低，是个人就能分析出来。</li>
+</ul>
+
+<p>但是如果你在 <span class="num">20</span> 年 <span class="num">4</span> 月选择卖出南航的股票的话，那你可能就刚好割肉割在地板上了。因为那个时候是市场对航空公司业绩最悲观的时候，但实际上由于后续疫情控制还可以，公司业绩并没有像市场预期那么糟糕——从 <span class="num">1500</span> 亿下滑到 <span class="num">900</span> 亿后基本就稳住了，而且为了稳定特殊时期航空公司的运营，还对公司进行了输血。</p>
+
+<p>等到 <span class="num">2020</span> 年中旬，疫情已经稳定进入常态化防控阶段，市场对航空公司的预期又产生了变化，认为最危险的时间已经过去了，未来业绩会持续回升。所以南航的股价又恢复到上涨状态。由于在疫情期间为了抗击风险选择了股份增发，到 <span class="num">22</span> 年底时公司总市值已经突破历史新高了。而业绩方面，在 <span class="num">22</span> 年底疫情正式结束时开始回升，经过 <span class="num">23</span> 年的业绩爬坡，到 <span class="num">24</span> 年初已经恢复到疫情之前的规模水平。</p>
+
+<h3>但预期被透支，业绩爬坡期股价反而下跌</h3>
+
+<p>但是——由于市场对公司业绩规模恢复增长的预期，已经提前被股价上涨所透支了，<strong>并且股价的涨幅甚至还超过了业绩的涨幅，形成了一定的泡沫。</strong>所以去年初公司业绩开始爬坡的时候，它的股价反而又开始下跌了。</p>
+
+<p>切换到投资视角，我们会发现：如果要在南航上取得投资收益，我们的预期就必须领先市场的预期，形成一个预期差。</p>
+
+<ul>
+  <li>比如在疫情开始、公司股价迅速下跌时，市场的预期是"未来公司的前景会变得很差"。但如果我们能够分析出在疫情稳定后公司的业绩也会稳定，并不会变得更差，那我们这个预期就和市场不一样，并且是对的，就可以在 <span class="num">20</span> 年 <span class="num">4</span> 月的低点买入。</li>
+  <li>等到 <span class="num">22</span> 年底疫情全面结束时，公司市值已经涨到了历史最高点。这时市场的预期是"疫情结束了，未来公司还能继续增长，业绩规模肯定能恢复到疫情之前的水平"。但我们应该这样判断：虽然疫情刚结束、公司业绩还在低点，但市值已经新高了，甚至还超越了疫情之前的水平。如果未来公司业绩真的恢复到疫情之前，那现在的市值已经和疫情之前一样了，不一定会有比较大的涨幅；而且目前还只是预期，预期不一定会实现。如果未来公司业绩回升速度很慢，那岂不是股价还会下跌？所以现在的最优解就是：判断股价已经反映了未来的预期，这时卖掉就可以了，不用真的等到公司业绩再涨上来。</li>
+</ul>
+
+<h2 id="s6">六、结论：预期一定要早于市场，并且正确</h2>
+
+<blockquote>
+  <p>不管是南航的案例，还是迈瑞的案例，我们都不难得出这样的结论：</p>
+  <p>确实，公司的股价走势会反映当前市场对公司未来的预期。但我们站在投资者的角度去操作，如果要实现盈利，<strong>我们的预期一定要早于市场的预期形成预期差，并且我们的预期是正确的，才可能获利。</strong></p>
+</blockquote>
+
+<p>如果你认为炒股就是炒预期，而忽略了你的预期和市场的预期之间的差异，甚至你的预期比市场的预期还要晚，那你再去操作大概率是要"站岗"的。</p>
+
+<p>新手股民最大的问题，是自己没有独立分析公司的能力，所以对公司的预期很多情况下可能是听其他人说的——那说明这个时候大概率市场的预期已经达成共识了，并且已经反映到股价上去了，结果你这个时候再去买的话，自然就成接盘侠了。所以大家要搞明白，预期和预期差之间的区别是什么。</p>
+
+<p>这次的分享就到这吧。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>

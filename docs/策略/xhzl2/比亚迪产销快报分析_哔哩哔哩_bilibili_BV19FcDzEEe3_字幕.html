@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>比亚迪产销快报分析</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">投资学习笔记</div>
+  <h1 class="title">比亚迪产销快报分析</h1>
+  <div class="meta">
+    <span>月报读懂一家车企</span>
+    <span>电池与海外市场的双轮驱动</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>分析车企，看月报就够了</li>
+    <li>产销快报怎么查、看什么</li>
+    <li>月报传递的三个关键信息</li>
+    <li>海外销量：从 4000 辆到月销破 10 万</li>
+    <li>电池装机量与储能业务</li>
+    <li>比亚迪的两个明显缺点</li>
+    <li>资产结构：应付账款高是行业共性</li>
+    <li>研发费用 640 亿，A股第一</li>
+    <li>估值：用市销率看成长期公司</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、分析车企，看月报就够了</h2>
+
+<p>前天讲了宁德时代的年报，马上就有人问比亚迪的——能不能等比亚迪出年报了也帮我们分析一下。其实分析比亚迪不用等年报，因为<strong>比亚迪是发月报的公司</strong>，看月报就够用了。</p>
+
+<p>不只是比亚迪，A 股大多数汽车公司都会按月发布月报，包括赛力斯、长城、上汽等。这些月报的名字叫<strong>产销快报</strong>。如果没有假期，一般是每个月的 <span class="num">2 号</span>就发了，时效性非常高，应该是从公司 IT 系统里直接导出来的数据。</p>
+
+<p>车企是典型的产品型公司，业绩和销量直接挂钩，公司所有的运营策略都是为销量服务的。所以分析车企可以<strong>重点优先看产销数据</strong>，等正式财报出来再补充看一下公司的战略规划和运营健康度就行。</p>
+
+<h2 id="s2">二、产销快报怎么查、看什么</h2>
+
+<p>我们可以在巨潮这种专门发布上市公司公告的网站上查询。用搜索功能直接填你想要查的汽车公司名字，再加上"产销"这个关键词，就可以把公司每个月的产销快报批量搜索出来。</p>
+
+<p>报告内容不多，就写满一页。比亚迪的这份月报向我们传递了三个信息，很容易解读。</p>
+
+<h2 id="s3">三、月报传递的三个关键信息</h2>
+
+<h3>信息一：产销数据</h3>
+
+<p>首先是最重要的产销数据。比亚迪把产量和销量分开展示了，由于发送频率很高，产销没必要都看——节奏大致趋同，<strong>主要看销量就行</strong>。</p>
+
+<h3>信息二：出口数据</h3>
+
+<p>比亚迪会在产销月报中公布出口数据。我们看的这份是 <span class="num">2</span> 月份的月报，出口数量已经<strong>超过 <span class="num">10 万台</span></strong>了。要知道 <span class="num">2</span> 月份是国内的淡季，国内都没卖这么多。出口销量意味着车企在海外新市场的开拓情况，<strong>车企的业绩上限就打开了</strong>——在国内卷没意思，去海外正面硬刚丰田，才是我们希望看到的剧情。</p>
+
+<h3>信息三：电池装机量</h3>
+
+<p>最后是比亚迪特有的一个数据——电池装机量。比亚迪 <span class="num">2</span> 月份的电池装机量是 <span class="num">18.8 GWh</span>，数据量还是挺大的。前天我们才看了宁德时代的数据：宁德时代电池一年的销量是 <span class="num">662 GWh</span>，比亚迪去年一年的装机量大约是 <span class="num">285 GWh</span>。虽然一个是销量、一个是装机量，口径不一样，但业务规模上还是可以横向对比一下。</p>
+
+<p>如果只对比电池的业务量，比亚迪的估值比宁德时代要便宜一些：宁德时代现在有 <span class="num">1.8 万亿</span>市值，比亚迪才 <span class="num">9000 亿</span>，只有宁德时代的一半——但比亚迪还有汽车业务。</p>
+
+<h2 id="s4">四、海外销量：从 4000 辆到月销破 10 万</h2>
+
+<p>从数据上看，比亚迪今年开年的业务表现比较差，但目前市值没受多大影响——大家都在观望，等 <span class="num">3</span> 月份的发布会开完、等二代刀片电池上市了再说。比亚迪是一个非常喜欢降价的企业，对老用户非常不友好，所以现在大家都学聪明了：买比亚迪的产品不能买首发，要先忍住，半年不买后面应该会有更好的优惠或者更好的技术出来。买早了就容易吃亏。</p>
+
+<p>所以比亚迪今年的业绩走势，主要看公司二季度的产销数据和海外销售情况。</p>
+
+<p>我们看一下海外销量数据。比亚迪从 <span class="num">2022</span> 年下半年开始在产销月报中公布出口数据，当时一个月才卖 <span class="num">4000 多辆</span>；现在才过了 <span class="num">3 年多</span>，月销量就已经破 <span class="num">10 万</span>了，<strong>这个增速还是很猛的</strong>。</p>
+
+<p>帮比亚迪打开海外市场的车型是"比亚迪元"——不过它在海外不叫这个名字，叫 ATTO 3。用一款名叫"元"的车型去打欧洲市场，我很难不怀疑这个命名是故意的，多少有点恶趣味在里面。虽然现在跟丰田、大众等第一梯队的车企在全球市场上还有很大差距，但这个差距在肉眼可见地缩小。如果再追赶个 <span class="num">3、5 年</span>，我感觉国产车是有可能去冲击全球第一的。</p>
+
+<div class="pull">10 年前还是德系车和日系车如日中天的时候，<br>经济实用就买丰田，追求逼格就买奔驰宝马保时捷。<br>那时是真的想不到，国产车能做到今天这个水平。</div>
+
+<h2 id="s5">五、电池装机量与储能业务</h2>
+
+<p>我们可以看一下比亚迪动力电池和储能电池的装机量趋势图。最近半年大家在炒作电气设备板块，一讲到电池储存，大家首先想到的还是宁德时代。因为比亚迪的电池大部分都用在自己车上了，所以很多人只知道比亚迪是卖车的，忽略了它的电池业务。</p>
+
+<p>前面也讲过，比亚迪电池去年的装机量是 <span class="num">285 GWh</span>，电池业务量大概是宁德时代的 <span class="num">40%</span> 左右。在储能市场上，比亚迪也是一个不容小觑的参与者。</p>
+
+<h3>闪充站：突破电网限制的储能方案</h3>
+
+<p>前几天比亚迪发布了"兆瓦闪充"发布会，会上讲了比亚迪的闪充站。这其实就是一个储能系统的解决方案——它不仅仅是充电设备，更是电能的蓄水池和功率放大器：空闲的时候储能，用户来充电时再由储能的高功率放电拉高充电功率。</p>
+
+<p>储能系统的加入可以有效削峰填谷、突破电网容量的限制，这意味着比亚迪充电站建设不会受当地电网容量限制，可以在很多原本不具备建设条件的地方落地。这种设计还能极大提升电网的功率利用率：传统的充电桩在车辆没充电时是闲置的，浪费了宝贵的电网容量；而储能系统可以平滑负载，让电网容量更充分被利用。比亚迪通过技术手段实现了充电设施和电网的和谐共生——既不伤害电网，又最大化利用了电网的价值。</p>
+
+<p>这个解决方案不仅可以用于汽车充电，应该还能用在其他储能场景中。<strong>这块业务很有可能成为比亚迪未来单独的一个业绩增长点。</strong></p>
+
+<h2 id="s6">六、比亚迪的两个明显缺点</h2>
+
+<p>不能光讲优点，也要看这家公司的缺点。比亚迪是一个优点和缺点都很突出的公司，有两个比较明显的缺点。</p>
+
+<h3>缺点一：对老用户不友好</h3>
+
+<p>比亚迪是一个对老用户不太友好的公司——这个我就不细说了，懂得都懂。这是大家公认的一个问题，就连比亚迪最铁的粉丝都得承认。对老用户不友好，会对公司的品牌价值造成伤害。目前比亚迪是技术领先，大家看在技术好的份上可能还会选择你的产品；但如果未来其他车企技术都追上来，那可能就不好说了。</p>
+
+<p>去年比亚迪有一款车——方程豹的钛系列，卖得很火，属于去年的年度黑马。为什么这款车卖得好？总结一下就是：用的是比亚迪的技术，但又叫"比亚迪"以外的名字。很多人看得上比亚迪的技术，又觉得这个牌子不太行，这款车就把这类用户都拉进来了。另外就是价格一步到位——方程豹这个牌子曾经伤害过老用户，方程豹的总经理被骂了一年多，这次就学乖了，定价一步到位。所以"对老用户不友好"这个问题，比亚迪是得想办法改一下的。</p>
+
+<h3>缺点二：产品定位和设计做得差</h3>
+
+<p>第二个缺点是：和公司的技术相比，<strong>公司的产品定位和设计做得很差</strong>。</p>
+
+<p>比亚迪是深圳的公司，我感觉这个车企就有种"老广"的气质：表面上看是一个平平无奇的大叔，穿着背心人字拖，但腰间挂着钥匙串——实际上可能是一个巨有钱的包租公。比亚迪底子比面子要厉害得多。它的技术很牛，但我们总担心它用牛逼的技术做出一个很奇怪的产品。比如去年的腾势 D9 GT 卖不动只能改款；比亚迪千山翠当年卖到 <span class="num">30 多万</span>，当时销量不错，说明大家是认你的产品和技术的，结果公司经营策略很奇怪，放着汉、唐这么好的 IP 不知道经营。</p>
+
+<p>本来这两个 IP 是能稳定 <span class="num">20 万</span>销量区间、顶配卖到 <span class="num">30 万</span>都没问题的，结果搞得现在比亚迪汉都做到"网约车那桌"去了。放着汉唐不搞，非要去搞腾势这个牌子，结果高端产品又没那个运营水平，被华为的问界按在地上摩擦。</p>
+
+<p>这里提一嘴问界这个牌子：问界的技术积累绝对没有比亚迪厉害，但人家高端产品的细节就是做得好。华为和小米这种 IT 企业来造车，优势就是<strong>用户体验细节抠得贼细</strong>——IT 类产品极度在意用户体验，App 里一个按钮是用圆角矩形还是长方形，搞不好都要开专家评审会。所以比亚迪有全产业链优势，靠性价比可以把低端产品卖得很好；但高端产品需要产品运营和用户体验，它就做得很一般了。只能说比亚迪自己已经意识到这个问题，就看能不能改了。</p>
+
+<h2 id="s7">七、资产结构：应付账款高是行业共性</h2>
+
+<p>下面带大家看一下比亚迪的财务数据和估值。先看资产结构——这是一个很典型的汽车厂商的资产结构，大部分车企基本都这样。</p>
+
+<p>其中最让人注意的是<strong>比亚迪的应付账款巨大</strong>。应付账款规模较高，说明公司对产业链的议价能力比较强，这其实属于行业共性。之前有个新闻说长城的老板讲"汽车界的恒大已经出现了"，当时很多人都觉得长城老板在说比亚迪。我觉得应该不是——我们把长城汽车的资产表打开看，其实结构跟比亚迪的财报是一样的，应付账款都很高。前天我们看宁德时代的资产结构也是这样，只要是头部制造业应付账款都比较高，美的、海尔这些家电公司也一样。</p>
+
+<p>你说这算不算风险？当然算。但做生意嘛，<em>从商业模式角度考虑，欠别人的钱总比别人欠我们的钱要好一些</em>。只要应付款的比例稳定，我觉得问题不大——这是可以通过数据追踪的。把公司的应付账款和总营收放在一起对比，可以很明显地发现应收账款并没有扩大，只要比例不继续扩大，一般都可以认定为风险可控。</p>
+
+<p>我们重点还是盯着产销就行——产品型公司，只要产品销量好，其他问题都是小问题。</p>
+
+<h2 id="s8">八、研发费用 640 亿，A 股第一</h2>
+
+<p>比亚迪的估值也得用<strong>市销率</strong>来看，因为这家公司不是利润导向的，利润释放非常不稳定，研发费用比利润还要高。</p>
+
+<p>我们把三费和业绩规模放一起对比，可以发现比亚迪的研发费用相当高：一年研发费用差不多 <span class="num">640 亿</span>，而一年利润可能也就 <span class="num">400 亿</span>不到——这个数据非常夸张。<strong>如果没记错，比亚迪的研发费用在 A 股应该排第一；算上所有国内公司，应该仅次于华为和腾讯，比阿里还要高一点。</strong></p>
+
+<p>目前新能源汽车行业还处于成长期，市场竞争激烈，公司的首要目标是赢得市场竞争——先活下来再说，能盈利的话后面再说。</p>
+
+<h2 id="s9">九、估值：用市销率看成长期公司</h2>
+
+<p>最后看比亚迪的市销率数据。和前天宁德时代的处理方式一样，我把极端行情的市销率指标手工修正了一下，做了平滑处理——极端行情下的估值指标是失真的，没法用。</p>
+
+<p>整体来说，比亚迪目前市销率处于一个较低的区间。但这里要强调：<strong>并不是说公司估值低，股票就可以买。</strong>关键在于你对公司未来业绩增长的判断。如果今年公司推出的产品卖得不好、业绩下跌，那市销率也会从低估变为高估。</p>
+
+<p>比亚迪这家公司的确定性肯定不如茅台这种行业龙头，它属于成长期的公司，未来业绩能不能持续增长，还是要持续追踪的。这一点大家一定要想清楚，不要随便买和自己风险偏好不匹配的公司。比亚迪这种公司，就适合那些对汽车行业感兴趣、对技术感兴趣的人去关注。如果你对汽车技术不感兴趣，可能今年公司产品没卖好、短期业绩下跌你就熬不住，提前割肉了，看不到汽车行业最后的大结局。</p>
+
+<p>交易的问题还是得大家自己想清楚。我这边只能帮大家把公司的业务看懂，把一些客观的指标讲一下，提供一些分析公司的思路而已。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://rushjs.io/schemas/rush.schema.json",
+  "rushVersion": "5.172.1",
+  "pnpmVersion": "8.15.0",
+  "projects": [
+    {
+      "packageName": "@ytrader/config-eslint",
+      "projectFolder": "config/eslint-config",
+      "reviewCategory": "tooling"
+    },
+    {
+      "packageName": "@ytrader/config-tsconfig",
+      "projectFolder": "config/tsconfig",
+      "reviewCategory": "tooling"
+    },
+    {
+      "packageName": "@ytrader/config-rsbuild",
+      "projectFolder": "config/rsbuild-config",
+      "reviewCategory": "tooling"
+    },
+    {
+      "packageName": "@ytrader/arch-api",
+      "projectFolder": "packages/arch/api",
+      "reviewCategory": "foundation"
+    },
+    {
+      "packageName": "@ytrader/arch-hooks",
+      "projectFolder": "packages/arch/hooks",
+      "reviewCategory": "foundation"
+    },
+    {
+      "packageName": "@ytrader/arch-i18n",
+      "projectFolder": "packages/arch/i18n",
+      "reviewCategory": "foundation"
+    },
+    {
+      "packageName": "@ytrader/arch-utils",
+      "projectFolder": "packages/arch/utils",
+      "reviewCategory": "foundation"
+    },
+    {
+      "packageName": "@ytrader/common-components",
+      "projectFolder": "packages/common/components",
+      "reviewCategory": "common"
+    },
+    {
+      "packageName": "@ytrader/common-utils",
+      "projectFolder": "packages/common/utils",
+      "reviewCategory": "common"
+    },
+    {
+      "packageName": "@ytrader/trading-portfolio",
+      "projectFolder": "packages/trading/portfolio",
+      "reviewCategory": "domain"
+    },
+    {
+      "packageName": "@ytrader/trading-market-data",
+      "projectFolder": "packages/trading/market-data",
+      "reviewCategory": "domain"
+    },
+    {
+      "packageName": "@ytrader/web",
+      "projectFolder": "apps/web",
+      "reviewCategory": "application"
+    }
+  ]
+}

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>图解公司运营，用数据分析招商银行发展趋势</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">投资学习笔记</div>
+  <h1 class="title">图解公司运营，用数据分析招商银行发展趋势</h1>
+  <div class="meta">
+    <span>规模、效率、风险三维分析框架</span>
+    <span>从财报数据到投资决策</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>为什么要连续看多期财报</li>
+    <li>三个分析维度：规模、效率、风险</li>
+    <li>规模一：业绩与利润原地踏步</li>
+    <li>银行营收的算法与"特殊商业模式"</li>
+    <li>规模二：存贷款趋势与存贷比新低</li>
+    <li>拆开看：零售贷款出问题、定期存款激增</li>
+    <li>降息周期对利息收支的影响</li>
+    <li>非利息净收入怎么看</li>
+    <li>效率：净利差与净利息收益率一路下滑</li>
+    <li>风险：不良率、拨备覆盖率与信用减值</li>
+    <li>估值一：市盈率趋势图</li>
+    <li>估值二：股息率趋势图</li>
+    <li>收息资产要警惕低估值陷阱</li>
+    <li>总结：全程"看图说话"</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、为什么要连续看多期财报</h2>
+
+<p>今天我们拿招商银行作为案例，我来教大家如何使用公司发布的经营数据来追踪企业发展趋势，最后用于支撑投资决策。</p>
+
+<p>这些图表的数据来源都是企业发布的财务报告，数据很容易获取，没有任何技术门槛，会简单使用 Excel 就能搞定。我们平时看公司主要的分析依据是企业财报，但看财报也是有技巧的：<strong>只看单期财报，一般只能分析出企业当前的经营状况</strong>。我们需要把历史多期财报的核心数据连续起来看，才能解读出企业的发展趋势，才能对投资起到指导意义。</p>
+
+<p>比如说，一个公司长期处于增长趋势，但市值却涨幅平平，那可能这家公司的投资机会就比较好；又比如一个公司的经营指标开始恶化，但当前估值比较高（因为是牛市期间，很多公司的股价都跟着行情走），实际上生意做得并不好，我们通过分析就能识别出这些问题，提前规避风险、避免投资亏损。</p>
+
+<p>接下来我就以招商银行为演示案例，用它的财报数据来分析这家企业的发展趋势。</p>
+
+<h2 id="s2">二、三个分析维度：规模、效率、风险</h2>
+
+<p>分析公司的经营情况，其实就从三个维度去分析：</p>
+
+<ul>
+  <li><strong>规模情况</strong>：看生意是不是越做越大。</li>
+  <li><strong>赚钱效率</strong>：如果生意规模越来越大却不赚钱，这其实是个很危险的情况，反而容易把公司拖垮。</li>
+  <li><strong>经营风险</strong>：看公司有没有风险。</li>
+</ul>
+
+<p>一般分析公司都从这三个维度入手，我们就按这个套路来走。</p>
+
+<h2 id="s3">三、规模一：业绩与利润原地踏步</h2>
+
+<p>我先看公司最基本的业绩规模和利润。我用了一个双坐标图表，把招行的业绩和利润叠到一个图上观察，很容易得到一个结论：<strong>从 <span class="num">2022</span> 年开始，招行的业务增速就放缓了</strong>，总营收原地踏步了几年，净利润还稍微有点增长。</p>
+
+<p>其实也不仅仅是招行，国有六大行的业绩基本都是这个特征。招行的数据还算比较好的，起码没下跌；像工商银行和建设银行，总营收都是下跌的。这个特征——企业贷款意愿比较低——直接导致银行的业绩不太好。</p>
+
+<h2 id="s4">四、银行营收的算法与"特殊商业模式"</h2>
+
+<p>这里有个细节：因为银行是特殊商业模式的公司，它的财务模型不像普通公司那样"卖了多少货就算多少业绩"。银行的总营收是<strong>计算出来的一个结果</strong>，算法是：</p>
+
+<blockquote>
+  <p>所有贷款的利息收入 − 所有存款的利息支出 = 净利息收入；<br>净利息收入 + 非利息类业务收入 = 银行总营收。</p>
+</blockquote>
+
+<p>所以银行的总营收实际上并不能完全代表公司的业绩规模，因为利息类的收入会受到利率和银行存贷比的影响。所以分析银行业务规模，最好直接去看它的核心业务数据——<strong>存款规模和贷款规模的趋势图</strong>。</p>
+
+<h2 id="s5">五、规模二：存贷款趋势与存贷比新低</h2>
+
+<p>切换到存贷款图表可以清楚地看到，招商银行的业务规模这几年是保持持续增长的——存款金额越来越多，贷款金额也越来越多。</p>
+
+<p>但如果我们把存款和贷款的增长趋势放在一起看，就能发现两个明显的问题。</p>
+
+<h3>问题一：存款增速大于贷款增速</h3>
+
+<p>招行的存款增速要大于贷款增速。这个现象不好——因为银行的存款是需要向外支付利息的，如果存款多了又没有比较好的项目放贷出去，就会降低银行的利息差。所以我们看到招行的总营收比较低迷，其中一个核心原因就是<strong>招行的存贷比在降低</strong>。</p>
+
+<h3>问题二：存贷比已是近 10 年最低点</h3>
+
+<p>存贷比这个指标，是拿银行的贷款总量除以存款总量得到的经营类指标，可以反映银行的经营效率。可以看到招行这个指标已经是<strong>最近 <span class="num">10 年</span>的最低点了</strong>，是当前需要重点关注的指标。存贷比过低，说明银行有大量资金是闲置的，就会拉低银行的盈利。</p>
+
+<p>所以结论是：招行的业绩低迷并不完全是公司的经营问题，主要还是当前的经济比较低迷，居民和企业的贷款意愿都降低了。</p>
+
+<h2 id="s6">六、拆开看：零售贷款出问题、定期存款激增</h2>
+
+<p>那具体降低到什么程度呢？我们继续在财报数据中找细节，分别看存款和贷款业务的明细。</p>
+
+<h3>贷款明细：零售贷款出问题</h3>
+
+<p>把贷款数据拆成企业贷款和零售贷款，可以清晰看到<strong>招行的零售贷款业务出了点问题</strong>：虽然还有点增长，但从 <span class="num">2022</span> 年中旬开始，零售贷款的同比增长就已经降到个位数了；招行的企业贷款还比较稳定，增速基本保持在每年 <span class="num">10%</span> 左右。</p>
+
+<p>结合日常生活经验，基本可以判定：大家的消费和投资意愿都比较低，经济压力比较大，普遍都在降低杠杆。</p>
+
+<h3>存款明细：零售定期存款激增</h3>
+
+<p>这个现象不仅反映在贷款业务上，也反映在存款业务上。看招行存款业务的明细，其中最明显的变化是<strong>零售定期存款增加得非常快</strong>。这同样说明：大家觉得钱不好赚，风险偏好普遍降低，开始追求资金安全——有钱先存定期，对未来的收入和经济前景预期都不是很乐观。</p>
+
+<p>把数据拆解到这个地步，基本就搞清楚了招行目前的业绩困难点：企业存贷业务发展还可以，业务瓶颈主要在零售方面。</p>
+
+<h2 id="s7">七、降息周期对利息收支的影响</h2>
+
+<p>不管是存款还是贷款，最终影响到银行收入的，还涉及到利率的变化。我们可以看招行利息收入和利息支出的趋势图：</p>
+
+<p>在招行存款和贷款规模都保持上升的情况下，它的利息收入和利息支出<strong>最近四个财报期都是下降的</strong>。这就是利率变化对银行业绩的影响——最近几年我们都处于降息周期，特别是最近一年多，银行的存款利息降低得非常快。</p>
+
+<p>不过这对招行是有利的：招行在存款规模上升的情况下，利息支出还降低了不少，而且利息支出的降低幅度略高于利息收入的降低幅度，所以招行的净利息收入因为这个原因还保持了平稳。</p>
+
+<p><strong>不过这个点也要视为风险点。</strong>因为利率的降低对零售类利息支出的影响比利息收入要快，但后面利率变化稳定了，利率对利息收入和支出的影响就会保持均衡，银行就不能通过这个因素来影响利息差收入了。这个点是后面要重点监控的。</p>
+
+<h2 id="s8">八、非利息净收入怎么看</h2>
+
+<p>规模类的信息最后都汇总到一个图表：银行的净利息收入加上非利息净收入，就计算出银行总营收。这里简单讲一下非利息净收入——这是银行的非核心业务，一般跟着主营业务的趋势走。</p>
+
+<p>招行的非利息净收入在 <span class="num">2021</span> 年比较高，是因为当年股市比较火热，银行的资管业务爆发了一下。不过后续占比就回归到了正常水平，和银行核心业务增长节奏差不多。这个数据占比稳定的话，就不用过多关注。</p>
+
+<blockquote>
+  <p><strong>规模类问题小结：</strong>招行这几年营收原地踏步，是因为居民风险偏好降低、消费意愿低、储蓄意愿增加，导致零售贷款业务低迷、存款规模提升，进而利息支出压力变大，最终业绩原地踏步。</p>
+</blockquote>
+
+<h2 id="s9">九、效率：净利差与净利息收益率一路下滑</h2>
+
+<p>看完业务规模，再看经营效率。对银行来说，最重要的经营效率指标就是<strong>净利差</strong>和<strong>净利息收益率</strong>。这两个指标在 <span class="num">2022</span> 年之前还能维持在 <span class="num">2.5%</span> 左右，现在一路下滑已经跌到 <span class="num">1.8%</span> 左右。</p>
+
+<p>银行的核心业务原理就是吃利息差——低息吸收存款，高息发放贷款。利差收窄，就意味着这门生意的利润变薄了。如果银行经营效率变低，想让业绩不直接下滑，方法就是<strong>扩大业务规模，用量来弥补效率的损失</strong>。前面看到招行的贷款量这几年一直是提升的，虽然增速在下降，但还是弥补了一点效率下降带来的业绩损失——最终结果就是原地踏步，并没有下跌。</p>
+
+<p>一般来说降息周期中银行的净利差就会承压，我们现在显然就处于降息周期中，招行的指标符合当前宏观环境。按目前情况看，我估计降息周期还要持续比较长的时间，银行的业绩在这个周期中暂时很难看到比较大的增长，这点需要注意。</p>
+
+<div class="pull">大部分银行市值在这两年大涨，<br>其实是与经营走势相悖的。<br>2024 年 10 月之后的涨幅，<br>基本上就是情绪主导了——<br>基本面已经不支持它的市值继续提高。</div>
+
+<h2 id="s10">十、风险：不良率、拨备覆盖率与信用减值</h2>
+
+<p>看完效率，再看风险。银行的风险主要是<strong>流动性风险</strong>和<strong>不良贷款风险</strong>。在银行存贷比指标比较低的情况下，流动性风险比较小，这个阶段主要看不良贷款的问题。</p>
+
+<p>招商银行这方面的风险比较低，因为招行的业务中零售类业务占比一大半。在我们国内现在的金融环境下，信用成本对个人来说比较高，所以零售类业务的不良率是要低于公司类业务的。</p>
+
+<h3>不良率长期在 1% 以下</h3>
+
+<p>看招行的不良贷款和不良率趋势图，不良贷款虽然说持续提高了一点，但它也是跟着规模一起提升的，和规模对比得到的不良率就一直维持在 <span class="num">1%</span> 以下——<strong>这个指标已经是全行业第一梯队的水平了</strong>。</p>
+
+<h3>信用减值损失下降、拨备覆盖率 400%</h3>
+
+<p>另一个关于不良贷款的风险指标，是招行的<strong>信用减值损失</strong>这几年也是持续下降的。信用减值损失是什么意思呢？就是银行基于预期觉得这笔钱可能收不回来了，就提前预估一下这笔贷款的损失，那这个金额就会影响到当期的财报利润。信用减值损失的金额会进入到"贷款损失准备"这个科目中，贷款损失准备除以不良贷款，就等于<strong>拨备覆盖率</strong>。</p>
+
+<p>拨备覆盖率相当于银行不良贷款的一个安全垫。从图中可以解读出，招行最近几年的资产质量是在提升的：每年计提的信用减值损失在降低，而拨备覆盖率一直维持在 <span class="num">400%</span> 的高位——行业其他公司这个比例一般在 <span class="num">250%</span> 左右。</p>
+
+<p>所以大家一直都说"招商银行在藏利润"，依据就出自这里：<strong>招行的信用减值损失一直做得比较保守，每期多减一点利润不就藏起来了吗</strong>。这个地方也是银行调节利润的一个点——反过来操作就是适当减少信用减值损失、把拨备覆盖率适当降一降，当期利润率就可能提高一点点。</p>
+
+<h2 id="s11">十一、估值一：市盈率趋势图</h2>
+
+<p>把业务拆解清楚之后，最后可以看一下招行的估值分析。我们可以把招行的净利润和公司市值叠到一个坐标系中观察。这个图表很好解读：<strong>在公司业绩并没有大幅波动的情况下，公司市值如果大幅下跌，那我们就要考虑这是不是一个比较好的投资机会。</strong></p>
+
+<p>招行的市值在 <span class="num">2021</span> 年被炒得比较高——当年是白马股大牛市，招行当时也被定义为白马股。但随后白马股行情的泡沫破了，招行也跟着大家一起市值暴跌，在 <span class="num">2022</span> 年底跌到一个低位，然后低位横盘了两年，今年又跟着大行情一起上涨了不少。</p>
+
+<p>在这个过程中，招行的估值什么时候低估、什么时候高估？我们可以进一步计算招行的<strong>市盈率趋势图</strong>。市盈率是比较经典的估值指标，比较适合利润稳定的公司，算法是用公司的市值除以对应周期的净利润。我这里放的是自己用 Excel 手工统计的 <span class="num">12 年</span>数据，涵盖了 <span class="num">2015</span> 年那个牛市。为了便于分析数据高低，我做了三条参考线：平均值用黄色虚线，均值加上一个标准差作为高估线，减去一个标准差作为低估线。</p>
+
+<p>可以看到，在 <span class="num">2021</span> 年白马股大牛市中，招行的市盈率确实涨到了一个比较高估的位置；随后泡沫破了、市值大幅下跌，<span class="num">2022</span> 年底跌到低估线以下并横盘了很长时间；然后在去年的行情中开始上涨，<span class="num">2025</span> 年 <span class="num">7</span> 月上涨到历史均值水平，随后开启了回调——就是我们现在看到的局面。</p>
+
+<h2 id="s12">十二、估值二：股息率趋势图</h2>
+
+<p>除了市盈率，我们还可以换一个视角观察估值水平——<strong>股息率</strong>。因为有相当多的投资者买入银行股，并不是为了市值上涨，而是看中了公司丰厚的分红回报。股息率的算法和市盈率类似，用公司的年度分红金额除以对应周期的市值就能得到。不过这个图和市盈率图有个小区别：绿色线在上面，红色线在下面——因为对投资者来说，股息率是越高越好。</p>
+
+<p>通过这张图可以看到，招行当前的股息率虽然和去年的高点相比已经回落了很多，但<strong>依然处于历史较高的水平</strong>。从这个角度看，去年属于一个比较好的布局机会。</p>
+
+<h2 id="s13">十三、收息资产要警惕低估值陷阱</h2>
+
+<p>不过这里也要提示一下：我们看收息资产，不能盲目看公司的股息率，而是<strong>先要去分析公司的业务，确保公司未来可以持续健康发展，才能去看股息率</strong>。</p>
+
+<p>不然就可能出现这种情况：公司高管采用"掏空家底"的模式分红，先把钱从公司的口袋装到个人口袋再说，后续公司的经营搞不好就一蹶不振了——<em>这也是一种典型的低估值陷阱</em>。</p>
+
+<p>所以招行的估值和股息率到底是高还是低，就不需要我再多说什么判断了。大家自己去分析这些图表，心里就应该有数了。</p>
+
+<h2 id="s14">十四、总结：全程"看图说话"</h2>
+
+<p>最后总结一下。我没有使用任何复杂技术，仅仅是用人人都会的 Excel 对招行的经营数据进行了统计分析，从<strong>业务规模、经营效率、公司风险</strong>三个维度对公司发展进行了分析，得到了一个结论；然后带着这个结论一起看了招行的估值水平，确定了公司的估值高低。</p>
+
+<p>其实这个过程不难，全程都是"看图说话"。我们可以用这种方式对其他银行也进行分析，看看能得到什么结论；这个方法也可以用于其他类型的公司分析——前提是我们对公司的业务足够了解，这样才能知道具体用什么数据去分析，才能得到有价值的结论。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>

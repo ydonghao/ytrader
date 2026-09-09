@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小米集团估值分析</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">投资学习笔记</div>
+  <h1 class="title">小米集团估值分析</h1>
+  <div class="meta">
+    <span>从铁人三项到四板块分部估值</span>
+    <span>6000 亿到 7500 亿的合理区间</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>先讲结论：业务没问题，是股价太贵</li>
+    <li>估值泡沫的形成与回归</li>
+    <li>小米商业模式的起点：铁人三项</li>
+    <li>IOT 业务的两个里程碑：充电宝与 WiFi 模组</li>
+    <li>战略升级：硬件 + 新零售 + 互联网服务</li>
+    <li>2021 年为什么决定造车</li>
+    <li>四板块业绩构成与利润分布</li>
+    <li>板块一：手机 + 互联网合并估值</li>
+    <li>板块二：IOT 对标家电行业估值</li>
+    <li>板块三：汽车对标新能源车企估值</li>
+    <li>汇总：合理估值 6000 亿到 7500 亿</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、先讲结论：业务没问题，是股价太贵</h2>
+
+<p>今天帮大家分析一下小米这家公司。小米的股价最近半年一直跌得很厉害，所以很多人问我是什么情况。我先把结论跟大家讲一下：<strong>我觉得公司的业务其实没啥问题，就是之前的股价太贵了，它不值这个价。</strong></p>
+
+<p>举个不恰当的例子：比如小米的旗舰数字系列手机，合理定价是 <span class="num">4000–6000</span> 元，结果你上来给我报价说手机卖 <span class="num">1.2 万到 1.4 万</span>。只要是稍微懂点手机价格的人，都应该知道这个价格不合理。道理是一样的。</p>
+
+<h2 id="s2">二、估值泡沫的形成与回归</h2>
+
+<p>这波行情的起点是小米汽车业务的成功。新业务成功本身会提高公司的内在价值，进而造成股价的合理上涨。然后在股价上涨期间会产生一个造富效应，吸引一批趋势交易者进场，再叠加 SU7 畅销所产生的热度，就直接把小米整成了一个热门股，吸引一大批新的投资者过来。这些增量资金一进场，就把小米的股价推高到了一个明显不合理的区间，<strong>形成了估值泡沫</strong>。</p>
+
+<p>那后面从最高价开始回调，我认为就是一个<strong>估值回归的过程</strong>。</p>
+
+<p>我们可以看一下小米市值的趋势图。因为小米是港股上市公司，计算市值要考虑汇率问题，所以我画了两个曲线——分别按港币和人民币计价的市值。小米核心业务基本都按人民币计算，所以后面讲的市值默认都按人民币算。</p>
+
+<p>从图中可以看到，小米市值刚开始大涨的时候，刚好就是 SU7 初期发布和上市的那段时间，那时公司市值差不多在 <span class="num">3000 亿</span>左右。随着 SU7 持续热销，再加上雷总老是搞一些热点新闻出来吸引了一大批投资者，公司市值直线上升，突破了 <span class="num">1.22 万亿</span>，后面最高还超过了 <span class="num">1.4 万亿</span>——这个市值就明显太贵了。</p>
+
+<h2 id="s3">三、小米商业模式的起点：铁人三项</h2>
+
+<p>对于专业投资者来说，小米这家公司的估值其实还是比较容易判断的，因为它的业务都比较简单，产品都是日常生活中可以接触到的。唯一比较麻烦的地方是——<strong>小米实际上是一个"四合一"的公司</strong>：手机业务、家用电器业务、互联网服务，以及这两年比较火的汽车业务。所以算小米估值需要点耐心，要把这四个板块都拆开分析一遍，各自估值，最终汇总得到小米的估值区间。</p>
+
+<p>在讲业务细节之前，先讲一下小米的商业模式。雷总给小米早期的商业模式取了个名字，叫<strong>"铁人三项"</strong>——年纪大一点、关注电子产品的人应该都听过，因为雷总早期经常参加采访、开发布会反复介绍。</p>
+
+<p>核心思路是：<strong>用当时最好的硬件做一款手机，但手机不赚钱，直接用硬件成本来定价，搞出极致的性价比。</strong>当年小米 1 发布的时候，同等配置的手机基本都要超过 <span class="num">3500</span>，小米 1 直接来个 <span class="num">1999</span>，相当于让你半价买到旗舰机的体验，所以小米 1 的订单直接爆了。</p>
+
+<p>手机卖出去之后，再靠高度定制化的 MIUI 来提高用户满意度。这个说法现在看起来平平无奇，但当时还是 <span class="num">2011</span> 年——大部分人用的还是功能机，苹果刚开始卖而且很贵，安卓机也都是原生系统很难用。所以一个好的操作系统是非常吸引手机用户的。最后就是通过手机中的互联网服务来赚钱：比如在应用商店下载一个游戏，游戏厂商要给小米付钱；手机内置广告，小米可以收广告费。</p>
+
+<blockquote>
+  <p>简单点概括：用极致性价比的手机来吸引用户，用好用的操作系统来留住用户，最后用手机中的互联网服务来赚钱。这个商业模式现在看平平无奇，但放在 <span class="num">2011</span> 年（连微信都还没有、支付宝还只是淘宝的结算部门）是很惊艳的商业模式设计。</p>
+</blockquote>
+
+<h2 id="s4">四、IOT 业务的两个里程碑：充电宝与 WiFi 模组</h2>
+
+<p>当年这个"铁人三项"只是针对手机业务的。我们现在都知道，小米除了手机之外还有一个很重要的业务板块——<strong>IOT 生活消费品业务</strong>，包括小米平板、电脑以及各种家用电器，只要不是手机产品都归到 IOT 里去。目前 IOT 业务量占小米总营收的 <span class="num">30%</span> 左右。这个业务是怎么发展起来的，有必要介绍一下，因为它的商业模式和手机高度相关。</p>
+
+<p>小米做成现在的 IOT 业务格局，主要是由两个里程碑式的项目促成的。</p>
+
+<h3>里程碑一：小米充电宝的成功</h3>
+
+<p>第一件事是小米充电宝的成功——这是小米生态链的首个爆款项目。简单来说就是 <span class="num">2013</span> 年的时候，雷总觉得手机那套"极致性价比做单一大爆品"的方法论很好用，想看看能不能用在别的产品上（他管这个方法论叫"小米的互联网思维"）。雷总当年是不藏招的，有啥好的方法论都是开发布会到处讲的。</p>
+
+<p>最开始就选了手机周边的充电宝这个品类。当时市场上 <span class="num">1 万毫安时</span>的充电宝要 <span class="num">200 多</span>，小米瞅准了这个市场机会：产品销量越高，原材料就可以批量采购反而降低成本；而 <span class="num">2013</span> 年正好是笔记本销量下滑的年代，三星、LG 这些大厂电芯产能过剩。小米以"清库存加现金支付"的方式，一次性找供应商低价买了 <span class="num">300 多万颗</span>电芯，所以品质和竞品一样，但成本低很多。然后搞了个 <span class="num">1 万毫安时</span>的充电宝，外壳设计漂亮，定价 <span class="num">69 元</span>超低价，放在小米电商平台销售。</p>
+
+<p>不出意外，这款产品就爆火了。<span class="num">2014</span> 年一整年卖了 <span class="num">1000 多万个</span>——就算单个只赚一块钱，那也是一年上千万的利润。</p>
+
+<p>这个项目成功之后，小米的思路就打开了：不仅可以做充电宝，其他日常消费电子产品都可以这样搞。<strong>这就是小米生态链的开端</strong>。后面电视、路由器、吸尘器等等，什么单品好用，都用"互联网思维"重新搞一遍，所以后来有人管小米之家叫"小米杂货铺"。</p>
+
+<h3>里程碑二：WiFi 小模组的诞生</h3>
+
+<p>在搞充电宝项目的同时，小米内部还做了一个重大创新——直接决定了我们现在看到的 IOT 业务模式。当时黄江吉负责硬件部门，他们做了一个 WiFi 小模组：只要把这个小模组放到任何一个硬件里，就能和手机的网络连通，硬件就可以被手机控制。换句话说，<strong>任何传统硬件只要装上这个小模块，瞬间就变成智能设备了</strong>。</p>
+
+<p>小米就想：能不能把这个小模块植入到小米生态链的每一个产品中，然后用小米手机统一控制，做成一个生态模式、极大提升用户体验和粘度？这个小东西经过后面持续改良，最后就成了小米 IOT 的底层基础设施。</p>
+
+<p>所以：小米充电宝项目的成功驱动了小米生态链的发展，给所有生态链产品加上 WiFi 控制模块，就是我们现在看到的 IOT 业务雏形。</p>
+
+<h2 id="s5">五、战略升级：硬件 + 新零售 + 互联网服务</h2>
+
+<p>当小米的产品从单一手机逐步扩展到 IOT 智能硬件之后，整个公司的战略就跟着一起调整了：从最早的"铁人三项"（硬件 + 软件 + 互联网服务），<strong>升级为"硬件 + 新零售 + 互联网服务"</strong>。</p>
+
+<h3>硬件：从手机延伸到全家桶</h3>
+
+<p>早期小米硬件只有手机，后来搞了生态链之后，硬件范围从手机延伸到空调、冰箱、洗衣机等各种生活类电子产品。这些设备通过小米手机互联互通，形成一套完整的智能生态。一旦用户购买多款 IOT 设备，就会形成以手机为中心的便捷生态体验，用习惯了之后更换品牌的门槛就提高了，复购率和用户粘性随之显著增强——我们现在管这叫"全家桶"。现在电子消费大厂都这么玩：苹果有苹果全家桶，华为有华为全家桶。</p>
+
+<h3>新零售：线上小米商城 + 线下小米之家</h3>
+
+<p>新增的"新零售"指的是线上小米商城和线下小米之家。之前只有小米手机的时候，为了极致性价比、节约成本，没搞线下门店，只在小米线上商店卖。但随着生态链全面铺开、产品品类变多，单纯依靠线上渠道就不给力了，没办法支撑大规模产品的销售、体验和售后。而且当年线上购物还没现在流行，线上流量有上限，仅靠线上卖货增长开始乏力；没有线下门店，下沉市场也不好做——当年小米早期在下沉市场是竞争不过蓝绿厂的，需要补齐这块短板。</p>
+
+<p>所以从 <span class="num">2015</span> 年开始，小米大力建设线下零售店——小米之家。后面生态链做起来了，小米之家啥玩意都卖，"小米杂货铺"的名号也就这么来的。</p>
+
+<h3>互联网服务：仍是利润核心</h3>
+
+<p>至于互联网服务，倒没什么变化，还是小米盈利的核心业务，只是硬件入口不再局限于手机，而是拓展到更多智能终端。比如小米电视——用户通过电视订阅各类频道和内容服务产生的费用，小米可以从中获得分成。</p>
+
+<p>小米造车之前的商业模式基本就是这样，是不是还是很容易分析的？</p>
+
+<h2 id="s6">六、2021 年为什么决定造车</h2>
+
+<p>时间回到 <span class="num">2021</span> 年，小米宣布要造车。现在很多小米投资者可能是小米汽车上市后才开始关注小米的，但回头看，小米造车确实是小米发展的重大转折点。</p>
+
+<p>我们把小米手机的业绩曲线单独拎出来看，可能就懂了——为什么当年小米要在那个时间点选择造车。<strong>小米手机业务这几年表现其实很差，业绩在 <span class="num">2021</span> 年摸到 <span class="num">2000 亿</span>规模后，增长就基本停滞了。</strong></p>
+
+<p>有人说小米汽车卖得好也间接带动了小米手机的销量。反正从业绩趋势图上看，我感觉没达到这个效果。因为我们前面了解过小米的商业模式就知道：小米的核心利润来源，是依靠用性价比手机走量、通过手机里的互联网服务赚钱；而且小米的 IOT 生态业务也需要手机销量来拉动需求。所以<strong>小米手机的增长一旦停滞，公司所有相关业务都得歇菜</strong>。这在投资者眼里，就属于公司抗风险能力和成长性都很差。</p>
+
+<p>而且小米的商业模式导致手机毛利率很低，毛利率低就代表净利润没有容错空间——只要手机销量下滑，手机业务就可能面临亏损。所以资本市场之前给小米的估值一直都很低。排除掉 <span class="num">2021</span> 年港股那波量化宽松的行情影响，小米的市值就一直停留在 <span class="num">2500 亿</span>左右——这点市值配不上小米当时的名气。</p>
+
+<p>所以小米才会在手机业务迟迟无法突破的情况下，决定开始造车。<em>手机业务增长停滞不是小米造车的单一原因，但绝对是主要原因之一。</em></p>
+
+<h2 id="s7">七、四板块业绩构成与利润分布</h2>
+
+<p>我们一起看小米集团的业绩构成，数据来源于小米公开发布的财务报告。根据 <span class="num">2025</span> 年三季报的数据推测，小米集团今年的业绩规模我估计在 <span class="num">4700 亿</span>左右：</p>
+
+<ul>
+  <li><strong>手机业务</strong>：仍占大头，业绩规模占比 <span class="num">42%</span> 左右，看今年能否突破 <span class="num">2000 亿</span>。</li>
+  <li><strong>IOT 业务</strong>：占比 <span class="num">30%</span> 左右，今年业绩规模估计 <span class="num">1300 亿</span>左右。</li>
+  <li><strong>互联网服务</strong>：占比 <span class="num">8%</span>，但利润贼高。</li>
+  <li><strong>汽车业务</strong>：占比 <span class="num">20%</span> 左右，今年卖了 <span class="num">42 万</span>辆车，业绩规模估计 <span class="num">1100 亿</span>左右。</li>
+</ul>
+
+<p>因为小米 <span class="num">2025</span> 年财报还没发，所以这个数据不是官方发布的，只是我个人统计的，不过我觉得也大差不差。</p>
+
+<h3>利润分布：手机不挣钱，互联网业务净利贼高</h3>
+
+<p>看完业绩占比，再看利润情况。小米在 <span class="num">2025</span> 年半年报中只公布了各项业务的毛利率：手机 <span class="num">10.2%</span>，IOT 是 <span class="num">23.8%</span>，互联网服务 <span class="num">76.1%</span>，汽车业务 <span class="num">24.9%</span>。净利润小米没有公布细节，我填的这个表是根据自己的经验和小米业务数据预估的，和最后结果应该大差不差；即便有偏差，也不太影响后面估值计算的范围。</p>
+
+<ul>
+  <li><strong>手机业务</strong>：净利润率只有 <span class="num">3%</span>，对应净利润 <span class="num">58 亿</span>。</li>
+  <li><strong>IOT 业务</strong>：利润率估计在 <span class="num">8%–10%</span> 之间（跟家电行业差不多），对应利润 <span class="num">130 亿</span>左右。</li>
+  <li><strong>互联网服务</strong>：净利润最高，利润率应该在 <span class="num">40%</span> 左右，对应利润 <span class="num">150 亿</span>左右。</li>
+  <li><strong>汽车业务</strong>：<span class="num">2025</span> 年三季度首次单季度盈利 <span class="num">7 亿</span>，机构普遍预测四季度净利润 <span class="num">22 亿</span>左右；我按理想情况下一年的水平预估，利润率 <span class="num">8%</span> 左右，对应利润 <span class="num">85 亿</span>左右。</li>
+</ul>
+
+<div class="pull">一个有意思的细节：<br>小米手机业务量很大但基本没什么利润；<br>互联网服务收入占比很低，但毛利率贼高，<br>收的钱基本是纯利润。<br>这正好对应了小米的商业模式。</div>
+
+<h2 id="s8">八、板块一：手机 + 互联网合并估值</h2>
+
+<p>对小米估值时，可以把手机业务和互联网业务合并在一起估值——因为目前互联网服务的收入 <span class="num">80%</span> 左右都是手机入口产生的；IOT 业务可以单独估值（对标家用电器行业）；汽车板块单独估值（对标新能源汽车产业）。</p>
+
+<p>如果把手机和互联网业务合并在一起算，就是一家业绩规模 <span class="num">2300 亿</span>、利润 <span class="num">200 亿</span>的公司。估值怎么算呢？</p>
+
+<p>首先我会参考小米集团在没有汽车业务之前的市销率。因为小米前几年造车产生了很大的研发成本，利润不稳定，市盈率没法用，<strong>我觉得用市销率会更好一些</strong>。而且 <span class="num">2021</span> 年的港股行情是不正常的，吃了美国量化宽松的红利，整个港股那段时间股价都很虚高，所以我人为主观修正了一下——我觉得手机业务的市销率给到 <span class="num">1.2</span> 比较合适。</p>
+
+<p>市盈率方面可以拍脑袋估一下。我看了一下隔壁苹果的市盈率是 <span class="num">35 倍 PE</span>，小米肯定比不了苹果，而且手机业务增长停滞，但可以作为参考。我问了一下 AI 的建议，AI 给出的建议是小米手机业务给到 <span class="num">18 倍 PE</span>——跟我自己想的差不多。</p>
+
+<p>综合计算下来，我觉得小米手机和互联网业务打包一起算，市值差不多是 <span class="num">3000 亿到 3500 亿</span>。大家如果觉得我估的这个数据不对也没关系，因为我前面已经把商业模式和核心业务数据都过了一遍，你们可以根据自己的理解去估算。</p>
+
+<h2 id="s9">九、板块二：IOT 对标家电行业估值</h2>
+
+<p>再看 IOT 部分的业务估值。IOT 产品的核心是小米电视、空调、冰箱、洗衣机，这些占比差不多 <span class="num">65%</span>；剩下的是小米手环、路由器、机器人等。我觉得可以把小米 IOT 业务单独看成是一个家用电器公司，横向对标美的和海尔——这个对标比较客观。</p>
+
+<p>小米 IOT 业绩规模目前 <span class="num">1300 亿</span>，利润率按 <span class="num">10%</span> 计算就是 <span class="num">130 亿</span>。A 股目前给家用电器板块的估值不是很高，美的和海尔就只有 <span class="num">12 倍 PE</span>，那小米我们也给 <span class="num">12 倍</span>，算区间的话上限给到 <span class="num">15</span>。这样计算下来市值大概就是 <span class="num">1500 亿到 2000 亿</span>。</p>
+
+<h2 id="s10">十、板块三：汽车对标新能源车企估值</h2>
+
+<p>最后算汽车板块的估值——这块最好算，直接看销量就行了。</p>
+
+<p>小米去年 <span class="num">12</span> 月销量是月销 <span class="num">5 万台</span>，公司对 <span class="num">2026</span> 年的目标定的是 <span class="num">55 万台</span>（我看的是机构调研数据，也侧面了解了小米汽车供应链的数据，差不多也是 <span class="num">55 万台</span>的目标）。小米汽车的均价是 <span class="num">27 万</span>，所以简单算一下业绩规模就是 <span class="num">1500 亿</span>左右。我觉得就按 <span class="num">2026</span> 年的业绩规模来估值是比较合理的。</p>
+
+<p>现在其他新能源车企的市销率都给得比较低，我个人觉得对标比亚迪和赛力斯比较合适，对应的市销率在 <span class="num">1 到 1.3</span> 之间。汽车板块的估值我感觉大家的分歧会比较大，反正 <span class="num">2026</span> 年业绩规模 <span class="num">1500 亿</span>这个数据比较靠谱，市销率给到多少大家按自己的想法去对标就行。我先按 <span class="num">1 到 1.3</span> 计算，得到的结果是 <span class="num">1500 亿到 2000 亿</span>。</p>
+
+<h2 id="s11">十一、汇总：合理估值 6000 亿到 7500 亿</h2>
+
+<p>三大板块估值都算完了，汇总看一下合理估值范围：</p>
+
+<blockquote>
+  <p><strong>手机业务 + 互联网服务</strong>：3000 亿到 3500 亿</p>
+  <p><strong>IOT 业务</strong>：1500 亿到 2000 亿</p>
+  <p><strong>汽车板块</strong>：1500 亿到 2000 亿</p>
+  <p><strong>合计</strong>：6000 亿到 7500 亿</p>
+</blockquote>
+
+<p>不知道大家觉得这个范围靠不靠谱。这周末小米的市值是 <span class="num">8200 亿</span>，就已经很接近这个区间了。之前小米股价最高冲到 <span class="num">60 多</span>、市值算下来都快 <span class="num">1.4 万亿</span>了——<em>这个数值无论我们怎么乐观计算都算不出来这么高的价格，一看就知道贵了。</em></p>
+
+<p>最后还是提醒一下大家：就算计算出了合理的价格区间，也不能作为投资的依据。毕竟二级市场的股价走势，短期是随机的——<strong>我们只能计算结果，但计算不了过程</strong>。最后这句话就算是我给自己叠个甲吧。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>

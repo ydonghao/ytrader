@@ -1,0 +1,107 @@
+/* CorrelationMatrix — Apple-dark theme, global tokens only */
+
+.correlation-matrix {
+  width: 100%;
+}
+
+.correlation-matrix__legend {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  flex-wrap: wrap;
+}
+
+.correlation-matrix__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.correlation-matrix__legend-swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-sm);
+}
+
+.correlation-matrix__grid-wrap {
+  overflow: auto;
+  padding-bottom: 0.25rem;
+}
+
+.correlation-matrix__grid {
+  display: grid;
+  gap: 3px;
+  --cm-label-w: 68px;
+  --cm-cell-size: 46px;
+}
+
+.correlation-matrix__corner {
+  width: var(--cm-label-w);
+}
+
+.correlation-matrix__col-label,
+.correlation-matrix__row-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: 1.1;
+  color: var(--color-text-secondary);
+  overflow: hidden;
+}
+
+.correlation-matrix__col-label {
+  text-align: center;
+  word-break: break-all;
+  align-self: end;
+  min-height: 28px;
+  padding: 0 1px 2px;
+}
+
+.correlation-matrix__row-label {
+  text-align: right;
+  padding-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.correlation-matrix__cell {
+  height: var(--cm-cell-size);
+  width: var(--cm-cell-size);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 590;
+  cursor: default;
+  transition: transform var(--transition-fast), filter var(--transition-fast);
+}
+
+.correlation-matrix__cell:hover {
+  transform: scale(1.12);
+  z-index: 1;
+  filter: brightness(1.25);
+}
+
+/* Tooltip */
+.correlation-matrix__tooltip {
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem 0.65rem;
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  color: var(--color-text);
+  pointer-events: none;
+  z-index: var(--z-overlay);
+  box-shadow: var(--shadow-md);
+  white-space: nowrap;
+}

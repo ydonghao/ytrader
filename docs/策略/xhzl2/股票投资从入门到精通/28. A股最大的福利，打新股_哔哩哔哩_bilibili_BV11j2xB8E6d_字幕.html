@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股最大的福利，打新股</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">股票投资从入门到精通 · 28</div>
+  <h1 class="title">A股最大的福利，打新股</h1>
+  <div class="meta">
+    <span>制度红利下的零成本抽奖</span>
+    <span>申购规则、中签率与卖出时机</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>A 股打新：被称作"零成本抽奖"</li>
+    <li>制度红利 vs 市场博弈</li>
+    <li>新股发行价为何定得偏保守</li>
+    <li>锁死流动性，新股开盘容易大涨</li>
+    <li>影石创新：开盘 180 元的案例</li>
+    <li>91% 首日上涨的统计</li>
+    <li>三个交易所与板块权限</li>
+    <li>按市值配售的申购规则</li>
+    <li>摩尔线程：中签率的概率计算</li>
+    <li>中国油业与华电新能</li>
+    <li>北交所的不同规则</li>
+    <li>中签之后如何处理</li>
+    <li>打新是打新，买入是买入</li>
+    <li>小结：A 股给普通人最大的善意</li>
+  </ol>
+</nav>
+
+<p class="lead">今天跟大家讲一下打新和可转债。这两个是最近粉丝提问比较多的内容——股市新手一定要了解一下，这算是 A 股持有的纯福利了，被大家亲切地称为"零成本抽奖"。中了可转债是中小奖，一般可以赚 <span class="num">300 元</span>；打中新股则是中大奖，少则 <span class="num">5000</span>，多则几万块都有可能。今天先讲打新股，可转债稍复杂一点，放后面讲。</p>
+
+<h2 id="s1">一、A 股打新：被称作"零成本抽奖"</h2>
+
+<p>申购新股相当于免费抽奖，这个说法在 A 股是成立的。港股虽然也可以申购新股，但不能无脑申购，股价破发的概率相比 A 股大很多。<strong>简单概括：A 股打新是制度红利，港股打新是市场博弈。</strong>这种抽奖式打新是 A 股特有的，而且对普通散户来说，港股打新还需要开通港股账户，很多人没这个条件，有额外成本。所以今天重点了解 A 股的打新规则即可。</p>
+
+<p>当然，这两个东西有没有风险？当然有——金融投资怎么可能没风险。但<strong>它们的风险和收益是不对等的</strong>：并不是风险很大，而是只需要承担很小的风险就能获得比较大的收益。出门不也得承担一点摔跤的风险嘛，该承担的风险还是要承担的。</p>
+
+<h2 id="s2">二、新股发行价为何定得偏保守</h2>
+
+<p>我先讲一下为什么 A 股的新股上市之后会大涨。有以下几个原因。</p>
+
+<p>第一个原因是 A 股新股发行价一般会定得偏保守一些。公司申请上市、通过证监会审核之后，下一步就是发行和申购——其中申购业务在散户视角里就被称为"打新"，意思就是申购新上市公司的股票。上市公司先要通过发行路演和询价向机构投资者推销，然后根据询价确定发行价。这个估值一般是比较合理的，甚至是在合理区间的下限。</p>
+
+<p>因为对上市公司来说，<strong>IPO 最重要的是顺利募集到资金</strong>，发行价定得过高不利于融资；而且发行价过高的话上市之后容易破发，很不体面。当年港股有个流量很大的公司上市价格定的是 <span class="num">17 块</span>，结果后面行情不好股价一直下跌，最低跌到 <span class="num">8 块多</span>，当年被大家称为"年轻人的第一只腰斩股"——老板后来也说股价下跌时压力很大，被投资人在办公室里骂了好几个小时，被训得跟孙子一样。这公司是谁我就不说了，大家稍微查一下就知道。</p>
+
+<p>另外在询价过程中，投资机构的目标是上市之后有盈利空间，需要为二级市场的波动和卖出获利预留空间。如果发行价在合理区间上限，上市后万一市场遇冷或公司业绩不达预期，他们就会亏损。所以投资机构倾向于报一个低价。在各种机制下，<strong>A 股新上市公司的发行价通常都在合理估值区间的下限，而且是经过机构投资者深度调研之后的定价。</strong></p>
+
+<div class="pull">这个机制给投资者一个信号：<br>新股发行价很划算，大概率略低于企业内在价值。<br>买入后上涨概率远大于下跌概率。</div>
+
+<p>企业在 IPO 阶段定价一般定的是一个估值较低的好价格，这就是打新有超额收益的基础。</p>
+
+<h2 id="s3">三、锁死流动性，新股开盘容易大涨</h2>
+
+<p>第二个原因是：股票在上市当天为什么容易大涨？就是因为大家心照不宣地利用了新股刚上市流动性比较低的特性，<strong>一起锁死流动性，把价格抬上去</strong>。</p>
+
+<p>具体细节是这样的。公司 IPO 之后，根据监管规定，原始股东和 IPO 阶段买入的机构投资者手上的股份是有禁售期的，只有散户申购的那部分可以马上在上市后交易。现在公司通过 IPO 发行新股一般占总股本的 <span class="num">10%–25%</span>，有具体要求：总股本低于 <span class="num">4 亿股</span>的发行量不得低于 <span class="num">25%</span>；股本超过 <span class="num">4 亿</span>的要求放宽到 <span class="num">10%</span>。</p>
+
+<p>这里有个有趣的小细节——很多新公司在 IPO 时并不想过于稀释股份，只想发行 <span class="num">10%</span>用于上市融资，所以上市之前会把股本数量调整到 <span class="num">3.6 亿</span>，这样刚好卡规则：只用发行 <span class="num">0.4 亿</span>新股，总股本就刚好超过 <span class="num">4 亿股</span>，符合新股发行量最低 <span class="num">10%</span>的限制，又不会过于稀释股权。所以最后结果就是——<strong>公司刚上市那会儿，只有散户申购的一点点股份是可以交易的。</strong></p>
+
+<h2 id="s4">四、影石创新：开盘 180 元的案例</h2>
+
+<p>拿一个新上市的案例看——影石创新。这家公司是做微型摄像机的，很多自媒体博主会买他们的产品用于拍短视频，所以我之前听人说过这家公司。影石创新 IPO 之前的股本是 <span class="num">3.6 亿</span>，本次 IPO 上市新发行了 <span class="num">4100 万</span>新股，这其中没有禁售限制的股份只有 <span class="num">3000 多万股</span>，只占总股本 <span class="num">7.61%</span>。</p>
+
+<p>这家公司 IPO 发行价是 <span class="num">47.27 元</span>，定价只有 <span class="num">20 倍 PE</span>，放在当前科创板的估值环境中是非常低的。也就是说按 IPO 定价，只需要花费 <span class="num">14.18 亿</span>就能把当前所有流通股全部买下来——这个金额在股市中很小。而且几乎所有投资者都知道新股股价容易上涨，所以新股持有者在 IPO 上市当天几乎不愿意低价抛售自己的股票。这就造成了一个大家心照不宣地"锁死流动性"的情况。</p>
+
+<h3>开盘当天的多空博弈</h3>
+
+<p>当天股票交易场景大概是这样的：由于 IPO 定价不高，所有持有者都心照不宣地拒绝低价出售，但想买的人还是非常多，低价时出现供需失衡。买家非要买、卖家又不愿意卖怎么办？非常简单——买家持续加价，一直往高加，加到你愿意卖为止。所以在 IPO 当天集合竞价时，低价区间没有人愿意出手，买家一直往上报价，价格加高了总会有人忍不住卖，这就是一个多空博弈的过程。</p>
+
+<p>最后的结果就是：<strong>买家一直把价格加到 <span class="num">180 元</span>的高价，才达到卖家的心理价位，市场才开始按这个价格成交。</strong></p>
+
+<div class="pull">流通股非常少时，股价很容易被人为影响。<br>只要持有者坚持不低价出售，就能把价格拉得非常高。</div>
+
+<p>影石创新发行价是 <span class="num">47.27 元</span>，中 <span class="num">1000</span>股是 <span class="num">500</span>股，总价 <span class="num">2.36 万</span>；按开盘当天 <span class="num">180 元</span>的均价计算，中 <span class="num">1000</span>股保底就能赚 <span class="num">6 万多</span>——这就是妥妥的一个大肉签了。</p>
+
+<h2 id="s5">五、91% 首日上涨的统计</h2>
+
+<p>那是不是所有新股开盘当天都会大涨呢？也不一定。我们可以看一下证券公司的统计数据：从市场改为注册制以来，总共新上市 <span class="num">336 家</span>公司，其中首日上涨的公司数量达到 <span class="num">306 家</span>，占比超过 <span class="num">91%</span>——这个比率相当高了。只有 <span class="num">30 家</span>公司是上市首日下跌的，下跌时间主要发生在市场极度低迷（也就是大熊市）的时候。</p>
+
+<p>上一次由公司 IPO 破发，还是在 <span class="num">2024 年 2 月 8 日</span>，有个叫上海合金的公司，距离现在差不多快 <span class="num">两年</span>时间了。虽然说是破发，这家公司发行价 <span class="num">22.66 元</span>，IPO 当天收盘价 <span class="num">20.73 元</span>，中 <span class="num">1000</span>股也就亏了 <span class="num">900 多</span>。</p>
+
+<blockquote>
+  <p>归纳一下：<strong>中签的话 <span class="num">90%</span>概率你能赚一个翻倍收益</strong>（少则 <span class="num">5000</span>多，多则好几万）；只有 <span class="num">9%</span>概率会出现几个点的亏损，而且 IPO 破发大多数发生在大熊市期间——这 <span class="num">9%</span>其实很容易规避掉，大熊市期间担心的话就不申购。</p>
+</blockquote>
+
+<p>所以从当前情况看，<strong>打新是一个预期收益远大于风险的投资活动</strong>，确实可以被称为抽奖活动。</p>
+
+<h2 id="s6">六、三个交易所与板块权限</h2>
+
+<p>讲一下打新的细节操作。其实比较简单。A 股分为三个交易所：沪交所、深交所，还有这几年才开张的北交所。其中沪交所细分为主板和科创板，深交所细分为主板和创业板。要申购哪个交易所/板块的新股，首先得有相应的权限。</p>
+
+<ul>
+  <li><strong>创业板</strong>的限制主要是时间问题——需要开户并至少交易 <span class="num">两年</span>时间才能开通权限。</li>
+  <li><strong>科创板和北交所</strong>的开通权限比创业板严得多：首先需要 <span class="num">两年</span>时间，然后还有 <span class="num">50 万</span>的资金限制。这个规则我觉得是有道理的，就是为了保护投资者——科创板和北交所的公司估值都不是很稳定，股价波动比较大，对连 <span class="num">50 万</span>资金都没有的新手来说确实风险挺大。</li>
+</ul>
+
+<h3>如何区分股票在哪个交易所上市</h3>
+
+<p>这是基础知识，我怕还有人分不清，简单讲一下——看代码就知道了：</p>
+
+<ul>
+  <li><strong>6 开头</strong>：沪交所主板</li>
+  <li><strong>688 开头</strong>：科创板</li>
+  <li><strong>0 开头</strong>：深交所主板</li>
+  <li><strong>3 开头</strong>：创业板</li>
+  <li><strong>9 开头</strong>：北交所</li>
+</ul>
+
+<h2 id="s7">七、按市值配售的申购规则</h2>
+
+<p>取得相应板块权限之后，就可以愉快开始打新了。申购操作最简单——打开交易软件主界面，应该能看到一个叫"新股新债"的功能模块：新股指的是申购新上市公司的股票，新债就是可转债。遇到新公司申购日期，点进去申购即可。</p>
+
+<p>能申购多少数量的新股呢？这个有具体规则。<strong>申购的数量决定了我们的中签率。现在交易所使用的是按市值配售制度</strong>——意思是：你能申购多少新股，取决于你持有对应交易所股票的市值有多少。</p>
+
+<table>
+  <thead>
+    <tr><th>交易所</th><th>计算基准</th><th>对应申购单位</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>沪交所（含科创板）</td><td>每 <span class="num">1 万元</span>市值</td><td>1 个申购单位 = <span class="num">1000 股</span></td></tr>
+    <tr><td>深交所（含创业板）</td><td>每 <span class="num">5000 元</span>市值</td><td>1 个申购单位 = <span class="num">500 股</span></td></tr>
+  </tbody>
+</table>
+
+<p>申购额度必须是申购单位的整数倍。另外也不是账户持有股票市值越高越好——新股发行本身有最高申购限额。比如发行公告中直接写明申购最高数量为 <span class="num">2 万股</span>，那么即便你持有市值非常高、换算出来额度远超 <span class="num">2 万股</span>，这个公司你最多也只能申购 <span class="num">2 万股</span>。</p>
+
+<p>根据统计数据，大概沪深两市分别持有 <span class="num">20 万</span>的股票市值，就能实现大多数新股满额度申购。<strong>这个申购不需要闲置资金</strong>——持有股票就行，可以先申购，中签了再缴纳认购金，所以我们管这个叫"无成本抽奖"。</p>
+
+<h2 id="s8">八、摩尔线程：中签率的概率计算</h2>
+
+<p>拿一个实际案例看一下。最近最火的一家公司叫摩尔线程，马上就要上市了，目前已经过了申购阶段，过几天应该就要上市。摩尔线程申购上限是 <span class="num">1.1 万股</span>，在科创板上市，按科创板规则满额申购需要持有市值高于 <span class="num">11 万</span>的沪交所股票。</p>
+
+<h3>中签率怎么算</h3>
+
+<p>中签摇号按签数计算，规则是 <span class="num">500 股</span>为 <span class="num">1 签</span>。申购 <span class="num">1.1 万股</span>可以领取 <span class="num">22 个签</span>，中不中签看当天摇号结果。摩尔线程的中签率已经公布了——单签中签概率是 <span class="num">0.036%</span>。</p>
+
+<p>这个中签概率是可以套概率论公式计算出来的：单独 <span class="num">1 签</span>的中签概率是 <span class="num">0.036%</span>，不中的概率就是 <span class="num">99.964%</span>。<span class="num">22 个签</span>同时不中的概率是 <span class="num">99.964%</span>的 <span class="num">22 次方</span>，等于 <span class="num">99.211%</span>。所以最少中 <span class="num">1 签</span>的概率就是 <span class="num">1 - 99.211% = 0.789%</span>。</p>
+
+<p>这个中签概率我觉得不算很低——通俗讲相当于 <span class="num">126 个人</span>抽签就有一个人会中。</p>
+
+<h3>摩尔线程的认购与预期收益</h3>
+
+<p>摩尔线程发行价比较高，是 <span class="num">114.28 元</span>每股，中 <span class="num">1 签</span>（<span class="num">500 股</span>）的认购金额是 <span class="num">5.7 万元</span>。这家公司是超级大热门股，上市当天股价大概率会大涨，保守估计中 <span class="num">1 签</span>大概能赚 <span class="num">10 万以上</span>。要是能中签就非常爽了。</p>
+
+<h2 id="s9">九、中国油业与华电新能</h2>
+
+<p>摩尔线程的申购上限不算特别高，大多数人都能满额度申购。A 股偶尔会出现申购上限巨高的公司。</p>
+
+<h3>华电新能：资金量越大越容易中</h3>
+
+<p>今年申购上限最高的公司，我没记错的话应该是华电新能，申购上限高达 <span class="num">149 万股</span>。要满额申购需要持有 <span class="num">1490 万</span>市值的沪交所股票——能达到这个规模的人比较少。这家公司的抽签对资金量高的投资者非常有利的，几乎必中，单签中签率是 <span class="num">0.56%</span>。</p>
+
+<p>假设你沪交所持有市值 <span class="num">100 万</span>，就可以足足申购 <span class="num">10 万股</span>，按 <span class="num">500 股</span>为 <span class="num">1 签</span>可以拿到 <span class="num">200 个签</span>参与抽奖，按公式计算 <span class="num">200 个签</span>最少中 <span class="num">1 签</span>的概率是 <span class="num">67.5%</span>。如果持有市值高达 <span class="num">200 万</span>，就能拿 <span class="num">400 个签</span>参与抽奖，中签概率高达 <span class="num">90%</span>。这个案例我记得很清楚——因为我也中了，不过签金额不大，中 <span class="num">1 签</span>也就只能赚 <span class="num">5000 块</span>。</p>
+
+<h3>中国油业：当下最容易中的新股</h3>
+
+<p>最近有个新上市公司也比较好中，叫中国油业。中国油业的申购上限和日常新股相比也很高——是 <span class="num">5.2 万股</span>，满额申购需要持有 <span class="num">52 万</span>深交所股票。</p>
+
+<p>如果能满额申购 <span class="num">5.2 万股</span>，这个数字除以 <span class="num">500</span>就是 <span class="num">104 个签</span>。每个签的单独中签率是 <span class="num">0.0434%</span>，按概率论公式计算，最少中 <span class="num">1 签</span>的概率是 <span class="num">4.414%</span>——意思就是每 <span class="num">23 个人</span>去申购就会有一个人中签。</p>
+
+<p>我刚看了一下行情，中国油业 <span class="num">三五</span>的价格差不多 <span class="num">69 元</span>左右。中 <span class="num">1 签</span>在开盘当日十点之前卖掉的话，差不多能赚 <span class="num">2.5 万多</span>。</p>
+
+<h2 id="s10">十、北交所的不同规则</h2>
+
+<p>沪深两市的打新申购规则就是按市值配额，可以先申购、中签后再交钱。而<strong>北交所的规则又不一样</strong>：你申购多少股，就直接锁定多少资金。</p>
+
+<p>比如最近一只北交所新股——星创电器，发行价格 <span class="num">12 元</span>。假设你要申购 <span class="num">1 万股</span>，账户上就必须有 <span class="num">12 万</span>，这笔资金会锁定 <span class="num">3 天</span>：点击申购时资金锁定；第二天分配抽签号；第三天公布抽签结果，没中的话资金解锁。其他规则和沪深两市一样，主要区别就在申购条件上——沪深两市不需要闲置资金，只要持有对应股票市值就能申购；北交所反过来了，需要你有闲置资金，而且资金量越大越容易中。</p>
+
+<p>所以对我们普通散户来说，<strong>沪深两市的规则更好一些，相当于零成本、低风险抽奖。</strong></p>
+
+<h2 id="s11">十一、中签之后如何处理</h2>
+
+<p>最后一个问题，中签之后应该怎么处理？这是我的经验分享，没什么理论依据，就是长期观察得到的结论。</p>
+
+<p>现在的交易机制是：新股上市前 <span class="num">5 天</span>不设置涨跌停，所以一般会在第一天上市时市场充分博弈，得到一个短期内最合适的价格。<strong>所以我们在开盘之后的半小时内（也就是十点钟之前）卖掉就可以了。</strong></p>
+
+<p>为什么不开盘直接卖？是因为通常开盘之后股价还会略微冲高一点点，观察 <span class="num">10 分钟</span>左右再卖，大概率能卖到一个比较高的点。我自己有睡懒觉的习惯，<span class="num">9:30</span> 之前不一定醒得过来，所以都是等到快十点才卖，基本上都能卖到当日比较高的位置。不过这个运气成分比较大，总结不出特别准的规律，也不用太纠结这个事——反正大头是确定赚到的，最后一点波动就无所谓了。</p>
+
+<h3>打新是打新，买入是买入</h3>
+
+<p>另外也有人问：新股中签之后能不能继续持有？比如今年的影石创新，在上市之后两个月又大涨了一波。</p>
+
+<p>我个人是这样理解：<strong>把这两件事拆开看就行了——打新是打新，买入是买入。</strong>要想持有，就当成一个新的建仓操作就行。从经验上讲，除非是明星公司在上市之后横盘一段时间后可能大涨，大部分小公司上市当天基本就是一个高价了，卖掉之后就可以不用看它。</p>
+
+<h2 id="s12">十二、小结：A 股给普通人最大的善意</h2>
+
+<blockquote>
+  <p><strong>坚持打新，中签的概率其实很高。</strong></p>
+  <p>如果我们大部分公司都能满额申购，中签概率基本都在 <span class="num">1%</span>左右。现在一年差不多有 <span class="num">100 个</span>公司上市，如果能全部申购，差不多每年能中一次——这不是计算出来的结果，是我的体验：我资金量比一般散户稍微大一些，每年基本都能中一到两次左右。特别是遇到华电新能那种申购上限巨高的，几乎必中，虽然中了之后中 <span class="num">1 签</span>也就赚 <span class="num">5000 多块</span>，但这几乎是白嫖。</p>
+</blockquote>
+
+<div class="pull">不要觉得单次中签概率低就懒得申购——<br>你不申购就绝对不会中，申购至少还有机会。<br>时间长了肯定会中，中了就少则怒赚 5000，多则好几万。</div>
+
+<p>对于工薪阶层来说，这可能就是好几个月的工资。而且这几乎是一个无成本的抽奖，正常情况下每年能中一次，相当于多一个月的工资——<em>这真的是 A 股给普通人最大的善意了。</em></p>
+
+<p>今天就先讲打新，过两天再讲可转债。这两个操作上都比较简单，但细节还是挺多的，还是值得学一下的。我们下期再见。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化<br>
+  股票投资从入门到精通 · 系列
+</footer>
+
+</div>
+</body>
+</html>

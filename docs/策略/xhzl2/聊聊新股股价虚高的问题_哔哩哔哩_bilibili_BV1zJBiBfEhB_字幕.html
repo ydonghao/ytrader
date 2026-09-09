@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>聊聊新股股价虚高的问题</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">新股估值 · 市场机制</div>
+  <h1 class="title">聊聊新股股价虚高的问题</h1>
+  <div class="meta">
+    <span>摩尔线程 · 募基股份</span>
+    <span>150 倍市销率的震撼</span>
+    <span>风投"募投管退"与解禁套现</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>史诗歌级大肉签：一签赚 30 多万</li>
+    <li>摩尔线程 2900 亿、募基股份 2500 亿</li>
+    <li>类比：青岛海尔与京沪高铁也是 2500 亿</li>
+    <li>150 倍市销率的小小震撼</li>
+    <li>换算成"万"，账就划不过来了</li>
+    <li>竞争问题：英伟达、AMD 与离职员工</li>
+    <li>业绩爬坡需要时间，价格已透支 5 年</li>
+    <li>新股流动性与定价机制的奥秘</li>
+    <li>2021 年两个大肉签的回调样本</li>
+    <li>限售解禁时间表：3月、27年12月、28年12月</li>
+    <li>风投的方法论：募投管退</li>
+    <li>寒武纪高位定增的"白捡现金"</li>
+    <li>买理财的误会与被喷的真正原因</li>
+    <li>谁赚走了 430 亿与 80 亿的差额</li>
+    <li>越是大牛市，虚高公司越多</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、史诗歌级大肉签：一签赚 30 多万</h2>
+
+<p>今天跟大家聊一下新股上市的高估值问题。<strong>一个大肉签居然可以赚 30 多万，这比双色球要爽多了。</strong></p>
+
+<p>我记得上一次出这种大肉签，还要追溯到 <span class="num">2021 年</span>。那一年有两个签，中了能赚超过 <span class="num">20 万</span>，而且都是我们比较熟悉的公司：一个是被称为"国产红牛"的饮料公司<strong>东鹏饮料</strong>，另一个是小米生态链里做投影仪的<strong>极米科技</strong>。</p>
+
+<p>从 21 年之后，A 股进入了长达 <span class="num">3 年半</span>的熊市低迷期，这期间印象中就没出过什么大肉签了。一直到今年 <span class="num">12 月份</span>，突然来了两个史诗级的大肉签——就是我们这个月看到的<strong>摩尔线程</strong>和<strong>募基股份</strong>：</p>
+
+<ul>
+  <li>摩尔线程，中 1000 股差不多能赚 <span class="num">24 万</span>；</li>
+  <li>募基股份，过两周上市后中 1000 股能赚 <span class="num">31 万</span>，直接破了纪录。</li>
+</ul>
+
+<h2 id="s2">二、市值类比：等于青岛海尔与京沪高铁</h2>
+
+<p>因为刚上市不久，这两家公司的股价变动还比较大。我看了下数据：摩尔线程的市值差不多是 <span class="num">2900 亿</span>，募基股份稍微低一点，差不多 <span class="num">2500 亿</span>。</p>
+
+<p>大家对 2500 亿可能没什么概念，我跟大家类比一下就清楚了：<strong>青岛海尔和京沪高铁</strong>，这两家公司应该没人不知道吧——一个是家用电器的龙头（我们家里冰箱、洗护类电器买海尔的比较多），另一个是把京沪高铁这条黄金运输线路的运营拿出来搞资产证券化了。这两家公司可以说是毫无争议的中国核心资产，目前的市值刚好就在 <span class="num">2500 亿</span>左右。</p>
+
+<p>也就是说，<strong>刚上市才几天的募基股份，市值已经和这两家公司划等号了</strong>；摩尔线程还要贵一些——如果按当前市值卖掉摩尔线程去买海尔智家或京沪高铁，可能还得倒找你 <span class="num">400 多亿</span>。</p>
+
+<h2 id="s3">三、150 倍市销率的小小震撼</h2>
+
+<p>那摩尔线程和募基的业绩得有多高，一上市就值这么多钱？按市值排名的话，整个 A 股中这两家差不多能排进前 <span class="num">50 名</span>。我专门查了它们的招股说明书：</p>
+
+<ul>
+  <li>摩尔线程今年上半年业绩是 <span class="num">7 个亿</span>；</li>
+  <li>募基股份只公布了一季度业绩 <span class="num">3.2 个亿</span>。</li>
+</ul>
+
+<p>都是个位数，估算一下这两个公司今年的业绩应该都在 <span class="num">15 到 20 亿</span>之间。但它们目前的市值分别是 <span class="num">2500 亿</span>和 <span class="num">2900 亿</span>——<strong>150 倍的市销率，确实给了我一点小小的震撼。</strong></p>
+
+<p>我不是说这个市值是泡沫（免得被喷说我看不起 AI），我用"透支"这个词总行了吧。透支的意思是：我认为这两个公司未来的内在价值，确实有可能涨到 2500 亿，但这应该是很多年以后的事情了。<strong>公司的内在价值，就是公司未来能创造现金流的折现值，这是不容反驳的金融基础理论。</strong></p>
+
+<h3>换算成"万"，账就划不过来了</h3>
+
+<p>所以我是说服不了自己用 2500 亿的价格，去购买一个当前只能做 15 亿的生意。"亿"这个单位大家可能觉得很陌生，那我们就换个单位——把"亿"换成"万"：</p>
+
+<div class="pull">相当于用 2500 万的现金，<br>去买一家一年只能做 15 万的生意。<br>这个账是怎么也算不过来的。</div>
+
+<h2 id="s4">四、竞争与爬坡：现在价格已透支 5 年</h2>
+
+<p>可能有人会反驳我：显卡行业的增长潜力很大，未来可能十倍百倍的增长。那我的疑问是——<strong>难道你们不考虑商业竞争的问题吗？</strong></p>
+
+<ul>
+  <li>跟英伟达的竞争我就先不提了，除了英伟达还有 AMD 呢。</li>
+  <li>既然行业这么赚钱，那这生意难道只有你能做？其他大资本为何不介入？我看摩尔和募基的创始人都是从英伟达离职出来的——那英伟达总不会只有他们两个员工吧？后续会不会有更多英伟达员工离职出来搞显卡？如果这个行业这么赚钱，风投应该是随便拿的。</li>
+</ul>
+
+<p>另外，公司的业绩增长也是需要一步步做出来的：</p>
+
+<ul>
+  <li>新产品需要研发周期；</li>
+  <li>订单需要销售去签；</li>
+  <li>产能需要提前规划；</li>
+  <li>流水线需要时间去建；</li>
+  <li>内部团队需要时间去提升。</li>
+</ul>
+
+<p>就算你有很高的增长潜力，今年只能做 15 亿嘛，不可能说明年一下就 100 多亿、后年 200 亿——<strong>业绩也是需要爬坡过程的</strong>。反正保守点讲，现在的价格起码透支了未来 <span class="num">5 年</span>的收益。而现在的大环境怎么样大家不是不清楚，5 年时间里会产生多少变量，我觉得这个风险有点大。</p>
+
+<h2 id="s5">五、新股流动性与定价机制的奥秘</h2>
+
+<p>还会有人说：现在的市场股价就这么多，这代表了市场的共识呀。可能很多这两年才进场的新股民，还不是很了解二级市场的定价机制。</p>
+
+<p><strong>新上市的公司能交易的股份数量是很少的</strong>。二级市场的定价规则，就是由最新成交的股票价格来进行整体的定价。所以投资机构只用花很少的成本，就可以把少量的流通股的股价维持在一个很高的水平上，然后一直等到公司的原始股东和早期机构投资者的股份解禁了，他们就可以在价格高的位置上套现。</p>
+
+<h3>老股民的经验：上市低于 5 年的尽量别碰</h3>
+
+<p>所以老股民都知道这一点：投资公司的时候，就尽量不要选择上市时间低于 <span class="num">5 年</span>的——就是考虑到这个问题：解禁的股票在套现的时候会把股价砸下来。</p>
+
+<p>比如一开始提到的两个 2021 年的大肉签——东鹏饮料和极米科技，大家可以看一下这两家公司的股价走势：</p>
+
+<ul>
+  <li><strong>极米科技</strong>刚上市的时候股价最高涨到 <span class="num">600 多</span>，现在跌得只剩下 <span class="num">100</span> 了。</li>
+  <li><strong>东鹏</strong>要好一点，因为业绩还可以，但股价也是从 21 年最高点开始回调，跌了三年多，一直跌到 <span class="num">24 年 9 月</span>才算跌完。</li>
+</ul>
+
+<p>如果我们在公司刚上市、股价高的时候去买，不就是给公司的原始股东当接盘的吗？大家都听过这个说法吧——只要公司上市，原始股东就能获得上千万的财富。那这个财富怎么来的？<strong>就通过二级市场把公司的股价高价卖给散户呗。</strong></p>
+
+<h2 id="s6">六、摩尔线程的股份结构与解禁时间表</h2>
+
+<p>我们可以看一下摩尔线程的数据。这次 IPO 新发行了 <span class="num">7000 万股</span>，上市发行之后总股本是 <span class="num">4.7 亿股</span>。这 7000 万股不是全部卖给散户的：</p>
+
+<ul>
+  <li>其中 <span class="num">20%</span>（即 <span class="num">1400 万股</span>）走的是<strong>战略配售</strong>——指定好的投资机构买；</li>
+  <li>剩下的部分往下发行，又占了 <span class="num">4480 万股</span>，也是留给投资机构的；</li>
+  <li>最后只剩下 <span class="num">1120 万股</span>，才是留给散户来抽签的。</li>
+</ul>
+
+<p><em>才让资本留了一些边角余料给我们散户。</em>机构投资者购买的股份是有禁售期的：网下认购的短的话是半年，战略配售投资者是一年，原始股东想套现的话需要等 <span class="num">3 年</span>。</p>
+
+<h3>流通股只占 6.38%</h3>
+
+<p>所以站在原始股东的角度很容易理解：他们肯定希望等到自己解禁期过来的时候，股价依然维持在一个虚高的位置，这样高位套现是最划算的。根据 IPO 的规则，公司上市后绝大部分股份是禁售状态的，没有办法在二级市场进行交易。就像摩尔线程这个案例，上市之后能够流通的股份只有散户在网上申购的那部分和少量往下发售的部分，合计起来只有不到 <span class="num">3000 万股</span>可以流通。按 3000 万股计算，总股本是 4.7 亿股，<strong>流通股的占比就只有 6.38%</strong>——饼状图画出来就知道了，流通股占比是非常少的。</p>
+
+<p>所以持有禁售股票的机构投资者、公司老板和原始股东，就会想办法尽量在禁售期结束之前让公司的股价保持在高位——越高越好，利于他们高位套现。最长的禁售期是 3 年，所以公司在上市后的半年到 3 年这段时间里，机构和公司就有动力去搞所谓的<strong>"市值管理"</strong>：这段时间公司会比较高调，会不断释放利好来吸引散户高位接盘，方便他们顺利高位减持。</p>
+
+<h3>解禁时间表</h3>
+
+<table>
+  <thead>
+    <tr><th>解禁时间</th><th>解禁规模</th><th>对应投资者</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>明年 3 月 7 日</td><td><span class="num">1.86 亿股</span>（约占总股本 40%）</td><td>上市前 ABC 轮融资进入的投资者</td></tr>
+    <tr><td>27 年 12 月 27 日</td><td>—</td><td>IPO 轮融资网下认购的机构</td></tr>
+    <tr><td>28 年 12 月</td><td>—</td><td>公司原始股东</td></tr>
+  </tbody>
+</table>
+
+<h2 id="s7">七、风投方法论：募投管退</h2>
+
+<p>我们都知道，公司上市是打工人一把实现财富自由的最佳方式——上市之后股票一套现就可以买别墅、买豪车。那这个钱怎么来的？不就是二级市场上散户提供的吗？他们可以把一年业绩只有 15 亿的公司，按市场价格 2500 亿的市值卖给二级市场的散户。</p>
+
+<p>不过从公司角度讲，上市融资确实解决了公司需要烧钱的问题——半导体行业需要烧钱，研发成本非常高，而且制造出来的产品在国际市场上没有竞争力，正面竞争的话很难实现收支平衡。<strong>需要烧钱，那这个钱怎么来呢？靠风投吗？当然不可能。</strong>风投也讲究投资回报率，他们要赚钱，怎么可能拿钱给你烧？难道真的指望你烧钱把显卡研发出来，产品力还能和英伟达竞争，业绩上实现盈利、通过分红再实现投资回报？这当然不可能。</p>
+
+<p>我们切换到风投的角度来看看公司 IPO 这个问题。风投的投资方法论可以用四个字来概括——<strong>"募投管退"</strong>：</p>
+
+<ul>
+  <li><strong>募</strong>（募资）：字面意思。风投公司募集到资金之后，就要把钱投出去，选择具有成长潜力的项目——特别是处于热门行业的公司，比较容易拿到风投。</li>
+  <li><strong>投</strong>：风投在选择公司的时候，其实就已经想好了未来要怎么退出——它会选择热门行业的项目，那未来 IPO 的可能性就最大。<strong>IPO 就是利润最大化的退出方式</strong>，把股票高价卖给散户。</li>
+  <li><strong>管</strong>：风投的成员拥有非常丰富的公司管理经验，而这些经验通常是初创公司比较缺的。他们可以让创业公司快速规范化，帮公司制定后续发展节奏——发展到什么阶段就要发起一轮新融资，尽早为上市做准备。</li>
+  <li><strong>退</strong>：退出最优解就是公司 IPO 之后股价一路走高，风投等到禁售期结束退出的时候，就能把股票卖上一个很高的价格。</li>
+</ul>
+
+<p>所以从风投的角度，我们可以发现两件事：</p>
+
+<ol>
+  <li><strong>公司是否能盈利其实对它们来说不是特别重要</strong>，重要的是能把商业模式跑通、把规模做起来，能够早点达到上市的标准。</li>
+  <li><strong>风投投资公司一旦上市，他们就要把公司股价尽量维持在高位</strong>，这样等禁售期一过高位套现，就能获得大量投资回报。<em>这个回报的钱是哪里来的？不就是我们散户从风投手上高价购买了股票吗？</em></li>
+</ol>
+
+<h2 id="s8">八、寒武纪高位定增：白捡一样的现金</h2>
+
+<p>公司上市之后，如果股价保持在高位，还可以进行多次股权融资。比如<strong>寒武纪</strong>今年进行了定向增发：发行的股票数量不多，只有 <span class="num">333 万股</span>，只占总股本的 <span class="num">8‰</span>——几乎四舍五入等于没有了；但定增金额非常高，每股价格高达 <span class="num">1195 元</span>，每股算下来一下子容纳了 <span class="num">40 个亿</span>。</p>
+
+<p>这啥概念？<strong>寒武纪去年的净资产也就只有 50 亿而已。</strong>今年股价被炒上来之后，它只要略微增发总股本 8‰ 的股票，就能换来 40 亿的现金——<em>这钱简直跟白捡的一样。</em></p>
+
+<p>对公司来说肯定是好事，相当于资金完全不愁了，只要全力搞业务就行。产品能弄出来最好，如果弄不出来那这个钱就打水漂了——但没关系，投资讲究的是"收益共享、风险共担"。有没有收益目前不知道，但风险是二级市场的股民一起帮忙承担了；如果钱不够用了就继续增发，只要股价保持在高位，这个钱就是源源不断的。</p>
+
+<p>这属于资本市场该有的作用——用无限的资金去搞需要扶持的行业；但对于我们普通投资者来说就不太友好了：需要烧钱的事情你们不自己掏钱，还要散户来掏这个钱，先让我们把风险承担了，那收益呢？现在还在画大饼的阶段。</p>
+
+<h2 id="s9">九、买理财的误会与被喷的真正原因</h2>
+
+<p>我记得月初有个事——摩尔线程拿募集到的资金去买理财，被骂得很厉害。不过大家都吐槽得不在点上。</p>
+
+<p>摩尔线程我们刚一起看了数据：IPO 融资了差不多 <span class="num">80 亿</span>，扣掉成本之后能剩 <span class="num">75 亿</span>左右，然后公司财务就把这个钱拿来买理财了。不懂公司经营的人凭直觉会觉得这事不对——你作为国内的显卡明星公司，大家指望你去和英伟达竞争，所以才拿这么多钱来支持你，那这个钱你就赶紧用啊，拿去扩大研发团队、建生产线、买原材料。但你啥也没干，居然把这个钱拿去买理财，所以大家就觉得很生气。</p>
+
+<p>这个问题我倒是可以帮摩尔线程解释一下：钱拿了确实不是马上就能花出去的——不管是招聘、建厂还是买原材料，都需要时间。企业里花钱和管钱的人是两拨人：项目部花钱，财务部管钱。财务部首先想的是这个钱不能让它闲置——<strong>75 亿的资金在账户里闲置一天的利息差不多就是 50 万了</strong>。等后面公司业务铺开了，这个钱自然就会开始花出去。</p>
+
+<p>这个事情大家肯定还是觉得不对，但没有喷到点子上。我感觉大家真正想的是：<strong>摩尔线程在上市之前公司净资产只有 40 亿，大家知道你现在业绩不够看，但在显卡领域有希望和英伟达正面竞争、实现国产化的夙愿，对你的期许是非常高的</strong>。结果你这钱一拿啥事没干就直接存钱买理财，让很多人直觉上感觉没有达到预期。虽然这个事情本身存在误会，但也确实反映了一个问题——大家潜意识里还是认为公司的成绩匹配不了现在的市值。</p>
+
+<h2 id="s10">十、谁赚走了 430 亿与 80 亿的差额</h2>
+
+<p>对于企业，特别是处于热门行业的企业来说，上市确实能够解决资金问题——这也是资本市场的作用，用金融支撑实体发展。但现在的问题是：<strong>机构投资者利用 IPO 的规则、利用新股流动性弱的特征，可以低成本地把新上市的公司股价炒得非常高</strong>，然后等股票禁售期过了，再在高位把这些股票卖给普通投资者。</p>
+
+<p>其实企业本身也没有拿到那么多钱。看摩尔线程的 IPO，不算融资成本的话公司融了 <span class="num">80 亿</span>左右，但摩尔线程现在的市值是 <span class="num">2900 亿</span>——所以 IPO 增发的股份按现在的市值换算一下，对应的价值其实是 <span class="num">430 亿</span>左右。<strong>430 亿和 80 亿之间隔了好几倍，这个差额到底被谁赚到了？</strong></p>
+
+<blockquote>
+  <p>答案很明显：<strong>企业的原始股东、早期的机构投资者、IPO 阶段的战略配售者，还有少部分中签的幸运儿。</strong>这中间的差价就是被他们赚走了。谁来买单呢？就是我们普通散户——普通股民还有买了半导体基金的基民。</p>
+</blockquote>
+
+<p>我们花大价钱买来的股权，到底值不值这个价格？我觉得是要打问号的。所以那些通过公司上市股票变现的大佬们——又是买别墅又是买豪车——他们的钱很大部分其实是利用了二级市场的规则赚到的，<em>并不是完全通过创造有价值的公司来赚到的</em>。</p>
+
+<h2 id="s11">十一、规则没问题，但散户要学会保护自己</h2>
+
+<p>现在的问题是，规则方面其实并没有什么不对——只要存在企业融资这件事，就有一个合理的规则，规则本身是 OK 的。<strong>目前矛盾的地方是专业的机构投资者会利用规则，制造出一种利于他们的情况</strong>：比如利用新股流动性的问题低成本抬高股价，然后等禁售期结束之后慢慢减持，把股票卖给普通散户。</p>
+
+<p>对于我们老股民和理性投资者来说，这其实不算一个很大的问题，因为我们懂估值——如果股价不合理我们就不去买，自然就不会被收割。但现在的问题是<strong>A 股的散户基数实在太大了，不懂估值的人的数量很多</strong>。他们看到公司是热点公司、股价又在上涨，就很有可能追高进去买。短期的话股价有可能跟着趋势继续上涨，但长期看，这笔投资的预期收益率是很低的，甚至有可能是负数。</p>
+
+<div class="pull">割韭菜的定义不就是——<br>让散户用过高的价格，<br>买来实际上并没有那么值钱的资产。</div>
+
+<p>所以我要提醒大家：股票二级市场的规则远比看上去复杂。新手可能连市场规则都还没完全吃透，自然很难判断是否有人利用规则拉高股价割韭菜。<strong>大家一定要学会保护自己——不要因为今年是大牛市，就觉得股市的钱很好赚。</strong></p>
+
+<h2 id="s12">十二、越是大牛市，虚高公司越多</h2>
+
+<p><strong>越是大牛市，股价严重虚高的公司就越多。</strong>最近 5 年散户亏损最严重的时候，其实不是 23、24 年的熊市期间，而是 <span class="num">21 年</span>高位进场追高白马股的时候——后面两年时间这些白马股几乎全部腰斩了。</p>
+
+<p>新股方面，就一定要注意原始股东和投资机构减持的问题——不要觉得刚上来一个新股、又是风口浪尖的公司就无脑追进去。<strong>最起码也要等到 3 年之后，等它的股本全部流通之后再说</strong>，那个时候公司的定价效率会更准一些。</p>
+
+<p>今天就随便聊一下，吐槽一下新股高估值的问题，我们下期再见。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化<br>
+  新股估值 · 系列
+</footer>
+
+</div>
+</body>
+</html>

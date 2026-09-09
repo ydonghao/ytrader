@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>股票投资者的能力分级与知识地图</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">投资学习笔记</div>
+  <h1 class="title">股票投资者的能力分级与知识地图</h1>
+  <div class="meta">
+    <span>从"未入门"到高级投资者的四级阶梯</span>
+    <span>认知、财务、商业模式与宏观</span>
+    <span>先定位坐标，再按地图提升</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>分级像地图坐标：先定位再提升</li>
+    <li>未入门：把股票当K线游戏</li>
+    <li>入门分界线：认识到"买股票就是买公司"</li>
+    <li>初级水平：懂企业运作 + 一定财务知识</li>
+    <li>中级水平：具备估值能力，能读懂财务三表</li>
+    <li>高级水平：把商业模式置于最高优先级</li>
+    <li>宏观、战略与风险管理能力</li>
+    <li>知识地图：五维能力的初/中/高划分</li>
+    <li>不必成为六边形战士：我的能力自评</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、分级像地图坐标：先定位再提升</h2>
+
+<p>在讲解知识地图之前，我需要先讲一下<strong>投资者能力分级</strong>。投资者能力分级就像地图上的坐标——我们需要先确定自己在哪个段位上，再来看如何根据知识地图的指引来提升投资能力。</p>
+
+<p>因为长期写自媒体的原因，我线上线下指导过很多人，各种水平的人都见过，所以对投资者的能力分级还是有自己的看法的。我按照投资能力把它划分为：<strong>未入门 → 入门后的初级、中级、高级</strong>三个阶段。下面从下到上逐一讲解，大家可以自己对号入座。</p>
+
+<blockquote>
+  <p>声明：这是我个人很主观的分类标准，纯靠个人经验写的，可能并没有什么科学依据，仅供学习参考。如果有不同看法，可以留言。后续在完善知识地图和课程时，也会持续完善这个分级标准。</p>
+</blockquote>
+
+<h2 id="s2">二、未入门：把股票当K线游戏</h2>
+
+<p>股票投资是一项难度很高的工作，但我们的资本市场并没有设置什么很高的门槛。移动互联网时代，只要下载一个 App、动动手指注册一下，就能参与股票投资。所以<strong>参与股市的人里，相当多能力是不达要求的</strong>。能力不够又非要参与，最后的结果肯定是亏损。</p>
+
+<p>股票是上市公司的股权，所以买股票必须看得懂现代企业是如何运作的。但日常生活中有相当多的人<strong>没有接触过现代企业</strong>——比如教师、学生群体、公务员群体等，他们基本接触不到企业运营，自然对现代企业不了解。</p>
+
+<p>在这种情况下进入股市，大家首先看到的是四个字的简称和六位数的代码，很难把它和线下的实际企业联系起来。然后每天去看 K 线图上蹿下跳，非常吸引眼球，满脑子想的都是如何预测 K 线走势，<strong>而忽略了它背后所代表的东西</strong>。</p>
+
+<div class="pull">K线图只是一个市场报价而已，<br>只能代表市场暂时的共识，<br>并不能代表企业的真实价值。</div>
+
+<p>如果连"股票的实质是上市公司"这件事都意识不到，就很难分析公司的价值；没有公司价值作为基准线，就无法衡量市场报价是否合理。<strong>在这种情况下，股票投资几乎不可能盈利。</strong></p>
+
+<h2 id="s3">三、入门分界线：认识到"买股票就是买公司"</h2>
+
+<p>股票投资入门的分界线，<strong>不是任何技能，而是一个认知——你是否能认识到"买股票就是买公司"这件事</strong>。能认识到这个问题，就算入门了。即便短期能力还不够，但也能知道学习提升的方向：多了解现代企业是如何运作的，持续学习财务知识。努力实现稳定盈利不是什么难事。</p>
+
+<p>根据我的观察，<strong>在现代企业工作的白领</strong>进入股市后比较容易理解"买股票就是买公司"。特别是在上市公司工作的人，本身就在企业内工作，多少对企业如何运作有一定了解。如果本身还具备一定的财务知识，加上熟悉二级市场的规则，<strong>基本上能算一个比较厉害的初级投资者了</strong>，持续盈利的概率非常大。</p>
+
+<h2 id="s4">四、初级水平：懂企业运作 + 一定财务知识</h2>
+
+<p>从"未入门"到"初级"的差异是<strong>认知</strong>；从"初级"到"中级"的差异，则是<strong>硬性的知识储备</strong>。</p>
+
+<p>初级水平的核心，是理解现代企业的运作方式，再加上一定的财务知识基础和二级市场规则的理解。处于这一阶段的投资者能知道"买股票就是买公司"，能看懂公司的基础财务数据。</p>
+
+<h2 id="s5">五、中级水平：具备估值能力，能读懂财务三表</h2>
+
+<p>能力要从初级升级为中级，<strong>我认为分界线是具备对企业的估值能力</strong>。</p>
+
+<p>这需要硬性的知识储备：起码要具备一定的会计水平，能够理解公司的财务数据是如何计算出来的，背后对应的业务场景是怎样的。<strong>合格线的标准是能解读公司的财务三表——资产负债表、现金流量表和损益表。</strong></p>
+
+<ul>
+  <li>损益表会简单一点，基本上都能看懂。</li>
+  <li>资产负债表比较难理解一些，必须财务和业务都比较精通才能看明白。</li>
+</ul>
+
+<p>只有懂财务知识，才具备对公司进行估值的能力——这是一个硬性要求。<strong>能对公司估值，我们才能判断股价的相对高低。</strong></p>
+
+<h3>还有一点：处理复杂问题的能力</h3>
+
+<p>另外一点，智力上也有一定的要求——<strong>必须具备处理复杂问题的能力</strong>。人跟人之间存在智力差异，这话虽然不好听，但我们应该客观面对。智力属于生理问题，就像有的人肌肉发达、有的人体弱多病，有的人跑得快、跳得高一样，生理性差异是很正常的。<strong>并不是每个人都具备处理复杂问题的能力。</strong></p>
+
+<p>举个例子，"分红"这个问题就是一个典型的复杂问题——它把三件事搅合在一起：</p>
+<ul>
+  <li>分红是<strong>公司经营问题</strong>；</li>
+  <li>除息除权是<strong>交易所制度问题</strong>；</li>
+  <li>后续是否填权又是<strong>市场交易问题</strong>。</li>
+</ul>
+
+<p>如果连这个问题都想不明白，基本可以判定这个人不太具备处理复杂问题的能力。</p>
+
+<h3>谁一上来就在中级水平</h3>
+
+<p>公司的管理层和大厂的核心骨干，这个群体进入股市基本上一上来就能处于中级阶段。因为他们日常工作中对现代企业如何运作非常熟悉，无非就是不太懂财务——但这个群体的学习能力一般都很强，财务知识花时间学一学、多看几本书、请教一下财务部的同事，达到够用的水平还是比较容易的。</p>
+
+<h2 id="s6">六、高级水平：把商业模式置于最高优先级</h2>
+
+<p>要进一步提高投资能力、达到高级水平，<strong>我认为认知的分界线是对商业模式的重视程度</strong>。</p>
+
+<ul>
+  <li><strong>初级水平</strong>：能知道"买股票就是买公司"，能看明白公司的基础财务数据（业绩、利润、净资产增长率等），但一般不会太关心商业模式。</li>
+  <li><strong>中级水平</strong>：会注意区分商业模式，但分析的优先级不会太高。</li>
+  <li><strong>高级别投资者</strong>：会把商业模式的优先级提得非常高。</li>
+</ul>
+
+<p>我个人可能就是这样的分析习惯。如果问我一个新公司怎么样，<strong>我会先看它的商业模式；如果商业模式不好，后面就直接不看了</strong>——就像刮刮乐刮奖一样，先刮出来一个"谢"字，后面就不用继续刮了。</p>
+
+<h2 id="s7">七、高级水平还需要：战略、风险与宏观</h2>
+
+<p>除了认知改变，高级水平在其他能力上还需要提高：</p>
+
+<ul>
+  <li><strong>管理公司的能力</strong>，需要具备公司的战略管理能力和风险管理能力——这种能力一般是通过实践获得的。</li>
+  <li><strong>一定的宏观分析能力。</strong>我个人在宏观分析上也比较弱，一开始的研究方向是放在公司经营上的，后期才逐渐意识到宏观经济的重要性。正确的顺序应该是<strong>先看宏观经济周期，再看周期下的行业，最后才到具体的公司层面</strong>。</li>
+</ul>
+
+<p>我接触的投资者中能达到这个水平的人，<strong>基本上都是企业主或者合伙人</strong>。只有亲自经营过公司的人，对公司的理解才能达到这个水平。在公司的经营中，老板思考战略和商业模式多一些，职业经理人是帮助老板实现战略目标落地——职业经理人一般是旱涝保收的，最差无非奖金少拿一点，工资一分不少；但老板需要承担生意的亏损风险。所以<strong>老板对生意的风险意识，要远高于职业经理人</strong>。</p>
+
+<h2 id="s8">八、知识地图：五维能力的初/中/高划分</h2>
+
+<p>确定坐标之后，才能按照知识地图去提高自己的能力。知识地图我也按照初、中、高三个级别划分，分为以下几个能力维度：</p>
+
+<ul>
+  <li>财务知识</li>
+  <li>公司运营</li>
+  <li>金融知识</li>
+  <li>经济学（宏观、微观、行为经济学）</li>
+  <li>信息处理等软技能</li>
+</ul>
+
+<p>以财务知识为例：</p>
+<ul>
+  <li><strong>初级水平</strong>：掌握财务的基础指标就算合格。</li>
+  <li><strong>中级水平</strong>：需要看懂财务三表，起码达到中级会计水平。</li>
+  <li><strong>更高级别</strong>：需要 CPA 级别的会计。</li>
+</ul>
+
+<p>稍微展开一下：CPA 不只有会计，CPA 一共有六门课程，其中有一门是<strong>公司战略与风险管理</strong>，这就属于公司运营范畴的能力。此外还有金融类知识、经济学知识（细分为宏观经济学、微观经济学和行为经济学），以及信息处理等。</p>
+
+<p>目前我随手先写了一个 <span class="num">1.0</span> 的版本，先把框架搭建起来。后面写具体对应的课程时，还会再细化和优化。为了方便理解，每个能力和级别对应的知识点我就先各写一个，看起来简洁一点。</p>
+
+<h2 id="s9">九、不必成为六边形战士：我的能力自评</h2>
+
+<p>要额外说明的是：股市所需要的知识非常多，<strong>要全部掌握绝非一朝一夕的事情</strong>。每个人都成为"六边形战士"不太现实，这很正常，也不太会影响什么。我们在投资实践中，一方面可以逐步学习成长，另一方面也可以采取合作的方式扬长避短。</p>
+
+<p>我给自己的能力模型做个评估：</p>
+
+<ul>
+  <li><strong>数据处理（领先）：</strong>IT 行业出身，开发过分析系统，数据处理算是比较领先的水平。</li>
+  <li><strong>公司经营理解（强）：</strong>在上市公司工作过很长时间，自己也亲自经营过公司，非常熟悉现代企业的经营方式。</li>
+  <li><strong>财务知识（够用）：</strong>不是科班出身，都是后期根据工作需要补充学习的。可以做账，对企业财务流程很熟悉，但投融资业务接触较少，整体上没有达到 CPA 水平。</li>
+  <li><strong>宏观经济（较弱）：</strong>这是比较弱的地方，2021 年之前几乎不太懂，那时主要盯着公司看，还没意识到宏观经济周期对公司的影响。2021 年之后宏观经济对企业影响较大，才逐渐意识到这个问题，开始慢慢补这方面的知识。</li>
+</ul>
+
+<p>虽然谈不上是六边形战士，但我觉得也够用了——<strong>起码我知道自己的短板在哪里，日后可以慢慢提升</strong>。至于投资收益率，能力不足肯定会少赚一点，但少赚就少赚呗，又不是不赚钱，影响不大，可以慢慢来。</p>
+
+<h2 id="s10">十、小结：先定位，再按地图走</h2>
+
+<p>今天把投资者能力分级和知识地图的框架先跟大家讲一下。接下来我会按照这个知识地图去细化课程和学习指引。</p>
+
+<blockquote>
+  <p>想学习股票投资的人，可以先按这个分级标准<strong>先确定自己的位置</strong>（相当于先确定地图的坐标），<strong>然后再根据知识地图的指引逐步提高就可以了</strong>。</p>
+</blockquote>
+
+<p>这个课程的细化我会慢慢做。之前有一些储备资料，但都比较碎片化，我自己也想找一个机会把它做成一个成体系的东西。<strong>那 25 年的工作就重点干这个事儿吧。</strong></p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>

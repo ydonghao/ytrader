@@ -1,0 +1,314 @@
+/**
+ * 做T实验室 — T-Trading Lab
+ * 路径：/t-trading
+ * 暗色主题，Apple Dark tokens。
+ */
+.t-trading {
+  padding: var(--space-6) var(--space-8);
+  max-width: 1400px;
+  margin: 0 auto;
+  animation: fade-in-up 0.3s ease;
+}
+
+/* ── ① 算法原理卡片 ─────────────────────────────────────────────────────── */
+.t-trading__algo-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+.algo-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-4);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+.algo-card:hover {
+  border-color: var(--color-border-strong);
+  transform: translateY(-2px);
+}
+.algo-card--active {
+  border-color: var(--color-accent);
+  background: linear-gradient(135deg, var(--color-accent-light), var(--color-surface));
+}
+.algo-card--danger.algo-card--active {
+  border-color: var(--color-danger);
+  background: linear-gradient(135deg, var(--color-danger-light), var(--color-surface));
+}
+.algo-card__name {
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin: 0 0 var(--space-2) 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.algo-card__danger-tag {
+  font-size: var(--text-xs);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--color-danger-light);
+  color: var(--color-danger);
+  font-weight: var(--font-weight-medium);
+}
+.algo-card__one-liner {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-normal);
+  margin: 0 0 var(--space-3) 0;
+}
+.algo-card__expand {
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.algo-card__detail {
+  margin-top: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  line-height: var(--leading-relaxed);
+}
+.algo-card__detail p { margin: 0 0 var(--space-2) 0; }
+.algo-card__detail .label {
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+.algo-card__pros li,
+.algo-card__risks li {
+  list-style: none;
+  padding-left: var(--space-3);
+  position: relative;
+  margin-bottom: 4px;
+}
+.algo-card__pros li::before { content: '✓'; position: absolute; left: 0; color: var(--color-success); }
+.algo-card__risks li::before { content: '!'; position: absolute; left: 0; color: var(--color-warning); font-weight: bold; }
+
+/* ── ② 参数表单 ─────────────────────────────────────────────────────────── */
+.t-trading__form {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  margin-bottom: var(--space-5);
+}
+.t-trading__form-title {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin: 0 0 var(--space-4) 0;
+}
+.t-trading__form-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+.t-trading__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.t-trading__field label {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+.t-trading__field input,
+.t-trading__field select {
+  background: var(--color-fill);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  padding: 8px 10px;
+  font-size: var(--text-sm);
+  font-family: var(--font-body);
+  transition: border-color var(--transition-fast);
+}
+.t-trading__field input:focus,
+.t-trading__field select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+.t-trading__field-help {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  line-height: 1.3;
+}
+.t-trading__cost-toggle {
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2) 0;
+  margin-bottom: var(--space-2);
+}
+.t-trading__cost-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px dashed var(--color-border);
+}
+.t-trading__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+.t-trading__error {
+  color: var(--color-danger);
+  font-size: var(--text-sm);
+}
+
+/* ── ⑤ 结果区 ──────────────────────────────────────────────────────────── */
+.t-trading__result { animation: fade-in-up 0.4s ease; }
+
+/* 第1层：总览大数字 */
+.t-trading__metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+.metric-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.metric-card__label {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  font-weight: var(--font-weight-medium);
+}
+.metric-card__value {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-number);
+  letter-spacing: -0.02em;
+}
+.metric-card__value--pos { color: var(--color-success); }
+.metric-card__value--neg { color: var(--color-danger); }
+.metric-card__value--neutral { color: var(--color-text); }
+.metric-card__sub {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}
+
+/* 第2层：图表 */
+.t-trading__section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-5);
+  margin-bottom: var(--space-4);
+}
+.t-trading__section-title {
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin: 0 0 var(--space-1) 0;
+}
+.t-trading__section-desc {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  margin: 0 0 var(--space-4) 0;
+}
+
+/* 第3层：成本拆解瀑布 */
+.t-trading__waterfall {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+.waterfall-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 100px;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+}
+.waterfall-row__label { color: var(--color-text-secondary); }
+.waterfall-row__bar {
+  height: 22px;
+  border-radius: var(--radius-sm);
+  position: relative;
+  background: var(--color-fill);
+}
+.waterfall-row__fill {
+  height: 100%;
+  border-radius: var(--radius-sm);
+  transition: width var(--transition-slow);
+}
+.waterfall-row__fill--gross { background: var(--color-success); }
+.waterfall-row__fill--cost { background: var(--color-warning); }
+.waterfall-row__fill--net { background: var(--color-accent); }
+.waterfall-row__value {
+  text-align: right;
+  font-family: var(--font-number);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+/* 第4层：交易明细表 */
+.t-trading__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+.t-trading__table th {
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  color: var(--color-text-tertiary);
+  font-weight: var(--font-weight-medium);
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--text-xs);
+}
+.t-trading__table td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-family: var(--font-number);
+}
+.t-trading__table tr:hover td { background: var(--color-fill); }
+.t-trading__table .txt-buy { color: var(--color-danger); }   /* 买入=红（A股惯例） */
+.t-trading__table .txt-sell { color: var(--color-success); } /* 卖出=绿 */
+.t-trading__table .pos { color: var(--color-success); }
+.t-trading__table .neg { color: var(--color-danger); }
+.t-trading__table-wrap {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* 响应式 */
+@media (max-width: 1024px) {
+  .t-trading__algo-grid,
+  .t-trading__metrics,
+  .t-trading__form-grid { grid-template-columns: repeat(2, 1fr); }
+  .t-trading__cost-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 640px) {
+  .t-trading { padding: var(--space-4); }
+  .t-trading__algo-grid,
+  .t-trading__metrics,
+  .t-trading__form-grid,
+  .t-trading__cost-grid { grid-template-columns: 1fr; }
+}

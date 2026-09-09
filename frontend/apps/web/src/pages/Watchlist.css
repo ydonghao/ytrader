@@ -1,0 +1,121 @@
+.watchlist {
+  padding: var(--space-6);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.watchlist__tabs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-2);
+}
+.watchlist__tabs-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+.watchlist__count {
+  color: var(--color-text-tertiary);
+  font-size: var(--text-xs);
+}
+.watchlist__tabs-empty {
+  color: var(--color-text-tertiary);
+  font-size: var(--text-sm);
+}
+.watchlist__error {
+  color: var(--color-danger);
+  background: color-mix(in srgb, var(--color-danger) 12%, transparent);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  margin: var(--space-3) 0;
+}
+.watchlist__summary {
+  display: flex;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+  padding: var(--space-3) var(--space-4);
+  margin: var(--space-3) 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+.watchlist__summary-item b {
+  color: var(--color-text);
+  font-variant-numeric: tabular-nums;
+}
+.watchlist__addbar {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  margin: var(--space-3) 0;
+  flex-wrap: wrap;
+}
+.watchlist__addbar-select {
+  min-width: 280px;
+}
+.watchlist__addbar .input-wrap,
+.watchlist__addbar input {
+  flex: 1 1 160px;
+}
+.watchlist__table {
+  width: 100%;
+}
+.watchlist__row {
+  cursor: default;
+}
+.watchlist__drag {
+  color: var(--color-text-tertiary);
+  cursor: grab;
+  user-select: none;
+}
+.watchlist__sym {
+  display: flex;
+  flex-direction: column;
+}
+.watchlist__sym-name {
+  color: var(--color-text);
+}
+.watchlist__sym-code {
+  color: var(--color-text-tertiary);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+.watchlist__note {
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-size: var(--text-sm);
+}
+.watchlist__note em {
+  color: var(--color-text-tertiary);
+  font-style: normal;
+}
+.watchlist__note-input {
+  width: 100%;
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  padding: 2px 6px;
+  font-size: var(--text-sm);
+}
+.watchlist__row-actions {
+  display: flex;
+  gap: var(--space-1);
+}
+.watchlist__move-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* 分组 Tab 拖拽排序 */
+.watchlist__tab-drag {
+  cursor: grab;
+}
+.watchlist__tab-drag:active {
+  cursor: grabbing;
+}

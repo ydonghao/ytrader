@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>财报利好，为何股价不涨反跌？</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">基本面分析 · 股价逻辑</div>
+  <h1 class="title">财报利好，为何股价不涨反跌？</h1>
+  <div class="meta">
+    <span>长期看市值跟着业绩走</span>
+    <span>预期差与信息差两个关键因素</span>
+    <span>九安医疗与隆基绿能的案例</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>"炒股不用看基本面"是个误区</li>
+    <li>基本面影响股价的时间阈值：半年</li>
+    <li>A股财报发布的节奏</li>
+    <li>遛狗理论：基本面与股价的关系</li>
+    <li>拉长8年看，市值跟着业绩走</li>
+    <li>股价和业绩在时间轴上常错开</li>
+    <li>什么是期望差</li>
+    <li>高预期为何导致"利好不涨"</li>
+    <li>低预期反而出现"利空反弹"</li>
+    <li>网络大V吹票拉高你的预期</li>
+    <li>什么是信息差</li>
+    <li>九安医疗：信息差让股价快业绩半年</li>
+    <li>隆基绿能：行业内人提前预判拐点</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、"炒股不用看基本面"是个误区</h2>
+
+<p>昨天是中报的最后一天，所有上市公司今年上半年的成绩单都会在昨天发布。大家可能会发现一个现象：公司的股价走势和业绩看上去好像没啥关系——财报明明是增长和盈利的，但股价却跌了；或者财报明明很差，但股价反而还涨了。</p>
+
+<p>这就给人一种感觉，觉得股票的涨跌和公司的基本面就没啥关系。所以在 A 股就一直有一个说法很流行，就是"炒股不用看基本面，股价涨跌反正也不按这个来"。结果导致大部分玩股票的人，特别是新手，一上来就忽视了对基本面的研究，都把精力投入到对 K 线的分析上了。</p>
+
+<p>我个人的经验看法是：<strong>分析公司基本面的能力还是非常重要的</strong>。短期股价确实不受基本面的影响，但股价长期的走势是受基本面影响的，而且时间越长，基本面对股价的影响越大。</p>
+
+<h2 id="s2">二、基本面影响股价的时间阈值：半年</h2>
+
+<p>一般是超过 <span class="num">半年</span>的时间，基本面对股价的影响就开始变大了。那为什么是半年呢？因为 A 股的财报公布节奏是一年三次：</p>
+
+<ul>
+  <li>大部分<strong>一季报和年报</strong>会合并在一起，统一在 <span class="num">4月30日</span>发布；</li>
+  <li><strong>半年报</strong>最晚是 <span class="num">8月31日</span>发布，跟一季度隔了四个月；</li>
+  <li><strong>三季报</strong>在 <span class="num">10</span> 月底。</li>
+</ul>
+
+<p>基本上就这么一个节奏。每次财报集中发布的那一周，财报的结果就会对公司的走势造成影响，牵引股价的趋势向基本面去靠近。</p>
+
+<h3>遛狗理论</h3>
+
+<p>有一个例子讲得很详细，公司的基本面和股价的关系，就像一个人牵着狗绳在遛狗：小狗喜欢乱跑，一会儿在前面跑、一会儿在后面跑，但有绳子牵着，所以永远在狗主人的控制范围之内。</p>
+
+<h2 id="s3">三、拉长8年看，市值跟着业绩走</h2>
+
+<p>我过去十多年跟踪了很多家公司的业绩和股价走势，把时间拉长看，可以明确看出来<strong>市值是跟着业绩走的</strong>。我们可以看几个案例：我把公司的市值和业绩规模放在一个坐标系里对比，把时间拉长到 <span class="num">8年</span>，会发现它们的图形形态和涨跌趋势基本是一致的，比如中国平安、长江电力、美的、比亚迪、恒瑞医药，还有隆基绿能等。</p>
+
+<p>但同时我们也能看出来：虽然市值跟业绩的形态是一样的，可是在时间轴上很多公司是错开的。比如说我们看隆基绿能这个例子，可以清楚地看到隆基的股价走势在时间轴上，比业绩早了差不多 <span class="num">一年多</span>。其他公司也是类似的，股价跟业绩形态一样，但时间轴上差了差不多 <span class="num">半年到一年</span>。</p>
+
+<div class="pull">造成这种情况的原因是什么，我们必须弄清楚——<br>这样才能找到公司业绩和股价之间的逻辑关系，提高投资的胜率。</div>
+
+<h2 id="s4">四、两个关键因素：期望差与信息差</h2>
+
+<p>我认为主要原因有两个：一个是<strong>期望差</strong>，一个是<strong>信息差</strong>。如果你不了解这两个因素，就很难摸清楚股价的长期走势规律。</p>
+
+<h3>什么是期望差</h3>
+
+<p>所谓期望差，就是字面意思：<em>我们对公司的期望，和公司的实际情况产生了差异</em>，就叫期望差。</p>
+
+<p>我们会对生活中很多事情产生期望——比如说你喜欢的球队，你期望它取得什么样的成绩；比如你自己的工作业绩，你期望这个月客户比较给力、你能多签一些订单。那我们对上市公司的投资也会产生期望，存在期望就会存在期望差。我们总会对公司的增长抱有比较高的期望，但实际情况是，公司的增长很难长时间保持稳定的高增长——更多的情况是增长一段时间之后，业绩可能会走平甚至下滑一段时间。</p>
+
+<p>因为公司的规模一旦扩大到一个阶段，就会发现公司的组织和流程可能会出现不适配的情况，需要内部调整；或者说公司的主力产品在市场上达到饱和，需要开发新的产品或者寻找新的市场。然后等公司提高了内部管理能力，或者取得重大突破，再重新回到一个高增长的趋势上。大部分公司都是这样波动式增长的。</p>
+
+<h3>高预期为何导致"利好不涨"</h3>
+
+<p>在公司业绩高速增长的时候，不管是内部员工还是投资人，大家普遍会产生比较乐观的情绪，对未来的预期会比较好。高预期转化为投资行为，就是大家乐意用比较高的价格去买公司的股票，反映到市场上的结果就是公司的股价快速上涨。</p>
+
+<p>最后到了公司发布财报的时候，就像期末考试的成绩单一样，不管你平时吹得多厉害，最终还是要看分数的。可能公司的业绩增长还是持续的，但是比之前的增速稍微低了一些——比如公司之前的增长都是每年 <span class="num">20%</span> 以上，生意不好做只增长了 <span class="num">15%</span>，但大家的预期都是增长 20% 以上。所以这份财报就会不达预期，不达预期的话，就容易引起公司的股价下跌。</p>
+
+<h3>低预期反而出现"利空反弹"</h3>
+
+<p>反过来，如果股价长期下跌，也会出现财报不好、但股价反弹的情况。因为公司业务被大家不看好——可能这两年跟房地产相关的行业都是这样的——公司股价持续下跌。等到公司财报一发，大家一看：虽然业绩是下跌的，但也还好，没有我们预想的那么差。结果第二天公司的股价就开始上涨了，这也是一种预期差。</p>
+
+<h3>网络大V吹票，拉高你的预期</h3>
+
+<p>投资股票就不能经常去看论坛，现在喜欢吹票的人太多了。特别是经济好、行情好的时候，吹牛的人就特别多，特别是网络大 V 喜欢搞流量，喜欢吹一个公司怎么好、非常有价值。确实有价值，它可以为股民提供情绪价值，但也很容易拉高大家的期望，让你用过高的价格买入公司的股票，最终造成亏损。</p>
+
+<p>这种情况在 <span class="num">2020</span> 年的时候非常多，当时普遍对白马股的预期非常高，网上各种花式吹捧，连"中国核心资产"这种词都造出来了。结果到了 <span class="num">21</span> 年之后，大家的生意都不好做，之前以为很牛的公司其实也就那样，业绩照样增长停滞甚至下滑，于是就造成了非常严重的业绩不达预期，最后变成股价大跌，导致大家亏损惨重。</p>
+
+<p>这就是<strong>预期差</strong>导致的股价和公司实际业绩之间的差异。</p>
+
+<h2 id="s5">五、信息差：不同人对公司价值认知不同</h2>
+
+<p>说完了预期差，我们再来看信息差。信息差就是上市公司存在信息不透明的地方，导致不同的人对于上市公司的价值认知不一样。</p>
+
+<p>根据我的观察：大型公司的预期差比较多；小公司，或者是业务领域比较专业的公司，信息差的情况会多一些。比如说茅台这家公司，A 股最有名的公司，影响茅台股价的变化主要就是大家的预期变化，而茅台的经营层面分析基本已经被分析透了，这方面信息差就很小。虽然茅台的业绩还是稳定增长，但导致大家对茅台未来发展的预期变了——有的人觉得目前经济不好，有的人认为未来喝酒的人会越来越少，反正各种说法都有。所以一旦预期发生变化，哪怕是公司的业绩没变，它的股价也会下跌。</p>
+
+<p>很多小公司因为不被大众所熟知，信息差就比较严重。还有就是行业比较专业的公司，研究公司的业务是有知识门槛的，也容易造成信息差。</p>
+
+<h2 id="s6">六、案例一：九安医疗，信息差让股价快业绩半年</h2>
+
+<p>我们看两个案例：一个是九安医疗，一个是隆基绿能。</p>
+
+<p>九安医疗是疫情防控期的一个妖股，股价短期暴涨十几倍，然后用了几年的时间，又很快跌回来了。我们可以把这家公司的业绩跟股价叠加到一个坐标系上去看，会发现业绩跟股价的形态是一样的，但在时间轴上股价快了 <span class="num">半年</span>左右。</p>
+
+<p>当时的情况其实不复杂。因为疫情防控需要，九安医疗的产品卖爆了市场，产生了天量的订单。在订单生产的时候，公司内部的人、参与这次交易的各方、还有对公司比较熟的人，就先知道了这个消息——未来公司一年的业绩会大爆炸。知道这个信息要怎么办呢？当然是赶紧买它的股票。公司本身是小市值公司，大涨之前的市值只有 <span class="num">30亿</span>，盘子很小，所以不用太多资金就能把股价拉到很高。等市场上大多数人都关注到这个信息的时候，股价早就被拉上去了。</p>
+
+<p>然后等订单交付完、钱收到账，再等下一个财报期，可能大半年的时间就过去了。我们可以看到，九安医疗的业绩爆发发生在 <span class="num">2022年一季度</span>，也就是当年 <span class="num">4月30号</span>这个数据才通过财报的方式公布出来；但实际上这笔订单在去年四季度就开始了。大公司做生意不是我们街边买东西一手交钱一手交货，而是需要走招投标流程，比较花时间。所以<strong>在 21 年的四季度，公司的股价就已经开始拉了</strong>。</p>
+
+<blockquote>
+  <p>这个信息，最开始就是直接参与这个商务活动的人知道，然后慢慢向周边扩散。先知道情况的人就会抢先买入股票，等到一季度财报出来的时候，半年时间都过去了。</p>
+  <p>而公司内部人都很清楚，这个生意就是靠疫情防疫的红利，一旦疫情过了这个天量订单就没有了，这个钱只能赚一笔，没有持续性。所以知道这个信息的人，在股价拉上去之后反手就可以获利止盈了，股价开始下跌。但接下来一年的时间，它的财报都非常好看，刚好就可以借助业绩利好来卖出获利。</p>
+</blockquote>
+
+<p>这个就是信息差导致的：虽然财报亮眼，但股价依然下跌。</p>
+
+<h2 id="s7">七、案例二：隆基绿能，行业内人提前预判拐点</h2>
+
+<p>我们再看光伏公司隆基绿能的股价走势。隆基算是大公司，但属于比较冷门专业的公司，光伏技术也是近几年才火起来的新技术，除了相关从业者之外，一般外人不太懂这个。</p>
+
+<p>隆基的股价大涨是从 <span class="num">2020</span> 年初开始的，当年的业绩规模也提速了。2020 年属于牛市行情，年终还有战胜第一波疫情的喜悦，大家对未来的经济发展期望拉得很高，所以一开始公司的股价上涨速度，就超过了公司的业绩增长。但公司也面临制造业的发展规律，高速增长比较难持续，发展过程中会遇到一些经营难题——比如原材料价格的波动较大、市场竞争激烈大家打价格战，还有从 <span class="num">2018</span> 年就开始的贸易战。</p>
+
+<p>这些信息对于行业内的人，他们很容易获得；但对于行业外的人来说，获得同等质量的信息可能会滞后很多。所以在 <span class="num">2022</span> 年初的时候，公司的股价就已经见顶了。这个时候行业内的人就已经可以判断：未来的光伏生意不好做，公司会面临巨大的挑战。他们就会开始抛售手中的股票——反正已经积累了大量的涨幅，可以获利了结，等公司度过行业困难期再说。</p>
+
+<p>我们就能看到，在 <span class="num">2022</span> 年中旬之后，就出现了<strong>公司业绩一边增长、股价一边下跌</strong>的情况。然后到今年，隆基的业绩跟利润双双下降。如果你是行业外的人，等看到财务报告之后再去看股价，那这个时候就已经晚了——因为行业内的人提前就能知道未来的生意不好做、公司业绩会下滑，所以提前就能做出投资判断。而我们行业外的人如果不了解行业的发展情况，就只能根据业绩曲线去观察，但实际上业绩曲线已经落后于实际情况了。</p>
+
+<p>这个就是信息差造成的公司业绩和市值出现巨大差异。这个还算是比较健康的信息差案例，因为投资人还可以通过学习、研究和努力来缩小这个信息差。股市中还存在大量的内幕交易和老鼠仓，那些就是属于比较恶劣的、用信息差优势来盈利的案例。</p>
+
+<h2 id="s8">八、想明白逻辑，投资胜率才能提高</h2>
+
+<p>基于以上这两个原因，就会造成公司的业绩和股价走势之间的关系很复杂。而且这两个因素还可以相互叠加——就是说一家公司可能同时出现信息差和预期差。</p>
+
+<p>如果你对股市的理解不深，你就看不到这个层次，那投资起来就会很困惑，觉得基本面分析毫无作用、股价的走势毫无逻辑可言。但如果说你能想明白这个逻辑，并且能够正确地推演，那只要掌握了公司的基本面情况，对于公司股价未来的走势基本还是可以预测的，我们的投资胜率是可以极大提高的。</p>
+
+<p>那今天的分享就到这里了，这几天大家就多安心看财报吧，我们下期再见。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化<br>
+  基本面分析 · 系列
+</footer>
+
+</div>
+</body>
+</html>

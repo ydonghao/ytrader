@@ -1,0 +1,143 @@
+.attribution {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.attribution__demo-note {
+  font-size: var(--text-sm);
+  color: #e6a817;
+  margin-bottom: 0.75rem;
+  padding: 0.4rem 0.75rem;
+  background: rgba(230, 168, 23, 0.1);
+  border: 1px solid rgba(230, 168, 23, 0.25);
+  border-radius: var(--radius-sm);
+  display: inline-block;
+}
+
+.attribution__summary {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.attribution__summary-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.attribution__summary-label {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.attribution__summary-value {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.attribution__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.attribution__panel {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.9rem 1rem;
+}
+
+.attribution__panel--wide {
+  grid-column: span 2;
+}
+
+.attribution__panel--full {
+  grid-column: span 2;
+}
+
+.attribution__panel-title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+.attribution__empty {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  padding: 0.5rem 0;
+}
+
+/* Positive / negative bar colors */
+.bar-positive {
+  background: var(--color-up) !important;   /* A股红涨 */
+}
+
+.bar-negative {
+  background: var(--color-down) !important;
+}
+
+/* Text helpers */
+.text-positive {
+  color: var(--color-up) !important;
+}
+
+.text-negative {
+  color: var(--color-down) !important;
+}
+
+/* Attribution table */
+.attribution-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-xs);
+  margin-top: 0.25rem;
+}
+
+.attribution-table th {
+  text-align: left;
+  color: var(--color-text-tertiary);
+  font-weight: 500;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.5rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.attribution-table td {
+  padding: 0.45rem 0.5rem;
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.attribution-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Loading / error states */
+.attribution__loading,
+.attribution__error {
+  padding: 2rem;
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.attribution__error {
+  color: var(--color-danger);
+}

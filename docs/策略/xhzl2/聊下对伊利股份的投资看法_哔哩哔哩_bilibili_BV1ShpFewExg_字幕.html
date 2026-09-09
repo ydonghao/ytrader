@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>聊下对伊利股份的投资看法</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">投资学习笔记</div>
+  <h1 class="title">聊下对伊利股份的投资看法</h1>
+  <div class="meta">
+    <span>持仓节奏与 PE 正态分布</span>
+    <span>中报见顶与系统性风险</span>
+    <span>短债覆盖与估值陷阱</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>我的伊利持仓节奏：2016、2019、去年</li>
+    <li>用历史 PE 正态分布判断加减仓</li>
+    <li>消费市场下滑，比我去年预计的更差</li>
+    <li>股票和实体生意本质上一样</li>
+    <li>业绩见顶：从去年四季度开始</li>
+    <li>长期历史业绩：放在上市公司中都算好</li>
+    <li>宏观因素大于公司自身原因</li>
+    <li>业绩沟通会的标准画饼话术</li>
+    <li>伊利的优点：注重股东回报，分红比例 70%</li>
+    <li>风险点一：利润下滑会侵蚀分红</li>
+    <li>风险点二：现金覆盖不了短债</li>
+    <li>供应链金融风险：整体可控</li>
+    <li>资本市场表现：低位缩量十字星</li>
+    <li>估值图：低估，但基本面也在下跌</li>
+    <li>总结：宏观大于公司，静态低估≠未来低估</li>
+    <li>操作层面：看风险偏好和对未来的判断</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、我的伊利持仓节奏</h2>
+
+<p>前两天刚好有读者问我伊利的问题，我自己正好也持有一些伊利的股票，这两天刚好把半年报看了一下，正好就可以分享一下我对伊利的看法。</p>
+
+<p>我买伊利的时间有点早。<strong>第一次买</strong>是 <span class="num">2016</span> 年左右，但那个时候不懂，就随便买的，买了一些大品牌、日常比较常见的公司。不过当时也是初学者，就买得很少，买了一两手好像。然后 <span class="num">17</span> 年股市走牛的时候就卖掉了。</p>
+
+<p><strong>第二次买是 19 年 9 月。</strong>当时看了 <span class="num">19</span> 年的中报觉得还不错，就多买了一些。那个时候我刚开始写投资分享，所以时间记得比较清楚。我记得当时伊利出了一个内部的激励制度，很多人觉得这个激励制度不合理、有点过度奖励的嫌疑，然后大家用脚投票，就把伊利的股价砸下来很多。<span class="num">9</span> 月的时候 K 线走了一个双底的形态，我当时就是在双底的时候买入的。然后拿了一年左右，后面就是我们比较熟悉的白马股抱团阶段。当时我觉得股价涨得有点高、估值偏高，就在 <span class="num">40</span> 左右慢慢出掉了一大部分。</p>
+
+<p>很多公司我是长期持有，但<strong>不是一直死拿着——估值太高我会减仓，等估值便宜了我再把它买回来</strong>。</p>
+
+<h2 id="s2">二、用历史 PE 正态分布判断加减仓</h2>
+
+<p>像伊利这种龙头公司、利润比较稳定的，我就比较喜欢看历史的 PE 曲线，然后去计算它们的正态分布。</p>
+
+<ul>
+  <li>如果说当前数据<strong>高于均值的一个标准差</strong>，我就会认为公司股价是高估的，就会减仓；</li>
+  <li>反之<strong>低于一个标准差</strong>，我就认为是低估，就会加仓。</li>
+</ul>
+
+<p>从去年开始，伊利的股价又跌回到 <span class="num">2019</span> 年的区间了，PE 也到了历史最低位，所以我在 <span class="num">25</span> 左右持续开始买。大概就是这样一个持仓节奏，现在的仓位主要是去年买的。</p>
+
+<h2 id="s3">三、消费市场下滑，比我去年预计的更差</h2>
+
+<p>去年是疫情解封后的第一年，我之前还比较乐观——即便是恢复的速度比较慢也好，起码不会更差吧。但现在一年过去了，<strong>实际情况比我去年预计的要差很多，消费市场出现了很明显的下滑现象</strong>。</p>
+
+<p>如果我去年能够预计到今年这种情况，我可能去年就不会去减仓——按照我的风险接受度，我应该会先观望，等到国内消费市场的数据回暖再说。但这也没办法，这就是投资需要承担的风险。</p>
+
+<h2 id="s4">四、股票和实体生意本质上一样</h2>
+
+<p>其实这跟做实体生意是一样的。<strong>投资决策，如果你打算开店做消费品类，那最好也是等到消费市场回暖再说。</strong>如果把生意开张放在去年，那这两年也要承担很大的经营压力。股票和实体的生意本质上是一样的。</p>
+
+<h2 id="s5">五、业绩见顶：从去年四季度开始</h2>
+
+<p>刚好伊利发了中报，我们先把最直观的业绩数据拉出来看。业绩见顶其实从去年四季度就开始了：基本没有同比增长，今年一季度同比下跌，二季度同比下跌又加大了一些。</p>
+
+<p>从长期历史看，伊利的业绩增长其实算比较好的。我这个图是从 <span class="num">2013</span> 年开始拉的数据，我们可以看到除了 <span class="num">15</span> 年增长慢了几个季度，然后再排除掉疫情突发的那个季度，其余时间都是稳定增长的。这个成绩放在所有上市公司中都算是非常好的，所以今年的业绩同比下跌，看业绩趋势图就显得比较突兀。</p>
+
+<h2 id="s6">六、宏观因素大于公司自身原因</h2>
+
+<p>不过今年的业绩下跌，市场还是有预期的。因为这里都不用摆数据去说消费市场有多不好，我们平时生活中应该都是能感觉出来的。</p>
+
+<p>伊利的财报发得比较晚，很多公司的中报在 <span class="num">8</span> 月中旬就发布了，还有很多在 <span class="num">7</span> 月份发的预告。我看了一圈，特别是消费类的公司，就没几个业绩可以的。<strong>以今年消费市场的低迷程度看，公司的业绩下滑，我觉得宏观因素是大于公司自身的原因的。</strong></p>
+
+<p>伊利自己财报也说了不少，业务的市场占有率还提高了一些，龙头公司的优势还是存在的。这个没办法，所有消费类的公司都受到市场需求下滑的影响，<em>这个风险属于系统性风险——除非你不投资，要不然只能接受这种风险</em>。</p>
+
+<h2 id="s7">七、业绩沟通会的标准画饼话术</h2>
+
+<p>前两天是中报业绩发布会，伊利的董秘也出来说明，针对当前消费市场的低迷问题，他们也进行了一系列措施，相信未来会好转。</p>
+
+<p>这个时候其实不用在意他们会上怎么说。<strong>上市公司的业绩沟通会基本上都是个话术</strong>：就是"虽然现在情况很差，但我们做了什么针对措施，未来会好的"——这个就是典型的画饼标准话术，基本上都会这么说。至于后面有没有效果，那是后面的事了。当前董秘肯定是要给投资人信心的。</p>
+
+<p>按照现在的情况看，未来会不会变好不是靠他们说。目前看是宏观经济的影响比公司的问题更大，那自然解决问题要看宏观经济能不能够恢复。公司努力调整归调整，不过考虑到公司大众消费品的性质，可能调整的话应该只能稳住，要想重新实现高速增长，还是需要外部条件。</p>
+
+<h2 id="s8">八、伊利的优点：注重股东回报，分红比例 70%</h2>
+
+<p>不过有一点信息我是比较在意的：<strong>他们说明年的分红会继续提高</strong>。今年一季度卖了点资产，那这个钱是要拿出来分了，比 <span class="num">23</span> 年的分红会高一些。这个话说得挺好的。</p>
+
+<p>这也算是伊利的优点——伊利算是非常注重股东回报的公司，分红比例一直都很高，而且长期持续。我统计了伊利从 <span class="num">13</span> 年到 <span class="num">23</span> 年历年的利润和分红：</p>
+
+<ul>
+  <li>首先是它的分红<strong>持续增长</strong>；</li>
+  <li>分红比例从最开始的 <span class="num">50%</span>，然后上涨、一直维持在 <span class="num">70%</span>，这个持续了十多年。</li>
+</ul>
+
+<p>所以可以算是一个盖棺定论的结论。但这个数据毕竟是之前的，再往后能不能持续，现在还真不好说，因为过去的高分红也是建立在公司业务高速增长上的。</p>
+
+<h2 id="s9">九、风险点一：利润下滑会侵蚀分红</h2>
+
+<p>我现在比较担心的是：<strong>如果消费市场长期持续低迷，会不会造成公司业绩跟利润的进一步下滑？</strong>如果利润开始下滑的话，公司的运营成本恐怕没有那么容易降下来，就会吃掉大部分的利润，能够拿出来分红的资金恐怕会减少很多。就是说你有意回报股东、愿意多分红，但是你没有挣到钱，那你也没办法。这算是一个比较大的风险点。</p>
+
+<h2 id="s10">十、风险点二：现金覆盖不了短债</h2>
+
+<p>那为什么这么说呢？因为<strong>伊利的财务结构在我看来是比较紧张的</strong>。</p>
+
+<p>同为液体类的消费品，白酒头部白酒的企业账上是趴着天量的资金的，家底足够厚——就算是公司业绩不增长了，光拿账上的现金就可以高分红很多年了。但伊利，你这样说就觉得有点底气不足。</p>
+
+<p>我们可以一起看一下伊利的资产表。我合并同类项了一下，做成一个图表的形式，这样看起来会更直观一些。我把一年内到期的债务也合并到短期借款的科目中，大家就会发现伊利资产表有一个很显眼的问题——<em>现金储备比短期的债务要低，也就是说现金覆盖不了短债</em>。这就是一个很明显的风险点。</p>
+
+<p>伊利在经营的过程中，各个并表的子公司之间的资金来往使用了很多票据贴现的借款。这虽然说是一种比较安全的贷款，在增长周期没问题，可以提高企业的资产收益率；但现在不是生意不好做吗？这个情况就可能是一个比较大的风险——如果主营业务的现金流开始下降的话，这种贷款就必须去平掉一些降低比例，那就会吃掉本来可以拿来分红的一些资金。</p>
+
+<p>从行业上来看，乳制品的消费还是偏刚需的，周期性较弱，但这个风险当前还是要关注一下的。</p>
+
+<h2 id="s11">十一、供应链金融风险：整体可控</h2>
+
+<p>然后就是大家讨论比较多的一个点——伊利对自己的供应链做的金融服务。我倒是觉得这一块的风险不大。</p>
+
+<ul>
+  <li>一个是这块的金额就不大，只有 <span class="num">20 亿</span>。对于伊利这种千亿规模来说，这点钱应该没什么影响。</li>
+  <li>另外这笔钱是用于扶持供应链的。对于行业千亿龙头来说，<strong>供应链上的公司风险是可以拿捏在自己手上的</strong>，因为他的生意就是你自己给的，所以他有没有风险你是可控的。</li>
+</ul>
+
+<p>所以这一块整体上来讲是风险可控的。就不要一听网上说什么"金融杠杆"就联想到暴雷，其实你把它打开来看，问题不大。我反正觉得真正压力比较大的，是之前说的那个短债过高的问题——公司账上的现金不能覆盖短债。</p>
+
+<p>这种情况就怕业绩规模持续下跌。金融杠杆的特性就是这样的：顺风顺水的时候，你能加速发展、提高公司的资产收益率；但遇到行业下行就很麻烦，<strong>房地产行业就是现成的案例</strong>。</p>
+
+<h2 id="s12">十二、资本市场表现：低位缩量十字星</h2>
+
+<p>最后我们再来看一下资本市场的的表现。伊利的股价从 <span class="num">28</span> 跌到现在 <span class="num">22</span>，应该是消化了不少今年市场的下跌预期——毕竟上半年的消费情况不好，这个不算什么保密的信息，是个稍微关注生活的人应该都能感知到。</p>
+
+<p>所以伊利发半年报之后，当天处于一个恐慌的情绪低开，但很快就拉回到 <span class="num">22</span> 块钱的水平。除了当天之外，其余的时间成交量也没有明显放大，今天还是一个低位缩量的十字星，说明现在持仓观望的人比较多。而且目前伊利的 PE 也处于近 <span class="num">8</span> 年的历史最低位，<strong>低估大概率是低估的</strong>。</p>
+
+<h2 id="s13">十三、估值图：低估，但基本面也在下跌</h2>
+
+<p>现在大家主要担心的是宏观的消费继续下行，导致公司的利润持续下跌，造成一个低估值陷阱的情况。</p>
+
+<p>我画一张图就能描述我现在对伊利估值的看法：<strong>公司目前的估值，大概率是要低于公司实际价值的</strong>。但问题是公司的基本面，它也有一个持续下跌的迹象。</p>
+
+<ul>
+  <li>关键点就在于公司的业务能不能够稳住。如果能够稳住，就像图上这根红线后续保持上涨，那公司的估值后面一定会跟涨的。如果现在持有的话，就可以实现一次<em>戴维斯双击</em>的巨大收益。</li>
+  <li>但如果实体消费继续像现在这样低迷下滑，红线再往下走的话，那从现在看这个股价虽然说是低估的，但等到明年他可能就不低估了，说不定估值还会继续下探。</li>
+</ul>
+
+<h2 id="s14">十四、总结：宏观大于公司，静态低估≠未来低估</h2>
+
+<blockquote>
+  <p><strong>第一</strong>，目前的宏观经济因素是大于公司的经营问题的。公司内部可以改善、可以搞创新、可以搞出海，但还是比较依赖国内的消费市场恢复。</p>
+  <p><strong>第二</strong>，当前的股价看公司的估值是低估的状态。但我们判断估值不能用静态的眼光看，还要对未来一两年做预测。如果未来实体消费环境持续低迷，那现在的价格可能是低估值陷阱；反之，那现在就是布局的机会。</p>
+</blockquote>
+
+<p>投资就是这样，需要一定程度上预测未来会发生什么。判断准的人投资获利就比较简单；如果判断不了，那就是自身能力的问题，吃不了这碗饭也没办法。</p>
+
+<h2 id="s15">十五、操作层面：看风险偏好和对未来的判断</h2>
+
+<p>具体操作层面，我觉得要看各自的风险偏好和对未来的判断。</p>
+
+<ul>
+  <li>如果是谨慎一点的人，想获得一个稳定的收益……如果可以承担一定的风险的话，那现在的价格还是挺香的。但是要提前想好，未来消费市场进一步下跌的可能性不是没有，自己就要做好这个亏损的预期。</li>
+  <li>如果是持仓的话，那我自己的选择就是<strong>先观望</strong>。反正股价已经很低了，没有必要在这个时候出。我的建仓成本也不是很高，其实只浮亏一点点，先看看后续的一个经济情况再说。</li>
+</ul>
+
+<p>那今天的分享就到这儿。最近没啥事，就多看财报吧。我们下期再见。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>

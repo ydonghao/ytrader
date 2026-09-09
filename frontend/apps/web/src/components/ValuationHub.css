@@ -1,0 +1,116 @@
+/* ValuationHub — 五法估值中心（暗色主题，令牌体系） */
+.vh {
+  padding-top: 4px;
+}
+
+.vh__body {
+  padding-top: 14px;
+}
+
+/* 总览：五方法卡（绝对3 + 相对2） */
+.vh-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.vh-method {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+  padding: 14px 16px;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--color-border-strong);
+  background: rgba(177, 186, 196, 0.04);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.vh-method:hover {
+  background: rgba(177, 186, 196, 0.08);
+  border-color: var(--color-accent);
+}
+
+.vh-method__cat {
+  font-size: var(--text-xs, 11px);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.04em;
+}
+
+.vh-method__name {
+  font-size: var(--text-sm, 13px);
+  font-weight: 600;
+}
+
+.vh-method__verdict {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.vh-method__verdict--good { color: #3fb950; }
+.vh-method__verdict--warn { color: #d29922; }
+.vh-method__verdict--bad { color: #f85149; }
+.vh-method__verdict--na { color: var(--color-text-secondary); }
+
+.vh-method--good { border-left: 3px solid #3fb950; }
+.vh-method--warn { border-left: 3px solid #d29922; }
+.vh-method--bad { border-left: 3px solid #f85149; }
+.vh-method--na { border-left: 3px solid var(--color-border-strong); }
+
+.vh-method__metric {
+  font-size: var(--text-xs, 11px);
+  color: var(--color-text);
+  opacity: 0.85;
+}
+
+.vh-method__hint {
+  font-size: var(--text-xs, 11px);
+  color: var(--color-text-secondary);
+}
+
+/* 类比面板的隐含市值卡 */
+.vh-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.vh-card {
+  padding: 12px 14px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md, 8px);
+  background: rgba(177, 186, 196, 0.04);
+}
+
+.vh-card__label {
+  font-size: var(--text-xs, 11px);
+  color: var(--color-text-secondary);
+}
+
+.vh-card__value {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 2px 0;
+}
+
+.vh-card__sub {
+  font-size: var(--text-xs, 11px);
+  color: var(--color-text-secondary);
+  margin-top: 2px;
+}
+
+/* 面板内小字说明 */
+.vh-subnote {
+  font-size: var(--text-xs, 11px);
+  color: var(--color-text-secondary);
+  margin-top: 6px;
+}
+
+/* 同行表目标行（配合 Financial.css 的 fin-table） */
+.vh-row--target td {
+  font-weight: 600;
+}

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新手股民的选股思路分享</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">股票投资从入门到精通 · 中级</div>
+  <h1 class="title">新手股民的选股思路分享</h1>
+  <div class="meta">
+    <span>从产品出发建立股票池</span>
+    <span>用末位淘汰对抗机会成本</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>研究公司是一件困难的事</li>
+    <li>不熟悉公司就难有理想结果</li>
+    <li>小赚大亏的根源</li>
+    <li>新手要避开热门股</li>
+    <li>远离游资和大 V 吹票的公司</li>
+    <li>国盛科技的财务警示</li>
+    <li>选你能接触到产品的公司</li>
+    <li>从全球市值巨头说起</li>
+    <li>先选五个，搞末位淘汰</li>
+    <li>横向对比比单评更有效</li>
+    <li>理解机会成本</li>
+    <li>新手别碰抄底普通公司</li>
+    <li>质量分析与估值分析分开</li>
+    <li>构建可长期维护的股票池</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、研究公司是一件困难的事</h2>
+
+<p>今天跟大家讲一下选公司的思路。这几天我看评论区跟私信都快成了许愿池了，各种问我能不能帮忙分析某某公司。我感觉大家也太看得起我了——我得先跟大家说清楚：研究上市公司的业务是一件很困难、很麻烦的事情，那不是说我作为专业投资者就什么公司我都能懂的。</p>
+
+<p>实际情况是：A 股一共有 <span class="num">5400 多家</span>公司，我这么多年积累下来比较熟悉的公司绝对达不到 50 家，我估计的话也就 30 多家左右。也就是说，A 股中 99% 的公司我是不熟悉的。你随便问我一个公司怎么样，那我大概率连这家公司是干啥的我都不知道，你让我怎么分析呢？我总不能跟你瞎讲吧。</p>
+
+<p>不过作为职业投资者，还是有方法能对公司进行快速判断的。如果是业务很垃圾的公司，或者是公司股价严重偏离内在价值的公司，这种是比较容易判断的；如果是股价和公司的内在价值差不多，那就得看公司的商业模式和业绩预测了，这个就需要去深入理解公司的业务、需要花很多时间去看的。</p>
+
+<p>我今天先教大家选公司的思路，过几天再跟大家讲如何快速分析一个公司。</p>
+
+<h2 id="s2">二、不熟悉公司就难有理想结果</h2>
+
+<p>先讲一下这件事的必要性：如果我们对一家公司不熟悉，无论公司的股价是涨还是跌，我们都拿不到一个理想的结果。</p>
+
+<h3>涨了拿不住</h3>
+
+<p>首先持股心态就不会很健康——因为你对这个公司不熟悉，一旦公司的股价走势和你的预期不一样你就会慌，然后病急乱投医，到处去问别人，结果就问到我这里来了。如果公司的股价涨，你不了解这个公司的话大概率你是拿不住的——很有可能就是个翻倍的投资机会，结果你赚十几个点就跑了。我们应该会经常产生这种懊恼，特别是在牛市期间，我总听到有人说"要是当时拿住了就好了"——你们自己想一下自己有没有说过这个话。</p>
+
+<h3>跌了割不下</h3>
+
+<p>那如果公司的股价下跌呢？那就更要命了。因为你不了解这家公司，所以你不清楚为什么它会下跌。由于股价下跌只是浮亏、并不是实际亏损，所以大多数人不愿意轻易割肉，都指望后面能够涨回来；但是很可能公司的实际基本面是很差的，股价当前还是处于虚高的状态，后面还会跌得更多。但你不了解具体情况，所以你很难做到快速止损——导致原本可以小亏止损的事，拖到最后就越亏越多。对于新手来说这件事应该也是经常发生的。</p>
+
+<div class="pull">你对公司不熟悉，盈利和亏损是不对称的——<br>股价涨了你总是小幅盈利就跑了，<br>股价跌了往往又是被深度套牢、大幅亏损。<br>总是小赚大亏，长期下去肯定会亏。</div>
+
+<h2 id="s3">三、新手要避开热门股</h2>
+
+<p>如果是新手股民要开始选股，还有一点就是最好要避开热门的股票。往往是公司股价已经大幅上涨了，所以它才会成为热门股——等你开始关注这个公司的时候，公司当前的股价大概率已经涨得虚高了，透支了未来的预期收益率。</p>
+
+<p>股票的价格开始上涨一般确实会有一些实质性的利好，但问题是股票的价格上涨会吸引很多趋势交易者，从而进一步推高股票的价格，甚至让股票的价格涨幅远远超过公司实际内在价值的增长，形成我们常说的<em>估值泡沫</em>。这个时候你去买的话，就相当于是用高价购买了一个实际上并没有那么值钱的公司。虽然不是说所有的热门股都会高估，但对于新手来说，你暂时是没办法分辨这个高估问题的，所以踩坑的几率还是很大的。</p>
+
+<h2 id="s4">四、远离游资和大 V 吹票的公司</h2>
+
+<p>另外就是要特别远离那种所谓的大 V 和游资、机构吹票的公司。他们吹票的公司几乎都是那种业务非常垃圾的公司，然后公司股本很少、股价很容易被操控——这帮人就是和上市公司合谋共同炒作推高股价，然后一起割韭菜的。</p>
+
+<p>比如说那个<strong>国盛科技</strong>。我给你们看一下它的资产负债表，你们就知道是一个穷的兜比脸还干净的小垃圾：公司一年的业绩规模就只有 <span class="num">14 个亿</span>，目前还是亏损的状态；公司账上的现金就只有 <span class="num">两个多亿</span>，还有 <span class="num">5.8 亿</span>的账款没收回来，短期借款就有 <span class="num">两个多亿</span>，另外还欠供应商 <span class="num">13 个亿</span>——就纯纯的很垃圾的资产结构。这应该不算我主观判断，我是觉得只要是稍微懂一点点公司财务的人，应该都能看出来这个公司的财务状况是很差的。</p>
+
+<p>或者换个角度来考虑这个问题：大家想想游资跟机构，他们这种快进快出的炒股方式，赚的到底是谁的钱呢？肯定赚的不是公司经营成长的钱吧？那游资和机构必然赚的就是散户亏的钱。那我们散户还往这些游资机构扎堆的股票上面去凑，那不就是一个成语吗——<strong>与虎谋皮</strong>。</p>
+
+<h2 id="s5">五、选你能接触到产品的公司</h2>
+
+<p>我建议新人的话，选股就先选你能接触到产品的公司。我是从 2011 年开始接触股市的，上班第一年，距离现在已经 15 年了。我现在选股标准依然是这样的——<strong>我就绝对不买我接触不到产品的公司</strong>。所有的投资大佬都告诉你了，公司看不懂你就别买；那你都接触不到这个公司的产品，那你是绝对不可能看懂这家公司的——这是很简单的道理。</p>
+
+<p>我们还是换个角度来考虑这个问题：那些全球市值最大的公司，其实都是我们日常可以接触到产品的公司。</p>
+
+<ul>
+  <li>现在全球市值排名第一的是<strong>英伟达</strong>，它的产品你接触不到吗？我都有一个 5070 的。</li>
+  <li>排名第二的是<strong>苹果</strong>，苹果手机是不是大家都在用？我看过后台数据，我粉丝中用苹果手机的人达到 <span class="num">36%</span>。那你说我不用苹果，那你得用安卓吧？哪怕现在你用的是华为鸿蒙，但之前也是安卓升级过来的嘛。</li>
+  <li>全球市值第三的公司<strong>谷歌</strong>的产品。</li>
+  <li>排第四的是<strong>微软</strong>——你没用过 Office，总用过 Windows 吧？</li>
+  <li>再往后是<strong>特斯拉</strong>、<strong>沃尔玛</strong>这些，这两个你总不能跟我说你没接触过吧。</li>
+</ul>
+
+<p>虽然不是所有，但绝大多数全球市值排名靠前的公司都是产品我们可以日常接触到的。从以终为始的角度去考虑，这事就简单了：公司的产品能被大多数人直接或间接使用的公司，他们成为国际巨头的概率明显更大。<strong>那我们就没有必要去看那种连产品都接触不到的公司。</strong></p>
+
+<h2 id="s6">六、先选五个，搞末位淘汰</h2>
+
+<p>知道选公司的思路之后，那我们要选几个公司呢？我觉得你可以先选五个你自己最熟悉的公司出来——这个应该很好选。自从我们 2019 年开始搞科创板之后，那几年是只要符合上市条件、也有上市需求的公司基本上都可以上市，我们的衣食住行、吃喝玩乐基本上都是由上市公司提供的。</p>
+
+<p>那可能有人会说：我们日常接触的公司都是消费类型的公司，这几年消费类型的公司业绩都很差，所以不能买。这个说法就是没有流于生活实践。AI 类的公司也有啊——阿里巴巴嘛对吧，人家阿里云是 AI 应用的第一梯队；还有宁德时代嘛，宁德时代的电池算我们可以间接接触的产品呢；电池储能板块是不是当前大家普遍看好的板块？我们能直接接触到产品的公司的数量已经非常多了，绝对够用的。我们就先选五个出来再说。</p>
+
+<p>然后给他们搞一个<strong>末位淘汰制</strong>。A 股总共有 5400 多家公司，所以这五个公司不一定是你最好的选择。我们后面再看到新的公司觉得比较好，就可以拿过来和这五个公司进行一一对比——因为单独评价一个公司的好坏其实还是挺难的，但是两个公司放在一起横向对比的话谁更好一些，这个是相对比较好判断的。就像我们在企业里面现在年底了马上要做年度述职，你单独听一个人汇报工作会觉得没啥感觉，但你后面听多个人一起汇报然后横向一对比，你就知道了谁干得好、谁是菜狗，一下就分辨出来了。</p>
+
+<p>那如果你对比完之后觉得还是这五个公司最好，那这个新的公司咱就不看了，还是集中精力把手上这五个公司研究好；那如果你觉得新的公司也不错，但手上这五个公司也都还行，那怎么办呢？那也简单——那就搞六个公司，再弄末尾淘汰呗。规则可以灵活一点，理解这个思路就行了。</p>
+
+<h2 id="s7">七、理解机会成本</h2>
+
+<p>新股民容易犯一个毛病，就是没那么在意机会成本，总觉得什么公司都好、都想看一下。我们早期弄一个数量比较少的股票池，就是为了解决这个机会成本的问题。</p>
+
+<p>上市公司中真的垃圾公司的数量还是比较少的，因为我们现在退市制度执行还可以，垃圾公司是会被踢出去的；优质的公司呢也比较少；最多的就是平庸的公司——就是普通公司。这些公司我们投资它，只要购买的价格估值合理、时间拉长一点，大概率还是可以赚到钱的，但是机会成本往往比较大：因为你这个钱如果你拿去投资真正的优质公司，同样的时间周期你赚的可能会更多，承担的风险可能会更小。</p>
+
+<p>那就跟我们上班是一样的：如果我们有的选的话，那肯定是要去大公司高薪的职位，就没有必要在小公司里面苦哈哈地当牛马。在小公司上班虽然也能赚到钱，但效率不高还很辛苦，就不如去大公司上班赚得多——这就是机会成本。</p>
+
+<p>我们上班不去大公司是因为有门槛，大公司可能不要我们；但股票投资又没什么门槛——同样的估值，你放着茅台不买非要去买后面的小白酒公司，那这肯定就说不过去了。从盈利的角度来看，A 股中能买的公司确实比较多，但大多数长期持有的收益率是很低的；从机会成本的角度看，<strong>我们就选择投资最优秀的公司，才是性价比最高的选择</strong>。</p>
+
+<h3>新手别碰"抄底普通公司"</h3>
+
+<p>这里还可以补充说一点。就有人会说，就算是普通公司，如果市场给了一个超低的估值，我们去抄底的话也可以获得比较高的投资收益率啊。这个说法是没错的，但这个方法不适合新人——如果你炒股刚几年、还没有完整经历过一个牛熊周期，你大概率是用不了这个方法的。等你以后成了股市老手了，你自然会发现股市赚钱的方法是很多的，但是新手村阶段还是老老实实按照传统的方法来会比较好。</p>
+
+<h2 id="s8">八、质量分析与估值分析分开</h2>
+
+<p>最后一个问题：公司选好了，但是股价太贵了，怎么办？我们可以这样弄——我们分析公司，是把<strong>公司的质量分析和公司的估值分析分开考虑</strong>。</p>
+
+<p>意思就是说我们先不管这个公司股价贵不贵，我们先把值得长期投资的好公司先选出来，就可以先形成一个股票池；第二步再去看这些公司的股价贵不贵、值不值得现在买。千万不要因为价格便宜去买经营很垃圾的公司——会搞得你很焦虑很烦的，总要去操心这些公司的业绩行不行、会不会某个季度财报亏损了然后突然给你搞个戴维斯双杀。</p>
+
+<p>我们可以把我们能力范围内能够看懂的好公司作为我们的股票池，然后从股票池中再去选择估值合理的公司慢慢建仓。就像漏斗的形态一样：</p>
+
+<blockquote>
+  <p>能接触到的产品 → 选最熟悉的 5 家 → 末位淘汰 → 质量过关的好公司（股票池）→ 估值合理 → 长期配置持仓。</p>
+</blockquote>
+
+<p>股票池是需要常年维护的。我们职业投资人每天干的事情就是持续研究股票池中的公司：分析公司的商业模式、整理业务数据、预测未来的业绩。每年都有三次财报期，拿到新出炉的财报之后就需要把股票池中的公司全部都过一遍，看一下公司的战略和业务上有没有变化，然后再看一下当前的股价和估值是高还是低。这个持续跟踪研究的时间长了，自然我们对公司的业务理解就深了；公司理解深了之后投资就相对容易很多：如果股价上涨那我们肯定是拿得住的，如果股价下跌我们如果觉得这个公司的业绩是没问题的那就越跌越买——最后大概率是可以抄到一个大底的。</p>
+
+<h2 id="s9">九、总结</h2>
+
+<p>最后例行总结一下今天讲的内容：</p>
+
+<ol>
+  <li><strong>不要买自己不熟悉的公司。</strong>因为无论股价涨跌，你大概率都拿不到理想的结果。</li>
+  <li><strong>新手不要去买热门公司。</strong>因为热门公司大概率它的股价都会虚高一些，特别是那些游资和机构吹捧的股票，你碰都不要碰。</li>
+  <li><strong>选股操作上，一定要选自己能接触到产品和服务的公司。</strong>数量上可以先选五个公司出来，然后搞末位淘汰制。</li>
+  <li><strong>注意机会成本。</strong>要买就买最好的公司，不要在垃圾公司上浪费时间和精力。</li>
+  <li><strong>持续拓展股票池。</strong>从一开始的五个慢慢扩大。公司好但是价格不合适的，我们就先放到股票池里面长期研究观察，等价格合适了再买；公司好、价格又合适，那就进入到长期配置的流程中了，我们就持仓。</li>
+</ol>
+
+<p>今天主要是跟大家讲一下选股的思路，以及构建一个长期维护的股票池。下一期我会跟大家讲一下我们如何快速地分析公司的经营质量。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化<br>
+  股票投资从入门到精通 · 系列
+</footer>
+
+</div>
+</body>
+</html>

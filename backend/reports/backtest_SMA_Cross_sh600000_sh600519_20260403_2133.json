@@ -1,0 +1,21 @@
+{
+  "strategy": "SMA_Cross",
+  "params": {
+    "fast_period": 5,
+    "slow_period": 20,
+    "buy_on_cross": true,
+    "sell_on_cross": true
+  },
+  "symbols": [
+    "sh600000",
+    "sh600519"
+  ],
+  "start_date": "2023-01-01",
+  "end_date": "2025-12-31",
+  "total_return": 7551.2709,
+  "sharpe_ratio": 7.094,
+  "max_drawdown": 99.9798,
+  "win_rate": 26.09,
+  "profit_factor": 2.1819,
+  "total_trades": 93
+}

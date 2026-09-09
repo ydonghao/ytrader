@@ -1,0 +1,69 @@
+/* Screener 结果表：冻结表头（滚动吸顶）+ 稳定列宽。
+ * GitHub-dark 配色（与 Screener 内联色一致）。 */
+.screener-result-wrap {
+  max-height: 60vh;
+  overflow: auto;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.screener-result {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: var(--text-sm);
+}
+
+/* 表头吸顶：sticky + 不透明背景，避免滚动时 tbody 透出 */
+.screener-result thead th {
+  position: sticky;
+  top: 0;
+  background: var(--color-surface);
+  z-index: 1;
+  border-bottom: 1px solid var(--color-border-strong);
+  white-space: nowrap;
+}
+
+.screener-result tbody td {
+  border-bottom: 1px solid var(--color-surface);
+}
+
+.screener-result tbody tr {
+  cursor: pointer;
+}
+
+.screener-result tbody tr:hover {
+  background: rgba(10, 132, 255, 0.06);
+}
+
+/* 冻结首列（排名）：水平滚动时保留行号锚点 */
+.screener-result tbody td:nth-child(1) {
+  position: sticky;
+  left: 0;
+  background: var(--color-background);
+  z-index: 2;
+}
+/* 表头角单元格：同时吸顶(top)+吸左(left)，z-index 高于 tbody */
+.screener-result thead th:nth-child(1) {
+  left: 0;
+  z-index: 3;
+}
+.screener-result tbody tr:hover td:nth-child(1) {
+  background: #1c2735;
+}
+
+/* 列宽精细化：数值列不换行，前两列固定宽（排名/代码），避免内容长短导致列宽跳动 */
+.screener-result td {
+  white-space: nowrap;
+}
+.screener-result th:nth-child(1),
+.screener-result td:nth-child(1) {
+  width: 48px;
+  min-width: 48px;
+  text-align: right;
+}
+.screener-result th:nth-child(2),
+.screener-result td:nth-child(2) {
+  width: 92px;
+  min-width: 92px;
+}

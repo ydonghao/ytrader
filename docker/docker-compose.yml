@@ -1,0 +1,89 @@
+services:
+  # ========== P0: 数据采集层 ==========
+
+  # 1. NewsNow - 综合新闻聚合（64 源，含金融/AI/科技）
+  newsnow:
+    image: ghcr.io/ourongxing/newsnow:latest
+    container_name: newsnow
+    ports:
+      - "4444:4444"
+    volumes:
+      - newsnow_data:/usr/app/.data
+    environment:
+      - HOST=0.0.0.0
+      - PORT=4444
+      - NODE_ENV=production
+      - INIT_TABLE=true
+      - ENABLE_CACHE=true
+      - HTTP_PROXY=http://host.docker.internal:7890
+      - HTTPS_PROXY=http://host.docker.internal:7890
+    restart: unless-stopped
+
+  # 2. RSSHub - 万物 RSS 生成器（AI/论文/金融等 3000+ 路由）
+  rsshub:
+    image: diygod/rsshub:latest
+    container_name: rsshub
+    network_mode: host
+    environment:
+      - NODE_ENV=production
+      - CACHE_TYPE=redis
+      - REDIS_URL=redis://:Asdfqwer@1234@127.0.0.1:6379/0
+      - PROXY_URI=http://127.0.0.1:7890
+      - PLAYWRIGHT_WS_ENDPOINT=ws://127.0.0.1:3000
+    restart: unless-stopped
+
+  # 2c. Browserless - Playwright 无头浏览器
+  browserless:
+    image: browserless/chrome:latest
+    container_name: browserless
+    network_mode: host
+    restart: unless-stopped
+
+  # ========== P1: 分析与归档层 ==========
+
+  # 3. Miniflux - RSS 归档 + 全文搜索（复用宿主机 PostgreSQL）
+  miniflux:
+    image: miniflux/miniflux:latest
+    container_name: miniflux
+    network_mode: host
+    environment:
+      - DATABASE_URL=postgres://miniflux:miniflux123@127.0.0.1:5432/miniflux?sslmode=disable
+      - RUN_MIGRATIONS=1
+      - CREATE_ADMIN=1
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin123
+      - LISTEN_ADDR=0.0.0.0:8380
+      - POLLING_FREQUENCY=30
+      - CLEANUP_ARCHIVE_READ_DAYS=3650
+      - CLEANUP_REMOVE_SESSIONS_DAYS=30
+      - HTTP_PROXY=http://127.0.0.1:7890
+      - HTTPS_PROXY=http://127.0.0.1:7890
+      - http_proxy=http://127.0.0.1:7890
+      - https_proxy=http://127.0.0.1:7890
+      - NO_PROXY=localhost,127.0.0.1
+      - no_proxy=localhost,127.0.0.1
+      - FETCHER_ALLOW_PRIVATE_NETWORKS=1
+      - INTEGRATION_ALLOW_PRIVATE_NETWORKS=1
+    restart: unless-stopped
+
+  # 5. WeWe RSS - WeChat public account RSS generator
+  # DISABLED 2026-07-02: replaced by we-mp-rss (ghcr.io/rachelos/we-mp-rss,
+  # SQLite single-container, deployed at /home/yuandonghao/we-mp-rss).
+  # Re-enable by uncommenting if we-mp-rss underperforms.
+  # wewe-rss:
+  #   image: cooderl/wewe-rss:latest
+  #   container_name: wewe-rss
+  #   network_mode: host
+  #   environment:
+  #     - MAX_REQUEST_PER_MINUTE=60
+  #     - FEED_MODE=fulltext
+  #     - DATABASE_URL=mysql://root:mysql_root_pass@127.0.0.1:3306/wewe_rss
+  #     - AUTH_CODE=135799
+  #     - http_proxy=http://127.0.0.1:7890
+  #     - https_proxy=http://127.0.0.1:7890
+  #     - no_proxy=localhost,127.0.0.1
+  #   restart: unless-stopped
+
+volumes:
+  newsnow_data:
+  wewe_rss_data:

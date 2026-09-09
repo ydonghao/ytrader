@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>如何使用基础财务指标，判断公司是否具备投资价值</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">股票投资从入门到精通 · 08</div>
+  <h1 class="title">如何使用基础财务指标，判断公司是否具备投资价值</h1>
+  <div class="meta">
+    <span>成长、资产、效率三大类指标</span>
+    <span>用基础财务知识排除 80% 的垃圾公司</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>为什么先学最基础的财务指标</li>
+    <li>成长类指标：营业收入是第一指标</li>
+    <li>只看营收会被骗：对照主营业务现金流</li>
+    <li>先拿钱再发货，还是先发货再收钱</li>
+    <li>特殊结算模式：房地产的业绩滞后</li>
+    <li>利润趋势要和业绩同步</li>
+    <li>资产类指标：现金是最直接的标尺</li>
+    <li>现金与短期债务的对照</li>
+    <li>经营性负债：不是越少越好</li>
+    <li>效率类指标：净资产收益率（ROE）</li>
+    <li>为什么市场交易没那么重要</li>
+  </ol>
+</nav>
+
+<p class="lead">这期内容比较实用，掌握之后可以帮我们筛除掉 <span class="num">80%</span> 不值得投资的垃圾公司。接续上一期"公司是如何运作的"，本期讲公司运营的好坏要怎么判断——这就需要解读财务数据了。今天只讲最基础但最重要的部分，照顾零财务基础的朋友，保证学完马上能用。</p>
+
+<h2 id="s1">一、为什么先学最基础的财务指标</h2>
+
+<p>我们可以把财务指标分为三大类：<strong>成长类指标、资产类指标和效率类指标</strong>。</p>
+
+<p>我对财务指标做了难度筛选，只讲最基础且最重要的部分。不要看到"基础"就觉得没用——基础财务知识的学习性价比是最高的，相当于我们只付出 <span class="num">20%</span> 的努力，就能解决 <span class="num">80%</span> 的问题，对新手来说基本够用了。后续章节会专门讲财务报表解读，那个难度会稍微高一点，需要一定财务基础、并熟悉公司业务才能听明白，会更硬核一些。今天的内容则保证零基础的朋友听完马上能用。</p>
+
+<h2 id="s2">二、成长类指标：营业收入是第一指标</h2>
+
+<p>成长类指标主要包括<strong>营业收入</strong>和<strong>利润</strong>。</p>
+
+<p>营业收入是一个公司最重要的财务指标，没有之一。上市公司发布财报时，报表摘要的第一行内容就是讲公司的营业收入是多少、和去年相比增长了多少。我们也可以切换到经营视角想象一下：如果你是公司老板或大股东，第一关心的肯定是业绩规模，其次才是利润——开公司就是为了赚钱，先把规模做大、再把利润搞起来，就是这么简单的事。所以我们投资股票就是买上市公司，评估公司价值，首先要看营业收入。</p>
+
+<p>营业收入单独看一个财报期意义不大，要把公司的业绩连续起来看，才能非常直观地判断成长性。</p>
+
+<h3>财务造假的东方集团：造假也救不了垃圾业绩</h3>
+
+<p>最近刚好有一个新鲜的案例——财务造假的东方集团。之前有人问我，像东方集团这种财务造假的公司，怎么规避？我之前不知道这家公司，于是打开信息系统把它数据调出来，看了一下营业收入趋势图，当时心里全是问号：就这种业绩走势，还是财务造假的结果？那不是造了个寂寞吗？这种业绩走势一看就是垃圾公司，连造假都造得这么差，压根没有继续深入研究的必要。这种公司没有投资价值，看都不用看，自然就不会上当。</p>
+
+<p>根据过往经验，<strong>绝大部分财务造假的公司，都是自身业务做得很垃圾的公司</strong>——只有业务做得不好才有动机去造假遮掩。优秀的公司造假动机很小。只要我们把对公司的审美提高一点点，自然就规避了那些喜欢造假的垃圾。</p>
+
+<h3>业绩原地踏步的公司不值得关注</h3>
+
+<p>再看一个案例，最近有朋友问我七匹狼这家公司怎么样、值不值得投资。我反问了他一句：七匹狼在 <span class="num">七八年前</span>是 <span class="num">三十亿</span>出头的业绩规模，到现在还是 <span class="num">三十亿</span>左右的业绩规模，一个公司的业绩七八年都没什么增长，你图它干啥？</p>
+
+<p>七匹狼也算小名牌，卖中年男性衣服的。我不是说这家公司不好，而是从投资的角度看——国内市场 A 股加港股有超过 <span class="num">7000 多</span>家公司，明明有更好的选择，为什么我们要选一个业绩原地踏步的公司？投资公司没什么门槛，没有规定买银行必须先考 CPA，也没有规定买茅台必须本科文凭，只要你有钱就可以买。那我们为什么不选择更好的公司？没必要关注一个业绩七八年都没什么增长的公司。</p>
+
+<h3>业绩好的公司长期市值会跟着业绩走</h3>
+
+<p>我们来看业绩比较好的公司，它的长期市值走势是什么样的。就看美的集团吧——家用电器头部公司，绝大部分人都用过他们家的产品，属于人尽皆知的公司。美的的业绩走势看起来就很清爽很舒服，虽然有一两年也出现增长放缓，但长期看业绩增长非常好。</p>
+
+<p>大家注意看美的的市值走势：中间有一段突然大涨和后续的大跌。如果经历过 <span class="num">2020 年</span>那段时间行情，应该都知道——当年出现过一次白马股的极端行情，泡沫刺破之后又出现了估值回归和一定程度的超跌。但如果把时间线拉长看，会发现公司市值基本和业绩增长趋势是一致的。</p>
+
+<div class="pull">公司业绩好，股价不一定会好（短期估值虚高）；<br>但如果公司业绩不好，股价表现一定会很差。</div>
+
+<p>所以我们在投资上选择业绩好的公司，安全底线就比较高，哪怕短期买贵了一点，也可以通过时间去消化高估值。<em>我们仅通过营业收入这一个数据，就能排除掉很多垃圾公司。</em></p>
+
+<h2 id="s3">三、只看营收会被骗：对照主营业务现金流</h2>
+
+<p>这里有一个很重要、很实用的技巧要重点讲。看企业财务数据，不能只看营业收入一个数据，<strong>真正重要的数据是"销售商品、提供劳务收到的现金"，可以简称为主营业务现金流</strong>——这个指标在现金流量表的第一行，比较好找。</p>
+
+<p>大家不是担心企业财报作假吗？营业收入是比较容易调节的：只要有合同、做点标的物就行了，钱能不能收回来再说，可以先挂应收款，这样就能做出营收高增长的假象。但实际上合同可能签的都是垃圾合同，钱根本收不回来。如果只看营业收入，就容易产生误判。</p>
+
+<p>而主营业务现金流比较难作假——我不是说它不能作假，而是作假成本很高。做营收数据搞个合同、做点标的物就行，可以找关系好的公司帮忙弄；但现金流不行，因为现金流需要真的资金过账，合同金额大谁敢随便帮你弄？所以判断企业业务规模，不要看合同签了多少钱，直截了当看主营业务收了多少现金就行。</p>
+
+<p>我自己做数据分析时，喜欢把营业收入和主营业务现金流放在一个图表中看。比如五粮液的案例：把两条线叠到一个坐标系，代表主营业务现金流的是红线、营业收入是蓝线。我们会发现公司收的现金居然比合同金额还多——这是为什么？</p>
+
+<p>其实很简单：公司产品畅销好卖，营销部门可以要求渠道或客户先把钱打过来、再把货发过去。只有发货后客户收到货并验收，钱才能算营业收入，但货款其实早就提前支付了。所以在同一时间点，主营业务现金流会高于营业收入。出现这种财务特征的公司，<strong>说明产品非常有市场竞争力，公司在行业供应链上处于强势地位</strong>。</p>
+
+<h3>先拿钱再发货，还是先发货再收钱</h3>
+
+<p>反过来也可以看。主营业务现金流比营业收入低的公司更多，中小型公司大多如此。看一个案例：容百科技，做电池正极的，给宁德时代供货。这个公司就是主营业务现金流长期比营业收入低——业务场景是先收一点定金就把货给客户，然后在甲方屁股后面苦哈哈地要回款，甲方拖几个月才慢慢结款。虽然过去一段时间行业增长快、出货量大，但钱总是收不回来。这种公司产品竞争力很弱、在供应链上比较弱势，投资价值自然就低很多。一旦行业增长放缓，就很容易产生坏账和供给过剩，利润和市值都会大幅下滑。</p>
+
+<p>营收和现金流一对比，不用看我都知道这家公司应收账款肯定特别高——发了货钱收不回来嘛，财报打开一看就知道。我们实际工作中当乙方就很辛苦了，天天苦哈哈去舔甲方，投资股票还去买乙方的公司，这不是自己给自己找不痛快吗？</p>
+
+<p>一般 B2B（企业对企业）的公司，营业收入和主营业务现金流之间差距会大一些，因为企业之间的交易流程复杂，从合同签订到交货收款持续时间长。简单点理解就是：<em>好公司可以先拿钱再发货，垃圾公司只能先发货再收钱。</em></p>
+
+<h3>营收与现金流几乎一样的特例</h3>
+
+<p>那有没有营业收入和主营业务现金流几乎一样的呢？我们先思考一下：什么样的业务场景会导致这个结果？是不是产品交付和款项回收的时间差非常小？具备这个特征的，比如眼科医院——爱尔眼科这家公司产品和服务直接面对消费者，统计它的营收数据和主业现金流数据，会发现几乎一模一样。</p>
+
+<p>大家发现没有，<strong>财务数据和企业业务之间是能相互印证的</strong>。如果对业务很熟、又懂财务知识，分析起来是很简单的。</p>
+
+<h2 id="s4">四、特殊结算模式：房地产的业绩滞后</h2>
+
+<p>再讲一个特殊结算模式的案例——房地产企业。看房地产企业的增长不能只看营收，因为房地产公司卖房子以期房为主，我们买房子是先交钱，然后等一两年才能收到房子。政策规定只有房子交到客户手上才能算企业业绩，所以房地产公司的财报业绩数据是滞后的，反映的是前两年的销售情况。</p>
+
+<p>而且这个营收数据是可以调节的。比如马上到四季度，公司希望这个财年的营收数据好看一点，就可以要求各地分公司在年底集中抢着交付一批房子，这样四季度的交付量提高、今年的业绩就比较好看。</p>
+
+<p>实际上看房地产公司业绩好不好，看的是当前房子卖得怎么样。我们买期房要先交钱，这个钱会被计入主营业务现金流，同时在资产负债表的"合同负债"中体现。还是看案例——房地产头部公司保利地产。如果只看蓝线（交付情况），因为保利摊子大、交付节奏好调整，业绩增长趋势图能做得很漂亮。但实际情况我们都知道，从 <span class="num">2022 年</span>开始新房就不好卖了，房企新房销售压力都很大，所以保利的主营业务现金流就是从 <span class="num">2022 年</span>开始走下坡路的。</p>
+
+<p>如果我们之前持有房地产公司股票、又懂这个数据，就可以在 <span class="num">2022 年</span>初卖掉公司股票。这就是通过业绩趋势判断公司是否值得投资的具体方法——<em>只看一个营收数据，就能解读出很多企业的业务细节。</em></p>
+
+<h2 id="s5">五、利润趋势要和业绩同步</h2>
+
+<p>判断企业的增长情况，只看营收趋势是不够的，还要辅助看公司的利润信息。首先也是看利润的增长趋势。按道理，公司的规模和利润应该同比例增长，或者说比率差异不会特别大。<strong>如果公司业绩增长而利润长期不增长，那就要多留个心眼了。</strong></p>
+
+<p>因为企业有一种方法，可以通过修改与渠道公司的结算模式，让公司业绩增长。举例来说：我有一个产品，按 <span class="num">10 万</span>的进货价出售给渠道商，营业收入就按 <span class="num">10 万</span>计算。渠道商从我这里进货之后，可以按市场价 <span class="num">25 万</span>卖出去。但我可以调整结算关系，让渠道的客户直接向我支付这 <span class="num">25 万</span>，然后我把其中 <span class="num">15 万</span>以"营销费用"的名义支付给渠道。这样算的话，我的业绩一下就增长到了 <span class="num">25 万</span>，比 <span class="num">10 万</span>翻了一倍还多；同时营销费用其实提升了很多，利润上不会变。公司可以用这种方式调节业绩增长——可能有很多个产品线，把其中几个按这种方式结算，公司业绩一下就增长了。</p>
+
+<p>上市公司的财务都是顶级的会计高手，他们通过这种方式可以把公司的业绩曲线调整得很漂亮。如果我们不懂财务细节，就容易吃亏。但实际上公司的利润并没有同步增长，业绩只是会计手段制造的假象。这种情况我们就可以通过分析公司的利润增长趋势来识别。至于利润本身的合理性，分析比较复杂、需要拆解公司业务，难度较大，我放在后面的章节讲。</p>
+
+<h2 id="s6">六、资产类指标：现金是最直接的标尺</h2>
+
+<p>讲完成长类指标，再来看资产类指标。资产类指标主要来源于上市公司发布的资产负债表。完整解读资产负债表也放在后面单独讲，今天只讲最基础、实用性最高的几个指标——<strong>现金和负债</strong>。</p>
+
+<p>部分公司的现金数据记载在资产表最前面，很容易找。随便找一份公司财报，格式都是一样的：我们可以把"货币资金"和"交易性金融资产"都看成是企业的现金。这跟我们私人的财务状况很像——我们手上有多少现金，不一定是银行卡活期存款，还包括余额宝这种货币基金和几个月的短期理财，其实都可以当成现金看。</p>
+
+<p>判断企业的经济实力，最简单直接的办法就是看公司账户上现金多不多。公司的核心价值就是赚钱，但你兜里都没钱，我怎么相信你赚钱的能力？</p>
+
+<h3>两个现金分析的标尺</h3>
+
+<p>不过单看一个现金数据不太容易分析，需要找标尺对照看，才能得到清晰结论。</p>
+
+<p>一是<strong>看现金和业绩的对比</strong>：把现金数据除以当期的营业收入，得到一个系数，主要用于同行业之间公司对比。这是一个偏经验的分析数据，需要经常看、熟悉各公司财务情况，看得多才能得到比较准确的结论。</p>
+
+<p>二是<strong>从现金使用的角度，看现金能不能覆盖公司的短期债务</strong>。逻辑很简单：比如你兜里有 <span class="num">2 万</span>块钱、没有任何债务，就会觉得很轻松，这 <span class="num">2 万</span>可以随便买点什么；但如果你兜里有 <span class="num">2 万</span>、马上下个月还有 <span class="num">2 万</span>房贷和 <span class="num">1 万</span>车贷要还，还有必须的生活开支，是不是就觉得很难受了？代入一下自己的情况就非常容易理解。</p>
+
+<h3>具体如何对比现金与短期债务</h3>
+
+<p>打开资产负债表，找到这几个科目：<strong>短期借款、应付账款、其他应付款、预收账款、合同负债、一年内到期的非流动负债</strong>。我们要做的，就是拿现金数据和这些债务科目进行对比，简单数字比大小就行了。</p>
+
+<p>特别是短期借款、应付账款、一年内到期的非流动负债，这些可能都是马上要拿现金支付的款项。如果账上现金还覆盖不了这些，企业就会非常难受——就像你卡里只有两块钱，但马上要还 <span class="num">2 万</span>房贷和 <span class="num">1 万</span>车贷，怎么办？</p>
+
+<p>这里有个细节要注意：预收账款和合同负债虽然是债务类科目，但实际不是真的负债，我们管这两个叫<strong>经营性负债</strong>，未来可能不需要支付现金。拿案例来讲：最近小米汽车比较火，我们下订单之后需要支付 <span class="num">5000 元</span>定金给雷总，但这车不是现在就能拿，可能要等半年一年。在拿到车之前，这 <span class="num">5000 元</span>实际不属于雷总，如果到时候交付不了是要退的，所以会计上计入公司的预收账款或合同负债，属于一笔债务。如果未来要消掉这个债务，正常情况下不用拿钱偿还，只需把货交了就行。</p>
+
+<p>所以<strong>不一定债务越少越好</strong>——经营性负债多一点，反而说明公司产品畅销、供不应求。</p>
+
+<h3>两个案例对比：公牛集团 vs 容百科技</h3>
+
+<p>找一个实际的案例看一下就明白了。可以先用 Excel 把资产表数据转化为柱状图，横向对比起来就很直观。</p>
+
+<p>先看一个财务状况比较好的公司——<strong>公牛集团</strong>。公牛一年营业规模大概 <span class="num">160 亿</span>，账上现金 <span class="num">135 亿</span>，非常充裕；短期借款只有 <span class="num">6 亿</span>，应付款 <span class="num">32 亿</span>。也就是说，公司现金储备的零头基本就能覆盖短期债务，财务状况非常好，也侧面说明公司实力很强。</p>
+
+<p>看完优秀的公司，再看财务比较紧张的公司——还是拿刚刚举过的<strong>容百科技</strong>。这是制造业公司，是宁德时代的乙方。账上现金加理财只有 <span class="num">53 亿</span>，但短期借款 <span class="num">16 亿</span>，应付账款比较多，有 <span class="num">65 亿</span>；长期借款算不急着还，但也挺多，有 <span class="num">57 亿</span>。公司账上现金 <span class="num">53 亿</span>，眼前要支付的短期借款和应付账款加起来就将近 <span class="num">80 亿</span>。先不看长期借款，只看眼前，是不是觉得财务压力非常大？再考虑长期盈利情况，还有 <span class="num">57 亿</span>长期贷款要还，而公司一年业绩规模差不多 <span class="num">150 亿</span>左右，那这个长期贷款得猴年马月才能还完？</p>
+
+<blockquote>
+  <p>所以，<strong>我们只需要解读一下公司的资产类信息——不用看全部，只看明白现金和债务——基本就能判断一个公司的好坏。</strong></p>
+</blockquote>
+
+<h2 id="s7">七、效率类指标：净资产收益率（ROE）</h2>
+
+<p>最后讲效率类的指标。和前面一样，我只讲一个简单最好用的——这一期还属于初级阶段，我们先搞定性价比最高的知识。效率指标其实很多，比如存货周转率、总资产周转率等，但所有数据最终都指向一个结果：<strong>净资产收益率（ROE）</strong>。</p>
+
+<p>大家有兴趣可以先了解一下杜邦分析法，这是一种财务视角分析公司的方法，内容稍微专业一点，可以放后期介绍。杜邦分析法最顶层的指标就是净资产收益率。</p>
+
+<p>算法上其实很简单，就是公司的<strong>净利润除以公司的净资产</strong>，得到的一个指数。举个例子方便理解：</p>
+
+<p>假设有 A 和 B 两个人，他们在 <span class="num">2024 年</span>都赚了 <span class="num">20 万</span>，数据是一样的。但这赚钱的过程有高下之分。A 的本金是 <span class="num">100 万</span>，A 拿 <span class="num">100 万</span>赚到了 <span class="num">20 万</span>，这是 A 的赚钱能力；B 的本金是 <span class="num">500 万</span>，B 拿 <span class="num">500 万</span>买了个银行理财也赚了 <span class="num">20 万</span>。我们只能说 B 的 <span class="num">20 万</span>赚得轻松一点，但 A 的赚钱能力明显更强。如果 A 也和 B 一样拿 <span class="num">500 万</span>本金做生意，那可能赚的就是 <span class="num">100 万</span>，而不是 <span class="num">20 万</span>。所以要投资这两个人，选 A 还是选 B？肯定选 A，因为 A 的资产收益率更高。</p>
+
+<p>换算到上市公司评估也是一样：ROE 更高的公司更有投资吸引力，特别是在同行业两个公司对比中，我们会更倾向于 ROE 更高的公司。我个人的习惯可以告诉大家：<strong>我一般只看 ROE 在 <span class="num">15%</span>以上的公司</strong>，低于这个指标除非公司估值特别便宜，否则一般不考虑。</p>
+
+<h2 id="s8">八、为什么市场交易没那么重要</h2>
+
+<p>能耐心听到这里的朋友，应该都是老粉和铁粉了，我就再多啰嗦几句。有朋友可能会问：都已经讲了快 <span class="num">1/4</span> 的课程了，怎么还没讲到股市交易相关的内容？我想告诉大家——<em>市场交易根本就不重要。</em></p>
+
+<p>我们投资公司最重要的步骤，就是先把优质的公司找出来。这一步做对了，基本上就成功了 <span class="num">80%</span>。至于要不要操作买入，那是市场报价和公司估值的问题。股票交易市场的价格波动非常大，如果你对公司的业务不了解，就无法评估公司的内在价值；没有内在价值作为标尺，就无法确定市场的报价是否合理。造成的结果大概率是这样：你稀里糊涂买进去，公司股价大跌就忍不住低位割肉，股价大涨可能赚十几个点就跑了，错过了翻倍的收益率。最终大概率会亏损。<span class="num">99%</span>的散户都是因为这个原因——不了解公司价值，然后胡乱买股票。</p>
+
+<p>哪怕你选择蹭热点、炒短线，要提高胜率的话，一样要把企业的真实价值摸清楚。炒线的本质是揣摩市场的偏好，而了解企业的价值就是你的底牌——<strong>如果连底牌都不看就去赌博，是必输的</strong>。所以不要着急搞市场交易，先把基础打牢、把本质的东西弄明白，有了"公司价值"这个内在标尺之后再去做交易，就是一件很简单的事情了。</p>
+
+<p>下期讲公司股权和 IPO 的内容。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化<br>
+  股票投资从入门到精通 · 系列
+</footer>
+
+</div>
+</body>
+</html>

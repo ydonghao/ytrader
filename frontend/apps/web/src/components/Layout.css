@@ -1,0 +1,310 @@
+/* ================================================================
+   Layout — Sidebar + Topbar + Content (Apple Frosted Glass)
+   ================================================================ */
+
+/* ── Shell ── */
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ── Sidebar — Frosted Glass (unified tint with content) ── */
+.sidebar {
+  width: 220px;
+  background: rgba(29, 29, 31, 0.88);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+  border-right: 0.5px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 1px 0 0 rgba(255, 255, 255, 0.03);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: var(--z-sticky);
+  transition: width var(--transition-normal);
+}
+
+.layout--collapsed .sidebar {
+  width: 56px;
+}
+
+/* Sidebar Header (brand + toggle) */
+.sidebar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 0 14px;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.04);
+  flex-shrink: 0;
+}
+
+.sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  min-width: 0;
+}
+
+.sidebar__logo-mark {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--color-accent), #7c3aed);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.sidebar__logo-text {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+
+.sidebar__toggle {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.sidebar__toggle:hover {
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.sidebar__toggle svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Sidebar Nav */
+.sidebar__nav {
+  flex: 1;
+  padding: 8px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: #48484a transparent;
+}
+
+/* Sidebar Group */
+.sidebar__group {
+  margin-bottom: 4px;
+}
+
+.sidebar__group-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 10px 4px;
+  border: none;
+  background: none;
+  color: var(--color-text-tertiary);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.sidebar__group-title svg {
+  width: 12px;
+  height: 12px;
+  opacity: 0.5;
+}
+
+.sidebar__group-title:hover {
+  color: var(--color-text-secondary);
+}
+
+.sidebar__group-title:hover svg {
+  opacity: 0.8;
+}
+
+/* Sidebar Item (nav link) — Accent-tinted pill */
+.sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  margin: 1px 0;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-tertiary);
+  text-decoration: none;
+  position: relative;
+  transition: all var(--transition-fast);
+}
+
+.sidebar__item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+
+.sidebar__item--active {
+  background: var(--color-accent-light);
+  color: var(--color-accent);
+}
+
+.sidebar__item--active:hover {
+  background: var(--color-accent-hover);
+  color: var(--color-accent);
+}
+
+/* Active indicator — Apple pill, no left bar */
+.sidebar__item-indicator {
+  display: none;
+}
+
+/* Item icon */
+.sidebar__item-icon {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sidebar__item-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Item label */
+.sidebar__item-label {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar__item--active .sidebar__item-label {
+  font-weight: 600;
+}
+
+/* Sidebar Footer */
+.sidebar__footer {
+  padding: 10px 16px;
+  border-top: 0.5px solid rgba(255, 255, 255, 0.04);
+  flex-shrink: 0;
+}
+
+.sidebar__version {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  font-family: var(--font-mono);
+}
+
+/* ── Collapsed state ── */
+.layout--collapsed .sidebar__nav {
+  padding: 8px 6px;
+}
+
+.layout--collapsed .sidebar__item {
+  justify-content: center;
+  padding: 8px;
+}
+
+.layout--collapsed .sidebar__footer {
+  text-align: center;
+  padding: 8px;
+}
+
+/* ── Main Area (offset by sidebar width) ── */
+.layout__main-area {
+  flex: 1;
+  margin-left: 220px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transition: margin-left var(--transition-normal);
+}
+
+.layout--collapsed .layout__main-area {
+  margin-left: 56px;
+}
+
+/* ── Topbar — Seamless (transparent, lets page header be the visual anchor) ── */
+.topbar {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  border-bottom: none;
+  background: transparent;
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  flex-shrink: 0;
+}
+
+.topbar__left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topbar__title {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-text-tertiary);
+  margin: 0;
+  letter-spacing: -0.1px;
+  text-transform: uppercase;
+}
+
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.topbar__status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-text-quaternary);
+}
+
+.topbar__status-text {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--color-text-quaternary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── Content ── */
+.layout__content {
+  flex: 1;
+  padding: 0;
+  background: var(--color-background);
+  overflow-y: auto;
+}

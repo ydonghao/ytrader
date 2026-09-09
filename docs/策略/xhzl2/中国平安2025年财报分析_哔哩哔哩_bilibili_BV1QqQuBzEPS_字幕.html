@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中国平安2025年财报分析</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">投资学习笔记</div>
+  <h1 class="title">中国平安 2025 年财报分析</h1>
+  <div class="meta">
+    <span>保险公司业务模型：建立在概率论上</span>
+    <span>寿险、财险、银行三大块</span>
+    <span>新业务价值与投资组合</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>开篇：为什么平安值得关注</li>
+    <li>保险公司的业务模型</li>
+    <li>保险浮存金与投资收入</li>
+    <li>营运利润的三大构成</li>
+    <li>投资业务的优先级与逻辑</li>
+    <li>收房租的比喻：投资收益如何计入利润</li>
+    <li>寿险分析：月报停发的争议</li>
+    <li>增额寿险的会计口径问题</li>
+    <li>寿险产品细分与增额寿险走红</li>
+    <li>新业务价值：被调整过的算法</li>
+    <li>应对低利率：提高权益类资产占比</li>
+    <li>寿险成长性存疑</li>
+    <li>财险：流量工具与获客入口</li>
+    <li>平安银行：轻微下滑</li>
+    <li>估值：市盈率与股息率</li>
+    <li>总结：四大板块的判断</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、开篇：为什么平安值得关注</h2>
+
+<p>今天帮大家分析一下中国平安的财报。平安去年股价涨得非常多，造成了很强的盈利效应，今年股价又开始回调——这种股价走势很容易吸引大家关注，所以最近一段时间，我评论区和私信问平安的人特别多。今天就帮大家解读一下中国平安 <span class="num">2025</span> 年的财报。</p>
+
+<p>（之前我重感冒，嗓子不太好，现在还没恢复好，今天录的声音可能有点奇怪，还望大家体谅。）</p>
+
+<h2 id="s2">二、保险公司的业务模型</h2>
+
+<p>中国平安是保险公司，属于金融公司，和我们日常能接触到的普通公司不一样。普通公司大多数是产品型公司，业务上比较好分析——说通俗一点就是卖货的：今年签了多少合同、卖多少产品，扣掉成本和费用之后利润还有多少。这是最常见的商业模型。</p>
+
+<p>但保险公司的业务模型不一样，<strong>它是建立在概率论上的</strong>。</p>
+
+<p>比如说车险，这个大家都买过。你购买一份车险之后，我们就跟保险公司进行了一个时间长达一年的概率博弈：如果这一年我们开车开得好好的、没出车祸，保险公司就赚到了我们的保费；如果我们这一年开车不小心出车祸了，保险公司就要帮我们修车。这种业务要如何计算盈亏呢？</p>
+
+<p>车险属于财产险，时间周期一般是一年，其实还是比较简单的。<strong>寿险就复杂很多了</strong>——寿险是以我们自身健康为概率，而且时间跨度很长，很多产品一保就是十几年甚至保终身，那这个业务要怎么计算盈亏呢？</p>
+
+<h2 id="s3">三、保险浮存金与投资收入</h2>
+
+<p>还有一点：我们找保险公司买保险是要提前支付保费的，但最后我们是否能够获得保险赔偿，是很久以后的事情了。保险公司拿到这笔钱之后，就形成了一个资金池——我们管这个资金池叫<strong>保险浮存金</strong>。</p>
+
+<p>这个资金池不能闲置，保险公司会拿这笔钱去投资，它也会产生一笔收入。所以如果不清楚保险公司的业务模型，就很难看懂保险公司的财报，自然也就没办法通过财务数据给公司进行估值。今天我就跟大家讲一下如何分析中国平安的财报。</p>
+
+<h2 id="s4">四、营运利润的三大构成</h2>
+
+<p>首先看一下中国平安的<strong>营运利润</strong>——这是保险公司的核心盈利指标。构成其实不复杂，主要就是三大类业务：<strong>寿险、财险和银行业务</strong>。</p>
+
+<p>其实不止这些，还有少部分利润来源是资产管理业务和金融赋能业务，不过金额占比都很少，对公司的估值影响不大，也不需要我们拎出来分析。营运利润贡献中：</p>
+
+<ul>
+  <li><strong>寿险业务</strong>利润贡献最大，占 <span class="num">70%</span>；</li>
+  <li><strong>财产保险业务</strong>（平安财险的大头是车险，这是大家都比较熟悉的险种）占 <span class="num">12%</span>；</li>
+  <li><strong>银行业务</strong>利润贡献占 <span class="num">18%</span>——这里的银行也是上市公司，即平安银行。中国平安是平安银行的控股公司，所以它们利润是并表的。</li>
+</ul>
+
+<p>所以我们分析中国平安的财报，主要就是对寿险和财险进行业务分析；银行方面的分析，可以单独去做平安银行的财报分析。</p>
+
+<h2 id="s5">五、投资业务的优先级与逻辑</h2>
+
+<p>在分析寿险和财险业务之前，我们还要先了解一下平安的投资业务。</p>
+
+<p>保险公司的投资业务产生的利润，并不单独计入营运利润，而是大部分通过寿险和财险的利润体现，少部分会单独计入净利润。我们看年报的话，投资业务分析的优先级比较靠后——因为你这个投资的钱来源于保费，如果保费都收不上来，投资业务相当于断了资金来源。</p>
+
+<p>其次是保险公司的投资方法，和我们散户的投资差异很大，并不是我们理解的"炒股行为"。保险公司的投资属于<strong>长期资产配置</strong>：资产配置中差不多 <span class="num">80%</span> 是固收类投资，剩下 <span class="num">20%</span> 才是权益类资产；而且保险公司的选股风格很保守，大多数就是蓝筹股，所以投资收益比较稳定，近几年都在 <span class="num">4%</span> 到 <span class="num">5%</span> 波动。</p>
+
+<p>所以我们考虑保险公司的投资业务，一般以风险分析为主就可以了，<strong>它对公司估值的影响没有寿险和财险业务那么大</strong>。</p>
+
+<h2 id="s6">六、收房租的比喻：投资收益如何计入利润</h2>
+
+<p>而且也并不是所有的投资收益都会算到本年利润中。这个点我用一个例子讲——收房租，大家应该都了解吧。</p>
+
+<p>假设我们有套房子，目前市值 <span class="num">200万</span>，自己没住就租出去了，一年可以收 <span class="num">6万</span> 元租金。到年底的时候，房价反弹了一点，从 <span class="num">200万</span> 涨到 <span class="num">210万</span>。这种情况我们该如何算自己的收入呢？</p>
+
+<p>一般来讲，资产所产生的现金流和资产本身的价格增长，都算是投资收益。但我们日常生活习惯是<strong>只会把这 <span class="num">6万</span> 块钱的房租视为稳定收入</strong>——房价确实涨了 <span class="num">10万</span>，但这个涨价是不稳定的，万一明年又跌回去了呢？所以房价的上涨一般视为资产增长，不作为一项稳定收入。</p>
+
+<p>所以看保险公司的投资收益也是这个思路——它只有一部分是计入当期利润的。而且保险公司为了消除市场波动的影响，会对利润数据做一个调节：剔除掉短期的投资波动，调整之后的数据叫做<strong>营运利润</strong>。我们评估保险公司的价值，一般都是以营运净利润为主。</p>
+
+<div class="pull">保险公司的投资部分，<br>可以视为业绩增长的潜力，<br>并从风险的角度进行评估；<br>公司的估值和成长性，<br>主要还是看寿险和财险的业绩表现。</div>
+
+<h2 id="s7">七、寿险分析：月报停发的争议</h2>
+
+<p>我们接着讲中国平安的寿险分析。讲到这里我先吐槽一下。</p>
+
+<p>在 <span class="num">2025</span> 年之前，中国平安是发月报的，每个月都会公布这个月收了多少保费，所以在 <span class="num">2025</span> 年之前，我们追中国平安的业绩是很容易的，只需要把月报数据做成图表就可以了。比如这些 PPT 是中国平安 <span class="num">2019</span> 年到 <span class="num">2024</span> 年整体保费收入的趋势图——我们不难看出这个时间周期内业绩出现过一些波动。</p>
+
+<p>如果我们拿业绩波动和公司股价走势对比，就会发现一些有趣的现象：在 <span class="num">2024</span> 年的时候，A 股还比较低迷，但那时平安的保费收入就已经开始回暖了，只是股价还在"地下躺着"。这个时候股价走势和业绩走势产生了背离——<strong>这种情况就是值得我们关注的</strong>。</p>
+
+<p>但是在 <span class="num">2025</span> 年之后，中国平安又不发月报了。平安自己的说法是：在新的会计准则下，旧口径的保费收入含有大量的投资成分，不能准确反映保险公司真实承担的保障服务，容易对投资者产生误导。</p>
+
+<h2 id="s8">八、增额寿险的会计口径问题</h2>
+
+<p>这么解释也有一定道理，因为目前我们消费者买的寿险，最流行的是<strong>增额寿险</strong>——它本质上是一个混合产品，兼具长期储蓄功能和身故保障。</p>
+
+<p>举个例子，假设我们每年交 <span class="num">1万</span> 保费，交满 <span class="num">10</span> 年保 <span class="num">20</span> 年，合同约定：如果 <span class="num">20</span> 年内不幸身故，赔 <span class="num">20万</span>；如果 <span class="num">20</span> 年后还活着，保险公司返还保单的现金价值和相应收益。</p>
+
+<p>在以前旧口径中，你交的这 <span class="num">1万</span> 块钱就全部被计算为保费收入了。但实际上这笔钱中可能只有几百块钱是用来覆盖那 <span class="num">20</span> 年的身故保额成本，剩下的 <span class="num">9000</span> 多元被保险公司注入到投资组合中，用来在 <span class="num">20</span> 年后给你返钱。<strong>本质上这是保险公司替客户进行保障性储蓄，所以收的是长期储蓄资金，不是保障费用。</strong></p>
+
+<p>问题就出在这里：按之前保费收入的统计口径，保险公司把 <span class="num">9000</span> 多元的长期储蓄资金也当作保费收入算到营收里去了——这就相当于银行把客户存进来的 <span class="num">100万</span> 存款直接算成自己的营业收入一样，<em>会严重夸大公司的真实盈利能力</em>。</p>
+
+<p>不过我觉得呢，月报该发还得发呀。虽然保费收入不能体现公司的盈利能力，但可以更直观地反映公司的业务规模——价值判断的事情可以让我们投资者自己搞定。</p>
+
+<h2 id="s9">九、寿险产品细分与增额寿险走红</h2>
+
+<p>还有一个细节：保险公司的产品是有细分的。比如中国平安的寿险业务就有细分，有分红险、万能险、传统寿险、长期健康险等等。不同类型的产品对利润的贡献是不一样的——这点倒是和普通产品型公司很像：一般产品型公司都有产品矩阵的概念，有的产品走量但利润很薄，有的产品就是卖高价拉高利润率。</p>
+
+<p>我们可以看到这些 PPT。我统计了中国平安最近 <span class="num">10</span> 年里各个细分险种的业绩增长情况。从图中可以分析出：<strong>最近几年主要是增额寿险卖得好</strong>，这是因为最近几年市场利率不断降低，和银行理财比起来，带有长期储蓄功能的保险产品就显得很有吸引力了。</p>
+
+<p>但是对保险公司来说，增额寿险这种产品<strong>对未来的利率非常敏感</strong>。它的盈利逻辑是"三差益"中的<strong>利差</strong>——用大白话说，就是保险公司拿客户的钱去投资，要取得的预期收益率必须覆盖合同给客户的保险承诺。目前我们处于利率下行周期，所以这种业务对保险公司来说，未来的盈利压力是很大的。</p>
+
+<h2 id="s10">十、新业务价值：被调整过的算法</h2>
+
+<p>中国平安的财报中有个指标用来监控这个情况，叫做<strong>新业务价值</strong>——意思就是一张保单在未来整个保障期间内，预期能产生的税后利润折算到今天的价值。</p>
+
+<p>这个截图是他们公告自己发出来的汇报 PPT。大家如果看他们自己做的业绩汇报，上面会写"新业务价值连续 <span class="num">3</span> 年双位数增长，业务品质持续向好"。</p>
+
+<p>讲到这儿，我要告诉你们一个细节：<strong>这个 PPT 中没有告诉我们——新业务价值的算法在过去两年中调整过两次。</strong></p>
+
+<p>他们在算增长比例的时候，用新算法对过去的业务数据进行了回溯计算，<strong>同步调低了过去的业务数据</strong>，就显得增长比例很好看。</p>
+
+<p>新业务价值的计算本质上是一个折现模型。公司觉得现在是低利率时代，投资组合中固收类资产收益率会下降，所以平安连续两年下调了长期投资预期回报率：</p>
+
+<ul>
+  <li>第一次是 <span class="num">2023</span> 年，从 <span class="num">5%</span> 下调到 <span class="num">4.5%</span>；</li>
+  <li>第二次是 <span class="num">2024</span> 年，从 <span class="num">4.5%</span> 下调到 <span class="num">4%</span>。</li>
+</ul>
+
+<p>这个核心参数一调整，新业务价值的指标就会下降很多。我认为这个数据的下降是要体现出来的——因为公司下调核心参数，确实自己认为未来投资回报会降低，那自然对公司的估值就产生影响。</p>
+
+<p>我自己把年报中新业务价值的具体数据翻了出来，把财报中的累加数据换算成 TTM 数据，得到了这样一个柱状图：最近两年多公司的保费规模已经涨回到疫情之前的水平了，但从这张图上看，<strong>新业务价值这个指标虽然也在反弹，但远远没有达到疫情之前的水平</strong>。</p>
+
+<p>所以我认为，中国平安新业务价值的成长性，<em>远没有它财报中展示出来的数据那么好看</em>。这个数据细节需要我们在后续的财报跟踪里重点关注。</p>
+
+<h2 id="s11">十一、应对低利率：提高权益类资产占比</h2>
+
+<p>为了应对未来低利率环境下投资组合预期收益率下降的问题，公司层面还是有对应策略的。大家应该还记得之前有个新闻：监管在 <span class="num">2024</span> 年就已经明确提出，要提高保险公司权益类资产监管比例上限。按照监管要求，如果公司的综合偿付能力高于 <span class="num">250%</span>，那保险公司的投资组合中按监管就允许把权益类资产配置比例的上限提升至 <span class="num">40%</span>。</p>
+
+<p>中国平安在年报和半年报中都会公布他们的投资组合构成，这个数据我们可以直接追踪。我把权益类资产占比转成柱状图，统计了中国平安投资总额的权益资产占比，可以看到<strong>公司目前已经在做动作了，开始提高权益类资产占比</strong>。</p>
+
+<p>我觉得这是应对未来增长乏力的对应策略：提高权益类资产占比，相当于多承担一点投资风险，来弥补未来低利率环境下固收类资产收益率不足的问题——<strong>相当于放大了市场波动对公司利润的影响</strong>。这个原理我们要理解。</p>
+
+<h2 id="s12">十二、寿险成长性存疑</h2>
+
+<p>讲到这里我们可以稍微总结一下：中国平安寿险类业务这两年的保费提升，主要原因是<strong>低利率环境驱动</strong>的——带有储蓄性质的保险（比如增额寿险和分红险）受到了市场的短暂欢迎。</p>
+
+<p>所以我认为，中国平安寿险业务的成长性是存疑的，后续需要重点追踪这部分业务的增长情况。因为保险是典型的<strong>消费升级产品</strong>，逻辑非常简单：大家的经济条件只有越来越好，才会产生保险需求，避免发生意外导致家里的经济条件一夜回到解放前。</p>
+
+<p>所以现在的增长，<em>并非是大家手头宽裕了想买保障，而是钱没有地方去、被迫买了带有储蓄性质的保险。</em></p>
+
+<p>这里也顺带解释了中国平安之前的业绩走势：为什么业绩在疫情期间开始下滑？就是因为疫情期间大家的收入产生了不确定性——就算手上有现金，也会先捏在手里应对风险，对未来的保障就缓一点再说。然后缓到疫情结束之后，大家发现银行的存款利率开始下降了，持有现金容易吃通胀，得换个地方存钱。其中一部分进了股市，但股市毕竟风险高，所以就有相当一部分人的目光看向了带储蓄功能的保险。</p>
+
+<p><strong>所以现在中国平安的业绩是低利率驱动的，并不是大家真的产生了生存类保障需求。</strong>对于寿险这个核心业务来说，未来短期的业绩成长性我们是存疑的，那对公司的估值分析就需要保守一些。</p>
+
+<h2 id="s13">十三、财险：流量工具与获客入口</h2>
+
+<p>寿险类的业务就分析这么多，我们再看一下产险的业务。产险和寿险相比，分析起来就简单多了，因为产险通常以年为周期，一年合同就履约完毕，所以不用考虑太多利率问题，主要就是看产险的成本和费用能不能兜得住。</p>
+
+<p>中国平安的财产保险大头是车险，这个业务我们大家很熟悉。对保险公司来说，只要把赔付概率和综合成本控制好，车险业务是一个比较稳定的生意，所以直接跟踪指标就行，不用做太多主观分析。</p>
+
+<p>我们先看一下中国平安财产保险的保费收入趋势，增长情况还是比较稳定的。</p>
+
+<h3>财险其实是"做流量"的工具</h3>
+
+<p>这里有个细节可以留意：中国平安财产保险的保费规模差不多是寿险规模的一半左右，但<strong>财险贡献的利润只有寿险的 <span class="num">15%</span></strong>。财险其实是个做流量的工具——它本身利润率不高，但能够带来海量的客户。</p>
+
+<p>平安是先通过高性价比的财产险服务，把大家搞成中国平安的客户——你先进到客户池子里来，那以后的营销触点就多了。老客户的二次营销比拓展新客户要简单，后面如果客户产生购买寿险的需求，那自然选择平安的概率会大很多。</p>
+
+<p>我们看中国平安的财报就会发现，财报比较关注客户人数和客均合同数。我们可以把这个数据做成趋势图来跟踪，这个指标也能体现平安的业绩增长潜力。<strong>财险主要看一下业绩趋势就够了，公司的盈利主要还是看寿险。</strong></p>
+
+<h2 id="s14">十四、平安银行：轻微下滑</h2>
+
+<p>最后看一下银行板块的业务，这里指的是平安银行，也是上市公司。平安银行的业绩比较一般，这几年都是一个轻微下滑的趋势。中国平安控股平安银行、财报全额并表，但归属母公司的净利润需要按持股比例折算，差不多是 <span class="num">58%</span> 的比例。虽然银行业务不是很好，但整体还算稳定，占比也不是特别高，所以对平安估值的影响有限——这个数据看一下就行了。</p>
+
+<h2 id="s15">十五、估值：市盈率与股息率</h2>
+
+<p>下面来看一下中国平安的估值情况。基于平安的业务特性，我觉得用<strong>市盈率和股息率</strong>这两个指标来判断估值比较合理。</p>
+
+<p>不过这里有个小细节：我们计算中国平安的市盈率，拿<strong>营运利润</strong>来计算比用净利润要好一些。前面提到过，因为保险公司利润有一部分来自投资，但市场是有波动的——牛市的时候股价大涨，对净利润贡献很高；但有牛市就有熊市，熊市又会拖累净利润。所以公司管理上想了个招：在会计处理上把通过股市波动额外赚到或亏掉的钱排除掉，只保留一个长期平均收益率作为当期利润。这样处理过的数据就是营运利润，更能体现公司的盈利水平。公司的分红也是按营运利润计算的。</p>
+
+<h3>市盈率：明显的疫情前后分水岭</h3>
+
+<p>拿营运利润计算的中国平安市盈率目前是这样的水平。从时间轴上看，我们可以看到很明显的分水岭：<strong>疫情之前的市盈率要比现在高很多</strong>。这是因为疫情之前实体经济比较好，保险公司业绩和宏观经济挂钩紧密，所以疫情之前成长性更好，大家给平安的估值更高。现在来看，结合前面我们对公司业务的分析，大家应该能自己做出对估值合理性的主观判断。我觉得这个图的参考价值还是很大的，大家自己做决策就行了。</p>
+
+<h3>股息率：红利股范畴的加分项</h3>
+
+<p>看完市盈率的趋势图，可以看一下中国平安的股息率。中国平安可以归属到<strong>红利股</strong>范畴，公司的分红从过去数据上看非常稳定，而且一年分红两次，过去 <span class="num">10</span> 年中分红一直在稳步提高——<strong>在股东回报这块，中国平安做得还是不错的，这是一个估值的加分项</strong>。</p>
+
+<p>中国平安的分红占比一直保持在 <span class="num">35%</span> 到 <span class="num">40%</span> 之间。这样看的话，只要公司的利润不大幅下滑，股息率的稳定性应该还是不错的。</p>
+
+<p>拿中国平安的分红计算股息率，可以得到这样一个趋势图：通过这张图可以看到，中国平安的股息率大部分时间都在 <span class="num">3%</span> 到 <span class="num">5%</span> 之间。看这张图的时候稍微注意一下——股息率越高，就说明公司估值相对越低，也就是说这个白线是越高越好，别看反。股息率的位置和市盈率的位置，我感觉是能对应上的。</p>
+
+<p>反正客观数据我放在这里，大家根据自己的理解去评估就行了。</p>
+
+<h2 id="s16">十六、总结：四大板块的判断</h2>
+
+<blockquote>
+  <p><strong>寿险业务：</strong>这两年的业绩增长主要靠低利率驱动，市场并没有产生保障性需求，所以寿险业务成长性存疑，后续需要重点关注。</p>
+  <p><strong>投资组合：</strong>为了应对后续低利率环境下固收类资产收益率降低，公司的投资组合会逐渐提高权益类的配置比例。目前我们已经从财报上看到这样的动作了——这会导致公司通过承担更多市场风险来换取更好的预期收益率，并放大市场波动对公司盈利的影响。</p>
+  <p><strong>财产保险业务：</strong>这是本次财报看下来表现最好的板块，不过可惜的是，财产保险对公司利润贡献只有 <span class="num">12%</span>。持续关注就行。</p>
+  <p><strong>平安银行业务：</strong>利润是一个长期轻微下滑的趋势，对净利润有拖累，不过影响不是很大。持续关注就行。</p>
+</blockquote>
+
+<p>最后帮大家算了市盈率和股息率图表，我觉得做得是比较清晰且容易解读的，大家自己做判断就行了。今天的分享就到这吧，我们下期再见。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>

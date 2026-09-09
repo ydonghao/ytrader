@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>股票与证券交易所的起源</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">投资学习笔记</div>
+  <h1 class="title">股票与证券交易所的起源</h1>
+  <div class="meta">
+    <span>从大明朝的瓷器茶叶说起</span>
+    <span>东印度公司的众筹航海</span>
+    <span>金融的本质是为风险定价</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>东西方贸易催生了远洋航运</li>
+    <li>航海的高风险：船一回不来生意就没了</li>
+    <li>东印度公司向居民筹钱分散风险</li>
+    <li>出资凭证，就是股票的雏形</li>
+    <li>为了转让凭证，交易所应运而生</li>
+    <li>金融的本质：为风险定价</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、东西方贸易催生了远洋航运</h2>
+
+<p>今天我来给大家分享一下关于股票起源的故事。股票虽然诞生于西方社会，但实际上跟我们国家有着非常大的关系。</p>
+
+<p>当时是<span class="num">16</span>世纪，我们国家还处在大明王朝的中叶时期。那个阶段，西方社会对中国商品有着很大的需求，主要是瓷器、茶叶之类的东西。当时的欧洲国家要来中国做生意，如果走陆运，需要穿过整个亚欧大陆，成本非常高；尤其是西欧的一些国家，离我们非常远，所以他们的合理路线是走海运，从海上过来。</p>
+
+<h2 id="s2">二、航海的高风险：船一回不来，生意就没了</h2>
+
+<p>但走海运有一个问题：海上气候条件比较恶劣，当时的航海技术也并不是很成熟。一旦船出海遇到暴风雪之类的极端天气，就很容易回不来。</p>
+
+<p>对那种比较小的商人来说，他可能只有一两条船，一旦出去回不来，基本上生意就没法做了。</p>
+
+<h2 id="s3">三、东印度公司向居民筹钱分散风险</h2>
+
+<p>当时荷兰有一家公司叫<strong>东印度公司</strong>——这个名字在历史上出现过很多次，因为当时欧洲主要负责国际贸易的公司，基本上都叫东印度公司。</p>
+
+<p>他们想了一个办法：<strong>找当地居民筹钱，多买几条船去出海。</strong>这样的话，哪怕有一两条船遇到极端情况回不来，只要大多数船能够顺利返回，他们运回来的货物销售出去，就能赚得非常多。</p>
+
+<p>公司赚到钱之后，就需要给当时参加筹款的居民分利润。</p>
+
+<h2 id="s4">四、出资凭证，就是股票的雏形</h2>
+
+<p>那公司怎么分辨谁出过钱呢？他们给所有出钱的居民都写了一个凭证，根据这个凭证，就能证明你当时出过钱，就有资格来分这个利润。</p>
+
+<blockquote>
+  <p>这个凭证，就是我们现代股票的一个雏形。</p>
+</blockquote>
+
+<p>还有一个情况：当地居民拿这个凭证，定期就可以找公司分利润，钱来得慢，细水长流。但有的居民家里可能突然有事，需要马上用一大笔钱，于是他就需要把这个凭证转卖出去。</p>
+
+<h2 id="s5">五、为了转让凭证，交易所应运而生</h2>
+
+<p>为了方便大家把凭证转卖出去，当地就建了一个小的交易市场——<strong>这个交易市场，也就是现代交易所的一个来源。</strong></p>
+
+<h2 id="s6">六、金融的本质：为风险定价</h2>
+
+<p>通过这个故事，我们其实就能知道，股票在诞生之初就起到了一个作用：投资人通过帮助公司分摊企业的经营风险，从而获利。</p>
+
+<p>这也为我们揭示了一条金融基本理论：</p>
+
+<div class="pull">金融的本质，是为风险定价。</div>
+
+<p>这条理论，同样适用于现在各类的投资当中，大家可以细想一下。</p>
+
+<p>今天的内容就分享到这里，有兴趣的话可以持续关注后续的内容。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>

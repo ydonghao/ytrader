@@ -1,0 +1,9 @@
+.position-table__empty {
+  padding: 2rem;
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.position-table__row {
+  cursor: pointer;
+}

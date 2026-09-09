@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>指数基金定投实盘教学第10期</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">投资学习笔记</div>
+  <h1 class="title">指数基金定投实盘教学第10期</h1>
+  <div class="meta">
+    <span>面向股票新手小白的定投法</span>
+    <span>核心逻辑与规则详解</span>
+    <span>低估多买、高估减仓</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>本期适合谁：定投方式回顾</li>
+    <li>行情回顾：底部低迷震荡</li>
+    <li>定投的两大核心逻辑</li>
+    <li>规则一：选五个指数</li>
+    <li>规则二：资金规模与建仓节奏</li>
+    <li>规则三：仓位由估值辅助线决定</li>
+    <li>场外基金与场内基金的选择</li>
+    <li>策略的执行节奏</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、本期适合谁：面向新手小白的定投方式</h2>
+
+<p>这里是指数基金定投实盘教学的第<span class="num">10</span>期。先说明一下，这个实盘教学是为那些想投资股票、但对股票知识又不是很了解的<strong>新手和小白用户</strong>准备的。如果对股票已经比较熟，就可以不用看了，不浪费大家时间。如果想了解这种定投方式，可以点个赞、加个关注。</p>
+
+<h2 id="s2">二、行情回顾：底部低迷震荡</h2>
+
+<p>上周由于开会，加上大家都在等三季度财报，所以行情基本以低迷的底部震荡为主。看一下沪深300的估值就能发现，现在还在历史的大底部徘徊。整体行情这里就不展开回顾了。</p>
+
+<h2 id="s3">三、定投的两大核心逻辑</h2>
+
+<p>这周再把这个策略重新讲一下，因为过程中也优化了一些细节，而且很多人可能是从中间开始看的，对策略并不是很了解。</p>
+
+<p>指数基金定投的核心逻辑有两条：</p>
+
+<ul>
+  <li><strong>第一，赌国家经济会一直增长。</strong>股市是经济的晴雨表，只要国家经济在持续增长——哪怕过程中有一些波动，只要长期向上——这种投资方式就一定可以盈利。</li>
+  <li><strong>第二，利用市场波动赚钱。</strong>在市场低估的时候多买一点，在市场比较高涨的时候卖掉，赚取这个差价。</li>
+</ul>
+
+<h2 id="s4">四、规则一：选五个指数</h2>
+
+<p>第一个规则是先选指数。我选了五个指数，分别是：</p>
+
+<ul>
+  <li>沪深300</li>
+  <li>上证50</li>
+  <li>中证500</li>
+  <li>创业板50</li>
+  <li>科创板50</li>
+</ul>
+
+<h2 id="s5">五、规则二：资金规模与建仓节奏</h2>
+
+<p>这个策略我准备了 <span class="num">10万</span> 块钱，金额比较合适，大家都可以参与进来；哪怕资金不够、比较少，也可以按比例削减参与。</p>
+
+<ul>
+  <li><strong>首期建仓：</strong>拿一半出来先建仓，即 <span class="num">5万</span> 块钱。</li>
+  <li><strong>每周定投：</strong><span class="num">1000</span> 块钱，分到五个基金，每个 <span class="num">200</span>。</li>
+  <li><strong>一年投入：</strong>差不多 <span class="num">5万</span>，相当于一年定投金额是整体策略规模的 <span class="num">50%</span>。</li>
+</ul>
+
+<p>之所以按总规模的 <span class="num">50%</span> 确定一年定投规模，是因为根据经验，<strong>单边上涨和单边下跌的周期不会超过 2 年</strong>。这样设置基本上能够熬过股市的一个小周期，中间可以只投不补，不需要额外补充资金。</p>
+
+<h2 id="s6">六、规则三：仓位由估值辅助线决定</h2>
+
+<p>仓位层面，我们需要用一个辅助系统——"龟壳估值"（或类似的价值点平台）。这个辅助系统里有指数的估值情况，还叠加了基于正态分布的辅助线。我们以上证50的辅助线作为案例。</p>
+
+<p>仓位规则其实很简单：</p>
+
+<blockquote>
+  <p><strong>低估附近</strong>：尽量多买一点，尽量保证仓位都在 <span class="num">80%</span> 以上。</p>
+  <p><strong>估值涨上去</strong>：开始减仓。</p>
+  <p><strong>涨到红线</strong>：基本上要把仓位减到 <span class="num">30%</span> 以下。</p>
+</blockquote>
+
+<p>严格按照这个策略做，基本上就能起到"在低谷时抄底、在高点时卖出"的效果。当然，我们买不到最低、也卖不到最高，但<strong>能够在相对的高位与低位做出正确的策略</strong>，这就够了。</p>
+
+<h2 id="s7">七、场外基金与场内基金的选择</h2>
+
+<p>其他说明：我们用的是<strong>场外基金</strong>，第三方平台购买，看平台的方便程度，可以设置自动定投。</p>
+
+<p>场内基金则不适合小资金交易，而且不能设置自动定投，相对麻烦一点。</p>
+
+<h2 id="s8">八、策略的执行节奏</h2>
+
+<p>设置完之后，这个策略大部分时间——可能 <span class="num">1/2</span> 的时间——都不用操作，只需要挂着慢慢定投就可以了。只有在比较极端的行情时，才可能需要手动操作一下。</p>
+
+<p>差不多就这些。如果有什么不懂的，可以留言评论交流。本期内容就到这里。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化<br>
+  指数基金定投实盘教学 · 系列
+</footer>
+
+</div>
+</body>
+</html>

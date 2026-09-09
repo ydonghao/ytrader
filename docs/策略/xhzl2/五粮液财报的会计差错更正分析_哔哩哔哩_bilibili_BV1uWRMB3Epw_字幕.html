@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>五粮液财报的会计差错更正分析</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">投资学习笔记</div>
+  <h1 class="title">五粮液财报的会计差错更正分析</h1>
+  <div class="meta">
+    <span>从渠道压货到收入重述</span>
+    <span>新旧管理团队交接下的"洗澡"</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>事情本身不复杂：三季度营收同比降 52.66%</li>
+    <li>官方说法：前期会计差错更正</li>
+    <li>先了解五粮液的渠道销售模式</li>
+    <li>核心矛盾：收入确认时点的调整</li>
+    <li>管理层换帅：把过去的问题一次性暴露</li>
+    <li>前五大经销商占比：从 15.67% 飙到 56.96%</li>
+    <li>利润表的改动：前三季度营收由 600 亿改为 300 亿</li>
+    <li>资产负债表的改动与解读</li>
+    <li>一季报现金回款仅占营收 58%</li>
+    <li>重新估算五粮液的业绩与市值</li>
+    <li>如何避坑：理解白酒行业层层下压的格局</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、事情本身不复杂：三季度营收同比降 52.66%</h2>
+
+<p>今天跟大家讲一下五粮液财报调整这件事。这事本身不复杂，几分钟就能讲清楚，我顺便帮大家分析一下它对公司估值的影响。</p>
+
+<p>其实五粮液在去年 <span class="num">10</span> 月底发三季报的时候，这个事就已经有点苗头了，可能当时大部分人还没意识到问题的严重性。这还是财报修改前的三季报——五粮液去年第三季度的营收<strong>同比降低了 <span class="num">52.66%</span></strong>。但五粮液去年的产品端没什么异常，上半年业绩还是保持略微增长的，所以三季度单季度业绩大幅下滑，肯定不是市场消费低迷导致的，大概率就是公司的会计准则发生了变化，跟这次财报调整的原因应该是一样的。</p>
+
+<p>去年五粮液三季度财报发布的第二天，公司股价就直接低开了，但盘中很快就拉回来。其实那个时候就是一个"粉转路人"的最佳时期。</p>
+
+<p>今天我就带大家看一下：这次的问题出在哪个点？财报具体改了什么？为什么要这样改？背后的业务可能发生了什么？这样改动之后对公司市值的影响又有多大？</p>
+
+<h2 id="s2">二、官方说法：前期会计差错更正</h2>
+
+<p>我们先看一下五粮液自己是如何解释的。他们的官方说法是<strong>"前期会计差错更正"</strong>。书面表述是这样的：</p>
+
+<blockquote>
+  <p>公司对于 <span class="num">2025</span> 年业务模式进行梳理，基于谨慎性原则，调整 <span class="num">2025</span> 年部分业务收入确认的相关核算。</p>
+</blockquote>
+
+<p>这个说法需要"中翻中"一下才能讲清楚。我们要先了解五粮液的销售模式，才能知道问题出在哪个环节。</p>
+
+<h2 id="s3">三、先了解五粮液的渠道销售模式</h2>
+
+<p>五粮液是典型的产品型公司，产品大多数都是通过<strong>渠道</strong>销售并交付给客户的。什么是渠道？我们家小区门口的烟酒店就是渠道，我们去的大型超市也是渠道。</p>
+
+<p>五粮液先是把酒按出厂价卖给渠道，渠道再按市场零售价把酒卖给我们。这次的问题，主要就聚焦在这个渠道的收入确认环节。</p>
+
+<h2 id="s4">四、核心矛盾：收入确认时点的调整</h2>
+
+<p>按照五粮液自己的说法，之前是<strong>把酒发给经销商就算收入确认</strong>，这次调整为<strong>经销商取得控制权后才确认</strong>。核心矛盾就聚焦在这个收入确认的规则上。</p>
+
+<p>简单点说，就是公司可能为了财务报表数据好看，往渠道上压了大量的货；结果去年下半年白酒市场消费非常低迷，渠道库存积压、动销疲软，这事就压不住了。现在就是要把这部分水分挤掉。</p>
+
+<p>其实这就是一个<strong>压货行为</strong>。只要是产品型公司，多多少少都会对渠道进行压货；在白酒行业，这应该是一个默认的潜规则了。</p>
+
+<h2 id="s5">五、管理层换帅：把过去的问题一次性暴露</h2>
+
+<p>目前我们都知道，五粮液的管理团队面临调整。新的管理团队上任，他们就选择把过去的问题全部都暴露出来——差不多就是这么一个事。</p>
+
+<h2 id="s6">六、前五大经销商占比：从 15.67% 飙到 56.96%</h2>
+
+<p>我们可以在 <span class="num">2025</span> 年的半年报中找到一些重要线索。有一个指标是<strong>前五大经销商销售额占比</strong>：</p>
+
+<ul>
+  <li><span class="num">2024</span> 年财报中，前五大经销商销售总额为 <span class="num">139 亿</span>，占比仅 <span class="num">15.67%</span>。</li>
+  <li>到了 <span class="num">2025</span> 年半年报（过去仅半年时间），在五粮液整体业绩并没有太多同比增长的情况下，前五大客户的销售收入占比<strong>居然高达 <span class="num">56.96%</span></strong>。</li>
+</ul>
+
+<p>这就很明显了——公司大概率就是把货压在这里了。这次的财报调整也是围绕这个点来做的：这批压的货不能算你五粮液的收入，之前的财报是错的，所以要改回来。</p>
+
+<p>所以我们能看到五粮液的官方用词：这次调整并不是"会计准则的调整"，而是用了"会计差错更正"这个说法——<em>前期账务核算存在差错</em>，而不是说会计规则改了。</p>
+
+<h2 id="s7">七、利润表的改动：前三季度营收由 600 亿改为 300 亿</h2>
+
+<p>分析五粮液的财报改动，其实主要是分析它业务上到底发生了什么；至于财务数据具体怎么改的，倒没那么重要。我们简单看一下，看改动和业务问题能不能对得上。</p>
+
+<p>我昨晚仔细核对了一下，主要改的是利润表和资产负债表。<strong>利润表的改动比较简单直接</strong>——就是前面说的收入确认改动，压货的部分不能算收入了，主要把前三季度的营收改了。改动数字很大：原本五粮液前三季度累计收入是 <span class="num">600 亿</span>，现在修改为只有 <span class="num">300 亿</span>能算公司的收入，调整幅度相当大。</p>
+
+<h2 id="s8">八、资产负债表的改动与解读</h2>
+
+<p>还有一个重要的调整是资产负债表。财务三表之间是有勾稽关系的，利润表改动了，必然会造成公司资产结构的变化。资产负债表的调整主要体现在两处：</p>
+
+<ul>
+  <li><strong>资产端</strong>：其他流动资产比修改前多了 <span class="num">84 亿</span>。</li>
+  <li><strong>负债端</strong>：其他流动负债多了 <span class="num">275 亿</span>，这个数字比较大。</li>
+</ul>
+
+<p>了解清楚五粮液的业务之后，就很容易解释这个资产负债表的变化了。五粮液给经销商压货，压货的钱是收了的、到账了的——我去查过现金流量表，这次没有调整，说明钱是收了的。但这批货这次不能算公司的业绩了，那这笔钱你实际上是不应该收的；既然已经收了，就只能以负债的形式体现在财报上。</p>
+
+<p>负债的增加好理解：预收的渠道款暂时不能满足收入确认条件，就先体现为负债。那资产端为什么增加了 <span class="num">84 亿</span>？这个数据的变动原因我暂时判断不了，只能猜测一下：<strong>压的货也退回来了，但这批货不是生产出来的货，退回来的货没有计入库存，而是暂时计入其他流动资产中。</strong></p>
+
+<h2 id="s9">九、一季报现金回款仅占营收 58%</h2>
+
+<p>我们再看五粮液最新的资产负债表。作为老牌头部白酒企业，它的底子还是很厚的，现金类资产依然很高，但渠道和经营指标已经明显弱化了不少。</p>
+
+<p>一是其他流动负债的问题——之前没有这一项，压货收到的钱暂时算负债，要慢慢消化掉。二是今年一季度五粮液的应收账款大幅提高：按照头部白酒公司之前"先款后货"的结算模式，本不应产生多少应收账款，但现在情况明显变了——五粮液一季度收了大量的商票，开始给经销商减负和让利了。</p>
+
+<p>再看最新一季度的现金流量表。公司在 <span class="num">2026</span> 年公布的一季度业绩是 <span class="num">228 亿</span>，但现金流量表显示一季度销售回款只有 <span class="num">133 亿</span>，<strong>只占总营收的 <span class="num">58%</span></strong>——这个比例有点低。</p>
+
+<div class="pull">五粮液估计要花很长时间，<br>才能消化掉去年压货的坑。<br>财报调整只是把问题先暴露出来。</div>
+
+<h2 id="s10">十、重新估算五粮液的业绩与市值</h2>
+
+<p>最后简单帮大家算一下五粮液的市值变化。我把重新调整过的业绩数据、<span class="num">2025</span> 年和 <span class="num">2026</span> 年一季度的单季度业绩全部罗列出来，据此估算公司规模：</p>
+
+<ul>
+  <li><strong>业绩规模</strong>：直接累加即可。</li>
+  <li><strong>利润方面</strong>：<span class="num">2025</span> 年之后修订的净利润是 <span class="num">89.54 亿</span>；<span class="num">2026</span> 年一季度业绩增加了，利润可以再估高一点。</li>
+</ul>
+
+<p>这样看，目前五粮液是一个业绩规模大约在 <span class="num">450 到 500 亿</span>、全年利润差不多 <span class="num">110 到 120 亿</span>左右的公司。剩下就看市场能给五粮液多少 PE。目前市场给白酒行业的整体估值很低，如果 PE 只能给到 <span class="num">12–15</span>，大家可以自己算一下合理市值可能是多少，再和当前实际市值对比一下，心里就有数了。</p>
+
+<h2 id="s11">十一、如何避坑：理解白酒行业层层下压的格局</h2>
+
+<p>最后再多啰嗦两句，讲讲以后如何避这个坑。</p>
+
+<p>我之前发过一个视频分析白酒行业。如果我们对白酒行业足够熟悉、足够了解，就应该知道：<strong>茅台目前的价格下降，已经严重向下挤压了五粮液和泸州老窖的业绩。</strong>如果能提前理解白酒行业这种层层下压的竞争格局，那么在白酒行业消费低迷的阶段，就没有任何理由去关注排名靠后的白酒公司了。</p>
+
+<blockquote>
+  <p>你要不就完全不看好白酒行业；你要觉得白酒行业还能看，那就只能关注茅台这一家公司。</p>
+</blockquote>
+
+<p>这个观点我不久前的视频里已经讲得很清楚了，感兴趣的朋友可以回去看一下。</p>
+
+<p>判断公司的好坏，不是单纯看财报上的数字，而是要去理解公司的业务模式、分析公司的行业竞争格局，这样才能真正选出值得关注的公司。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>

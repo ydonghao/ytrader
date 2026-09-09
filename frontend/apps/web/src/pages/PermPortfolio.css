@@ -1,0 +1,472 @@
+/* 永久投资组合页面样式 — 暗色主题 */
+.pp-page {
+  padding: 20px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+
+.pp-layout {
+  display: flex;
+  gap: 20px;
+}
+
+/* 左栏 */
+.pp-sidebar {
+  width: 260px;
+  flex-shrink: 0;
+}
+.pp-sidebar__title {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 0 12px;
+}
+.pp-portfolio-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.pp-portfolio-card:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+.pp-portfolio-card--active {
+  background: rgba(84, 112, 198, 0.15);
+  border-color: rgba(84, 112, 198, 0.5);
+}
+.pp-portfolio-card__name {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 2px;
+}
+.pp-portfolio-card__type {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  margin-bottom: 8px;
+}
+.pp-portfolio-card__nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-xs);
+}
+.pp-portfolio-card__nav--empty {
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+.pp-portfolio-card__nav-value {
+  font-weight: 600;
+  color: var(--color-text);
+}
+.pp-portfolio-card__return.positive {
+  color: #91cc75;
+}
+.pp-portfolio-card__return.negative {
+  color: #ee6666;
+}
+.pp-portfolio-card__alert {
+  color: #ee6666;
+  font-size: var(--text-xs);
+  padding: 1px 6px;
+  border: 1px solid #ee6666;
+  border-radius: var(--radius-sm);
+}
+
+/* 右栏 */
+.pp-main {
+  flex: 1;
+  min-width: 0;
+}
+
+
+.pp-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin-bottom: 16px;
+}
+.pp-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.pp-card__header h3 {
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--color-text);
+  margin: 0;
+}
+.pp-card__title {
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--color-text);
+  margin: 0 0 12px;
+}
+
+.pp-range {
+  display: flex;
+  gap: 4px;
+}
+.pp-range__btn {
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+  cursor: pointer;
+}
+.pp-range__btn.active {
+  background: rgba(84, 112, 198, 0.2);
+  border-color: #5470c6;
+  color: #5470c6;
+}
+
+.pp-row {
+  display: flex;
+  gap: 16px;
+}
+.pp-card--alloc {
+  flex: 1;
+}
+.pp-card--drift {
+  flex: 1;
+}
+
+.pp-pie-row {
+  display: flex;
+  gap: 16px;
+}
+.pp-pie {
+  flex: 1;
+}
+.pp-pie h4 {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin: 0 0 8px;
+}
+
+/* 表格 */
+.pp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-xs);
+}
+.pp-table th {
+  text-align: left;
+  padding: 8px;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.pp-table td {
+  padding: 8px;
+  color: var(--color-text);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.pp-table td.positive {
+  color: #91cc75;
+}
+.pp-table td.negative {
+  color: #ee6666;
+}
+
+/* 再平衡 */
+.pp-rebalance__meta {
+  display: flex;
+  gap: 16px;
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+.pp-rebalance__alert {
+  background: rgba(238, 102, 102, 0.1);
+  border: 1px solid rgba(238, 102, 102, 0.3);
+  color: #ee6666;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  margin: 12px 0;
+  font-size: var(--text-sm);
+}
+.pp-rebalance__ok {
+  background: rgba(145, 204, 117, 0.1);
+  border: 1px solid rgba(145, 204, 117, 0.3);
+  color: #91cc75;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  margin: 12px 0;
+  font-size: var(--text-sm);
+}
+.pp-rebalance__actions-title {
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  margin: 16px 0 8px;
+}
+.pp-rebalance__reason {
+  color: var(--color-text-secondary);
+  max-width: 300px;
+}
+.pp-rebalance__applied {
+  margin-top: 8px;
+  font-size: var(--text-xs);
+  color: #91cc75;
+}
+
+
+/* 回测 */
+.pp-backtest__metrics {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  padding: var(--space-3);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-sm);
+}
+.pp-metric {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.pp-metric__label {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+.pp-metric__value {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-text);
+}
+.pp-metric__value.negative {
+  color: #ee6666;
+}
+
+/* 通用 */
+.pp-error {
+  background: rgba(238, 102, 102, 0.1);
+  border: 1px solid rgba(238, 102, 102, 0.3);
+  color: #ee6666;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+  font-size: var(--text-sm);
+}
+
+/* 响应式 */
+@media (max-width: 1200px) {
+  .pp-layout {
+    flex-direction: column;
+  }
+  .pp-sidebar {
+    width: 100%;
+  }
+  .pp-row {
+    flex-direction: column;
+  }
+}
+
+/* ═══ 表单（标的池管理/新建组合/编辑持仓） ═══ */
+.pp-tabs { margin-bottom: 16px; }
+
+
+.pp-sidebar__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.pp-sidebar__head .pp-sidebar__title {
+  margin: 0;
+}
+
+
+/* ── Modal overlay ── */
+.pp-modal__table {
+  margin: 12px 0;
+}
+
+/* ── Form ── */
+.pp-form__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: flex-end;
+}
+.pp-form__label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: var(--text-xs);
+  color: #a1a1a6;
+  flex: 1;
+  min-width: 120px;
+}
+.pp-form__input,
+.pp-form__select {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: #f5f5f7;
+  padding: 8px 10px;
+  font-size: var(--text-sm);
+  outline: none;
+  transition: border-color 0.15s;
+  font-family: inherit;
+}
+.pp-form__select {
+  appearance: auto;
+  cursor: pointer;
+}
+.pp-form__input:focus,
+.pp-form__select:focus {
+  border-color: #0a84ff;
+  background: #2c2c2e;
+}
+.pp-form__msg {
+  margin-top: 8px;
+  font-size: var(--text-xs);
+  color: #91cc75;
+}
+.pp-form__hint {
+  margin-top: 10px;
+  font-size: var(--text-xs);
+  color: #888;
+  line-height: 1.5;
+}
+.pp-form__section {
+  margin-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 16px;
+}
+.pp-form__section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.pp-form__section-head h4 {
+  font-size: var(--text-sm);
+  color: #e0e0e0;
+  margin: 0;
+}
+
+/* ── 标的选择列表 ── */
+.pp-instrument-pick {
+  max-height: 280px;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+}
+.pp-instrument-pick__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+.pp-instrument-pick__item--on {
+  background: rgba(10, 132, 255, 0.08);
+}
+.pp-instrument-pick__check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  flex: 1;
+}
+.pp-instrument-pick__label {
+  font-size: var(--text-sm);
+  color: #ccc;
+}
+.pp-instrument-pick__meta {
+  font-size: var(--text-xs);
+  color: #888;
+}
+.pp-instrument-pick__weight {
+  width: 90px;
+  flex: none;
+}
+
+/* ── 权重指示 ── */
+.pp-weight-badge-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pp-weight-badge {
+  font-size: var(--text-xs);
+  padding: 3px 10px;
+  border-radius: var(--radius-sm);
+  background: rgba(145, 204, 117, 0.12);
+  color: #91cc75;
+}
+.pp-weight-badge--warn {
+  background: rgba(238, 102, 102, 0.12);
+  color: #ee6666;
+}
+
+/* ── 编辑持仓表格 ── */
+.pp-edit-table .pp-edit-input {
+  width: 90px;
+}
+.pp-edit-table select {
+  min-width: 200px;
+}
+
+/* ── 回测表单 ── */
+.pp-backtest__form {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.pp-backtest__form .pp-form__label {
+  min-width: 140px;
+  max-width: 200px;
+}
+.pp-backtest__divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin: 20px 0 16px;
+}
+.pp-backtest__section-title {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: #e0e0e0;
+  margin: 0 0 4px;
+}
+.pp-backtest__roll-stats {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-size: var(--text-xs);
+  color: #a1a1a6;
+  padding: var(--space-3) var(--space-4);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-sm);
+  margin-bottom: 12px;
+}
+
+/* ── 状态标签 ── */
+.pp-status {
+  font-size: var(--text-xs);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+}
+.pp-status--on {
+  background: rgba(145, 204, 117, 0.15);
+  color: #91cc75;
+}
+.pp-status--off {
+  background: rgba(255, 255, 255, 0.06);
+  color: #888;
+}

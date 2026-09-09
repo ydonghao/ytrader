@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>银行板块，估值高吗？</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">投资学习笔记</div>
+  <h1 class="title">银行板块，估值高吗？</h1>
+  <div class="meta">
+    <span>从历史低位到均值上方</span>
+    <span>降息周期与净息差承压</span>
+    <span>农业银行的股息率复盘</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>开篇：红利股的三个坑</li>
+    <li>银行业务的本质与近年走势</li>
+    <li>22 年 11 月：历史级别的低估值</li>
+    <li>估值为何一路修复到均值上方</li>
+    <li>当前估值偏高的几个原因</li>
+    <li>农业银行的股息率复盘：XIRR 测算</li>
+    <li>底线假设与实际兑现</li>
+    <li>给红利股投资者的建议</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、开篇：红利股的三个坑</h2>
+
+<p>银行板块现在估值高吗？我觉得是有一点点高的。</p>
+
+<p>上周我发了一个关于"买股票吃股息"的视频，发现很多人在评论区问：现在是不是可以持有银行股？持股息行不行？所以我就顺着这个话题，以银行为案例再讲一下。</p>
+
+<p>另外我发现很多人看视频不看完整。我之前那个视频明确讲过，考虑红利股要注意三个坑：</p>
+
+<ol>
+  <li>要考虑<strong>分红的持续性</strong>；</li>
+  <li>要考虑<strong>大股东通过分红掏空上市公司</strong>；</li>
+  <li>要考虑<strong>估值是否合适</strong>。</li>
+</ol>
+
+<p>我担心一些朋友望文生义，看了个开头，就认为"买红利股、持股息"是一个低风险的投资。<strong>其实不是的，坑也非常多。</strong>今天就把银行这个行业挑出来讲一下它的估值问题。</p>
+
+<h2 id="s2">二、银行业务的本质与近年走势</h2>
+
+<p>先简单讲一下银行的业务。八零后、九零后小时候可能都有过去银行存压岁钱的经历，当时还没有银行卡，用的是存折，也没有线上业务，存钱取钱都要去柜台。后来随着信息技术的发展，现在几乎都不用去线下办理存取款了，线下网点也越来越少。</p>
+
+<p>很多人看到线下网点减少，就感觉银行的业务不行了——这其实是对银行业务一个很常见的误解。虽然有"存款第一行"的说法，但<strong>银行的核心业务不是存款取款，而是发放贷款</strong>。</p>
+
+<p>如果要了解银行业务，我可以推荐一部日剧叫《半泽直树》。虽然是一部职场爽剧，但它的背景用的就是银行的职场，看完基本就清楚银行的业务了，这里我就不费工夫跟大家讲了。</p>
+
+<h3>近年的走下坡路与近两年的大涨</h3>
+
+<p>这几年银行业务一直在走下坡路，从财务数据就能很直观地看出来，线下其实也能感同身受。如果生意不好做、赚不到钱，企业的贷款意愿就会降低，银行的业务自然会变差。银行被称为"百业之母"，和整体经济走势是趋同的。</p>
+
+<p>不过银行的市值这两年倒是涨得非常多。转折点是 <span class="num">2022</span> 年 <span class="num">10</span> 月，在那次大跌之后，银行的市值就一直在上涨，一直持续到现在。我个人感觉有两个原因：</p>
+
+<ul>
+  <li><strong>一是估值切换。</strong>2022 年市场上还在消化前一年白马股的高估值，蓝筹股和成长股普遍估值都比较高，资金选择估值在低位的银行，我觉得很正常。</li>
+  <li><strong>二是确定性溢价。</strong>从 2022 年开始（这不是我瞎说，上市公司财务数据汇总出来就是这个结论），银行虽然增长不行，但头部银行的确定性几乎是拉满的。所以在增长低迷的时候，成长股没什么人玩了，红利股会更受大家喜爱。</li>
+</ul>
+
+<h2 id="s3">三、22 年 11 月：历史级别的低估值</h2>
+
+<p>我们还是看数据说话。</p>
+
+<p>在 <span class="num">2022</span> 年的时候，银行的估值确实是历史级别的低。当时应该是 2022 年 <span class="num">11</span> 月初，整个行业的市盈率只有 <span class="num">4.12</span>，这个数据真的很低，<em>几乎给的是破产价了</em>。</p>
+
+<p>我记得当时房地产行业还在持续暴雷中，大家的普遍印象是房地产行业和银行绑定得很深，所以认为银行也存在暴雷的风险。后来随着时间的推移，大家发现银行业务虽然受到了房地产的影响，但也没有大家想的那么严重——生意是不好做，但也谈不上暴雷。所以估值就慢慢恢复了。</p>
+
+<h2 id="s4">四、估值为何一路修复到均值上方</h2>
+
+<p>从 <span class="num">2022</span> 年开始，银行的估值已经涨了两年多了，现在已经涨到历史均值上方的位置。我觉得这个估值也不是不能接受，但银行的业绩还在持续下滑，所以在这种情况下，我感觉当前的估值还是高了一点点。</p>
+
+<h2 id="s5">五、当前估值偏高的几个原因</h2>
+
+<p>前两天有消息称要"适度宽松"，但我觉得我们现在的环境已经很宽松了。现在的问题是需求和消费的不足，大家的贷款意愿很低，钱放在金融机构放不出来而已。</p>
+
+<p>而且我们现在处于降息周期。虽然银行是通过净息差获利的，利率的高低不影响最终的净息差水平，但是处于降息过程中，银行的净息差是会承压的。另外企业普遍经营困难，坏账率也会高一点点。</p>
+
+<p>所以综合考虑，<strong>现在的银行估值其实不算便宜，绝对不是可以无脑入手的时候。</strong></p>
+
+<h2 id="s6">六、农业银行的股息率复盘：XIRR 测算</h2>
+
+<p>如果考虑持股息，倒是可以拿分红去计算一下现金流折现——在一些假设前提条件下，是可以计算出来一个长期持有的收益率的。如果这个收益率能满足我们的要求，也不是不能考虑。</p>
+
+<p>我在 <span class="num">2022</span> 年看农业银行的案例，就是这么考虑的。当时股价已经非常低，分红的股息率已经到了 <span class="num">7%</span>。两年前我专门发视频讲过这个案例，素材可以再拿出来用一下。</p>
+
+<p>我先统计了农业银行过去十多年的历史分红，考察它的分红持续性。虽然历史不能代表未来，但我觉得也具备参考价值：如果过去能够持续稳定分红，在宏观经济稳定的情况下，我认为是会延续的。然后我们再推演未来的几种可能性。</p>
+
+<p>我做的几个假设如下（用的是 <span class="num">XIRR</span> 函数，感兴趣可以自己百度算法，Excel 里也内置，可以直接调用）：</p>
+
+<table>
+  <thead>
+    <tr><th>假设条件</th><th>长期投资收益率</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>未来 10 年零增长（底线假设）</td><td><span class="num">7.39%</span></td></tr>
+    <tr><td>未来 10 年市值和分红年均增长 <span class="num">4%</span></td><td><span class="num">11.76%</span></td></tr>
+    <tr><td>未来 10 年年均增长 <span class="num">8%</span></td><td><span class="num">15.52%</span></td></tr>
+  </tbody>
+</table>
+
+<p>我觉得最差的结果 <span class="num">7.39%</span> 是可以接受的。当然，肯定有杠精会问"那会不会负增长呢"，我只能说以我的认知，存在负增长的概率但真的不大，所以最差的情况我就按零增长来计算。</p>
+
+<h2 id="s7">七、底线假设与实际兑现</h2>
+
+<p>因为这是两年前的分析结果，现在已经过去了两年。从这两年看，农行的分红和市值都增长了非常多——特别是市值与 2022 年的最低点比，差不多增长了 <span class="num">70%</span> 多。</p>
+
+<p>所以现在取得的实际投资收益率，已经远远高于两年前所设想的底线。<strong>公司通过市值的增长，就已经提前兑现了未来的长期收益率。</strong>现在再看农行的股息率就不香了，因为它估值高了。</p>
+
+<h2 id="s8">八、给红利股投资者的建议</h2>
+
+<p>我觉得如果大家考虑红利股，可以自己去做这样的经营假设，然后自己套公式进行计算，看计算出来的结果自己能不能接受。每个人的风险接受度不一样，如果你觉得能接受，那我觉得就是 OK 的。</p>
+
+<p>那今天的分享就到这吧，我们下期再见。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>

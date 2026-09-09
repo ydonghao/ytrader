@@ -1,0 +1,194 @@
+# 国家队主体名单 + 监控 ETF
+# 主体用前缀匹配(资管计划/社保组合后缀多变)
+# holder_categories: 键 = category 标识; 值 = 前缀列表
+holder_categories:
+  huijin:
+    - 中央汇金投资有限责任公司
+    - 中央汇金资产管理有限责任公司
+  zhengjin:
+    - 中国证券金融股份有限公司
+    - 中证金融资产管理计划
+  safe:
+    - 梧桐树投资平台有限责任公司
+    - 北京凤山投资有限责任公司
+    - 北京坤藤投资有限责任公司
+  social_security:
+    - 全国社保基金
+    - 全国社会保障基金理事会
+    - 社保基金
+  # 新增两类(纯增量,向后兼容;前十大流通股东里按名匹配)
+  pension:
+    - 基本养老保险基金
+  big_fund:
+    - 国家集成电路产业投资基金
+
+# 6 大国家队主体展示元数据(供"团队"页卡片 + 配色/标签统一)
+# key 与 holder_categories 对齐;display = 前端展示名;color/type/desc 来自原仪表盘
+entity_meta:
+  huijin:
+    display: "中央汇金"
+    color: "#ef4444"
+    type: "汇金系"
+    desc: "中国投资有限责任公司全资子公司,代表国家行使国有金融资产出资人权利"
+  zhengjin:
+    display: "证金公司"
+    color: "#00d4ff"
+    type: "证金系"
+    desc: "经国务院批准设立的全国性证券类金融机构,承担维护市场稳定职能"
+  social_security:
+    display: "社保基金"
+    color: "#22c55e"
+    type: "社保系"
+    desc: "国家战略储备基金,负责管理运营全国社会保障基金"
+  pension:
+    display: "养老金"
+    color: "#f59e0b"
+    type: "养老金系"
+    desc: "各省市基本养老保险基金委托全国社保基金理事会投资运营"
+  safe:
+    display: "外管局"
+    color: "#8b5cf6"
+    type: "外管局系"
+    desc: "国家外汇管理局旗下投资平台,代表外储进行境内股权投资"
+  big_fund:
+    display: "国家大基金"
+    color: "#14b8a6"
+    type: "大基金系"
+    desc: "国家集成电路产业投资基金,推动半导体产业自主可控"
+
+# ETF 第一大持有人(汇金)占比 — 慢变量,来自上交所/深交所 ETF 季报披露。
+# 这里是手工维护的参考值(每季报披露后更新);规模/份额/市值走实时接口动态算。
+# data_source 标注每条来源;first_holder_share_pct 单位 %。
+etf_first_holder:
+  - code: "510300"
+    name: "沪深300ETF华泰柏瑞"
+    index: "沪深300"
+    category: "宽基/沪深300"
+    note: "汇金核心增持标的"
+    first_holder_entity: "中央汇金资产管理有限责任公司"
+    first_holder_share_pct: 82.76
+    data_source: "上交所ETF季报"
+  - code: "510310"
+    name: "沪深300ETF易方达"
+    index: "沪深300"
+    category: "宽基/沪深300"
+    note: "汇金增持标的"
+    first_holder_entity: "中央汇金资产管理有限责任公司"
+    first_holder_share_pct: 85.27
+    data_source: "上交所ETF季报"
+  - code: "510330"
+    name: "沪深300ETF华夏"
+    index: "沪深300"
+    category: "宽基/沪深300"
+    note: "汇金增持标的"
+    first_holder_entity: "中央汇金资产管理有限责任公司"
+    first_holder_share_pct: 88.62
+    data_source: "上交所ETF季报"
+  - code: "159919"
+    name: "沪深300ETF嘉实"
+    index: "沪深300"
+    category: "宽基/沪深300"
+    note: "汇金增持标的"
+    first_holder_entity: "中央汇金资产管理有限责任公司"
+    first_holder_share_pct: 86.97
+    data_source: "深交所ETF季报"
+  - code: "510050"
+    name: "上证50ETF华夏"
+    index: "上证50"
+    category: "宽基/上证50"
+    note: "汇金增持标的"
+    first_holder_entity: "中央汇金资产管理有限责任公司"
+    first_holder_share_pct: 86.05
+    data_source: "上交所ETF季报"
+  - code: "510180"
+    name: "上证180ETF华安"
+    index: "上证180"
+    category: "宽基/上证180"
+    note: "汇金增持标的"
+    first_holder_entity: "中央汇金资产管理有限责任公司"
+    first_holder_share_pct: 91.93
+    data_source: "上交所ETF季报"
+  - code: "510500"
+    name: "中证500ETF南方"
+    index: "中证500"
+    category: "宽基/中证500"
+    note: "汇金增持标的"
+    first_holder_entity: "中央汇金资产管理有限责任公司"
+    first_holder_share_pct: 74.58
+    data_source: "上交所ETF季报"
+  - code: "512500"
+    name: "华夏中证500ETF"
+    index: "中证500"
+    category: "宽基/中证500"
+    note: "汇金增持标的"
+    first_holder_entity: "中央汇金资产管理有限责任公司"
+    first_holder_share_pct: 65.76
+    data_source: "上交所ETF季报"
+  - code: "512100"
+    name: "中证1000ETF南方"
+    index: "中证1000"
+    category: "宽基/中证1000"
+    note: "汇金增持标的"
+    first_holder_entity: "中央汇金资产管理有限责任公司"
+    first_holder_share_pct: 86.43
+    data_source: "上交所ETF季报"
+  - code: "159845"
+    name: "华夏中证1000ETF"
+    index: "中证1000"
+    category: "宽基/中证1000"
+    note: "汇金增持标的"
+    first_holder_entity: "中央汇金资产管理有限责任公司"
+    first_holder_share_pct: 86.15
+    data_source: "深交所ETF季报"
+  - code: "159915"
+    name: "创业板ETF易方达"
+    index: "创业板指"
+    category: "宽基/创业板"
+    note: "汇金增持标的"
+    first_holder_entity: "中央汇金资产管理有限责任公司"
+    first_holder_share_pct: 54.03
+    data_source: "深交所ETF季报"
+  - code: "588080"
+    name: "科创50ETF易方达"
+    index: "科创50"
+    category: "宽基/科创50"
+    note: "汇金增持标的"
+    first_holder_entity: "中央汇金资产管理有限责任公司"
+    first_holder_share_pct: 41.95
+    data_source: "上交所ETF季报"
+
+# 每日动向监控的核心宽基 ETF
+# index_code 用于"抗跌判定"(ETF 涨跌 vs 对应指数涨跌)
+watch_etfs:
+  - etf_code: "510300"
+    etf_name: "沪深300ETF(华泰柏瑞)"
+    index_code: "sh000300"
+  - etf_code: "510050"
+    etf_name: "上证50ETF(华夏)"
+    index_code: "sh000016"
+  - etf_code: "510500"
+    etf_name: "中证500ETF(南方)"
+    index_code: "sh000905"
+  - etf_code: "560010"
+    etf_name: "中证1000ETF(广发)"
+    index_code: "sh000852"
+  - etf_code: "159915"
+    etf_name: "创业板ETF(易方达)"
+    index_code: "sz399006"
+  - etf_code: "563360"
+    etf_name: "中证A500ETF(华泰柏瑞)"
+    index_code: "sh932000"
+
+# 回填范围:成分股来源
+backfill_scope:
+  # 沪深300成分股
+  - index_code: "000300"
+    index_name: "沪深300"
+  # 银行 + 非银金融板块(申万一级行业代码)
+  - sw_sector_code: "801192"
+    sw_sector_name: "银行"
+  - sw_sector_code: "801193"
+    sw_sector_name: "非银金融"
+
+# 回填时间范围
+backfill_from: "2015-01-01"  # 从 2015Q1 起

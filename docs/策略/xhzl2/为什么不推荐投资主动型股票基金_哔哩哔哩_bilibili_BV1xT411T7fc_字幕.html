@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>为什么不推荐投资主动型股票基金</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">投资学习笔记</div>
+  <h1 class="title">为什么不推荐投资主动型股票基金</h1>
+  <div class="meta">
+    <span>代理人风险</span>
+    <span>基金经理的"偏科"问题</span>
+    <span>抱团白马股的教训</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>开篇：为什么聊这个话题</li>
+    <li>原因一：基金经理与投资人的目标不一致</li>
+    <li>2020 年抱团白马股的案例</li>
+    <li>行情破灭后基金仍然收管理费</li>
+    <li>所谓"代理人风险"</li>
+    <li>原因二：基金经理普遍偏科</li>
+    <li>基金行业的其他乱象</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、开篇：为什么聊这个话题</h2>
+
+<p>这是目前大家问我问得比较多的一个问题：为什么我一直以来都不太推荐大家去买主动型的股票基金。</p>
+
+<p>先看看今年的行情——反正也是亏钱。与其去买这种主动型股票基金，我们还不如自己操作，起码还能获得一点市场的参与感。</p>
+
+<p>今年我个人的投资成绩虽然略有浮亏，但起码也是大幅跑赢沪深<span class="num">300</span>指数 <span class="num">15</span> 个百分点。我觉得这个成绩应该能够超过市场上大部分的主动股票基金，所以我觉得自己还是可以来简单聊一下这个话题。</p>
+
+<h2 id="s2">二、原因一：基金经理与投资人的目标不一致</h2>
+
+<p>我不推荐大家买主动股票型基金，核心原因有两个。</p>
+
+<p><strong>第一个原因是，基金经理和基金公司的目标，跟我们这些投资者的目标其实是不一样的。</strong></p>
+
+<p>我们普通投资者关注的是：买他的基金，能不能获得一个稳定的收益。而基金经理和基金公司所期望的目标，是能够扩大自己管理基金的规模——因为他们是按照管理的基金规模去收管理费的。也就是说，<em>无论基金是涨还是跌，只要规模越来越大，他收的费用就越多。</em></p>
+
+<p>基金经理的目标跟我们的目标是不一样的，这一点不一样，就会带来很大的差异。</p>
+
+<h2 id="s3">三、2020 年抱团白马股的案例</h2>
+
+<p>举个具体的例子。2020 年前后那段时间，有一段基金抱团白马股的行情。</p>
+
+<p>如果是我们个人投资者，比如像我自己，会觉得这些股票的估值已经很高了、风险非常大；即便后续还有上涨的可能，但从风险角度考虑，我可以不参与——顶多少赚一点，没有必要去冒这个险。</p>
+
+<p>但对于基金来讲，他不能不参与，他必须参与。因为如果他不参与，假设行情继续，他的同行还是会买这些抱团白马股，同行的基金净值就会大幅上涨，他自己的收益就没那么好看。</p>
+
+<p>而一般投资者看基金，主要就看收益率——收益率高就买，收益率不高就不买。基金经理如果因为没有参与抱团白马股，在市场上失去大量客户，那对他来说损失是巨大的。</p>
+
+<p>所以从他的角度讲，<strong>去追抱团白马股、去追高，对他来讲收益是更大的</strong>：本身基金的净值在当前会非常好看；哪怕后续行情破灭，对他也没什么影响。</p>
+
+<h2 id="s4">四、行情破灭后基金仍然收管理费</h2>
+
+<p>比如 2021 年初，抱团行情破灭，所有白马股开始暴跌。但对基金经理来讲，他自己没什么影响——</p>
+
+<ul>
+  <li>反正跌是大家一起跌，可以说是市场的问题，而不是本人能力的问题；</li>
+  <li>就算是跌了，亏的也不是自己的钱，亏的是投资人的钱；</li>
+  <li>自己反正都可以照收管理费。</li>
+</ul>
+
+<p>所以这件事对他来讲没什么影响。</p>
+
+<h2 id="s5">五、所谓"代理人风险"</h2>
+
+<p>从这个角度看，我们买主动型股票基金，<strong>投资人的钱和基金经理、运营者的目标是不一致的</strong>，这就带来一个风险，叫做<strong>代理人风险</strong>。</p>
+
+<p>这是第一个原因。</p>
+
+<h2 id="s6">六、原因二：基金经理普遍偏科</h2>
+
+<p><strong>第二个原因是，我觉得我们的基金经理在能力上其实并没有那么专业，或者用"偏科"这个词会更准确。</strong></p>
+
+<p>我们先想股票的本质是什么——股票的本质是上市公司的股权。我认为投资股票最核心的能力，是对公司经营的理解能力，而不是对二级市场本身的理解。但绝大部分基金经理恰恰是对二级市场本身比较在行。</p>
+
+<p>我们去看他们的简历，基本上都是写从什么名校毕业、从业多少年，从来没看到哪一个基金经理是由企业家跳投过来的。如果你没有真正在上市公司工作过，起码要参与战略决策，或者自己亲自经营过一家公司，那你对公司的理解就会非常片面——或者说只是从书本上看来的知识，自己没有经历过，总会觉得少了点什么。</p>
+
+<p>所以我认为，目前的基金经理其实并没有经纪公司包装出来的那么专业，<strong>起码他们在公司运营这一块的经验肯定是缺的</strong>。</p>
+
+<h2 id="s7">七、基金行业的其他乱象</h2>
+
+<p>除了上面这两个原因之外，基金行业之前还爆出过一些丑闻。</p>
+
+<ul>
+  <li><strong>老鼠仓。</strong>基金经理自己搞老鼠仓。</li>
+  <li><strong>抬轿子。</strong>一个基金公司下面包装出"网红经理"，内部账户之间相互抬轿子。比如让网红经理先买一只股票，然后让其他账户把这只股票的价格推上去，这样就显得这个网红经理特别厉害。</li>
+</ul>
+
+<p>不过这些问题，我反倒觉得是小问题，核心还是上面两个：<strong>代理人风险（基金经理的目标跟投资人的目标不一致）</strong>，以及<strong>基金经理的专业性有问题</strong>。</p>
+
+<blockquote>
+  <p>这就是我为什么不推荐大家去买主动型基金的原因。</p>
+  <p>大家在休息的时候，可以好好思考一下我讲的是不是有道理，实际情况是不是这样的。其实只要复盘一下，就不难得出这样的结论。</p>
+</blockquote>
+
+<p>今天的分享就到这儿，我们下期再见。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>

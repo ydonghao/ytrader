@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股小福利，可转债的打新与投资</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">股票投资从入门到精通 · 高级拓展篇</div>
+  <h1 class="title">A 股小福利：可转债的打新与投资</h1>
+  <div class="meta">
+    <span>债股之间的创新融资工具</span>
+    <span>打新机制与三大投资思路</span>
+    <span>低风险品种的真实门槛</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>从打新股到打新债</li>
+    <li>什么是可转债</li>
+    <li>企业与投资者的双向逻辑</li>
+    <li>可转债的打新机制</li>
+    <li>广核案例：16.8% 中签率</li>
+    <li>配售权与抢权操作</li>
+    <li>二级市场交易与转股价</li>
+    <li>套利与转股溢价率</li>
+    <li>保护发行人：下调转股价</li>
+    <li>保护发行人：强制赎回</li>
+    <li>130% 的经验数据</li>
+    <li>保护投资者：回售条款</li>
+    <li>思路一：买债券防守反击</li>
+    <li>思路二：赌下调转股价</li>
+    <li>思路三：正股替代</li>
+    <li>小结与作者建议</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、从打新股到打新债</h2>
+
+<p>前几天跟大家讲了一下，A 股的最大的福利就是打新股。今天接着话题讲，跟大家讲一下 A 股的小福利——就是<strong>可转债怎么玩</strong>。</p>
+
+<p>可转债和打新还有点不一样。打新股本质上它还是股票嘛，只是在新股申购层面上，目前 A 股是存在一个制度红利的，所以我们重点讲的是申购的机制。比如说上周五某只新股上市，我们只按收盘价 <span class="num">600</span> 算，中 <span class="num">1000</span> 股就可以赚 <span class="num">24 万</span>多，而且中签率差不多是 <span class="num">0.8%</span>——和这玩意相比，那双色球就是个狗看了都摇头的笑话。</p>
+
+<p>那可转债呢，它本身是一个有区别于股票的投资品种，所以除了打新之外，它本身还是一个适合低风险投资者的投资品种。不过可转债的规则是有点复杂的，它不一定适合所有人。所以我今天先跟大家讲一下基础规则，如果大家感兴趣的话，可以自己去深入了解一下。</p>
+
+<h2 id="s2">二、什么是可转债</h2>
+
+<p>可转债是企业用于融资的一种手段。我们都知道企业融资过去一般有两种方式嘛：</p>
+
+<ul>
+  <li><strong>债权融资</strong>：就是直接找银行贷款借钱或者是发行债券。</li>
+  <li><strong>股权融资</strong>：就是发行股票。</li>
+</ul>
+
+<p>而可转债呢，它就是介于债权和股权之间那种创新的融资方式。它本质上是一种债券，不过带有特殊条款——<strong>就是在特定的条件下，它允许债券持有者把债券转化为公司的股票</strong>。</p>
+
+<h3>普联软件的案例</h3>
+
+<p>我们直接来看一个案例吧，看一个最近发行的一只可转债——昨天刚刚申购的就是<strong>普联软件</strong>发行的可转债，发行规模是 <span class="num">2.43 个亿</span>，相当于就是这公司要借这么多钱嘛。</p>
+
+<p>和普通债券一样，它的票面价值都是 <span class="num">100 块钱</span>一张。然后可转债会设定一个<strong>转股价</strong>——意思就是说你可以在规定时间内，按照这个价格把债券转化为公司的股票。普联软件的转股价是 <span class="num">18 块 2 毛 6</span>。也就是说，公司的一张债券可以转化为 <span class="num">100 ÷ 18.26 ≈ 5.48</span> 张股票。</p>
+
+<p>如果公司股价上涨的话，因为可转债它可以跟股票进行换算嘛，所以它也会跟着上涨，投资者就能在持有债券的基础上获得一些股票类的投资收益。<strong>但作为代价，可转债的利息是要远远低于普通债券的</strong>。</p>
+
+<h2 id="s3">三、企业与投资者的双向逻辑</h2>
+
+<p>那可转债这种形式的融资方式，对于企业和投资者来说各有什么好处呢？作为"中翻中的高手"，我用大白话来给大家解释一下，企业为什么要通过可转债来融资，而我们投资者为什么要去买企业的可转债。</p>
+
+<table>
+  <thead><tr><th>角色</th><th>想法</th></tr></thead>
+  <tbody>
+    <tr><td>企业</td><td>我想用一个比较低的利息找你来借钱。而且我认为我们公司业绩未来会变好、股价大概率是要涨的——如果公司股价涨的话，那你也别让我还钱了，你直接把你的债券转化为股票就完事了（对公司来说就是一个股票增发嘛）。如果股价不涨的话，那到期了我就把本金还给你呗，反正利息也不高。</td></tr>
+    <tr><td>投资者</td><td>我看好你公司的未来，但我又不太确定，所以我先借钱给你、先收点利息保本。如果你的股价真的涨了，我就把债券换成股票就能赚得更多；如果你股价不涨的话那也没关系，我反正还可以把我的本金拿回来嘛，也就损失一点机会成本而已。</td></tr>
+  </tbody>
+</table>
+
+<p>是不是挺好理解的？可转债的机制其实并不是特别复杂。</p>
+
+<h2 id="s4">四、可转债的打新机制</h2>
+
+<p>那我们先从可转债的打新讲起。可转债的打新操作和股票是类似的，都通过交易软件申购，操作上非常简单。一般证券的软件，会把股票打新和可转债打新放在一起，功能统一称为"新股新债"。</p>
+
+<p>可转债打新就没有那个股票持仓的限额了，就是<strong>申购额度所有人都是统一的</strong>。满额申购都是 <span class="num">1 万张</span>，一张的票面价值是 <span class="num">100 块钱</span>，总价就是 <span class="num">100 万</span>。</p>
+
+<blockquote>
+  <p>可能有人会担心：万一真中了，我没有 <span class="num">100 万</span>现金咋办呢？那你就是想多了——<strong>因为可转债和打新一样，它都是有一个制度红利的</strong>，所以参与抽签的人非常多。申购 <span class="num">1 万张</span>就是十张算 <span class="num">1000</span>，你能中 <span class="num">1000</span> 都算你运气非常好了。</p>
+</blockquote>
+
+<p>中签的概率主要是看公司要借多少钱：金额高的话就比较容易中，金额小的话就看运气咯。单签的中签率大多数都在 <span class="num">2/100000</span> 和 <span class="num">5/100000</span> 之间。我们每次都能申购 <span class="num">1000</span> 个签，所以算下来，中签的概率大概就是 <span class="num">2%</span> 到 <span class="num">5%</span>。<strong>这个中签的概率就比股票要高很多</strong>。</p>
+
+<h2 id="s5">五、广核案例：16.8% 中签率</h2>
+
+<p>我看之前的评论区，很多朋友都说今年中了可转债。我今年是中了两个，其中一个是中国广核的可转债，发行规模是 <span class="num">49 亿</span>——这个规模算很大的发债了，很多公司 IPO 都达不到这个规模。</p>
+
+<p>广核转债的单签中签率是 <span class="num">万分之 1.84</span>，这个中签率就很高了。按照概率论的公式算下来的话，我们满额申购，最少中 <span class="num">1000</span> 的概率是 <span class="num">16.8%</span>——相当容易中了。</p>
+
+<p>然后中了之后能赚多少钱呢？一般是可以赚 <span class="num">300 块钱</span>。虽然不多，但<strong>这是一个零成本的抽奖活动啊——<span class="num">16.8%</span> 的概率让你赚 <span class="num">300 块钱</span></strong>。这要是拿来跟双色球比，那双色球是不是狗看了都摇头？</p>
+
+<h3>今年的小确幸</h3>
+
+<p>愿意发债扩张的公司不多，所以今年抽奖的机会比较少。过去经济活力好的时候呢，那可转债是挺好中的。我记得是在 <span class="num">2021</span> 年的时候吧，一年的时间我大概中了十次可转债，每次中差不多都是赚个 <span class="num">300</span> 左右，那总共就是 <span class="num">3000 块钱</span>。我觉得这也算 A 股一个比较好的福利吧——算中签赚的没有打新多，但它相比新股来说很容易中，一次就赚 <span class="num">300</span>，次数多了也不少啊，就属于一种小确幸吧。</p>
+
+<blockquote>
+  <p>如果你的家庭成员比较多的话，你就可以多开点账户嘛，然后每次申购就拿全家的账户一起去打。一年下来搞个两三千块钱，应该是没啥问题——<em>这白捡的钱不要白不要嘛</em>。</p>
+</blockquote>
+
+<h2 id="s6">六、配售权与抢权操作</h2>
+
+<p>那可转债还有一个必中的机制，就是<strong>配售机制</strong>。当上市公司发行可转债的时候，会优先向持有公司股票的股东进行配售——你可以把它理解为给老股东的一个优先认购权，就像新股配售一样。配售的比例不是固定的，发行公告里面会写这个，直接看公告就可以了。一般就会写你每持有多少股，就可以配售一手的可转债。</p>
+
+<p>所以市场上就有<strong>抢配售权</strong>的操作：就是在公司发债之前就买入公司大量的股票，然后获得一个配售权，然后再把这些公司的股票后面卖掉就好了。收益就是你可以原价购买这些公司可转债，然后预期收益率是 <span class="num">30%</span>。但是要承担的风险就是你买入股票的时候，那个股票的价格可能会下跌——如果买股票下跌的损失比你配售获得可转债的投资收益率要低，那这个行为就会亏损。那这个风险就你自己去把握就好了。</p>
+
+<h2 id="s7">七、二级市场交易与转股价</h2>
+
+<p>那讲完可转债的发行和打新，我们再来讲一下可转债的交易问题。因为可转债它是一个独立的投资品种，上市之后它是可以在二级市场上自由交易的。初始的价格是按面值计算的，就是 <span class="num">100 块钱</span>一张；后续可转债放在二级市场中交易，它的价格就由二级市场来决定了，就会随着行情上涨或下跌。</p>
+
+<p>因为可转债它可以转化为公司股票嘛，所以可转债的价格是会跟着公司的股价走的。那具体是个什么算法呢？我们就要关注可转债的一个最核心的指标，叫<strong>转股价</strong>——可转债的所有收益问题都是围绕这个转股价来的。</p>
+
+<h3>套利空间如何被填平</h3>
+
+<p>比如说我们刚开头讲的普联软件的可转债，它设定的转股价是 <span class="num">18 块 2 毛 6</span>。如果公司的股价上涨，就会带动可转债的价格上涨。</p>
+
+<p>我们就假设公司的股价涨到 <span class="num">25 块钱</span>了。如果你的可转债价格还是 <span class="num">100 块钱</span>一张，那这里就会存在一个<strong>套利空间</strong>——那我们就可以大量买入可转债，然后按照 <span class="num">18.26</span> 的价格去转股，然后再把这个股票反手拿到市场上 <span class="num">25 块钱</span>卖掉，那这就是一个无风险的套利。</p>
+
+<p>所以有这个套利动作的存在，就会让可转债的价格上涨，一直涨到可转债的转换成本和你直接在二级市场上买股票的价格一样。比如说这个普联软件的可转债，按 <span class="num">18 块 2 毛 6</span> 的转股价，就相当于一张债券等于 <span class="num">5.48</span> 张股票嘛；而股票的市场价是 <span class="num">25 块钱</span>，所以我们用股票的市场价去乘以这个债券对应的股份数，就能算出来这张债券的合理价格大概是 <span class="num">137 块钱</span>。</p>
+
+<h2 id="s8">八、转股溢价率</h2>
+
+<p>实际情况是，可转债的价格通常会比这个 <span class="num">137 块钱</span>要稍微高一点点。因为我们直接去买股票的话，是要承担股票下跌的风险的；而买可转债的话，它再怎么下跌，它也很难跌到 <span class="num">100 块钱</span>以下——因为这个东西它本质上还是个债券嘛，持有到期的话，这 <span class="num">100 元</span>的本金是可以收回来的。所以就没有必要去贱卖它。</p>
+
+<p>所以在这种情况下，就是有一个<strong>保底的安全机制</strong>，投资者就会更倾向于为低风险买单，所以通常会愿意以更高的价格来买入可转债。比如说按 <span class="num">140 块钱</span>来买入，比合理的价格 <span class="num">137</span> 要多三块钱。</p>
+
+<blockquote>
+  <p>那这多出来的三块钱呢，换算成比例就叫做<strong>转股溢价率</strong>。我们如果投资可转债的话，就要重点关注这个转股溢价率。</p>
+  <p>如果这个指标过高的话，就说明可转债上涨的潜力是比较低的——因为即便是股票的价格上涨了，由于可转债之前它本身就存在溢价嘛，那可能就会导致的结果就是可转债的价格它不怎么涨，<strong>只是缩小了转股溢价率而已</strong>。</p>
+</blockquote>
+
+<p>转股溢价率几乎不可能为负——不然这个指标它就不会叫"溢价率"了，而会叫"折价率"。市场是不会轻易给我们散户套利空间的，就这点薅羊毛的心思就不用多想了。</p>
+
+<h2 id="s9">九、保护发行人：下调转股价</h2>
+
+<p>然后为了保护发行者和投资者，可转债还设定了几个特殊条款。首先为了保护发行者，就设定了两个条款：<strong>一个叫下调转股价，一个是强制赎回</strong>。这两个都是我们在持有可转债的时候需要很注意的条款。</p>
+
+<p>公司发行可转债的话，实际上公司是<strong>不想还钱</strong>的。公司更希望你转股——你转股的话就会摊薄全体股东的权益，对公司日常经营来说啊，不还钱是更有利的。</p>
+
+<p>如果公司的股价出现大幅下跌，那远远低于转股价，那会怎么样呢？那持有可转债的投资者肯定就不会转股，因为它转股就是硬亏，不如我就当个债券拿着嘛，起码能保本。</p>
+
+<p>当公司股价在一段时间内低于这个转股价达到一定幅度的时候（通常为 <span class="num">80%</span> 到 <span class="num">85%</span>），公司的董事会就有权提议<strong>下调这个转股价</strong>。下调转股价之后呢，可转债就能置换更多的股票了；那你这个价格下调之后，转股溢价率也就跟着降了，投资者就可能更愿意把债券转化为股票——那公司就不用还钱了嘛。</p>
+
+<h3>注意：不利于股东</h3>
+
+<p>这里有个细节要注意一下：因为从表面的利益上看，可转债转化为股票是利于公司管理层的——因为不用还钱嘛，所以他经营压力会变小；但这是<strong>不利于股东的</strong>，因为它会摊薄所有人的股权。下调转股价是需要股东大会投票的。所以股权很分散的公司会存在一个情况，就是股东大会它投票不通过。</p>
+
+<h2 id="s10">十、保护发行人：强制赎回</h2>
+
+<p>那这是股价大跌的情况，为了促进转股可能会下调转股价。那反过来呢，如果公司股票大涨呢？公司可能会启动一个<strong>强制赎回条款</strong>——这是最重要的一个发行人条款了。</p>
+
+<p>当公司股价在一段时间内高于当期转股价的 <span class="num">130%</span> 的时候，公司就有权按照债券的面值加上当期的利息来赎回还没有转股的转债。</p>
+
+<h3>这是在逼投资者转股</h3>
+
+<p>这么做是出于什么目的呢？我们刚刚就讲到过，公司发行可转债其实就是不想还钱，这种融资方式其实可以算成一种变相的股权增发。所以当股票的价格大涨时，可转债的价格它也会大涨，这种情况下就给了公司一个操作的空间：公司就可以宣布要进行强制赎回，用债券的票面价格也就是 <span class="num">100 块钱</span>，再加上一点点利息就能赎回现在已经可能涨到 <span class="num">200 元</span>的一张可转债。</p>
+
+<blockquote>
+  <p>它这种行为其实就是逼迫投资者来做一个选择——那这个时候投资者会怎么做呢？<strong>那肯定不能让公司赎回啊——你赎回的话，我就马上亏一半</strong>。那我只能转股啊，就赶紧把债券转化为公司股票啊，然后把股票在二级市场上卖掉就能回血了。</p>
+  <p>如果你转股的话，那公司不想还钱的目的不就达到了吗？公司实际上是不想赎回的——它赎回它是要掏钱的，所以它就用这个规则去逼你转股。你一转股，那公司这个钱就彻底不用还了，那成本呢就由全体股东来承担。</p>
+</blockquote>
+
+<p>过去大多数的可转债基本上都是以强制赎回收场的。因为只要时间拉得足够长，那二级市场本身就有波动性嘛，公司的股价上涨到可转债转股价的 <span class="num">130%</span> 以上是大概率事件。</p>
+
+<h2 id="s11">十一、130% 的经验数据</h2>
+
+<p>那为什么强制赎回的标准是定到 <span class="num">130%</span> 呢？而不是更高或者更低呢？这是一个经验数据。</p>
+
+<ul>
+  <li><strong>定太高的话</strong>，就条件过于苛刻了，那股价可能长期达不到，那这个强赎条款就白写了，公司就没有办法促进大家去转股，那最终可能就会面临一个还债的压力。</li>
+  <li><strong>如果设定得太低呢</strong>，那股价稍微一上涨就会触发这个强赎条款。投资者就会觉得"未来股价可能还会大涨啊，现在转股不划算了，继续持有债券享受上涨的收益和利息可能会更好"——这就违背了公司促使大家尽快转股的初衷。</li>
+</ul>
+
+<p>大家最后就发现这个 <span class="num">130%</span> 这个比例是最合适的。然后经过长期实践，大家就发现大部分可转债都是等到股价上涨超过转股价的 <span class="num">30%</span>，公司就会用强制赎回的条款迫使你去转股。所以<strong>可转债最终的收益率大概就是在 <span class="num">30%</span></strong>——就是 <span class="num">100 元</span>的票面价值，最后转化为股票在二级市场上卖掉，就可以卖 <span class="num">130</span>。</p>
+
+<h3>上市第一天的低风险套利</h3>
+
+<p>所以这里就会导致一个特别有意思的经济学现象：可转债在上市的第一天的时候，因为初始价格是 <span class="num">100</span> 嘛，预期收益率是 <span class="num">30%</span>，它就存在一个低风险的套利空间。所以很多投资者就会抢着去买入价格低于 <span class="num">130</span> 的可转债。这种买入行为就会把可转债的价格快速拉到接近 <span class="num">130</span> 的区间，一直到把这个套利空间降到零为止。</p>
+
+<blockquote>
+  <p>所以我们打中可转债的人，<strong>最好的操作就是在第一天能涨到 <span class="num">130</span> 的话，直接卖了就完了</strong>。如果第一天涨不到的，后面大概率也会涨到的——因为就算后面拿的时间比较久，它最后还是能卖个 <span class="num">130</span>，那不如第一天就直接把这个收益兑现了。</p>
+</blockquote>
+
+<h2 id="s12">十二、保护投资者：回售条款</h2>
+
+<p>以上是保护发行人的规则。就还有保护投资者的条款呢——这个东西不能光有利于发行者，你这样的话，那谁还投这个东西嘞？所以为了保护投资者，它一般也有一个保护性条款，叫<strong>回售条款</strong>。</p>
+
+<p>回售条款的意思就是说：可转债如果持续期间，那个公司股票的价格它很长时间都保持一个很低的价格（比如说低于转股价的 <span class="num">70%</span>），那么债券的持有人，他就有权要求你公司就按照这个票面价格加上一些利息把它买回去。</p>
+
+<p>简单来说，它就是一个<strong>下跌保护</strong>，或者是一个保底撤退的条款——投资者在股价长期低迷、转股无望的时候，就能够拿回本金和少量利息，就避免长期被套着。那对于公司来说呢，公司就会尽量避免这个条款的触发，因为前面说了两次了，公司发行可转债就是想让投资者去转股、并不想还钱给你。所以公司会尽可能地去下调转股价。</p>
+
+<blockquote>
+  <p>这里就要注意点：每个可转债的回售条款它不太一样，有的会写得比较坑爹。这个细节的话，如果你要投某个可转债的话，你就要自己注意去看。</p>
+</blockquote>
+
+<p>可转债的规则不算特别复杂，但也需要一定的理解能力，还是有门槛的。</p>
+
+<h2 id="s13">十三、思路一：买债券防守反击</h2>
+
+<p>那基于以上的规则，我们如果选择投资可转债，有以下几个思路。</p>
+
+<blockquote>
+  <p>其实我是不太建议大家搞可转债的——这个东西它比较麻烦，要计算很多东西。我有这时间和精力，我不如多研究一下公司业务呗，我直接投股票可能赚得更多一点的。不过既然讲到这里了，我也就跟大家讲一下几个可转债的常见投资思路。主要有三个思路，我简单讲一下。</p>
+</blockquote>
+
+<h3>第一种：买债券的思路</h3>
+
+<p>这个需要蹲点——要找债券价格在 <span class="num">100</span> 左右的可转债，甚至跌到 <span class="num">100</span> 以下的（这个在大熊市中比较常见，牛市几乎看不到这种）。买了之后呢，你就当它是债券投资。如果价格跌到 <span class="num">100</span> 以下的话，按债券的收益模型算预期收益率，它也不会太低。</p>
+
+<p>然后就是看运气咯——看一下会不会突然公司股价来给你大涨一波，然后就把可转债的价格也带上去啊。<strong>这就是一种防守反击的投资方式</strong>。</p>
+
+<h2 id="s14">十四、思路二：赌下调转股价</h2>
+
+<p>第二个思路就是<strong>去赌公司可能会下调转股价</strong>。因为下调转股价可能会提高可转债的内在价值嘛。如果你判断公司的股票价格在低位、没有继续下跌的空间了——如果下调转股价的话，那可转债后续上涨的概率就会大大增加。</p>
+
+<p>但是话说回来：如果我们能判断股票的价格在低位的话，我们直接去买股票就行了，就没有必要去买可转债——<em>就有点脱裤子放屁的感觉</em>。</p>
+
+<h2 id="s15">十五、思路三：正股替代</h2>
+
+<p>第三个思路就是<strong>正股替代</strong>的思路。就是说如果可转债的转股溢价率很低（就接近于零的话），公司股价上涨可转债是一定会跟着上涨的；但公司如果股价下跌的话，可转债它最多也就跌到 <span class="num">100</span>，它是有兜底的。</p>
+
+<p>实际执行的时候，这种机会其实比较少：要么就是转股溢价率很高，要么就是可转债的价格它已经远高于 <span class="num">100</span>。那就算是有兜底的安全垫，那可能也没那么安全了——比如说可转债的价格已经到了 <span class="num">140</span> 了，就算是最低它会跌到 <span class="num">100</span>，那从 <span class="num">140</span> 跌到 <span class="num">100</span>，那一样是会伤筋动骨的。</p>
+
+<div class="pull">就像高空坠落一样——<br>你从二楼三楼往下跳，那有个安全垫能救你命；<br>但你从 20 楼往下跳，那有没有安全垫的意义，可能就已经不大了。</div>
+
+<h2 id="s16">十六、小结与作者建议</h2>
+
+<p>那最后再给大家小结一下吧。</p>
+
+<blockquote>
+  <p><strong>首先</strong>是跟大家讲了可转债的定义：可转债是一种带有特殊条款的债券，在特定条件下，债券可以按照一个转股价把债券转化为公司的股票。</p>
+  <p><strong>然后</strong>跟大家讲了可转债的打新：和股票一样需要申购，不过没有配额的限制，每个人能申购的额度是一样的。中签的概率主要看公司的发行规模。根据经验统计的话，中签率基本上就在 <span class="num">2%</span> 到 <span class="num">5%</span> 之间，偶尔也能碰到那种很容易中的福利签——经典最高的中签率应该是 <span class="num">16.8%</span>。然后中签之后呢，在上市第一天就可以卖了，一般是每签可以赚个 <span class="num">300 块钱</span>左右，这个是机制决定的。</p>
+  <p><strong>再</strong>给大家讲了一下公司发行可转债的核心目标：公司用这个发债就是<strong>不想还钱，而是希望大家转股</strong>——他就当成是一种股票增发的一个融资。所以为了保护发行人呢，他又设定了相关条款：一个是下调转股价，一个是强制赎回。这两点都会促进投资者进行转股，从而实现公司不用还钱的目的。然后为了保护投资者，它也有一个保护性条款，就是公司股价长期低迷，投资者可以选择回售——就是强行把钱先拿回来，我不借给你了。</p>
+  <p><strong>最后</strong>就讲了一下投资可转债的三个思路。</p>
+</blockquote>
+
+<h3>作者的最终建议</h3>
+
+<p><strong>我个人是不太建议投资可转债的，特别是新人</strong>——这个规则对新人来说还是有点绕的。虽然说可转债是低风险的投资品种，但实际上操作下来，市场会给你把风险和收益拉到一个水平的：</p>
+
+<ul>
+  <li>低价的可转债你买不到；</li>
+  <li>价格高了你去买它，风险又上去了。</li>
+</ul>
+
+<p>所以还不如一心一意研究股票。通常情况下发行可转债的公司质量都不算太好，<strong>因为好公司是不太缺钱的</strong>。</p>
+
+<p>今天就讲这么多吧。篇幅的关系也不可能给你讲得面面俱到——对于新手来说，了解这个东西我觉得是够用了的。我们就讲到这里吧，下期再见。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化<br>
+  股票投资从入门到精通 · 系列
+</footer>
+
+</div>
+</body>
+</html>

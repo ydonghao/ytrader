@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>复盘分析农行估值，聊聊概率和风险的问题</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">投资学习笔记</div>
+  <h1 class="title">复盘分析农行估值，聊聊概率和风险的问题</h1>
+  <div class="meta">
+    <span>正态分布与均值回归</span>
+    <span>风险是有成本的</span>
+    <span>职业玩家与业余玩家的分水岭</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>散户总在低估值割肉、高估值追高</li>
+    <li>市盈率只适合业绩利润稳定的大型公司</li>
+    <li>三根参考线：均值、高估线、低估线</li>
+    <li>均值回归只是概率加大，不一定会发生</li>
+    <li>2017年高估区的减仓操作</li>
+    <li>风险是有成本的：车险与银行贷款</li>
+    <li>同样赚10万，风险不同天差地别</li>
+    <li>高估泡沫案例：寒武纪、三一重工、爱尔眼科、乐视网</li>
+    <li>钟摆理论与2022年的低估建仓</li>
+    <li>模糊的概率判断胜过信誓旦旦</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、散户总在低估值割肉、高估值追高</h2>
+
+<p>今天结合农业银行的市盈率走势图，我给大家讲一下风险和概率这两个概念在估值判断中的应用。</p>
+
+<p>我发现一个问题：当一个公司股价持续下跌、估值非常低的时候，大家反而会受到股价长期下跌的负面影响，变得相当不看好这家公司；结果等公司股价开始上涨、产生了赚钱效应、估值又回到高位的时候，又觉得这个公司还不错，变得具有投资吸引力。所以造成的现象就是——<strong>大家总在低估值的时候去割肉，又在高估值的时候去追高。</strong>结果就是公司股价长期在增长，还会造成投资亏损。</p>
+
+<p>你还别不信，这是我长期观察到的结果。我长期写自媒体就有这点好处，在几个市场极端行情的时候，大家当年的评论我可以翻出来回看。<span class="num">2022</span>年农行估值在历史低位的时候，我发了一个作品讲解农行估值低的问题，结果评论区大部分声音都是质疑我的——虽然这两年不少人把评论删掉了，但还是有一些没删的。这两年银行股一直在涨，赚钱效应很明显，到现在不少银行的估值已经很高了，我又在评论区看到有人在说"可以无脑买银行了"。</p>
+
+<p>低估的时候觉得公司不行，高估的时候又觉得能买，这个逻辑就很矛盾。这也解释了为什么散户如果跟着市场热点走，就特别容易高位接盘。如果我们能做一些数据分析的基础工作，其实是能判断出公司估值相对高低的，再加上对风险和概率的分析，一定程度上能避免这个问题。</p>
+
+<h2 id="s2">二、市盈率只适合业绩利润稳定的大型公司</h2>
+
+<p>下面我就结合农行这个案例，跟大家讲解一下我是如何思考的。我拿农业银行的估值走势来当案例，因为银行业务和利润比较稳定，可以用<strong>市盈率</strong>这个指标来判断估值的相对高低。</p>
+
+<p>这里多强调一下：市盈率只适合业绩利润稳定的大型公司。因为这个指标是市值和利润的比率，如果是创新成长型公司，这个指标恐怕就不好用了——这类公司的第一战略目标可能不是利润，而通常是市场和增长，有时候利润会为核心战略目标牺牲掉一些，在利润不稳定的情况下，市盈率就没那么好用了。</p>
+
+<h2 id="s3">三、三根参考线：均值、高估线、低估线</h2>
+
+<p>在这个图上我标记了三根参考线，使用的是正态分布的算法。正态分布是一个经典的概率与统计公式，建议大家去多了解一下。我的参考线是这样设计的：</p>
+
+<ul>
+  <li>以一个时间周期的均值为<strong>中间线</strong>；</li>
+  <li>高于均值一个标准差为<strong>高估线</strong>；</li>
+  <li>低于均值一个标准差为<strong>低估线</strong>。</li>
+</ul>
+
+<p>通过超长周期的观察，我们可以发现这种业绩利润稳定的大型公司，它的市盈率走势是符合正态分布的。我们可以判定这个市盈率的均值，就是这个时间段内相对最合理的估值。如果实际估值和均值产生了偏差，就有概率发生<strong>均值回归</strong>的现象。</p>
+
+<div class="pull">这里要敲黑板：只是均值回归的概率会加大，<br>但它不一定会真的发生。<br>实际估值离均值越远，回归概率越大，<br>一直到真的发生为止。</div>
+
+<h2 id="s4">四、2017年高估区的减仓操作</h2>
+
+<p>我们先看<span class="num">2017</span>年<span class="num">12</span>月：通过图形可以看出来，这时公司的估值已经很高了，处于正态分布的高估值区间。我们很容易判断，在这个状态下，公司估值回归的概率比公司估值继续上涨的概率要更大。作为职业玩家，我们应该怎么操作？<strong>应该减仓。</strong></p>
+
+<p>但当时的实际走势和预计的不一样：公司估值在两个月后又向上拉了一大波，差不多短期涨了<span class="num">20%</span>左右——这个涨幅在短线玩家眼里应该算是很大的涨幅了。那我们前面的减仓操作，是不是要被视为踏空和失误？</p>
+
+<p>其实并不能这样想。因为我们现在是复盘，所以知道后面还有<span class="num">20%</span>的涨幅，但实际上在当时那个时间点，我们是没有办法预估后续走势的。<em>在存在不确定的时候，正确的做法就是遵循概率论的指导，尽可能去选择概率看上去更大的方向去操作。</em></p>
+
+<p>我们把时间线再拉长一点看：虽然两个月后股价又上涨了<span class="num">20%</span>，但当年马上就出现了贸易战的问题，加上本身估值又在高位，所以在拉完这一波之后，估值还是回归了——最终的大概率事件成为了现实。</p>
+
+<h2 id="s5">五、风险是有成本的：车险与银行贷款</h2>
+
+<p>另外，在这个地方我们重点要考虑的是<strong>风险</strong>。虽然未来存在继续上涨的可能性，但同样也存在下跌的可能性，而且下跌的可能性明显要高于上涨的可能性。所以在这个点不减仓甚至加仓，是需要承担股价下跌风险的。即便这次的风险短期并没有发生，但你依然承担了这次的风险。</p>
+
+<p>大家要知道，<strong>风险也是有成本的</strong>。金融行业的工作之一就是给风险定价。</p>
+
+<ul>
+  <li>比如我们每个人都会买的车险，实际上就是一种风险定价。保险公司会通过大量数据计算，测算出我们出车祸的概率，然后基于这个概率计算出一个相应的风险价格，我们通过支付一定金额向保险公司购买"消除掉这个风险"的服务。</li>
+  <li>银行贷款业务本质上也是为风险定价。每个人的偿债能力不一样，有的人坏账风险比一般人高，如果银行选择给这些人贷款，收取的利息就会高一些——利息高出来的部分就是对风险的定价。</li>
+</ul>
+
+<p>所以说风险是可以明码标价的。你在高估值的地方买入股票，除了股价本身的成本之外，<strong>还要额外承担风险的成本</strong>，只不过这个风险你没有意识到而已。能否考虑到这个风险的成本问题，<em>我视为职业玩家和业余玩家的一个分水岭。</em></p>
+
+<h2 id="s6">六、同样赚10万，风险不同天差地别</h2>
+
+<p>如果买入该公司的股票，后续真的出现估值回归、股价下跌的情况，那这个风险就成了现实，你就需要额外支付这个风险的成本，最后的结果就是账户出现大幅亏损。</p>
+
+<p>我们从事任何经济活动，都要考虑风险问题。比如同样都是赚<span class="num">10</span>万块钱：一个是躺在家里收房租收了<span class="num">10</span>万，另一个是从事高空作业等危险工作赚了<span class="num">10</span>万——谁更好一些？这个还用说吗？同样是盈利<span class="num">10</span>万元，前者几乎不用承担任何风险，但后者需要承担巨大的风险，甚至一不小心就会丧命。</p>
+
+<p>所以我们在评论区看到有人留言，说他一个月赚了<span class="num">30%</span>多，大家不用去羡慕他，因为你根本不知道他承担了什么样的风险——也许他承担的是可能导致倾家荡产的风险才赚到这<span class="num">30%</span>，只能说是这次运气好，风险没有真的发生而已。如果长期还是这样顶着巨大风险操作，迟早有一天会资产归零。</p>
+
+<p>这种现象还存在一定的<strong>幸存者偏差</strong>：你依靠运气好赚到了才可以到处去炫耀，但那些触发了风险血本无归的人，是没有心情在互联网上发声的。</p>
+
+<h2 id="s7">七、高估泡沫案例：从寒武纪到乐视网</h2>
+
+<p>只要讲到高估值的问题，我一定会把寒武纪拿出来举例子。最近公司市值又新高了，股价最高涨到<span class="num">700</span>元一股，但那又怎么样呢？谁都知道寒武纪的估值是虚高的，反正已经是巨大的泡沫了，再吹大一点也无妨。</p>
+
+<p>判断这种公司的股价，基础的估值方法已经失效，最后都是人性的博弈。你要在这个价格去买它的股票，就要想清楚你承担了什么样的风险、自己能不能接受。反正在我看来，这个风险有点过于巨大了，是一种能让你一夜回到解放前的风险。即便是前期涨了三倍又如何？这种高风险的案例一般是不可能重仓压上去的；如果只是小打小闹赚个几万几十万，又有什么意义？如果要重仓压上去最后风险爆了，那就要承担社会阶级滑落的风险，对资金量比较大的人来说，没有必要承担这样的风险。</p>
+
+<p>A 股又不是第一天开门，像寒武纪这样的案例多得数不胜数。就拿近一点来说，<span class="num">2021</span>年白马股破灭的时候，一大把优质公司股价跌掉了七八成：</p>
+
+<ul>
+  <li><strong>三一重工</strong>：从高点的<span class="num">48</span>跌到后来的<span class="num">13</span>块钱，跌幅高达<span class="num">73%</span>。</li>
+  <li><strong>爱尔眼科</strong>：股价从最高的<span class="num">42</span>跌到最低的<span class="num">9</span>块钱，跌幅高达<span class="num">78%</span>。</li>
+</ul>
+
+<p>三一重工和爱尔眼科这两个还属于公司基本面没什么问题，只是当年估值太高了。如果连公司基本面都出问题，那基本可以宣告资产清零了。再往远一点说，当年的创业板一哥乐视网，贾老板现在还没回国呢。乐视网股价最高时大约<span class="num">44</span>元，最后跌得只剩几毛钱，然后退市——跌幅都不用测算了，基本就是直接归零。</p>
+
+<div class="pull">有些风险是真的不能碰的。<br>短线赚到了是很爽，但一旦风险触发，<br>就宣告你这辈子可能就退出这个市场了。</div>
+
+<h2 id="s8">八、钟摆理论与2022年的低估建仓</h2>
+
+<p>回到农行的估值。如果在<span class="num">2018</span>年追高进去，后面要面对的问题就是：虽然公司业绩在这<span class="num">5</span>年中还是持续增长的，所以虽然市值和股价没涨，但估值一直在降低。农行的估值从<span class="num">18</span>年开始持续走低，经过<span class="num">3</span>年时间，在<span class="num">20</span>年底回调到了均值的位置。但农行的估值并没有止跌，而是继续向下探去。</p>
+
+<p>这里就涉及到一个经典的估值理论，叫<strong>钟摆理论</strong>：公司估值在下跌过程中，由于惯性问题，可能不会在均值时止跌，而是继续向下探底。<em>当年有多高估，在下跌的时候可能就会有多低估。</em>如果以<span class="num">20</span>年底为轴心，前面高估和后面低估刚好对称，再加上这两年从低估重回到高估，像不像一个钟摆来回摆动？</p>
+
+<p>把时间线挪到<span class="num">2022</span>年<span class="num">4</span>月份，农行估值已经偏离历史均值一个标准差以上，属于明显低估状态。在这个时候我们可以判断：估值上涨的概率明显大于估值继续下跌的概率，如果基本面稳定就可以建仓了。</p>
+
+<p>当然，在估值低点做出的判断依然是概率性的——投资不可能出现百分之百可能性。运气不算太好，时间线再往后推一年多，公司估值依然在持续下跌，从低估跌到了超低估。不过当时实际情况是股价没有继续跌了，在底部横盘——因为公司利润在上涨，股价不变的情况下利润和估值是反比关系，所以看上去估值还在跌。但在职业投资者眼中，估值继续下跌没什么关系，只要基本面稳定，估值回归的概率会越来越大，继续选择大概率方向就行了。</p>
+
+<blockquote>
+  <p>而且这个时候几乎不需要承担什么风险——当时已经明确计算过，光拿公司的分红，就能保证一个投资收益率的下限；再加上四大行的风险基本绑定整体金融风险，所以在当时那个估值下操作，几乎不承担任何风险。</p>
+</blockquote>
+
+<p>如果在<span class="num">22</span>年低估值的时候完成建仓并持有到现在，这个案例基本能实现翻倍收益。最重要的有两点：一是在同样时间段沪深300的收益率甚至是负数，所以我们可以取得远超市场的收益率；二是这个收益几乎不承担任何风险。<strong>不承担任何风险而获得高收益，这个才是最棒的事情。</strong></p>
+
+<h2 id="s9">九、回到现在：熟悉的剧情重演</h2>
+
+<p>把时间拉回到现在，可以明显看出公司估值又回到了高点，这不就跟<span class="num">5</span>年前的情况一样了吗？由于银行板块持续上涨，市场上吹银行的言论又出现很多。我们看股价变化，不能只看股价本身的涨跌，还要考虑概率问题和风险问题。</p>
+
+<p>最近银行板块又成了热门，上涨趋势可能还在继续，未来股价还是有可能继续上涨，但这又能怎么样呢？大家想想<span class="num">5</span>年前的情况，现在看估值回调的概率，要明显大于估值继续上涨的概率。如果后续估值继续上涨，无非就是跟拉弹簧一样，你总会拉到一个极限的。我判断不了未来趋势，只能分析当前的概率，选择概率较大的方向去操作。如果现在买入，就要承担估值回归的风险——比如后续估值可能跌回均值，对应股价的跌幅可能就是<span class="num">20%</span>。这个风险你愿不愿意承担？</p>
+
+<h2 id="s10">十、模糊的概率判断胜过信誓旦旦</h2>
+
+<p>讲到最后，我也需要再叠个甲：我又不是先知，也不是神，未来会怎么走我是没办法判断的。很有可能会出现我现在判断公司股价很难上涨、但后续依然被打脸的情况——这很正常，这才是常态；反而是那种信誓旦旦说能判断涨跌的说法，才不可信。</p>
+
+<p>我能做的，是用十几年股市经验做出合理的概率判断，然后在每次操作时都选择概率看起来更大的方向。能做到这一点就可以了。因为根据概率论的指导，只要我能持续选择概率较大的方向，投资收益率的期望值就是正数。</p>
+
+<p>即便是判断错了也没关系，因为概率比较小的事件不是没概率发生，它依然存在可能性。而且这种概率判断达不到九成概率，我估计也就<span class="num">七成</span>左右，所以<span class="num">30%</span>的概率并不属于小概率事件，它发生的可能性依然很大。但如果操作的次数足够多，概率大的事件发生的次数一定比概率小的事件多，所以大多数投资行为肯定是浮盈的，就足够覆盖掉那些概率比较小的事件造成的亏损。做到这一点就足够了，这就可以保持长期稳定的盈利。</p>
+
+<p>今天的分享就到这里。这期讲得比较绕，涉及到概率和风险这种抽象的东西，希望大家能耐心多看几遍，好好消化一下。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>
