@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>如何判断股市的牛熊周期？</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">方法论 · 用数据判断牛熊</div>
+  <h1 class="title">如何判断股市的牛熊周期？</h1>
+  <div class="meta">
+    <span>沪深300市盈率的历史波动</span>
+    <span>用正态分布画出三道参考线</span>
+    <span>数据不会骗人</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>股市是有周期性的</li>
+    <li>用沪深300市盈率看波动</li>
+    <li>2015 年与 2021 年初的高点几乎一致</li>
+    <li>用正态分布公式加三道参考线</li>
+    <li>2020 年底的高估与随后的下跌</li>
+    <li>当前处于估值低谷的周期</li>
+    <li>用概率论判断当前是相对安全的点</li>
+    <li>数据工具辅助投资，胜率会提高很多</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、股市是有周期性的</h2>
+
+<p>今天跟大家讲一点干货，就是教大家如何去判断股市的低迷期。</p>
+
+<p>我们都知道股市是有周期性的。比如说 <span class="num">19</span> 年跟 <span class="num">20</span> 年是比较好的牛市，从 <span class="num">21</span> 年到现在，整个股市都在下跌。如果说我们作为投资者能够判断这个周期，那对我们的投资是非常有利的。今天我就告诉大家，如何通过计算机程序辅助我们做这个分析判断，判断当前股市处于哪一个周期范围。</p>
+
+<h2 id="s2">二、用沪深300市盈率看波动</h2>
+
+<p>我们可以通过沪深 <span class="num">300</span> 这个指数的业绩数据来判断它的估值高低。具体方法是把沪深 <span class="num">300</span> 整个成分股的市值和利润加起来做汇总计算，可以得到沪深 <span class="num">300</span> 的市盈率趋势。</p>
+
+<p>点一下市盈率的数字，就能产生一份近 <span class="num">8</span> 年的市盈率趋势图。把指标线去掉后，可以清晰看到沪深 <span class="num">300</span> 这 <span class="num">8</span> 年来的波动情况——明显有高有低。</p>
+
+<h2 id="s3">三、2015 年与 2021 年初的高点几乎一致</h2>
+
+<p>往前看，最开始的第一个高峰是 <span class="num">2015</span> 年的大牛市，沪深 <span class="num">300</span> 的市盈率最高到了 <span class="num">15</span> 以上。后续股市开始下跌，市盈率跌到 <span class="num">10</span> 左右。然后 <span class="num">16</span> 年到 <span class="num">17</span> 年底，市盈率从 <span class="num">10</span> 又涨到 <span class="num">14</span>；之后又从 <span class="num">14</span> 跌回 <span class="num">10</span> 左右。</p>
+
+<p>从 <span class="num">10</span> 开始，就是大家比较熟悉的 <span class="num">19</span> 年到 <span class="num">2021</span> 年初的牛市，沪深 <span class="num">300</span> 的市盈率从 <span class="num">10</span> 又涨回到 <span class="num">15</span> 以上。<strong>我发现它这个市盈率的高点，跟 <span class="num">15</span> 年大牛市的高点几乎是一致了。</strong></p>
+
+<p>目前这 <span class="num">2</span> 年经历的又是一个下跌周期，市盈率从 <span class="num">15</span> 的高点慢慢跌回 <span class="num">10</span> 左右，截止到最新的 <span class="num">9</span> 月 <span class="num">9</span> 号数据是 <span class="num">11.87</span>。可以看到，它具有非常清晰的波动线。</p>
+
+<h2 id="s4">四、用正态分布公式加三道参考线</h2>
+
+<p>基于这组数据，我通过数学的正态分布公式给它加了三道参考线。</p>
+
+<ul>
+  <li><strong>均值线：</strong>近 <span class="num">8</span> 年来沪深 <span class="num">300</span> 市盈率的均值是 <span class="num">12.43</span>，整个过程围绕这个均值波动。</li>
+  <li><strong>低估线：</strong>算法是均值减去标准方差，得到 <span class="num">10.91</span>。</li>
+  <li><strong>高估线：</strong>均值加上一个标准方差，得到 <span class="num">13.95</span>。</li>
+</ul>
+
+<p>通过这三条参考线，我们就可以很清楚地看到整个沪深 <span class="num">300</span> 市盈率的趋势就在这个区间内波动。</p>
+
+<h2 id="s5">五、2020 年底的高估与随后的下跌</h2>
+
+<p>通过这个趋势判断，我们大致就能判断出股市处于什么情况。比如说有了趋势线之后，我们就可以发现在 <span class="num">2020</span> 年底，股市非常繁荣，但整个市场的市盈率已经到了一个非常危险的位置。这段时间持续时间并不长，后面就造成了我们现在持续的大跌。</p>
+
+<h2 id="s6">六、当前处于估值低谷的周期</h2>
+
+<p>现在我们刚好就处在市盈率的一个低谷周期。看这个图形，当前的线在均线和低估线之间相对是一个比较低的位置。它后续持续的时间有可能会比较长，这个不好说，要看实体经济的恢复情况。</p>
+
+<p>但有一点可以判断：<em>现在的估值跟 <span class="num">21</span> 年初的高估值相比，安全性是高非常多的。</em>因为在那个时候买入拿到现在，很多股票会跌 <span class="num">50%</span> 以上；而现在虽然估值有可能进一步下跌，但从历史上看，这个点属于一个相对的低点，向上的概率比向下的概率和空间都要大。</p>
+
+<h2 id="s7">七、用概率论判断当前是相对安全的点</h2>
+
+<p>从概率论的角度讲，也可以判断出现在是一个比较安全的点。</p>
+
+<p>这就是我们通过程序来判断市场情绪的方法。<strong>我们个人主观判断是会出错的，但是数据不会骗人，而且是有效的。</strong>利用这种数据工具来辅助投资，我们的胜率会提高非常多。</p>
+
+<h2 id="s8">八、小结</h2>
+
+<p>今天分享的就是这一点。如果说大家还有疑问的话，可以在评论区告诉我，我会每一条都回复。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>

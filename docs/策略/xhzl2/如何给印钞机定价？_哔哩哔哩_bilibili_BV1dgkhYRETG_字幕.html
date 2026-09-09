@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>如何给印钞机定价？</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">投资学习笔记</div>
+  <h1 class="title">如何给印钞机定价？</h1>
+  <div class="meta">
+    <span>从现金流折现说起</span>
+    <span>估值三变量：寿命、成长性、利率</span>
+    <span>模糊的正确大于精确的错误</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>什么是投资：持续买入优质资产</li>
+    <li>优质公司就像一台印钞机</li>
+    <li>货币的时间价值：明年的10万不等于今天的10万</li>
+    <li>现金流折现：把未来的钱折算到今天</li>
+    <li>印钞机定价推演：10年87.86万</li>
+    <li>三个变量：持续时间、成长性、利率</li>
+    <li>应用一：公司的预计经营寿命</li>
+    <li>应用二：公司的成长性</li>
+    <li>应用三：利率与宏观周期</li>
+    <li>模糊的正确大于精确的错误</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、什么是投资：持续买入优质资产</h2>
+
+<p>今天借"我们如何给一台印钞机定价"这个问题，我跟大家讲一下股票的估值问题。资产估值是一个很复杂的问题，几千字肯定讲不完，所以我今天先讲里面的原理。</p>
+
+<p>讲资产估值之前，我先说一下什么是投资。我的理解很简单：<strong>持续买入优质的资产。</strong>资产就是能持续产生现金流的东西，比如大型城市核心地段的房地产，比如优质上市公司的股票——它们都能创造稳定的现金流。</p>
+
+<p>房子可以出租，每个月都能收到一笔不小的租金，这个月收完下个月还能继续收，源源不断；优质公司有分红，比如茅台前几天才下发了中期分红，每股分红<span class="num">23.8</span>元。茅台之前发过公告，说未来<span class="num">3</span>年一年分红两次，不过我感觉这个分红策略会持续，应该不止<span class="num">3</span>年——现在很多上市公司都是一年分红两次了。在经营稳定的前提下，公司分红也是能持续不断的。</p>
+
+<div class="pull">这像不像一台印钞机？<br>到点就给你发钱，还不需要你亲自去维护。</div>
+
+<p>那我们买入这样的印钞机，花多少钱才是划算的？这个问题，就是投资的核心问题：<strong>如何给资产估值。</strong></p>
+
+<h2 id="s2">二、货币的时间价值：明年的10万不等于今天的10万</h2>
+
+<p>这里涉及到一个金融的基础概念，叫<strong>现金流折现</strong>。基本所有财务类教材都会重点讲这个公式。我今天讲这个话题肯定不照本宣科，我跟大家翻译翻译，保证零基础的人也能听得懂。</p>
+
+<p>我们先假设这样一个问题：如果我有一台印钞机挂牌出售，每年能在固定的时间印<span class="num">10</span>万块钱给你，预计使用寿命是<span class="num">10</span>年，那这个印钞机合理的售价是多少？</p>
+
+<p>可能有人会想：一年<span class="num">10</span>万，<span class="num">10</span>年不就<span class="num">100</span>万嘛，合理售价应该低于<span class="num">100</span>万就行了。如果这样想，就忽视了<strong>货币的时间价值</strong>——这个每个人都明白，因为大家都知道存钱是有利息的。</p>
+
+<p>再举个例子：比如我和你有一笔合作合同，约定在合作成功之后，我在明年这个时候向你支付<span class="num">10</span>万元的项目款。但你现在急用钱，现在就需要我支付这<span class="num">10</span>万，我能直接给你吗？当然不行。因为这<span class="num">10</span>万是明年才需要支付的，我现在可以拿去买一年的银行理财。我看了一眼招行的理财广告，就按<span class="num">3%</span>算，<span class="num">10</span>万存一年理财，明年就是<span class="num">10.3</span>万了。</p>
+
+<p>所以如果现在就要支付这笔项目款，我至少要把利息扣掉。按<span class="num">3%</span>的利息算，<span class="num">10</span>万÷(1+<span class="num">3%</span>)，大概是<span class="num">9.7087</span>万元。你现在拿这<span class="num">9.7087</span>万去存一个一年<span class="num">3%</span>的理财，到明年这个时候就刚好有<span class="num">10</span>万了。这就很公平。</p>
+
+<h2 id="s3">三、现金流折现：把未来的钱折算到今天</h2>
+
+<p>这就是一个现金流折现的算法——<strong>把未来的钱根据合理的利率进行计算，折现到今天的价格。</strong></p>
+
+<p>那印钞机这道题就有算法了：使用寿命<span class="num">10</span>年，每年印<span class="num">10</span>万，我们按一定的利率把这十笔资金都折现到今天，就是这台印钞机的合理售价。</p>
+
+<p>利率按什么算？可以按无风险利率算，最保守的就是<span class="num">10</span>年期国债的利率；或者接地气点，直接看银行的理财报价，仍按<span class="num">3%</span>来计算。</p>
+
+<ul>
+  <li>第一年的<span class="num">10</span>万不用折现，就是<span class="num">10</span>万；</li>
+  <li>第二年的<span class="num">10</span>万按<span class="num">3%</span>折现：10万÷(1+3%)；</li>
+  <li>第三年的<span class="num">10</span>万隔了两年，折现两次：10万÷(1+3%)²；</li>
+  <li>以此类推，第十年的<span class="num">10</span>万要往前折<span class="num">9</span>年，折到现在的结果是<span class="num">7.66</span>万。</li>
+</ul>
+
+<p>都不用去套复杂的公式，使用初中级别的数学能力就能推演出来。把这<span class="num">10</span>年的价格汇总起来，最后得到的价格是<strong><span class="num">87.86</span>万</strong>。</p>
+
+<blockquote>
+  <p>所以如果我们买这台印钞机，最高出价绝对不能高于<span class="num">87.86</span>万——这个价格就是上限。因为一旦高于这个价格，我还不如拿这笔钱随便买个<span class="num">3%</span>的理财，拿<span class="num">10</span>年最终也是这个结果。</p>
+  <p>至于你愿意花多少钱买，取决于自己的投资能力。如果预期自己的投资能力在年化<span class="num">8%</span>左右，那合理的价格就是<span class="num">72</span>万。</p>
+</blockquote>
+
+<h2 id="s4">四、三个变量：持续时间、成长性、利率</h2>
+
+<p>这个案例我简化了很多，只有一个利率变量。如果调整利率，最终计算出来的价格就会变化。如果能理解这个案例，其他的投资案例应该也能理解——其他资产估值都是基于这个问题演化出来的。</p>
+
+<p>比如我们直接给印钞机加上一个价格，设定为<span class="num">200</span>万，然后<span class="num">10</span>年之后把这<span class="num">200</span>万退还给你——这不就是一个<span class="num">5%</span>利率的债券吗？而且在这<span class="num">10</span>年过程中，你也可以随时把这台印钞机拿去卖二手，这个定价问题就是债券的定价问题。于是我们就明白了，为什么利率的变化会导致证券交易价格发生变化——就是现金流折现公式影响的。</p>
+
+<p>把这个问题再抽象化，可以提炼出三个变量：</p>
+
+<ul>
+  <li><strong>持续时间。</strong>如果这台印钞机不只能用<span class="num">10</span>年，后续还能接着用<span class="num">15</span>年、<span class="num">20</span>年，折现到今天的金额就会变多。</li>
+  <li><strong>成长性。</strong>如果第一年印<span class="num">10</span>万，第二年印<span class="num">11</span>万，印钞能力具有成长性，价格是不是也会变多？</li>
+  <li><strong>利率。</strong>之前按<span class="num">3%</span>算，如果未来持续降息，折现到今天的金额是不是要比高利率时更高一些？</li>
+</ul>
+
+<h2 id="s5">五、应用一：公司的预计经营寿命</h2>
+
+<p>基于这三个变量，再来看上市公司的估值，思路就清晰多了。开公司就是为了赚钱，我们完全可以把公司视为一台印钞机，只不过涉及的变量更多一点。</p>
+
+<p>我自己选择公司，最看重的就是<strong>确定性的问题</strong>——意思是这个公司预计能经营多少年。大家不要太高估公司的生存能力，经营公司是需要注册和注销的，这个数据能统计出来：我们国家平均公司的寿命只有<span class="num">5</span>年而已。当然能做到上市公司的规模，预计寿命肯定比小公司长很多，但都不是无限寿命，都存在倒闭的风险。根据现金流折现的思路，如果预计公司经营时间不够长，那这个公司可能就不太值钱。</p>
+
+<p>比如长江电力，为什么它的估值一直很坚挺？因为它的确定性足够高。三峡大坝是<span class="num">94</span>年开始建、<span class="num">06</span>年投入使用的，预期寿命大概<span class="num">150</span>年；厂内电力还有长江上游金沙江上的几个水电站，这种东西使用年限基本都是百年起算。公司经营时间足够长，未来现金流折现到现在，价格就会很高。</p>
+
+<p>反面案例就是很多中小型公司的确定性都不太高，<span class="num">10</span>年之后这个公司在不在都不好说，那这种公司肯定就不太值钱。</p>
+
+<h2 id="s6">六、应用二：公司的成长性</h2>
+
+<p>第二个是成长性，大家都能理解：公司生意越做越大，钱越赚越多，那公司就越值钱。</p>
+
+<p>现在市场上估值最核心考虑的要素，就是公司的成长性。因为公司的预期寿命和宏观利率都是预测出来的，主观性比较强；但公司的成长性是<strong>可以直接用数据计算出来的</strong>。</p>
+
+<p>以茅台为例：茅台<span class="num">2019</span>年的业绩是<span class="num">888</span>亿，<span class="num">5</span>年后的今天，今年的业绩我估计能做到<span class="num">1700</span>亿——这就是茅台的成长性，这个数据可以精确计算。我们可以计算茅台最近<span class="num">5</span>年的业绩增长、利润增长和净资产增长，这三个数据放在一起看，基本就能确定公司的成长性。所以现在市场给公司的估值最看重的要素就是成长性，高成长的公司估值都给得很高。根据现金流折现的思路，<em>没有成长性的公司是最不值钱的</em>——这是资产估值中需要重点思考的一个地方。</p>
+
+<h2 id="s7">七、应用三：利率与宏观周期</h2>
+
+<p>第三点是利率。根据前面印钞机的案例，按<span class="num">3%</span>的利率计算，折现价格是<span class="num">87.86</span>万；按<span class="num">2%</span>算，折现价格就是<span class="num">91.62</span>万。<strong>利率的高低，对资产估值有非常直接的影响。</strong></p>
+
+<p>过去几年我们的股市和楼市价格都受到了非常大的压力，是因为美联储选择在这个时候加息，就是为了拉爆我们的资产。为什么今年 A 股的整体估值在<span class="num">9</span>月份猛拉了一波？也是受这个因素影响——因为美联储从<span class="num">9</span>月份开始进入降息周期，我们也能跟着一起降。根据公式，低利率有利于资产估值提高，所以我们的股市很快就反应了过来，通过股价上涨兑现了这个预期。</p>
+
+<h2 id="s8">八、剩下的工作：商业理解能力的比拼</h2>
+
+<p>了解到以上这些之后，我们对上市公司的估值就有了一个大致的分析框架。剩下的工作，就需要比拼各自的商业理解能力了。</p>
+
+<ul>
+  <li><strong>预计经营时间</strong>：比如茅台能经营多久，取决于我们的酒文化和酒精成瘾这两个要素。未来有没有可能酒文化淡化甚至消失？未来医学上有没有可能出现根治酒精成瘾的药物？这就是需要研究和思考的地方。</li>
+  <li><strong>成长性</strong>：一个要看公司本身的经营能力，还要看行业的发展趋势。公司经营能力需要我们本身能懂公司经营才好分析；如果不懂，就只能从业绩结果看。好的业绩结果不一定有好的过程——有可能公司经营其实很垃圾，但业务刚好踩中风口了，就是雷军的"飞猪理论"。但公司不可能一直在风口上，如果风停了呢？是不是马上就会摔得很惨？比如房地产，半年之前的<span class="num">10</span>年是行业发展的黄金<span class="num">10</span>年，只要业务跟房地产沾点关系都能起飞，但<span class="num">22</span>年开始出现拐点后，很多相关公司这几年生意都经营不下去了，业绩持续下滑，股价一泻千里。</li>
+  <li><strong>利率</strong>：是宏观经济问题，分析相对简单，因为指标一般不会突然转向，而是呈周期性变化。多留意的话大概问题不大。</li>
+</ul>
+
+<h2 id="s9">九、模糊的正确大于精确的错误</h2>
+
+<p>这三个变量——公司预计寿命、公司成长性、利率变化——虽然都是不确定的，但总会在一个合理的区间范围内。所以我们对公司的估值<strong>不需要去计算一个精确的数据，只需要大概估算一个合理的范围就好了。</strong></p>
+
+<div class="pull">模糊的正确，大于精确的错误。</div>
+
+<p>比如在实际操作上，根据一个公司的财务数据，我们可以计算出一个相对准确的范围，比如市值在<span class="num">50</span>亿到<span class="num">150</span>亿之间，其实可能都是合理的；但如果市场给了这个公司<span class="num">2000</span>亿的市值，那这个账明显就算不过来了，这就是明显的泡沫。</p>
+
+<p>如果我们内心都有这个估值算法的框架，遇到这种情况就会很清楚地知道这是泡沫、是陷阱，哪怕它再诱人，我们也不会多浪费时间和精力去看它一眼。</p>
+
+<p>投资其实是非常理性的工作，大部分结果都是可以计算出来的。我们只要坚持去做大概率正确的事，就一定能取得良好的收益。所以希望大家也要理性看待这个问题，不要被市场上花里胡哨的东西带偏——只要控制自己的贪欲，使用正确的方法投资，虽然说不能让我们暴富，但一定是可以盈利的。</p>
+
+<p>本期的分享就到这里，预祝大家投资顺利，不踩坑。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>

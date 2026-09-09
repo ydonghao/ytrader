@@ -1,0 +1,907 @@
+database:
+  echo: false
+  max_overflow: 10
+  pool_size: 5
+  url: postgresql://postgres:postgres@127.0.0.1:5432/ytrader
+intel:
+  ai_processing:
+    batch_size: 20
+    enabled: true
+  subscription:
+    rsshub_base: http://127.0.0.1:1200
+    wewe_rss_base: http://127.0.0.1:4000
+    sync_interval_minutes: 15
+    wewe_rss:
+      enabled: true
+      base_url: http://127.0.0.1:4000
+      category: future_tech
+  api:
+    finnhub:
+      enabled: true
+    miniflux:
+      base_url: http://127.0.0.1:8380
+      categories:
+        finance: 3
+        future_tech: 4
+        hotlist: 5
+        cctv_news: 6
+      cctv_channel_map:
+        央视国内新闻: domestic
+        央视国际新闻: world
+        央视财经: finance
+        央视科技: tech
+        每日新闻联播: xinwenlianbo
+      enabled: true
+      password: admin123
+      username: admin
+    newsnow:
+      base_url: http://127.0.0.1:4444/api/s
+      enabled: true
+      platforms:
+      - wallstreetcn-hot
+      - wallstreetcn-news
+      - cls-hot
+      - cls-telegraph
+      - cls-depth
+      - 36kr-quick
+      - 36kr-renqi
+      - ithome
+      - weibo
+      - zhihu
+      - douyin
+      - bilibili-hot-search
+      - toutiao
+      - baidu
+      - tieba
+      - thepaper
+      - xueqiu-hotstock
+      - gelonghui
+      - fastbull-express
+      - fastbull-news
+      - jin10
+      - mktnews-flash
+      - v2ex-share
+      - coolapk
+      - hackernews
+      - producthunt
+      - github-trending-today
+      - sspai
+      - juejin
+      - solidot
+      - hupu
+      - douban
+      - ifeng
+      - tencent-hot
+      - nowcoder
+      - chongbuluo-latest
+      - chongbuluo-hot
+      - zaobao
+      - sputniknewscn
+      - cankaoxiaoxi
+      - kaopu
+      - steam
+      - freebuf
+      - qqvideo-tv-hotsearch
+      - iqiyi-hot-ranklist
+      - pcbeta-windows11
+      - smzdm
+llm:
+  encryption_key: ''
+logging:
+  datefmt: '%Y-%m-%d %H:%M:%S'
+  format: '[{time:YYYY-MM-DD HH:mm:ss}] [{level}] [{name}] [{file}:{line}] {message}'
+  level: INFO
+  retention: 30 days
+  rotation: 100 MB
+  serialize: false
+server:
+  host: 0.0.0.0
+  port: 12100
+timescaledb:
+  database: ytrader
+  host: 127.0.0.1
+  password: postgres
+  port: 5432
+  user: postgres
+portfolio_universe:
+  bars:
+    - { symbol: "sh510300", market: "A",  ccy: "CNY", name: "沪深300ETF",   asset: "equity" }
+    - { symbol: "sh511260", market: "A",  ccy: "CNY", name: "10年国债ETF",   asset: "bond" }
+    - { symbol: "sh511090", market: "A",  ccy: "CNY", name: "30年国债ETF",   asset: "bond" }
+    - { symbol: "sh518880", market: "A",  ccy: "CNY", name: "华安黄金ETF",   asset: "gold" }
+    - { symbol: "sz159934", market: "A",  ccy: "CNY", name: "博时黄金ETF",   asset: "gold" }
+    - { symbol: "sh511990", market: "A",  ccy: "CNY", name: "华宝添益",     asset: "cash" }
+    - { symbol: "VOO",      market: "US", ccy: "USD", name: "标普500",     asset: "equity" }
+    - { symbol: "TLT",      market: "US", ccy: "USD", name: "20+年国债",   asset: "bond" }
+    - { symbol: "GLD",      market: "US", ccy: "USD", name: "黄金ETF",     asset: "gold" }
+    - { symbol: "SHV",      market: "US", ccy: "USD", name: "短债ETF",     asset: "cash" }
+  fx:
+    - { pair: "USDCNY" }
+
+# 量化数据全量同步清单（供 full_sync / quant_daily 使用）
+quant_universe:
+  daily_years: 10          # A/H 股 + ETF 日线回填年数
+  minute_years: 2          # A/H 股分钟线回填年数
+  commodity_years: 3       # 贵金属 / 原油 / 货币 回填年数
+  minute_intervals: ["5m", "15m", "30m", "60m"]
+  commodities:
+    metals: ["XAU", "XAG", "XPT", "XPD", "GC", "SI"]
+    energy: ["OIL", "CL", "NG"]
+  fx_pairs: ["USDCNY", "EURCNY", "JPYCNY", "GBPCNY", "HKDCNY"]
+  # 注：cross/offshore 对（EURUSD/USDCNH 等）需东财 forex_hist_em，本环境不可达，暂用 CNY 对（close-only）
+  # akshare 无港股ETF专用列表接口，用 curated 清单（symbol 为纯5位，与库内一致）
+  # 清单可按需扩充；另可用 AkshareProvider.scan_hk_etf() 从 stock_hk_spot_em 按名称过滤供人工筛
+  hk_etf_symbols:
+    - { symbol: "02800", name: "盈富基金" }
+    - { symbol: "02828", name: "A50 ETF" }
+    - { symbol: "03141", name: "CSOP沪深300" }
+  # A 股核心指数（走 akshare stock_zh_index_daily_em）
+  indices:
+    - { symbol: "sh000001", name: "上证指数" }
+    - { symbol: "sz399001", name: "深证成指" }
+    - { symbol: "sh000300", name: "沪深300" }
+    - { symbol: "sh000016", name: "上证50" }
+    - { symbol: "sh000905", name: "中证500" }
+    - { symbol: "sh000852", name: "中证1000" }
+    - { symbol: "sh932000", name: "中证2000" }
+    - { symbol: "sh000985", name: "中证全指" }
+    - { symbol: "sz399006", name: "创业板指" }
+    - { symbol: "sh000688", name: "科创50" }
+    - { symbol: "sz399106", name: "深证综指" }
+    - { symbol: "sz399005", name: "中小板指" }
+    - { symbol: "sh000010", name: "上证180" }
+    - { symbol: "sh000015", name: "红利指数" }
+    - { symbol: "sh000903", name: "中证100" }
+  # 宽基指数成分股（走 akshare index_stock_cons_weight_csindex，中证官网）
+  index_constituents:
+    - { code: "000300", symbol: "sh000300", name: "沪深300" }
+    - { code: "000016", symbol: "sh000016", name: "上证50" }
+    - { code: "000905", symbol: "sh000905", name: "中证500" }
+    - { code: "000852", symbol: "sh000852", name: "中证1000" }
+    - { code: "932000", symbol: "sh932000", name: "中证2000" }
+    - { code: "000903", symbol: "sh000903", name: "中证100" }
+    - { code: "000010", symbol: "sh000010", name: "上证180" }
+    - { code: "000985", symbol: "sh000985", name: "中证全指" }
+    - { code: "000688", symbol: "sh000688", name: "科创50" }
+  # 申万一级行业指数（走 akshare index_hist_sw，swsresearch.com 源，存 sw801010）
+  sw_industries:
+    - { symbol: "801010", name: "农林牧渔" }
+    - { symbol: "801020", name: "采掘" }
+    - { symbol: "801030", name: "化工" }
+    - { symbol: "801040", name: "钢铁" }
+    - { symbol: "801050", name: "有色金属" }
+    - { symbol: "801080", name: "电子" }
+    - { symbol: "801110", name: "家用电器" }
+    - { symbol: "801120", name: "食品饮料" }
+    - { symbol: "801130", name: "纺织服装" }
+    - { symbol: "801140", name: "轻工制造" }
+    - { symbol: "801150", name: "医药生物" }
+    - { symbol: "801160", name: "公用事业" }
+    - { symbol: "801170", name: "交通运输" }
+    - { symbol: "801180", name: "房地产" }
+    - { symbol: "801200", name: "商贸零售" }
+    - { symbol: "801210", name: "社会服务" }
+    - { symbol: "801230", name: "综合" }
+    - { symbol: "801710", name: "建筑材料" }
+    - { symbol: "801720", name: "建筑装饰" }
+    - { symbol: "801730", name: "电力设备" }
+    - { symbol: "801740", name: "国防军工" }
+    - { symbol: "801750", name: "计算机" }
+    - { symbol: "801760", name: "传媒" }
+    - { symbol: "801770", name: "通信" }
+    - { symbol: "801780", name: "银行" }
+    - { symbol: "801790", name: "非银金融" }
+    - { symbol: "801880", name: "汽车" }
+    - { symbol: "801890", name: "机械设备" }
+    - { symbol: "801950", name: "煤炭" }
+    - { symbol: "801960", name: "石油石化" }
+    - { symbol: "801970", name: "环保" }
+    - { symbol: "801980", name: "美容护理" }
+
+# 宏观经济板块清单（macro_sync 同步数据 + macro_view 生成判断快照）
+# indicators.code 对应 AkshareProvider._MACRO_EXTRACTORS 的键
+# threshold_high/low + direction 控制前端状态徽章（如 PMI≥50 绿、CPI>3 偏热）
+macro_universe:
+  snapshot_horizon_days: 63      # 验证窗口 ≈ 1 季度交易日
+  # 宏观经济指标（第一层·宏观状态判断的输入与验证标尺）
+  # explanation：详细含义（tip 弹层）；doc_url：外链百科/资料；source/source_url：数据溯源
+  indicators:
+    - code: "cn_pmi"
+      name: "制造业PMI"
+      unit: ""
+      freq: "month"
+      category: "cn"
+      group: "growth"
+      provider: "akshare"
+      threshold_high: 50.0
+      threshold_low: 50.0
+      direction: "high_good"
+      description: "荣枯线50，扩张/收缩分界"
+      explanation: "采购经理指数（PMI）。通过对企业采购经理的月度调查汇总，>50 代表制造业环比扩张、<50 代表收缩。是经济增长最敏感的先行指标，拐点（连续数月回升/跌破50）比单月绝对值更重要。"
+      doc_url: "https://zh.wikipedia.org/wiki/%E9%87%87%E8%B4%AD%E7%BB%8F%E7%90%86%E6%8C%87%E6%95%B0"
+      range_low: 40.0
+      range_high: 55.0
+      reference_lines:
+        - { value: 50.0, label: "荣枯线", severity: "normal" }
+      source: "国家统计局"
+      source_url: "https://www.stats.gov.cn/sj/zxfb/"
+    - code: "cn_cpi_yoy"
+      name: "CPI同比"
+      unit: "%"
+      freq: "month"
+      category: "cn"
+      group: "inflation"
+      provider: "akshare"
+      threshold_high: 3.0
+      direction: "low_good"
+      description: "通胀温度计"
+      explanation: "居民消费价格指数同比涨幅，衡量居民端通胀水平。>3% 通常视为通胀偏高、央行可能收紧；持续 <0 为通缩。看趋势比看单月更重要。"
+      doc_url: "https://zh.wikipedia.org/wiki/%E6%B6%88%E8%B4%B9%E8%80%85%E7%89%A9%E4%BB%B7%E6%8C%87%E6%95%B0"
+      range_low: -2.0
+      range_high: 8.0
+      reference_lines:
+        - { value: 0.0, label: "通缩警戒", severity: "warning" }
+        - { value: 3.0, label: "通胀警戒", severity: "warning" }
+        - { value: 5.0, label: "严重通胀", severity: "danger" }
+      source: "国家统计局"
+      source_url: "https://www.stats.gov.cn/sj/zxfb/"
+    - code: "cn_ppi_yoy"
+      name: "PPI同比"
+      unit: "%"
+      freq: "month"
+      category: "cn"
+      group: "inflation"
+      provider: "akshare"
+      direction: "neutral"
+      description: "工业品出厂价格，看利润与通缩"
+      explanation: "工业生产者出厂价格指数同比，衡量工业品出厂端价格变化。PPI 领先 CPI（上游传导下游），PPI-CPI 剪刀差反映利润在上下游间的分配。持续负值为工业通缩。"
+      doc_url: "https://zh.wikipedia.org/wiki/%E7%94%9F%E4%BA%A7%E8%80%85%E7%89%A9%E4%BB%B7%E6%8C%87%E6%95%B0"
+      range_low: -8.0
+      range_high: 12.0
+      reference_lines:
+        - { value: 0.0, label: "通缩/通胀分界", severity: "normal" }
+      source: "国家统计局"
+      source_url: "https://www.stats.gov.cn/sj/zxfb/"
+    - code: "cn_m2_yoy"
+      name: "M2同比"
+      unit: "%"
+      freq: "month"
+      category: "cn"
+      group: "monetary"
+      provider: "akshare"
+      direction: "neutral"
+      description: "货币供应，流动性松紧"
+      explanation: "广义货币供应量（M2）同比增速，反映全社会货币与信贷的松紧。按货币主义框架，M2 领先通胀约 12-18 个月——M2 放量往往预示未来通胀上行。"
+      doc_url: "https://zh.wikipedia.org/wiki/%E5%BB%A3%E7%BE%A9%E8%B2%A8%E5%B9%A3"
+      range_low: 6.0
+      range_high: 16.0
+      reference_lines:
+        - { value: 8.0, label: "中性", severity: "normal" }
+        - { value: 12.0, label: "偏松", severity: "boom" }
+      source: "中国人民银行"
+      source_url: "https://www.pbc.gov.cn/diaochatongjisi/116219/116319/index.html"
+    - code: "cn_sf"
+      name: "社融增量"
+      unit: "亿元"
+      freq: "month"
+      category: "cn"
+      group: "monetary"
+      provider: "akshare"
+      direction: "high_good"
+      description: "信用脉冲，领先增长"
+      explanation: "社会融资规模增量，实体经济从金融体系获得的资金总额。是信用脉冲的核心指标，领先经济增长约 1-2 个季度——社融放量往往预示后续经济回暖。注：央行 2015 年起按月发布此指标，此前无统计，长周期信用分析请用 M2 同比（1996 起）。"
+      doc_url: "https://zh.wikipedia.org/wiki/%E7%A4%BE%E4%BC%9A%E8%9E%8D%E8%B5%84%E8%A7%84%E6%A8%A1"
+      source: "中国人民银行"
+      source_url: "https://www.pbc.gov.cn/diaochatongjisi/116219/116319/index.html"
+    - code: "cn_lpr_1y"
+      name: "1年期LPR"
+      unit: "%"
+      freq: "day"
+      category: "cn"
+      group: "monetary"
+      provider: "akshare"
+      direction: "low_good"
+      description: "贷款基准利率，降息信号"
+      explanation: "贷款市场报价利率（1年期），银行对最优质客户的贷款利率基准。下调 = 降息（宽松），利好估值；持平 = 利率按兵不动。每月20日公布。"
+      doc_url: "https://zh.wikipedia.org/wiki/%E8%B4%B7%E6%AC%BE%E5%B8%82%E5%9C%BA%E6%8A%A5%E4%BB%B7%E5%88%A9%E7%8E%87"
+      range_low: 2.5
+      range_high: 5.0
+      reference_lines:
+        - { value: 3.85, label: "长期均值", severity: "normal" }
+      source: "全国银行间同业拆借中心"
+      source_url: "https://www.chinamoney.com.cn/chinese/bklpr/"
+    - code: "cn_m1_yoy"
+      name: "M1同比"
+      unit: "%"
+      freq: "month"
+      category: "cn"
+      group: "monetary"
+      provider: "akshare"
+      direction: "neutral"
+      description: "狭义货币供应，企业活期资金松紧"
+      explanation: "狭义货币供应量（M1）同比增速，主要由企业活期存款构成。M1 反映企业资金活跃度与即时支付能力，M1-M2 剪刀差为负常预示企业投资意愿偏弱。"
+      doc_url: "https://zh.wikipedia.org/wiki/%E8%B2%A8%E5%B9%A3%E4%BE%9B%E6%87%89%E9%87%8F"
+      range_low: 0.0
+      range_high: 20.0
+      reference_lines:
+        - { value: 5.0, label: "低位", severity: "warning" }
+      source: "中国人民银行"
+      source_url: "https://www.pbc.gov.cn/diaochatongjisi/116219/116319/index.html"
+    - code: "cn_retail_yoy"
+      name: "社零同比"
+      unit: "%"
+      freq: "month"
+      category: "cn"
+      group: "growth"
+      provider: "akshare"
+      direction: "high_good"
+      description: "消费景气，内需温度计"
+      explanation: "社会消费品零售总额同比增速，衡量居民消费景气度。是内需的核心指标，与居民收入、消费信心直接相关。"
+      doc_url: "https://zh.wikipedia.org/wiki/%E7%A4%BE%E4%BC%9A%E6%B6%88%E8%B4%B9%E5%93%81%E9%9B%B6%E5%94%AE%E6%80%BB%E9%A2%9D"
+      source: "国家统计局"
+      source_url: "https://www.stats.gov.cn/sj/zxfb/"
+    - code: "cn_house_sales_amt"
+      name: "商品房销售额"
+      unit: "亿元"
+      freq: "month"
+      category: "cn"
+      group: "realestate"
+      provider: "akshare"
+      direction: "high_good"
+      description: "地产销售金额（累计值）"
+      explanation: "商品房销售额累计值，反映房地产销售端景气度。与销售面积配合看均价走势。"
+      doc_url: "https://zh.wikipedia.org/wiki/%E6%88%BF%E5%9C%B0%E4%BA%A7"
+      source: "国家统计局"
+      source_url: "https://www.stats.gov.cn/sj/zxfb/"
+    - code: "cn_house_sales_area"
+      name: "商品房销售面积"
+      unit: "万平"
+      freq: "month"
+      category: "cn"
+      group: "realestate"
+      provider: "akshare"
+      direction: "high_good"
+      description: "地产销售面积（累计值）"
+      explanation: "商品房销售面积累计值，衡量房地产成交量。领先于房价和开发投资。"
+      doc_url: "https://zh.wikipedia.org/wiki/%E6%88%BF%E5%9C%B0%E4%BA%A7"
+      source: "国家统计局"
+      source_url: "https://www.stats.gov.cn/sj/zxfb/"
+    - code: "cn_industrial_yoy"
+      name: "工业增加值同比"
+      unit: "%"
+      freq: "month"
+      category: "cn"
+      group: "growth"
+      provider: "akshare"
+      direction: "high_good"
+      description: "工业生产景气，二产温度计"
+      explanation: "规模以上工业增加值同比增速，衡量工业生产景气度。是二产的核心指标，与 GDP 增速高度相关。"
+      doc_url: "https://zh.wikipedia.org/wiki/%E5%B7%A5%E4%B8%9A%E5%A2%9E%E5%8A%A0%E5%80%BC"
+      source: "国家统计局"
+      source_url: "https://www.stats.gov.cn/sj/zxfb/"
+    - code: "cn_fai_yoy"
+      name: "固定资产投资增速"
+      unit: "%"
+      freq: "month"
+      category: "cn"
+      group: "growth"
+      provider: "akshare"
+      direction: "neutral"
+      description: "投资景气（数据源待恢复）"
+      explanation: "固定资产投资完成额累计同比，衡量投资景气度。含基建/制造/地产三大项。注：akshare 源数据停在 2012，历史靠 CSV 种子补。"
+      doc_url: "https://zh.wikipedia.org/wiki/%E5%9B%BA%E5%AE%9A%E8%B5%84%E4%BA%A7%E6%8A%95%E8%B5%84"
+      source: "国家统计局"
+      source_url: "https://www.stats.gov.cn/sj/zxfb/"
+    - code: "cn_realestate_inv_yoy"
+      name: "房地产开发投资增速"
+      unit: "%"
+      freq: "month"
+      category: "cn"
+      group: "realestate"
+      provider: "akshare"
+      direction: "neutral"
+      description: "地产投资趋势（数据源待恢复）"
+      explanation: "房地产开发投资完成额累计同比，衡量地产投资景气度。注：akshare 源数据停在 2012，历史靠 CSV 种子补。"
+      doc_url: "https://zh.wikipedia.org/wiki/%E6%88%BF%E5%9C%B0%E4%BA%A7"
+      source: "国家统计局"
+      source_url: "https://www.stats.gov.cn/sj/zxfb/"
+    - code: "cn_sf_rmb_loan"
+      name: "社融-人民币贷款"
+      unit: "亿元"
+      freq: "month"
+      category: "cn"
+      group: "monetary"
+      provider: "akshare"
+      direction: "neutral"
+      description: "社融主要分项，实体信贷"
+      explanation: "社会融资规模中的人民币贷款分项增量，是社融最大组成部分，反映银行对实体经济的信贷投放。注：央行 2015 年起按月发布，此前无统计。"
+      source: "中国人民银行"
+      source_url: "https://www.pbc.gov.cn/diaochatongjisi/116219/116319/index.html"
+    - code: "cn_sf_corp_bond"
+      name: "社融-企业债券"
+      unit: "亿元"
+      freq: "month"
+      category: "cn"
+      group: "monetary"
+      provider: "akshare"
+      direction: "neutral"
+      description: "社融分项，企业直接融资"
+      explanation: "社会融资规模中的企业债券净融资分项，反映企业通过债券市场的直接融资规模。注：央行 2015 年起按月发布，此前无统计。"
+      source: "中国人民银行"
+      source_url: "https://www.pbc.gov.cn/diaochatongjisi/116219/116319/index.html"
+    - code: "cn_sf_govbond"
+      name: "社融-政府债券"
+      unit: "亿元"
+      freq: "month"
+      category: "cn"
+      group: "monetary"
+      provider: "csv_seed"
+      direction: "neutral"
+      description: "社融分项，财政发力信号"
+      explanation: "社会融资规模中的政府债券分项（国债+地方债），反映财政政策力度。注：央行 2017 年起新增此分项，此前无统计；CSV 种子来自央行社融统计表。"
+      source: "中国人民银行"
+      source_url: "https://www.pbc.gov.cn/diaochatongjisi/116219/116319/index.html"
+    - code: "cn_sf_entrust_loan"
+      name: "社融-委托贷款"
+      unit: "亿元"
+      freq: "month"
+      category: "cn"
+      group: "monetary"
+      provider: "akshare"
+      direction: "neutral"
+      description: "社融分项，委托贷款增量"
+      explanation: "社会融资规模中的委托贷款分项增量，反映企业间资金委托放贷规模，常受监管政策影响波动较大。注：央行 2015 年起按月发布，此前无统计。"
+      source: "中国人民银行"
+      source_url: "https://www.pbc.gov.cn/diaochatongjisi/116219/116319/index.html"
+    - code: "cn_sf_trust_loan"
+      name: "社融-信托贷款"
+      unit: "亿元"
+      freq: "month"
+      category: "cn"
+      group: "monetary"
+      provider: "akshare"
+      direction: "neutral"
+      description: "社融分项，信托贷款增量"
+      explanation: "社会融资规模中的信托贷款分项增量，反映信托渠道对实体的资金投放，与影子银行监管周期密切相关。注：央行 2015 年起按月发布，此前无统计。"
+      source: "中国人民银行"
+      source_url: "https://www.pbc.gov.cn/diaochatongjisi/116219/116319/index.html"
+    - code: "cn_sf_undiscounted_ba"
+      name: "社融-未贴现银行承兑汇票"
+      unit: "亿元"
+      freq: "month"
+      category: "cn"
+      group: "monetary"
+      provider: "akshare"
+      direction: "neutral"
+      description: "社融分项，未贴现银票增量"
+      explanation: "社会融资规模中的未贴现银行承兑汇票分项增量，反映企业通过票据结算的短期融资活跃度。注：央行 2015 年起按月发布，此前无统计。"
+      source: "中国人民银行"
+      source_url: "https://www.pbc.gov.cn/diaochatongjisi/116219/116319/index.html"
+    - code: "cn_sf_equity"
+      name: "社融-非金融企业境内股票融资"
+      unit: "亿元"
+      freq: "month"
+      category: "cn"
+      group: "monetary"
+      provider: "akshare"
+      direction: "neutral"
+      description: "社融分项，企业股权融资"
+      explanation: "社会融资规模中的非金融企业境内股票融资分项增量，反映企业通过 A 股市场的股权融资规模。注：央行 2015 年起按月发布，此前无统计。"
+      source: "中国人民银行"
+      source_url: "https://www.pbc.gov.cn/diaochatongjisi/116219/116319/index.html"
+    - code: "cn_loan_household"
+      name: "住户贷款增量"
+      unit: "亿元"
+      freq: "month"
+      category: "cn"
+      group: "monetary"
+      provider: "csv_seed"
+      direction: "neutral"
+      description: "居民端信贷，消费/购房意愿"
+      explanation: "金融机构住户贷款增量，含个人住房贷款、消费贷、经营贷。反映居民加杠杆意愿。CSV 种子来自央行信贷收支表。"
+      source: "中国人民银行"
+      source_url: "https://www.pbc.gov.cn/diaochatongjisi/116219/116319/index.html"
+    - code: "cn_loan_enterprise"
+      name: "企事业贷款增量"
+      unit: "亿元"
+      freq: "month"
+      category: "cn"
+      group: "monetary"
+      provider: "csv_seed"
+      direction: "neutral"
+      description: "企业端信贷，投资/扩张意愿"
+      explanation: "金融机构企(事)业单位贷款增量，反映企业融资扩张意愿。CSV 种子来自央行信贷收支表。"
+      source: "中国人民银行"
+      source_url: "https://www.pbc.gov.cn/diaochatongjisi/116219/116319/index.html"
+    - code: "cn_deposit_demand_ratio"
+      name: "活期存款占比"
+      unit: "%"
+      freq: "month"
+      category: "cn"
+      group: "monetary"
+      provider: "akshare"
+      direction: "neutral"
+      description: "存款活化率，资金活跃度"
+      explanation: "活期存款占总存款比重，衡量存款活化程度。占比上升常预示资金活跃度提升、经济预期改善。"
+      source: "中国人民银行"
+      source_url: "https://www.pbc.gov.cn/diaochatongjisi/116219/116319/index.html"
+    - code: "cn_deposit_term_ratio"
+      name: "定期存款占比"
+      unit: "%"
+      freq: "month"
+      category: "cn"
+      group: "monetary"
+      provider: "akshare"
+      direction: "neutral"
+      description: "存款定期化趋势"
+      explanation: "定期存款占总存款比重，与活期占比此消彼长。定期化加剧常预示资金闲置、预防性储蓄上升。"
+      source: "中国人民银行"
+      source_url: "https://www.pbc.gov.cn/diaochatongjisi/116219/116319/index.html"
+    - code: "cn_unemp_1624"
+      name: "16-24岁城镇失业率"
+      unit: "%"
+      freq: "month"
+      category: "cn"
+      group: "employment"
+      provider: "csv_seed"
+      direction: "low_good"
+      description: "青年就业压力温度计"
+      explanation: "16-24岁城镇调查失业率，衡量青年群体就业状况。该群体对经济周期敏感，数值偏高常预示就业结构性压力。"
+      source: "国家统计局"
+      source_url: "https://www.stats.gov.cn/sj/zxfb/"
+    - code: "cn_unemp_2529"
+      name: "25-29岁城镇失业率"
+      unit: "%"
+      freq: "month"
+      category: "cn"
+      group: "employment"
+      provider: "csv_seed"
+      direction: "low_good"
+      description: "青年后段就业压力"
+      explanation: "25-29岁城镇调查失业率，衡量青年后段（毕业后过渡期）就业状况。补充 16-24 岁群体，刻画青年就业全貌。"
+      source: "国家统计局"
+      source_url: "https://www.stats.gov.cn/sj/zxfb/"
+    - code: "cn_disp_income_median_yoy"
+      name: "居民可支配收入中位数同比"
+      unit: "%"
+      freq: "quarter"
+      category: "cn"
+      group: "growth"
+      provider: "csv_seed"
+      direction: "high_good"
+      description: "居民收入中位数同比，消费根基"
+      explanation: "居民人均可支配收入中位数同比增速，衡量居民收入增长质量。中位数比平均数更能反映大众实际收入水平。"
+      source: "国家统计局"
+      source_url: "https://www.stats.gov.cn/sj/zxfb/"
+    - code: "cn_birth"
+      name: "新生人口"
+      unit: "万人"
+      freq: "year"
+      category: "cn"
+      group: "growth"
+      provider: "csv_seed"
+      direction: "high_good"
+      description: "年出生人口，人口红利指标"
+      explanation: "全年出生人口数，反映人口生育水平与长期人口趋势。直接影响劳动力供给、消费结构与养老负担。"
+      source: "国家统计局"
+      source_url: "https://www.stats.gov.cn/sj/zxfb/"
+    - code: "cn_industrial_profit_yoy"
+      name: "规上工业企业利润同比"
+      unit: "%"
+      freq: "month"
+      category: "cn"
+      group: "growth"
+      provider: "csv_seed"
+      direction: "high_good"
+      description: "工业企业盈利景气"
+      explanation: "规模以上工业企业利润总额同比增速，衡量工业企业盈利能力。领先制造业投资，是上市公司盈利的宏观锚。"
+      source: "国家统计局"
+      source_url: "https://www.stats.gov.cn/sj/zxfb/"
+    - code: "cn_trade_us_amt"
+      name: "对美进出口金额"
+      unit: "亿美元"
+      freq: "month"
+      category: "cn"
+      group: "global"
+      provider: "csv_seed"
+      direction: "neutral"
+      description: "中美贸易额，外需与摩擦信号"
+      explanation: "对美进出口金额，反映中美双边贸易景气度。受关税、汇率、外需与贸易摩擦影响显著。"
+      source: "海关总署"
+      source_url: "https://www.customs.gov.cn/"
+    - code: "cn_cpi_food"
+      name: "CPI-食品烟酒类"
+      unit: "%"
+      freq: "month"
+      category: "cn"
+      group: "inflation"
+      provider: "csv_seed"
+      direction: "neutral"
+      description: "食品烟酒分项通胀"
+      explanation: "CPI 食品烟酒类同比，衡量食品端价格变化。受猪周期、鲜菜鲜果季节性影响较大，是 CPI 波动主要贡献项。"
+      source: "国家统计局"
+      source_url: "https://www.stats.gov.cn/sj/zxfb/"
+    - code: "cn_cpi_consumer"
+      name: "CPI-消费品类"
+      unit: "%"
+      freq: "month"
+      category: "cn"
+      group: "inflation"
+      provider: "csv_seed"
+      direction: "neutral"
+      description: "核心消费品通胀"
+      explanation: "CPI 消费品类同比，剔除食品烟酒与能源后的消费品价格变化，更贴近核心消费通胀趋势。"
+      source: "国家统计局"
+      source_url: "https://www.stats.gov.cn/sj/zxfb/"
+    - code: "cn_cpi_yoy_long"
+      name: "CPI同比（长历史）"
+      unit: "%"
+      freq: "month"
+      category: "cn"
+      group: "inflation"
+      provider: "akshare"
+      direction: "low_good"
+      description: "CPI长历史（1986年起）"
+      explanation: "CPI同比长历史序列，数据源为英为财情年度报告接口，1986年至今。日期为发布日口径（与标准版的月初口径略有差异），用于查看超长周期趋势。"
+      range_low: -2.0
+      range_high: 10.0
+      reference_lines:
+        - { value: 0.0, label: "通缩", severity: "warning" }
+        - { value: 3.0, label: "通胀警戒", severity: "warning" }
+      source: "英为财情"
+      source_url: "https://investing.com/"
+    - code: "cn_ppi_yoy_long"
+      name: "PPI同比（长历史）"
+      unit: "%"
+      freq: "month"
+      category: "cn"
+      group: "inflation"
+      provider: "akshare"
+      direction: "neutral"
+      description: "PPI长历史（1995年起）"
+      explanation: "PPI同比长历史序列，1995年至今。日期为发布日口径，用于查看超长周期趋势。"
+      range_low: -10.0
+      range_high: 15.0
+      reference_lines:
+        - { value: 0.0, label: "通缩/通胀分界", severity: "normal" }
+      source: "英为财情"
+      source_url: "https://investing.com/"
+    - code: "cn_pmi_long"
+      name: "制造业PMI（长历史）"
+      unit: ""
+      freq: "month"
+      category: "cn"
+      group: "growth"
+      provider: "akshare"
+      direction: "high_good"
+      description: "PMI长历史（2005年起）"
+      explanation: "制造业PMI长历史序列，2005年至今。荣枯线50。日期为发布日口径。"
+      threshold_high: 50.0
+      threshold_low: 50.0
+      range_low: 40.0
+      range_high: 60.0
+      reference_lines:
+        - { value: 50.0, label: "荣枯线", severity: "normal" }
+      source: "英为财情"
+      source_url: "https://investing.com/"
+    - code: "cn_m2_yoy_long"
+      name: "M2同比（长历史）"
+      unit: "%"
+      freq: "month"
+      category: "cn"
+      group: "monetary"
+      provider: "akshare"
+      direction: "neutral"
+      description: "M2长历史（1998年起）"
+      explanation: "M2同比长历史序列，1998年至今。日期为发布日口径。"
+      range_low: 5.0
+      range_high: 30.0
+      reference_lines:
+        - { value: 10.0, label: "中性", severity: "normal" }
+      source: "英为财情"
+      source_url: "https://investing.com/"
+    - code: "us_cpi_yoy"
+      name: "美国CPI同比"
+      unit: "%"
+      freq: "month"
+      category: "us"
+      group: "inflation"
+      provider: "fred"
+      threshold_high: 3.0
+      direction: "low_good"
+      description: "美联储政策核心依据"
+      explanation: "美国消费者价格指数同比涨幅，美联储货币政策的核心依据之一。>3% 偏高、强化加息/维持高利率预期；回落则强化降息预期。直接影响美元、美债、全球资产定价。"
+      doc_url: "https://zh.wikipedia.org/wiki/%E6%B6%88%E8%B4%B9%E8%80%85%E7%89%A9%E4%BB%B7%E6%8C%87%E6%95%B0"
+      range_low: 0.0
+      range_high: 9.0
+      reference_lines:
+        - { value: 0.0, label: "通缩警戒", severity: "warning" }
+        - { value: 3.0, label: "通胀警戒", severity: "warning" }
+        - { value: 5.0, label: "严重通胀", severity: "danger" }
+      source: "美国劳工统计局(BLS)"
+      source_url: "https://www.bls.gov/news.release/cpi.htm"
+    - code: "us_ism_pmi"
+      name: "美国ISM制造业PMI"
+      unit: ""
+      freq: "month"
+      category: "us"
+      group: "growth"
+      provider: "akshare"
+      threshold_high: 50.0
+      threshold_low: 50.0
+      direction: "high_good"
+      description: "荣枯线50"
+      explanation: "美国供应管理协会（ISM）制造业采购经理指数。>50 制造业扩张、<50 收缩。是美国制造业景气的权威先行指标，每月第一个工作日公布。"
+      doc_url: "https://zh.wikipedia.org/wiki/%E9%87%87%E8%B4%AD%E7%BB%8F%E7%90%86%E6%8C%87%E6%95%B0"
+      range_low: 40.0
+      range_high: 60.0
+      reference_lines:
+        - { value: 50.0, label: "荣枯线", severity: "normal" }
+      source: "美国供应管理协会(ISM)"
+      source_url: "https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/"
+    - code: "us_cap_util"
+      name: "美国制造业产能利用率"
+      unit: "%"
+      freq: "month"
+      category: "us"
+      group: "growth"
+      provider: "fred"
+      threshold_high: 78.0
+      direction: "high_good"
+      description: "制造业景气，80%偏热"
+      explanation: "制造业产能利用率（Capacity Utilization: Manufacturing），衡量制造业实际产出占最大可持续产出的比例。>78% 偏热（产能紧张、预示经济过热与通胀压力）；<75% 偏冷（需求疲软）。ISM PMI 因版权从 FRED 下架后的实时替代观察点。"
+      doc_url: "https://zh.wikipedia.org/wiki/%E4%BA%A7%E8%83%BD%E5%88%A9%E7%94%A8%E7%8E%87"
+      range_low: 68.0
+      range_high: 82.0
+      reference_lines:
+        - { value: 78.0, label: "偏热线", severity: "warning" }
+        - { value: 75.0, label: "偏冷线", severity: "normal" }
+      source: "美联储(FED)"
+      source_url: "https://www.federalreserve.gov/releases/g17/current/default.htm"
+    - code: "us_bond_10y"
+      name: "美国10年期国债收益率"
+      unit: "%"
+      freq: "day"
+      category: "us"
+      group: "monetary"
+      provider: "fred"
+      direction: "neutral"
+      description: "美债10Y收益率（全球资产定价锚）"
+      explanation: "美国10年期国债收益率（10-Year Treasury Constant Maturity Rate, DGS10），全球无风险利率基准。与中国10Y国债算中美利差：利差倒挂（美债高于中国国债）易引发资本流出压力。需 FRED_API_KEY。"
+      doc_url: "https://fred.stlouisfed.org/series/DGS10"
+      range_low: 0.5
+      range_high: 5.0
+      reference_lines:
+        - { value: 2.0, label: "宽松线", severity: "normal" }
+        - { value: 4.0, label: "偏紧线", severity: "warning" }
+      source: "美联储(FRED)"
+      source_url: "https://fred.stlouisfed.org/series/DGS10"
+    - code: "us_unemp"
+      name: "美国失业率"
+      unit: "%"
+      freq: "month"
+      category: "us"
+      group: "employment"
+      provider: "fred"
+      direction: "low_good"
+      description: "就业强弱"
+      explanation: "美国失业率（U-3），美联储双重使命之一。失业率上升 = 经济走弱、强化降息预期；下降 = 劳动力市场强劲。与 CPI 共同决定美联储政策方向。"
+      doc_url: "https://zh.wikipedia.org/wiki/%E5%A4%B1%E4%B8%9A"
+      range_low: 3.0
+      range_high: 7.0
+      reference_lines:
+        - { value: 5.0, label: "充分就业线", severity: "normal" }
+        - { value: 6.0, label: "偏高", severity: "warning" }
+      source: "美国劳工统计局(BLS)"
+      source_url: "https://www.bls.gov/news.release/empsit.htm"
+    - code: "us_nfp"
+      name: "美国非农就业"
+      unit: "千人"
+      freq: "month"
+      category: "us"
+      group: "employment"
+      provider: "fred"
+      direction: "high_good"
+      description: "非农就业总人数"
+      explanation: "美国非农就业人数（Nonfarm Payrolls, NFP），来自 BLS 就业形势报告，与失业率同源但口径不同：失业率来自家庭调查（比率），非农来自机构调查（人数）。非农反映就业创造量，环比新增为正=扩张。是就业类核心指标。"
+      doc_url: "https://zh.wikipedia.org/wiki/%E9%9D%9E%E5%86%9C%E4%B8%9A%E4%BA%BA%E5%8F%A3"
+      range_low: 130000.0
+      range_high: 165000.0
+      reference_lines:
+        - { value: 0.0, label: "增减分界", severity: "normal" }
+      source: "美国劳工统计局(BLS)"
+      source_url: "https://www.bls.gov/news.release/empsit.htm"
+    - code: "us_core_pce"
+      name: "美国核心PCE"
+      unit: "%"
+      freq: "month"
+      category: "us"
+      group: "inflation"
+      provider: "fred"
+      threshold_high: 2.0
+      direction: "low_good"
+      description: "美联储通胀目标2%"
+      explanation: "美国核心个人消费支出物价指数（剔除食品和能源），美联储官方偏好的通胀指标，长期目标 2%。>2% 维持紧缩倾向；向 2% 回落则打开降息空间。"
+      doc_url: "https://zh.wikipedia.org/wiki/%E4%B8%AA%E4%BA%BA%E6%B6%88%E8%B4%B9%E6%94%AF%E5%87%BA"
+      range_low: 0.0
+      range_high: 6.0
+      reference_lines:
+        - { value: 2.0, label: "美联储目标", severity: "normal" }
+      source: "美国经济分析局(BEA)"
+      source_url: "https://www.bea.gov/data/personal-consumption-expenditures"
+  # 全球指数（复用 index_ohlcv 表，market 列区分 US_INDEX/HK_INDEX）
+  global_indices:
+    - { symbol: "US.DJI",  name: "道琼斯" }
+    - { symbol: "US.IXIC", name: "纳斯达克" }
+    - { symbol: "US.INX",  name: "标普500" }
+    - { symbol: "HK.HSI",  name: "恒生指数" }
+    - { symbol: "HK.HSCEI", name: "国企指数" }
+  # 第二层·资产方向预测标的（用于回看指数/汇率/商品走势对照判断）
+  # index: 沪深300/上证/创业板(已有) + 标普/纳指/恒生(新增)
+  # fx: 美元USDCNY/日元JPYCNY(已有 fx_rate)
+  # commodity: 黄金XAU/原油OIL(已有 commodity_ohlcv)
+  predict_targets:
+    - { symbol: "sh000300", name: "沪深300",   asset_class: "index" }
+    - { symbol: "sh000001", name: "上证指数",   asset_class: "index" }
+    - { symbol: "sz399006", name: "创业板指",   asset_class: "index" }
+    - { symbol: "US.INX",   name: "标普500",   asset_class: "index" }
+    - { symbol: "US.IXIC",  name: "纳斯达克",   asset_class: "index" }
+    - { symbol: "HK.HSI",   name: "恒生指数",   asset_class: "index" }
+    - { symbol: "USDCNY",   name: "美元/人民币", asset_class: "fx" }
+    - { symbol: "JPYCNY",   name: "日元/人民币", asset_class: "fx" }
+    - { symbol: "XAU",      name: "黄金",       asset_class: "commodity" }
+    - { symbol: "OIL",      name: "原油",       asset_class: "commodity" }
+  # 中国重大经济事件（图表标注用）
+  macro_events:
+    - date: "2008-09-15"
+      title: "雷曼破产·金融危机"
+      desc: "次贷危机全面爆发，中国出口骤降，11月推出四万亿刺激"
+    - date: "2009-03-01"
+      title: "四万亿投资计划"
+      desc: "大规模基建刺激，M2增速飙至30%"
+    - date: "2015-06-15"
+      title: "A股股灾"
+      desc: "杠杆牛破裂，上证从5178跌至2850"
+    - date: "2016-01-01"
+      title: "供给侧改革"
+      desc: "去产能去库存，PPI从通缩转正"
+    - date: "2018-07-06"
+      title: "中美贸易战"
+      desc: "首批340亿美元商品加征关税"
+    - date: "2020-01-23"
+      title: "新冠疫情"
+      desc: "武汉封城，一季度GDP -6.9%"
+    - date: "2020-03-23"
+      title: "全球大放水"
+      desc: "美联储无限QE，全球资产反弹"
+    - date: "2021-07-01"
+      title: "互联网/教培监管"
+      desc: "反垄断+双减，恒生科技暴跌"
+    - date: "2022-07-01"
+      title: "房地产断贷潮"
+      desc: "保交楼，房企信用危机"
+    - date: "2022-11-01"
+      title: "防疫优化二十条"
+      desc: "逐步放开，经济复苏预期"
+    - date: "2024-09-24"
+      title: "924金融新政"
+      desc: "降准降息+股市支持，A股暴涨"
+    - date: "2025-04-01"
+      title: "对等关税升级"
+      desc: "中美贸易紧张再升温"
+
+# ── 选股器配置 ──────────────────────────────────────────────────────────────
+screener:
+  dividend_value:
+    # 全局炒作区间（选股 + 单股分位默认剔除），UI 可编辑回写
+    exclude_ranges:
+      - ["2015-06-15", "2015-12-31"]   # 2015 杠杆牛
+    filters_default:
+      dy_min: 3.0
+      pb_max: 3.0
+      pe_min: 0.0
+      pe_max: 60.0
+      roe_min: 8.0
+      debt_max: 70.0
+      value_metric: "pb"     # pb | pe_ttm | pb_pe
+      value_window: "10y"    # 10y | 20y

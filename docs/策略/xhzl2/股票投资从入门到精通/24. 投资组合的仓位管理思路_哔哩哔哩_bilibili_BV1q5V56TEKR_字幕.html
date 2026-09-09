@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>投资组合的仓位管理思路</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">股票投资从入门到精通 · 24</div>
+  <h1 class="title">投资组合的仓位管理思路</h1>
+  <div class="meta">
+    <span>组合、风险偏好、估值与建仓节奏</span>
+    <span>用计划代替盘中临时起意</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>新手补仓最容易出的错</li>
+    <li>为什么用投资组合</li>
+    <li>5–8 家公司的持仓规划</li>
+    <li>先确定你的风险偏好</li>
+    <li>估值的四种状态</li>
+    <li>用市盈率判定估值区间</li>
+    <li>不同风险偏好的建仓时机</li>
+    <li>技术分析只是辅助</li>
+    <li>层层狙击的建仓节奏</li>
+    <li>横盘、超涨、破位三种情况</li>
+    <li>业务分析才是重中之重</li>
+    <li>五步仓位管理思路回顾</li>
+  </ol>
+</nav>
+
+<p class="lead">今天跟大家分享仓位管理的思路。新手在这方面可能缺一些实战经验——最近大盘几次 <span class="num">4200</span> 都上不去，市场需要回调来找新的共识，很多公司股价都在回调中。学会一套系统的仓位管理思路后，应该就不会再发生"重仓套在腰部"这种事了。</p>
+
+<h2 id="s1">一、新手补仓最容易出的错</h2>
+
+<p>新手炒股我能理解——持仓的公司股价跌了，大家就想补仓，指望通过补仓降低持仓成本。但新手补仓时又很容易上头，再加上一般没什么估值能力，所以本来是想抄个底，结果搞不好抄了几次都不是底，越买越跌，通常情况就是搞到最后重仓被套在半山腰上。</p>
+
+<p>这其实还不是最难受的。重仓某个公司还被套了，会影响你的心态——如果继续跌下去，每天都是一种折磨，搞不好就坚持不住了，最终忍不住割肉；结果割完第二天股价反而大涨，你的心态直接原地爆炸，也许就彻底告别股市了。</p>
+
+<div class="pull">老玩家都有一套仓位管理的思路，<br>可以避免这种情况的发生。</div>
+
+<p>这个思路很简单、也很好上手，今天就系统性地讲一下。</p>
+
+<h2 id="s2">二、为什么用投资组合</h2>
+
+<p>首先我推荐大家使用<strong>投资组合</strong>的方式来配置股票。因为投资是有风险的，大家都是普通人，再厉害也不可能算无遗策，总会有看走眼的时候。比如重仓单调一个公司，如果不小心出现商业误判或黑天鹅事件，重仓股大幅下跌，那很有可能就是永久性的损失。</p>
+
+<p>如果采用投资组合方式，就可以规避这种偶然的商业误判。比如组合有 <span class="num">8 家</span>公司，其中有一家判断失误，但其他公司都正常增长，那这个投资组合整体上应该还是稳定盈利的。</p>
+
+<p>可能有人会问：那如果我大部分公司都错判了怎么办呢？你这个方法也没用。这个问题问得就很尴尬——<strong>如果大部分公司你都商业误判，那说明你的能力还没资格来做股票投资。</strong>投资能稳定获利的技巧是建立在基本功扎实的情况下用来增加胜率的，基本功不行，技巧掌握了也没什么用。所以仓位管理技巧是有前提条件的。</p>
+
+<h2 id="s3">三、5–8 家公司的持仓规划</h2>
+
+<p>我们假设一下：如果是一个 <span class="num">50 万</span>的资金量，仓位管理应该如何管？</p>
+
+<p>对于普通投资者来说，投资组合的数量我建议控制在 <span class="num">5–8 家</span>：</p>
+
+<ul>
+  <li>低于 <span class="num">5 家</span>，公司之间的股价波动对冲效果不明显，起不到风险对冲的作用；</li>
+  <li>超过 <span class="num">8 家</span>，一般人的研究精力肯定就不够用了。</li>
+</ul>
+
+<p>八家公司我觉得刚刚好（数字也很吉利）。按八家来设计仓位管理的思路，比较理想的持仓结果是：每个公司分配仓位 <span class="num">5–6 万</span>，八家公司总持仓金额控制在 <span class="num">45 万</span>左右，预留 <span class="num">5 万</span>用于应对股市波动。如果资金量比 <span class="num">50 万</span>高，按这个比例算就行——比如 <span class="num">100 万</span>就是每个公司配 <span class="num">10–12 万</span>，最后预留 <span class="num">10%</span>资金用于应对波动。</p>
+
+<p>这是最终仓位形态的规划。但这个形态不是一下直接配置完成的，而是需要经历一个<strong>建仓</strong>的过程。仓位管理是一个动态的工作，每个阶段都有各自的重点。</p>
+
+<h2 id="s4">四、先确定你的风险偏好</h2>
+
+<p>最开始肯定是建仓阶段，但别一上来就买买买，我们需要先摸清楚一件事——<strong>你的风险偏好是什么样的。</strong>这跟人的性格有关，风险偏好高或低都可以，没有对错之分，主要是用来稳住心态的。</p>
+
+<p>如果持股和风险偏好不匹配，持股过程就会特别折磨。比如你风险偏好很低，却买了一些风险较高、市场波动大的公司，那股价一跌就会惴惴不安、心态顶不住、破防了就胡乱操作——在不该割肉的时候容易低位割肉，本来可以涨回来的，结果白白损失了。反过来，风险偏好高的人买不了业务稳定的公司——比如长江电力这种，股价一般长期横盘，好几年都只在一个很小区间内波动，主要盈利来自稳定的分红，股价上涨带来的收益比较小，持股过程会感觉很无聊，拿个一两个月发现没意思就清仓了，白白浪费了时间。</p>
+
+<h3>自测：你更怕踏空还是更怕浮亏？</h3>
+
+<p>大家可以简单自测一下，问自己一个问题：<em>你到底是更怕踏空，还是更怕账户出现浮亏？</em>只要意识到风险偏好的差异，操作一段时间自己评估一下，应该就能知道自己的水平。后续的仓位管理策略需要和你的风险偏好匹配，就算同一个方法论，使用者性格不一样，具体操作也会有差别。</p>
+
+<h2 id="s5">五、估值的四种状态</h2>
+
+<p>确定完风险偏好之后，就可以看目标公司了。首先要判断公司估值处于什么样的状态。<strong>估值状态可以简单分为四类：</strong></p>
+
+<ol>
+  <li>估值虚高</li>
+  <li>估值合理但偏高</li>
+  <li>估值合理但偏低</li>
+  <li>估值超跌</li>
+</ol>
+
+<p>直接拿一个案例讲。以一家行业龙头公司为例，业绩非常稳定，我们就可以用市盈率来判断估值状态。给市盈率趋势打上参考线：黄色是历史均值，比均值高一个标准差就是高估线，比均值低一个标准差就是绿色的低估线。以这个标准快速判断：</p>
+
+<ul>
+  <li>市盈率超过红线（高估线）——<strong>估值虚高</strong>；</li>
+  <li>市盈率在红线和黄线之间——<strong>估值合理但偏高</strong>；</li>
+  <li>市盈率在黄线和绿线之间——<strong>估值合理但偏低</strong>；</li>
+  <li>市盈率在绿线（低估线）以下——<strong>估值超跌</strong>。</li>
+</ul>
+
+<p>可以看到这家公司当前的状态：因为所属行业本身目前比较低迷，市场给它的估值不高，目前属于估值合理但偏低的状态。再往前看，在 <span class="num">2022–2024 年</span>的 <span class="num">3 年</span>大熊市期间，这家公司的估值曾三次短暂跌到过超跌状态。<strong>一般来说，公司估值水平大部分时间都会在合理区间，估值超跌的机会可遇不可求，一般只出现在大熊市。</strong>至于其他公司的估值如何判断高低，大家可以移步到前面发过的教学视频，里面有讲估值分析的详细方法。这里重点了解估值状态。</p>
+
+<h2 id="s6">六、不同风险偏好的建仓时机</h2>
+
+<p>根据自己的风险偏好，来选择初步的建仓时机。</p>
+
+<ul>
+  <li><strong>风险中立型的人</strong>（这种风险偏好的人最多），选择建仓时机一般要等到公司估值在合理并且偏低的区间才行。正常情况下，我们不一定要等到超跌时再买——超跌的估值状态可遇不可求，非要蹲超跌的话反而容易踏空。</li>
+  <li><strong>对风险极度厌恶型的人</strong>（见不得账户变绿，一丁点浮亏都难受），最好等到估值超跌时再买，这种机会一般出现在大熊市期间。</li>
+  <li><strong>风险偏好比较高的人</strong>，会更注重 K 线趋势，如果 K 线技术指标在上升区间，估值稍微高点也没问题。但<strong>就算风险偏好再高，也一定尽量在估值合理区间内买</strong>——如果估值处于虚高状态，那你的预期盈利就只剩下市场博弈了，因为基于公司内在价值的收益已经被估值虚高透支完了，这时去买完全没有安全性可言，市场博弈输了就会血亏。</li>
+</ul>
+
+<h2 id="s7">七、技术分析只是辅助</h2>
+
+<p>判断完入场时机之后，就进入实操。这个时候需要把公司的 K 线调出来，还是拿这家公司当案例。</p>
+
+<p>第一步是先标记公司 K 线的区间——这属于技术分析理论，就是<strong>压力位和支撑位</strong>。按道理讲，只要不是特别新的股市小白、炒股有一段时间的，基本都应该学习过这些 K 线技术，应该知道支撑线、压力位以及筹码分布。不了解的话建议赶紧补一下课。</p>
+
+<p>大家不要有"二极管思维"。我知道很多价值投资者看不上技术分析，认为这是投机方法没必要这样想——<strong>我们是以公司业务分析为主、技术分析为辅助，前者用于判断大方向，后者用于找操作机会，它们各有各的用处，结合使用效果最好。</strong></p>
+
+<h2 id="s8">八、层层狙击的建仓节奏</h2>
+
+<p>为了便于讲解，我把几个参考线打上号码标记，根据 K 线区间制定交易策略。策略可以定得灵活一点，不用搞那么死板，主要是大家稍微多实践一下，就能很快摸索出自己熟悉的风格。</p>
+
+<h3>急性子建仓：先打一个底仓</h3>
+
+<p>比如这家公司估值目前处于合理偏低状态，但 K 线位置属于短期高位，还有股价短期回调的可能性。<strong>性子急的人可以在现在的价格先搞一个底仓</strong>：之前不是拿 <span class="num">50 万</span>资金量作为假设吗？一个公司分配的仓位是 <span class="num">5–6 万</span>，底仓就先买 <span class="num">30%</span>，也就是 <span class="num">1.5 万</span>。</p>
+
+<p>如果股价在区间内波动：</p>
+
+<ul>
+  <li>跌到区间底（<span class="num">2 号</span>位置）——再买入 <span class="num">1 万</span>；</li>
+  <li>下探到 <span class="num">3 号</span>线——继续再买 <span class="num">1 万</span>；</li>
+  <li>到 <span class="num">4 号</span>线——再买。</li>
+</ul>
+
+<p>这有一种"层层狙击"的感觉。这样设计的话，<strong>建仓节奏是有规划的，就不容易一下买得过多，导致后面出现更好的价格时反而没钱了。</strong></p>
+
+<h3>投资组合可以适当超配</h3>
+
+<p>另外我们是投资组合，是 <span class="num">8 个</span>公司同时跟踪，每个公司的股价波动节奏不一样。所以有的时候个别公司出现超跌，仓位分配上可以适当超一点点，等它后续股价反弹时再适当减仓，重新实现仓位平衡就可以了。</p>
+
+<h3>低风险偏好者按兵不动</h3>
+
+<p>如果你是风险偏好比较低的人，现在的价格就可以先按兵不动，等到股价跌到 <span class="num">2 号</span>线再建仓。买入比例就按自己风险偏好设计——比如在 <span class="num">2 号</span>位买入计划仓位的 <span class="num">40%</span>，股价继续向下到 <span class="num">3 号</span>位再买 <span class="num">20%</span>。这个策略可以定得灵活一点。</p>
+
+<h2 id="s9">九、横盘、超涨、破位三种情况</h2>
+
+<h3>大多数时候是横盘：最舒服的局面</h3>
+
+<p>大多数情况下，公司股价走势会以横盘为主，这种情况其实是最舒服的——<strong>一年的时间就很容易慢慢把仓位埋起来</strong>。只要股价跌到区间下沿，就可以选择买入一次；如果某次买得多了一点、仓位有点失衡，可以在股价达到区间上沿时适当卖掉一些，降低持仓成本；等到股价再跌回来，再把仓位买回来就行。</p>
+
+<p>可能有人会担心在这种情况下卖出会踏空。这时就要考虑你的风险偏好——你到底是更怕套牢还是更怕踏空？大多数人应该更怕账面浮亏，<strong>适当减仓导致的踏空，本质上只是你少赚一点而已，多赚少赚其实都是赚了</strong>；而且减仓可以降低持仓成本、让投资者心态更从容，这其实是有利于长期持有的，后面如果有更大的行情也更容易把握住。</p>
+
+<h3>超涨：要重新评估估值</h3>
+
+<p>如果公司股价涨得过高、向上突破区间，就需要再次进行估值分析。如果判断估值过高或虚高，就要适当减仓了——因为公司股价大涨会被动地导致持仓占比提高。<strong>所谓的重仓股一般都是它自己"长"出来的，而不是补仓补出来的。</strong>这时可以通过适度减仓让投资组合恢复仓位平衡，同时空余一些新资金用于应对后续股市波动。</p>
+
+<h3>提前规划，拒绝盘中临时起意</h3>
+
+<p>区间标记是提前进行的，带有一定的预判性，所以我们可以提前想好策略、做好资金的调度推演。<strong>一定要避免在盘中临时起意去操作</strong>。比如之前 PPT 展示的 K 线案例，如果公司股价跌到最下面的位置，起码也是半年之后的事情了——在这之前，我们有足够的时间调整建仓策略。而且在这个过程中，公司的基本面（也就是内在价值）也会不断变化：业绩上涨、内在价值提升，买入节奏就可以加大一些；反之可能就要减仓。</p>
+
+<div class="pull">凡事预则立，不预则废。<br>投资交易很忌讳临场判断，盘中临时交易很容易犯错。</div>
+
+<p>我们可以在周末的时候把持仓股审视一遍，提前把下周的规划想好——看一下哪个公司的股价会走到临界点上去、价格到位了要不要操作、买多少比例比较合适、仓位会不会失衡。这些问题周末提前想好。</p>
+
+<h3>破位：往往是基本面出了问题</h3>
+
+<p>最后一个问题——如果股价跌破最下面一个支撑线该怎么办？通常出现这种情况，一般是公司基本面发生了重大问题，比如财报严重低于预期，公司股价大概率下跌、跌破区间最下面的支撑位、进入一个新区间。</p>
+
+<p>这里先告诉大家一个重点：<strong>公司的业务分析才是重中之重</strong>。如果前面这一步没做好，后面的仓位管理就只是"屎上雕花"的行为。如果公司股价出现破位，并不是仓位管理的办法失效了，而是前面业务分析、估值分析失误了，要反思前面的问题。<em>股票投资是否能稳定盈利，公司选对就赢了 80%</em>——就算不搞后面这些花里胡哨的操作，一样能稳定盈利。好的仓位管理只是能提高胜率和容错率，让我们持仓心态更放松一些，千万不要搞错重点。</p>
+
+<p>如果公司股价出现破位下跌，这种情况造成的股票损失就要承认，不要过于纠结亏损的问题，做好复盘工作就行。要考虑的是：这个公司要不要继续持有？如果答案为否，直接清仓避免越亏越多；如果还想继续持有，就等公司股价稳定下来、形成新的规律区间之后，再按照之前的思路做投资策略。</p>
+
+<h2 id="s10">十、五步仓位管理思路回顾</h2>
+
+<p>仓位管理面临的情况很复杂，所以我只能以讲思路为主——每个人的风险偏好、资金体量、资金管理能力，以及具体选择的公司都不一样，不存在一个固定方法能适用每一个人，而是需要先理解思路，通过实践找到合适自己的具体方法。</p>
+
+<blockquote>
+  <p><strong>最后简单复盘一下这个思路：</strong></p>
+  <p><strong>第一步</strong>，确定以投资组合的方式进行股票投资，确定好资金总量和持有的股票数量。尽量不要满仓，预留 <span class="num">10%</span>资金应对股市波动。</p>
+  <p><strong>第二步</strong>，确定自己的风险偏好——风险偏好低的人选择公司一定要选择估值合理偏低的。</p>
+  <p><strong>第三步</strong>，选择当前估值可以接受的公司，对公司进行技术分析，划定支撑位和压力位，形成股价区间。</p>
+  <p><strong>第四步</strong>，周末提前做好下周的交易计划。股价在区间低位时买入，区间高点适当卖出，控制仓位整体平衡。</p>
+  <p><strong>第五步</strong>，公司的建仓和持仓是长期持续的动作，过程中要持续跟踪公司的内在价值，并基于内在价值的变化调整建仓策略。如果股价突破区间走势，不要着急，先等一等，等股价走势稳定、形成新区间之后再操作也来得及。</p>
+</blockquote>
+
+<p>这个思路讲得还是很清晰的。大家学完之后，周末就可以好好规划一下自己的持仓，做好下周的交易计划。这个方法需要实践——自己亲自操作一段时间之后，就能摸索出适合自己的仓位管理方法了。</p>
+
+<p>今天的分享就到这里，我们下期再见。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化<br>
+  股票投资从入门到精通 · 系列
+</footer>
+
+</div>
+</body>
+</html>

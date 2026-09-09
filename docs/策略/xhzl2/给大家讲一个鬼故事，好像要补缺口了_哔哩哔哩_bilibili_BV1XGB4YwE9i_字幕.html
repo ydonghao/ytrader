@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>给大家讲一个鬼故事，好像要补缺口了</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">技术指标 · 经典理论解析</div>
+  <h1 class="title">给大家讲一个鬼故事，好像要补缺口了</h1>
+  <div class="meta">
+    <span>A股逢缺口必补的老传统</span>
+    <span>共识如何自我实现</span>
+    <span>长线投资者也会用到的交易技巧</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>周末复盘发现：走势像要去补缺口</li>
+    <li>什么是缺口：以 9 月 27 日的走势为例</li>
+    <li>A 股逢缺口必补的老传统</li>
+    <li>补缺口理论属于技术指标范畴</li>
+    <li>推演：共识如何一步步自我实现</li>
+    <li>大部分 K 线技术指标都基于这个逻辑</li>
+    <li>长线投资者的用法：等缺口回补时再操作</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、周末复盘发现：走势像要去补缺口</h2>
+
+<p>给大家讲一个鬼故事：搞不好下周要补缺口了。</p>
+
+<p>周五大盘下跌得比较厉害，所以我周末就复盘了一下。我突然发现一个问题——这个走势感觉要去补缺口了。可能 <span class="num">10</span> 月份这波进来的新手不是很清楚，咱 A 股有一个历史悠久的老传统了：<strong>逢缺口必补。</strong></p>
+
+<h2 id="s2">二、什么是缺口：以 9 月 27 日的走势为例</h2>
+
+<p>先跟大家解释一下什么是缺口。比如我们看 <span class="num">9</span> 月 <span class="num">27</span> 日上证指数的走势：股市当天全天上涨，上证指数在最高点收盘，收盘点数为 <span class="num">3087</span> 点。然后第二天开盘，由于当时投资者的热情比较大，上证指数直接高开。虽然开盘之后回调了一点点，不过幅度不大，只留下了一个比较短的下影线，最低点为 <span class="num">3153</span>。</p>
+
+<p>这个点数比上个交易日的 <span class="num">3087</span> 点要高出 <span class="num">66</span> 点。所以在 <span class="num">66</span> 点这个区间内，形成了一个交易真空区——也就是说在最近半年多的时间里，没有任何一笔交易是发生在这个区间的。我们老股民就管这个真空区叫"缺口"。</p>
+
+<h2 id="s3">三、A 股逢缺口必补的老传统</h2>
+
+<p>A 股素来有一个传统，就是逢缺口必补。前面 <span class="num">十多年</span>了，好像只要出现这样的缺口，最后都通过回调的方式补上了。不知道这次会不会补，后面我们可以一起观察一下这个现象。</p>
+
+<h2 id="s4">四、补缺口理论属于技术指标范畴</h2>
+
+<p>这种补缺口的理论属于技术指标的范畴。我虽然不做短线，也不怎么看盘，但是这种经典的技术理论基本上都是了解的。</p>
+
+<p>形成这种走势的原因，源于大家的一种共识。在 A 股的发展历史中，大家形成了"逢缺口必补"的共识，那么当前真的出现这种局面的时候，补缺口的可能性往往就会真的发生。</p>
+
+<h2 id="s5">五、推演：共识如何一步步自我实现</h2>
+
+<p>我们可以一起来推演一下这个过程。</p>
+
+<p>只要是参与股市的人，我相信大多数都听过这个理论。不管你认不认可，我觉得大多数人应该都是听过的——是非常经典的理论。所以每次大盘在高开高走、出现缺口的时候，大家都会留意这个地方，甚至一些 K 线系统还会贴心地帮你把这个区域标识出来。</p>
+
+<p>等到某个契机，市场出现一波杀跌的时候，K 线走势上就会出现一个大阴线，指数开始回调，往缺口的方向靠拢。这个时候大家在复盘时，就会意识到下面是有一个缺口的，那"逢缺口必补"的理论就会出现在大部分投资者的脑海中。</p>
+
+<h3>这个想法的出现，会影响大家的操作</h3>
+
+<p>假设大家可能在之前的高位卖掉了一些，然后准备找机会在低点买回来。但是我们一看，诶，下面有一个缺口，这个时候就会犹豫——基本上大家会这样想：<em>要不要等缺口补了再说呗，这样会稳妥一点。</em></p>
+
+<p>这样想的人多了，本来这个地方应该是有一些买盘的，这下就全部都消失了。大家都想着"等缺口补了再说嘛"，结果就越是没有人愿意提前去买。没有人愿意买入，结果就是市场在回补缺口的过程中，发现买盘越来越少，导致指数在接近缺口的过程中会加速下跌，一直到把缺口补上为止。</p>
+
+<p>这个时候市场上的投资者会发现：指数已经跌到原先缺口的位置了，就把原本之前准备提交的买单，压在这个时候再去提交——相当于是大家不约而同地，把本来应该在缺口上面的买单，都挪到了缺口下面的位置。其实整体交易量是不变的，只是大家心中抄底的位置就被这个缺口影响了。</p>
+
+<p>于是市场上就出现了这样的情况：指数跌到缺口的位置，立刻买盘就多起来了，一下指数就止跌了，甚至还反超一点。然后这个"逢缺口必补"的理论，就再一次让大家强化了对它的认知——"果然这个理论是对的"。<strong>于是在下一次再出现缺口的时候，大家又会去这样操作，久而久之反复强化，形成了一个坚实的市场共识。</strong></p>
+
+<h2 id="s6">六、大部分 K 线技术指标都基于这个逻辑</h2>
+
+<p>我感觉大部分关于 K 线的技术指标，都是基于这个逻辑形成的。比如说最基本的支撑线，还有趋势线——<em>就是相信的人多了，这个理论就会反过来影响到大家的交易习惯，最后导致 K 线真的在大家预想的位置发生变化，反过来进一步强化大家对这个理论的认知。</em></p>
+
+<h2 id="s7">七、长线投资者的用法：等缺口回补时再操作</h2>
+
+<p>我们做长线投资的，虽然不是很在意市场的短期走势，但难免还是有需要交易的时候。比如说今年下半年的一些分红，我还放在账户里没用，所以还是会观察一下市场的走势，尽量不要在短期相对高的地方去做买入操作。</p>
+
+<p>因为熟悉这个理论的话，在市场出现逼空上涨、出现有缺口的 K 线形态时，我们会多一点理性冷静：先不忙着追进去，先看看基本面能不能够支撑。在没有基本面支撑、光靠政策和情绪的情况下，我觉得比较难支撑市场估值继续提高。</p>
+
+<p>所以在这种情况下，我会暂时失去对这段时间市场的兴趣。要加仓的话，也是想等缺口补了再说，先节约点精力。一旦市场情绪遇冷，或者遇到某个契机导致下跌，就很容易走出这种补缺口的走势。如果刚好我有心仪的公司想追加点投资，一般就会耐心等到这种缺口回补的时候再操作——这样即便后续价格还有可能继续下跌，我这个交易也是在相对较低的位置，心里的安全感会多一点，更有利于长期持有。</p>
+
+<blockquote>
+  <p>我通常不会去预测市场短期走势，现在依然认为市场的短期走势是随机的。不过在遇到这种经典形态的时候，我还是会多看一下。即便没有操作计划，多观察这种市场的经典走势，也能刷到很多实战经验，我觉得还是不错的。</p>
+</blockquote>
+
+<p>今天就简单分享一下吧。大家如果感兴趣的话，后面一段时间可以多观察一下，看看这个缺口的形态最终会不会跟过去一样，通过回调的方式给补上。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>

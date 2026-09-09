@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>为什么不推荐任何基金</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">投资学习笔记</div>
+  <h1 class="title">为什么不推荐任何基金</h1>
+  <div class="meta">
+    <span>主动基金的代理人风险与偏科</span>
+    <span>指数基金：A股好公司还不够多</span>
+    <span>结论：自己学会分析公司最稳妥</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>先说结论：不推荐任何基金</li>
+    <li>股票相关基金的两种类型</li>
+    <li>主动基金原因一：代理人风险</li>
+    <li>2020年白马股追高的代理人困境</li>
+    <li>互联网泡沫时期的前车之鉴</li>
+    <li>主动基金原因二：基金经理的专业偏科</li>
+    <li>主动基金原因三：行业不规范与包装</li>
+    <li>指数基金：两年定投测试的数据结论</li>
+    <li>巴菲特的话适用于标普500，不适用A股</li>
+    <li>美股为什么强：历史与先发优势</li>
+    <li>最终建议：自己学会分析上市公司</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、先说结论：不推荐任何基金</h2>
+
+<p>经常有人在评论区和私信问我：如果不太懂股票，可不可以买基金？我在这里统一答复一下。为了帮大家节省流量，<strong>我直接讲最后的结论——我不推荐任何基金</strong>。</p>
+
+<blockquote>
+  <p>我的想法是：如果你自己有能力直接选公司、或者可以持续学习，<strong>你就自己弄</strong>；如果没有这个能力，最好就不要碰这个东西，风险真的很高。</p>
+  <p>话也不说死。如果实在非要投基金，<strong>勉强沪深300指数基金可以看一下，其他的都要慎重</strong>。</p>
+</blockquote>
+
+<p>原因我在下面详细解释。不过这只代表我自己的想法，觉得有道理就听一下，觉得没道理也没关系，兼听则明嘛——我先把"甲"叠好。</p>
+
+<h2 id="s2">二、股票相关基金的两种类型</h2>
+
+<p>基金的种类很多，我这里主要讲跟股票相关的基金。它主要分两种：</p>
+
+<ul>
+  <li><strong>主动型基金</strong>：由一个所谓比较厉害的基金经理操盘，收你点服务费，替你去炒。</li>
+  <li><strong>指数型基金</strong>：根据市场各种指数提前设定投资策略，被动地按照策略进行投资。</li>
+</ul>
+
+<p>这两种模式在我们当前环境下，我都觉得有各自不足的地方。</p>
+
+<h2 id="s3">三、主动基金原因一：代理人风险</h2>
+
+<p>这几年主动型基金有点不温不火，其实这是常态。也就 2021 年的时候，主动型基金由于赚钱效应明显大火了一把——当时甚至有几个基金经理成了明星网红，还有人组建后援团，真的很夸张。后来股市一直低迷，2021 年大盘被炒得太高，市场持续下跌，那波基金热度基本就散掉了。但还是有很多人选择基金作为股市投资方式。</p>
+
+<p>我不推荐大家买主动型基金，主要有三个原因。先讲第一个——<strong>基金公司和投资者的目标不一样，存在代理人风险</strong>。</p>
+
+<p>我们普通投资者买基金目标很简单：基金净值上涨，实现资产增值。但<strong>基金公司的目标并不是这个，而是规模</strong>——让更多人买他们的基金，因为他们是靠收管理费盈利的。基金净值上涨只是吸引大家来买的一个因素，并不是它的核心目标。</p>
+
+<h2 id="s4">四、2020年白马股追高的代理人困境</h2>
+
+<p>别小看这一点差异，实际上会在投资行为上带来很大的影响。</p>
+
+<p>比如 2020 年结构性行情的中后期，如果我们自己操作自己的账户，可能会优先考虑风险——当时估值已经很高，优先考虑风险的话实际上可以空仓，最坏的结果无非就是少赚一点。市场机会很多，也不差这一点。</p>
+
+<p><strong>但基金经理们办不到。</strong>如果基金经理的第一目标是扩大基金规模，在当年的情况下他就必须去追高白马股——因为你不去买，同行依然会去买。那时基金的增量资金非常多，白马股虽然都在高估值位置，但趋势还在向上。</p>
+
+<p>你作为基金经理或许觉得市场估值太高、存在风险、最好降低仓位；<strong>但是你的客户看不懂啊</strong>。本来那些自己不敢直接买股票、转而选择基金的人，自然是看不懂估值的。大家的想法很简单：谁基金的净值涨得好，就买谁的。</p>
+
+<p>所以当时你不去追高，基金净值就涨不过同行，大家看你操盘的基金不涨了，只会卖掉你的去买同行的，你的基金就会持续被赎回，甚至被清盘，个人还会落得一个"菜狗"的名声。<strong>所以只能硬着头皮去追高，只要净值上涨就行，风险什么的暂时放在一边。</strong></p>
+
+<h3>那后面崩盘怎么办？对基金经理来说其实也没关系</h3>
+
+<p>一旦高估值的泡沫被刺破，所有股票基金都会暴跌——<strong>反正又不是只有我一个人跌</strong>，所以这不是我自己菜，而是市场不好，要怪就怪市场。另外，基金暴跌的钱反正也不是我个人的钱，我赚个手续费而已，净值跌了也是有手续费赚的，不影响基金经理的个人利益。</p>
+
+<h2 id="s5">五、互联网泡沫时期的前车之鉴</h2>
+
+<p>这种案例不是我们这边独有的，美股那边一样存在。当时是互联网泡沫时期，确实有基金经理不愿意去追高互联网泡沫，结果导致自己管理的基金净值不涨，被客户大量赎回——<strong>结果还没等到互联网泡沫被戳破，他的基金就提前被清盘了</strong>。</p>
+
+<p>这个事情对基金经理们来说是有前车之鉴的。有一个名词叫<strong>"代理人风险"</strong>就是讲这件事的：当基金经理和投资人的利益不一致时，<strong>基金经理的第一目标是先保证自己的利益和安全，而投资人的收益最大化将变为第二目标</strong>。当两个目标存在冲突时，基金经理大概率会选择牺牲投资者的利润来先保证自己。</p>
+
+<div class="pull">这种事都已经被提炼成名词解释了，<br>说明它绝不是少数情况，而是普遍存在的现象。</div>
+
+<h2 id="s6">六、主动基金原因二：基金经理的专业偏科</h2>
+
+<p>第二个原因，是<strong>基金经理的专业能力在股票投资上存在偏科</strong>。</p>
+
+<p>看大部分基金经理的简介，一般会写毕业于名牌大学、从业多少年。主流观点是"名校毕业、从业时间越长越好"。但我没见过哪个基金经理是从企业家跳槽过去的。</p>
+
+<p>这里就存在一个问题：<strong>"从业多少年"一般指二级市场操盘时间，但问题是做好股票投资其实并不需要太多二级市场经验</strong>。因为股票的本质是上市公司的所有权，要做好股票投资，必须懂公司是如何运作的——懂二级市场没什么用。</p>
+
+<p>就像我们去市场上买产品，核心要研究的是产品质量、分析它值不值这个售价；<strong>你光研究市场的交易规则有啥用呢？</strong></p>
+
+<p>而这种"懂公司"的能力很难通过学习锻炼出来。你必须是在上市公司长期工作过、并参与过公司战略管理，或者自己亲自经营过公司，才能对现代企业如何运作有一定理解。</p>
+
+<blockquote>
+  <p>如果你没有为做标书而通宵达旦，没有研发过符合客户需求的产品，没有为签单和客户宿醉过，没有因为项目交付不了而头疼过，没有因为售后问题被客户骂过，没有因为迟迟收不到应收款而着急得睡不着觉——<strong>这些事情都没经历过，作为基金管理者对企业的理解肯定是片面的</strong>。</p>
+</blockquote>
+
+<p>高学历和高资历确实可以通过学习弥补一些经验的缺失，但总归是没有经历过，我觉得还是差点意思。</p>
+
+<h3>这也解释了一个经典的知乎问题</h3>
+
+<p>为什么经济学家和金融学家炒股赚不到钱？原因很简单：<strong>投资所需要的专业能力，不是金融能力和经济学能力，而是企业经营能力</strong>。国内比较出名的投资大佬几乎都有企业经营的背景，比如最有名的段永平——他就是 OPPO、vivo、拼多多背后的男人。</p>
+
+<h2 id="s7">七、主动基金原因三：行业不规范与包装</h2>
+
+<p>第三个原因是<strong>基金公司存在一些不规范的地方</strong>。</p>
+
+<p>"老鼠仓"这个问题我都不想说了——大家想想，这又是一个被收录的名词解释，说明干这个事的人还少吗？过去经常有新闻爆出来，一些基金会和上市公司沟通，配合上市公司搞市值管理，把公司股价拉上去，然后配合大股东减持——<strong>用基民的钱去帮大股东搞减持</strong>。这还是比较常规的操作，每年新闻都会爆出不少。这还只是被查出来的。</p>
+
+<div class="pull">厨房蟑螂理论：<br>在厨房看到一只蟑螂，那你家的厨房起码有100只。</div>
+
+<h3>包装明星基金经理</h3>
+
+<p>还有一些比较"骚"的操作。基金比较火的时候，基金公司会刻意包装一个明星基金经理，通过宣传来吸引客户。操作起来很简单：基金公司可以用旗下的其他基金来为明星基金经理的持仓"抬轿子"——建仓时让明星基金经理先买入，再用其他基金持续买入，把股价抬上去，<strong>就显得明星基金经理的成绩比较好</strong>。</p>
+
+<p>所以基金经理的水平，实际上并没有大家看上去那么厉害，公司对其有包装而已。当然能这么操作也无可厚非——如果把自己代入进去，我也会这样操作。出门混口饭吃嘛，面子都是自己给的。</p>
+
+<h2 id="s8">八、指数基金：两年定投测试的数据结论</h2>
+
+<p>讲完主动基金，再讲讲指数基金。<strong>两年前我还认为指数基金可以买，特别是沪深300、上证50这些。但是这两年有一些改观了。</strong></p>
+
+<p>这两年我弄了一个指数基金的定投测试，得到的结果数据很差，和预想的盈利比例差别特别大。所以我打开研究了一下，得到这样的结论：</p>
+
+<blockquote>
+  <p>A 股虽然有 <span class="num">5000</span> 家上市公司，<strong>但大多数公司的质量都差强人意，即便长期持有，收益率也不会很高</strong>。这个问题上，我认为大家应该能达成共识——我做自媒体很长时间了，很多观点在评论区都有不同意见，但唯独这一点，大家的看法基本一致。</p>
+</blockquote>
+
+<h3>买指数=打包买入一揽子公司</h3>
+
+<p>你在买入指数的时候，实际上是打包买入一揽子公司。比如买沪深300指数，实际上就是按权重买入 <span class="num">300</span> 家公司的股票。但这 300 家公司中，可能值得投资的公司只有 <span class="num">50</span> 家，然后还被动买入了 <span class="num">200</span> 多家平庸的公司，<strong>额外还买了十几家垃圾公司</strong>。这样算下来，长期投资收益并不会太高。</p>
+
+<p>举个最近的例子。前两周指数调整的新闻——<strong>连寒武纪这样的公司都被塞到上证50里面去了</strong>。要是放在平时，寒武纪这种估值我多看一眼都会觉得辣眼睛，但这次确实被塞进去了。我不是说这家公司不好，而是估值太夸张——可能就那么一点业绩，居然市场上能给到 <span class="num">2000多亿</span> 的市值。相当于只要买了上证50指数，就被动买入了寒武纪。本来质量就不高的一碗粥里，又给加了一点屎进去。</p>
+
+<h2 id="s9">九、巴菲特的话适用于标普500，不适用A股</h2>
+
+<p>"买指数好"这个说法，应该是听巴菲特说的——他说大部分主动基金经理都跑不过指数。这话没错，<strong>但他说的指数是标普500指数，不是我们这边的指数</strong>。我们的指数在当前阶段跟标普500比，含金量还是差了很多。</p>
+
+<p>我之前讲初选机制的时候，评论区很多人拿制度说事，说美股不出拳、A股要出拳所以美股更好——<strong>这就是拍马屁拍到马蹄上了</strong>。出不出拳这个制度，只能说明两个市场的监管对套利的态度不一样而已，根本不影响什么。</p>
+
+<h2 id="s10">十、美股为什么强：历史与先发优势</h2>
+
+<p>当前阶段美国股市优于我们，<strong>核心的优势点是他们有太多优秀的世界级公司了</strong>。这些公司都是在做全球生意的。有人会问：不是说美国经济不好吗，为什么美股还能涨这么好？因为很简单——他们的头部公司都是在做全世界的生意，<strong>单独一个北美市场根本不影响这种全球公司的业绩</strong>。</p>
+
+<p>比如苹果、英伟达、特斯拉这些东西我们买的还少吗？其他还有谷歌、亚马逊、Facebook、沃尔玛、强生、宝洁、奈飞、丰田、可口可乐、百事、高通、麦当劳等等。以特斯拉为例——它之前一直存在产能问题，但上海工厂建好之后产能就起飞了，中国区贡献了非常多的业绩。但特斯拉是在美股上市的，<strong>我们的市场为特斯拉贡献了非常高的业绩，但这些业绩都算到了美股的股价里</strong>。</p>
+
+<p>那特斯拉还有这么多优秀的公司，为什么不在 A 股上市、而是在美股上市？这个问题其实不是制度问题，而是<strong>历史问题</strong>。我并不认为美股的制度比 A 股优秀在哪里，但美股现在确实比 A 股强，我觉得历史问题占大多数——<strong>美国是二战时期最大的战胜国，后面又打赢了美苏冷战，一手建立起全球贸易体系</strong>。我们改革开放能起飞，其实也是全球贸易体系的受益者。</p>
+
+<div class="pull">人家强的是商业上的先发优势，<br>而不是制度优势。<br>经济问题尽量客观一点，没必要捧一踩一。</div>
+
+<h2 id="s11">十一、A股的指数未来会改观，但现在还不行</h2>
+
+<p>扯远了，回到指数投资上来。<strong>美股能买指数，是因为在美国交易所上市的优秀公司足够多；而我们这边优秀公司的数量当前还撑不起来一个好的指数。</strong></p>
+
+<p>这个事情未来肯定会有改观——随着我们经济持续发展、一带一路战略成功，我们有越来越多的公司成功出海，成为全球级别的公司。到那个时候，我们的指数投资收益也会相当可观。<strong>但是现在还不行，当前阶段还是要捂紧自己的钱袋子。</strong></p>
+
+<h2 id="s12">十二、最终建议：自己学会分析上市公司</h2>
+
+<p>最后再总结一下：</p>
+
+<blockquote>
+  <p>如果希望通过股市投资获利，<strong>尽可能自己去学会如何分析上市公司、给上市公司进行估值</strong>。如果没有这个能力，就宁可不参加。</p>
+  <p>退一万步讲，如果还是想投资股市，那可能就沪深300稍微能考虑一下，其他的指数都差点意思。至于公募主动基金——自求多福吧。运气足够好、碰上大行情了还是可以赚钱的，<strong>只不过额外需要承担很多没必要的风险</strong>。</p>
+</blockquote>
+
+<p>这次的分享就到这，下期再见。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,200 @@
+/**
+ * MarketPage - A-Share Market Dashboard Styles
+ */
+
+/* Chart tooltip shared style */
+.chart-tooltip {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: var(--text-xs);
+  color: var(--color-text);
+  box-shadow: var(--shadow-md);
+}
+
+.chart-tooltip__time {
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--color-text-secondary);
+}
+
+/* Skeleton loading */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-chart {
+  width: 100%;
+  border-radius: var(--radius-md);
+}
+
+/* Time range buttons */
+.time-range-buttons {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.time-range-btn {
+  padding: 4px 10px;
+  font-size: var(--text-xs);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: all 0.15s;
+}
+
+.time-range-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.time-range-btn--active {
+  background: var(--color-accent);
+  color: white;
+  border-color: var(--color-accent);
+}
+
+/* Market page layout */
+.market-ashare {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: var(--space-4);
+  height: 100%;
+}
+
+.market-ashare__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.market-ashare__toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.market-ashare__title {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.market-ashare__charts {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+}
+
+.market-ashare__chart-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.market-ashare__chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.market-ashare__chart-title {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.market-ashare__chart-body {
+  padding: 8px;
+}
+
+/* RSI panel */
+.rsi-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.rsi-panel__title {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+/* Volume chart */
+.volume-chart--empty,
+.rsi-panel--empty,
+.kline-chart--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+/* Price info bar */
+.price-info {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.price-info__symbol {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.price-info__price {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.price-info__price--up {
+  color: var(--color-up);
+}
+
+.price-info__price--down {
+  color: var(--color-down);
+}
+
+.price-info__change {
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+.price-info__change--up {
+  color: var(--color-up);
+}
+
+.price-info__change--down {
+  color: var(--color-down);
+}

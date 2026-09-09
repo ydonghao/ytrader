@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    annotations:
+        cpaas.io/creator: admin@cpaas.io
+    labels:
+        app.cpaas.io/name: coli-ai-fieldextract-algo.688-kj-ai-pro
+        app.cpaas.io/uuid: 6728659f-5bdd-4633-87ef-cb5aced01202
+    name: coli-ai-fieldextract-algo-test
+    namespace: 688-kj-ai-pro
+    ownerReferences:
+        - apiVersion: app.k8s.io/v1beta1
+          kind: Application
+          name: coli-ai-fieldextract-algo
+          uid: 7733fd84-9217-4e22-8704-ea1474d97689
+    uid: bfb4dab0-c053-492c-a3bf-7dac39c4f9a6
+spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+        matchLabels:
+            project.cpaas.io/name: 688-kj-ai
+            service.cpaas.io/name: deployment-coli-ai-fieldextract-algo-test
+    strategy:
+        rollingUpdate:
+            maxSurge: 1
+            maxUnavailable: 1
+        type: RollingUpdate
+    template:
+        metadata:
+            annotations:
+                cpaas.io/creator: admin@cpaas.io
+            creationTimestamp: null
+            labels:
+                app.cpaas.io/name: coli-ai-fieldextract-algo.688-kj-ai-pro
+                project.cpaas.io/name: 688-kj-ai
+                service.cpaas.io/name: deployment-coli-ai-fieldextract-algo-test
+        spec:
+            affinity: {}
+            containers:
+                - image: my-image:1.0
+                  imagePullPolicy: IfNotPresent
+                  name: coli-ai-fieldextract-algo
+                  ports:
+                      - containerPort: 8080
+                        protocol: TCP
+                  resources:
+                      limits:
+                          cpu: "2"
+                          memory: 4Gi
+                      requests:
+                          cpu: "2"
+                          memory: 4Gi
+                  terminationMessagePath: /dev/termination-log
+                  terminationMessagePolicy: File
+            dnsPolicy: ClusterFirst
+            imagePullSecrets:
+                - name: harbor-cfnzlc.kauto.docfj
+            restartPolicy: Always
+            schedulerName: default-scheduler
+            securityContext: {}
+            terminationGracePeriodSeconds: 30

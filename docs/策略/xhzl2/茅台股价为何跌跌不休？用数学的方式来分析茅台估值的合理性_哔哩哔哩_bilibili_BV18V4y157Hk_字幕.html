@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>茅台股价为何跌跌不休？用数学的方式来分析茅台估值的合理性</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">公司分析 · 估值方法论</div>
+  <h1 class="title">茅台股价为何跌跌不休？</h1>
+  <div class="meta">
+    <span>用正态分布分析市盈率</span>
+    <span>戴维斯双击与均值回归</span>
+    <span>成熟型公司的数学估值法</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>茅台：A 股消费板块的风向标</li>
+    <li>从 2500 跌到 1600，仍在合理区间</li>
+    <li>茅台的核心：具有定价权</li>
+    <li>2016 年：房地产带动的白酒景气拐点</li>
+    <li>市盈率与戴维斯双击</li>
+    <li>用正态分布画出三道参考线</li>
+    <li>给到 30 倍市盈率比较合理</li>
+    <li>概率论思维在股市中的应用</li>
+    <li>此方法的适用边界</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、茅台：A 股消费板块的风向标</h2>
+
+<p>今天我跟大家分享一下，如何用数学的方式去分析茅台这个股价走势。</p>
+
+<p>我们都知道茅台是 A 股的股王，茅台的股价走势一定程度上也是 A 股消费板块的一个风向标。但是这两年茅台的股价其实也跌得很厉害，从去年 <span class="num">2</span> 月份开始到现在差不多 <span class="num">两</span> 年的时间了，股价就一直在下跌。从 K 线形态上看，它其实是一个很经典的突破平台之后冲高、然后进入三角整理的趋势；虽然说跌了很多，但依然在合理区间内。</p>
+
+<p>从数据上看，是从 <span class="num">2500</span> 的高点跌到了差不多 <span class="num">1600</span>。这个跌幅，对于这种行业龙头的明星公司来讲，我觉得其实已经跌得比较多了。所以今天就拿茅台作为一个案例，来讲一下我怎么用数学的方式去分析公司的估值。需要说明的是，这个分享仅仅是个人的一点不成熟的想法，不作为任何投资建议。</p>
+
+<h2 id="s2">二、茅台的核心：具有定价权</h2>
+
+<p>茅台这个公司，除了门槛比较高之外，对于初学者来讲其实是一个比较简单的投资案例。因为茅台的基本面我们已经不用去分析了，网上的大神已经帮我们分析得差不多了，我们直接把结果拿来用就好。</p>
+
+<p>我们可以这样理解：<em>茅台就是一家具有定价权的公司。</em>因为我们买茅台这个产品，就只能去他们家买；他想卖多少钱，其实就可以卖多少钱——因为除了他之外就没人卖了。比如茅台的飞天产品，我觉得如果把飞天的价格再翻一倍，其实该买的人还是会买。所以茅台具有定价权，非常具有投资价值。我们记住这个结论就好。</p>
+
+<p>投资茅台，其实比的不是我们的商业分析能力（因为基本面已经帮你分析好了，我们只用套结构就行了），<strong>比的反而是数学的估值能力和对市场的理解。</strong></p>
+
+<h2 id="s3">三、2016 年：房地产带动的白酒景气拐点</h2>
+
+<p>先来看一下茅台的业绩增长情况。其实在 <span class="num">2016</span> 年之前，整个白酒行业包括茅台，增长其实是很缓慢的。因为 <span class="num">14</span> 年出了两件事：一个是酒鬼酒的塑化剂事件（添加剂超标），还有一个是禁止公款消费。所以当时白酒的销量比较低迷。</p>
+
+<p><span class="num">2016</span> 年是一个转折点。当年刚好是房地产行业的"涨价去库存"，所有房地产公司都加足马力、上杠杆去搞。房地产又是一个价值链比较长的行业：上游有土地、建材、工程，下游有房产服务、家居用品等等，整个链条比较长。所以当年房地产行业很火热的时候，带着我们国家的整体经济都比较繁华；而白酒又作为高端商务的必需品，销量就比较高。</p>
+
+<p>从图上可以看到，当时 <span class="num">16</span> 年之后整个茅台的增长就一直保持在 <span class="num">20%</span> 以上的增长。到去年的话，是因为房地产行业开始由盛转衰，又因为链条比较长，导致整个经济比较低迷，商务活动减少，市场上对白酒销量的预期就会偏弱。这也是导致茅台后续下跌的原因之一。</p>
+
+<p>具体的增长数据我已经计算出来，大家可以看到这个图，就能大致看到茅台整个增长率在 <span class="num">21%</span> 左右，比较稳定。</p>
+
+<h2 id="s4">四、市盈率与戴维斯双击</h2>
+
+<p>对于这种利润比较稳定的公司，最好用来判断估值的指标就是市盈率。一般人看市盈率，可能是看一个静态的数字，比如说看茅台当前的市盈率是 <span class="num">36</span>，然后我们考虑这个 <span class="num">36</span> 是高还是低。</p>
+
+<p>而我看一个公司的市盈率，习惯加入一个时间维度——我看它从远到近在一个长的时间段内，市盈率的走势是什么样的。</p>
+
+<p>从茅台的市盈率趋势可以看到，在过去 <span class="num">8</span> 年中，茅台的市盈率一直处于快速增长的过程中，仅在 <span class="num">18</span> 年贸易战时回调了很多，到 <span class="num">2021</span> 年 <span class="num">2</span> 月份的时候倒在了最高点 <span class="num">65</span>。后面就是一直在回调。</p>
+
+<p>因为它本身的利润也在持续增长，股价等于利润乘以市盈率，两者都在增长，<strong>这就叫"戴维斯双击"，导致茅台的股价涨得非常多，投资回报非常的高。</strong></p>
+
+<h2 id="s5">五、用正态分布画出三道参考线</h2>
+
+<p>基于茅台的这种估值数据，我引入一个正态分布的公式。正态分布是统计上的一个公式，参加过高考的话应该都有印象，因为这是高考的必考题。</p>
+
+<p>正态分布用来统计样本形态的概率。举个例子：城市内男性的身高，每个人都不一样，有高有矮，但把数据汇总之后，会发现均值可能是 <span class="num">1</span> 米 <span class="num">73</span>，处于均值上的人数是最多的，再往高走跟再往低走的人数就越少，整个数据上呈现出这样的概率形态。</p>
+
+<p>我认为公司的估值也可以按照这个方式来统计。因为股市有牛熊周期，公司业绩增长也不均衡，所以公司估值在每个时期确实不一样。把这些数据集合放在一起，虽然每个数据都不同，但汇总起来我认为它是符合正态分布的。</p>
+
+<p>基于这个正态分布公式，我们可以给市盈率的趋势加上辅助线：</p>
+
+<ul>
+  <li><strong>黄色的线：</strong>近 <span class="num">8</span> 年来茅台市盈率的均值。</li>
+  <li><strong>高估线：</strong>均值加上一个标准方差。</li>
+  <li><strong>低估线：</strong>均值减去一个标准方差（绿色）。</li>
+</ul>
+
+<p>基于这个参考线，再去看茅台的估值，就能发现前几年确实是涨过头了——股价的涨幅快过了基本面的增长，导致了远期投资收益率的下降。</p>
+
+<h2 id="s6">六、给到 30 倍市盈率比较合理</h2>
+
+<p>茅台的综合增长率是 <span class="num">20%</span>，考虑到它的品牌、文化和行业地位，其实给到 <span class="num">30</span> 倍市盈率是比较合理的，也符合图中的一个均值范围。</p>
+
+<p>估值高于这个数据的话，不是说它一定会跌，而是提供一个概率。因为正态分布不是一个方向上的指引——我们知道一个标准方差的概率大概是 <span class="num">68%</span>，所以当估值线走到这条红线的时候，它的意思不是说会下跌，而是说它上涨的概率跟下跌的概率之间发生了变化。</p>
+
+<h2 id="s7">七、概率论思维在股市中的应用</h2>
+
+<p>我们投资的时候，基本上都是在不确定的情况下、在信息缺失的情况下去做决策，其实赌的就是一个概率论。<em>在我们做多次决策中，只要大部分决策是对的，我们的盈利预期就是正的。</em>这就是数学的思维在股市中的应用。</p>
+
+<p>比如我们去看其他公司，其实也可以用这种思路：在估值低的时候就可以多买一点，在估值高的时候就可以降低仓位，来达到一种仓位的平衡。</p>
+
+<h2 id="s8">八、此方法的适用边界</h2>
+
+<p>最后再回顾一下：<strong>市盈率的正态分布这种分析方式，仅仅适用于那些行业竞争格局比较清晰的公司。</strong>而对于那些成长型的公司来讲，这个方法可能就没有那么管用。</p>
+
+<p>拿茅台举例，也是因为茅台的基本面大家的共识是比较高的，不会说基本面我们理解不一样。对于其他公司的分析，我们可能还是要从基本面跟商业模式来入手。这就是对成熟型公司的一种数学分析方式，可能对自己的投资会有一些帮助。今天的分享就到这里。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>

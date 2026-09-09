@@ -1,0 +1,85 @@
+[project]
+name = "ytrader"
+version = "0.1.0"
+description = "量化交易服务"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.116.1",
+    "pydantic>=2.11.7",
+    "python-multipart>=0.0.20",
+    "pyyaml>=6.0.2",
+    "requests>=2.32.3",
+    "httpx>=0.28.1",
+    "uvicorn>=0.35.0",
+    "orjson>=3.11.3",
+    "loguru>=0.7.3",
+    "sqlmodel>=0.0.14",
+    "pandas>=3.0.2",
+    "numpy>=1.26.0",
+    "scipy>=1.11.0",
+    "akshare>=1.18.50",
+    "apscheduler>=3.11.2",
+    "openai>=1.0.0",
+    "anthropic>=0.40.0",
+    "cryptography>=43.0.0",
+    "python-dotenv>=1.0.0",
+    "psycopg2-binary>=2.9.0",
+    "langgraph>=0.4.0",
+    "langchain>=1.0.0",
+    "langchain-openai>=0.3.0",
+    "langchain-core>=0.3.0",
+    "jinja2>=3.1.0",
+    "langchain-anthropic>=1.4.4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=22.0.0",
+    "isort>=5.10.0",
+    "flake8>=4.0.0",
+    "pytest>=7.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*", "conf*"]
+
+[tool.black]
+line-length = 79
+target-version = ["py310"]
+skip-string-normalization = false
+
+[tool.isort]
+profile = "black"
+line_length = 79
+multi_line_output = 3
+include_trailing_comma = true
+known_first_party = ["app"]
+known_third_party = ["fastapi", "fitz", "orjson", "pydantic", "pyyaml", "requests", "setuptools", "uvicorn", "yaml"]
+force_grid_wrap = 0
+combine_as_imports = true
+
+[tool.flake8]
+max-line-length = 79
+extend-ignore = [
+    "E203",  # 与 Black 在冒号空格处理上的冲突
+    "W503",  # 与 Black 在运算符换行上的冲突
+]
+exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    ".venv",
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "pytest-asyncio>=1.4.0",
+]

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>牛市的风险和估值特征</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">投资学习笔记</div>
+  <h1 class="title">牛市的风险和估值特征</h1>
+  <div class="meta">
+    <span>3800 点与两融余额 2 万亿</span>
+    <span>市值涨了 25–30 万亿，业绩没动</span>
+    <span>牛市不言顶，但要懂风险</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>开篇：氛围开始不对劲了</li>
+    <li>两融余额突破 2 万亿</li>
+    <li>业绩原地踏步，市值却涨了 25–30 万亿</li>
+    <li>排除银行后：估值已到 21 年高度</li>
+    <li>牛市不言顶，但当前确实高估</li>
+    <li>牛市浮盈的本质</li>
+    <li>没有上帝视角：散户被套的全过程</li>
+    <li>21 年进场的兄弟：割在最低点</li>
+    <li>成长股投资的难点：以半导体为例</li>
+    <li>寒武纪的业绩与估值</li>
+    <li>PCB：像不像 2022 年的光伏？</li>
+    <li>光伏行业的前车之鉴</li>
+    <li>新兴行业不适合散户</li>
+    <li>结语：享受泡沫，但要有觉悟</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、开篇：氛围开始不对劲了</h2>
+
+<p>周五收盘之后，大盘突破了 <span class="num">3800</span> 点，完全超过了上次 <span class="num">2021</span> 年白马股大牛市的 <span class="num">3730</span> 点。这个点位再往前追溯，就是 <span class="num">2015</span> 年的杠杆大疯牛了。</p>
+
+<p>这周末我感觉氛围有点不太对了：晚上出去吃个宵夜，都明显听到隔壁桌在讨论股票；也有很多多年没联系的同事给我发来问候的消息，问些什么问题大家懂的都懂；还有一些交流群里，已经有不少人表示开始"上岗赶底"了。</p>
+
+<h2 id="s2">二、两融余额突破 2 万亿</h2>
+
+<p>我赶紧去交易所官网查了一下<strong>融资融券余额</strong>，现在已经突破 <span class="num">2万亿</span> 了，总量和 <span class="num">2015</span> 年最疯狂的时候持平。</p>
+
+<p>不过现在和 <span class="num">10</span> 年前的情况还是有点不一样——现在的市场总量更大一些。现在 A 股的总市值在 <span class="num">115万亿</span> 左右，在 <span class="num">2015</span> 年的时候只有 <span class="num">50</span> 到 <span class="num">60万亿</span>，总量上差了一倍。所以杠杆方面，虽然都是 <span class="num">2万亿</span> 的两融余额，但和市场总量的比例相比还是差了一点，<strong>还没到当年那么夸张的地步</strong>。</p>
+
+<p>不过这个两融余额快速提高的现象，还是需要警惕的。虽然现在的水平还没到当年的水平，但如果这个数据持续上升，那可能很快就追上来了。</p>
+
+<h2 id="s3">三、业绩原地踏步，市值却涨了 25–30 万亿</h2>
+
+<p>除了两融余额的数据之外，我周末还看了一下市场的整体数据。这里我自己不过多解读，就只把我统计的数据拿出来给大家看一下——这是 A 股的总业绩和总市值叠在一个坐标系里的图。</p>
+
+<p>现在上市公司的中报还没发布完，下周是中报的最后一周，中报的汇总数据我要等到 <span class="num">9</span> 月初才能统计完，所以业绩方面我统计的是今年一季度的总量。</p>
+
+<p>公司的业绩数据方面，虽然个别行业（比如汽车、半导体、元器件）这几年增长得比较好，但大多数行业的生意都很挣扎。所以从 <span class="num">2022</span> 年开始，<strong>A 股的整体业绩总量就开始原地踏步了，一直在 <span class="num">72万亿</span> 左右</strong>，公司整体的业绩并没有出现明显的上涨。</p>
+
+<p>但是 A 股的市值在最近一年里上涨了非常多：<span class="num">2024</span> 年 <span class="num">10</span> 月是第一波上涨，经过半年多的横盘调整，在今年 <span class="num">6</span> 月开启了第二波上涨。这波上涨和去年一样，其实在公司业绩上并没有看到很明显的提升——<em>涨的全是估值。</em></p>
+
+<h2 id="s4">四、排除银行后：估值已到 21 年高度</h2>
+
+<p>可能有人会说：是因为银行这两年市值大涨，是不是被银行抬上来的？</p>
+
+<p>银行的利润占比确实非常高，占 A 股整体的 <span class="num">40%</span> 左右，所以银行的整体估值变化对 A 股的影响比较大。但我计算过了：</p>
+
+<ul>
+  <li>银行之前的行业整体市值在 <span class="num">10万亿</span> 左右，经过这两年的上涨，现在行业整体市值是 <span class="num">15万亿</span> 左右，贡献了 <span class="num">5万亿</span> 的市值增长；</li>
+  <li>而 A 股的整体市值之前在 <span class="num">85</span> 到 <span class="num">90万亿</span> 左右，现在总市值大约是 <span class="num">115万亿</span>，足足多了 <span class="num">25</span> 到 <span class="num">30万亿</span>。</li>
+</ul>
+
+<p>其中只有 <span class="num">5万亿</span> 的增长是银行贡献的——那剩下的 <span class="num">20多万亿</span> 是谁涨出来的呢？这个好难猜。</p>
+
+<p>所以我做了这样一个计算：<strong>我把银行这个行业的所有公司剔除掉，然后计算剩下公司的市盈率走势。</strong>结果是这样的——当前排除掉银行之后，这些公司的整体市盈率水平，<em>已经达到了 21 年的高度</em>。21 年之后市场怎么走，我相信现在大多数人应该还记得吧。</p>
+
+<h2 id="s5">五、牛市不言顶，但当前确实高估</h2>
+
+<p>我并不是说现在市场就要到顶了。我可以直接这么说：<strong>我没有预测市场顶部的能力</strong>，只是从各种数据上统计观察到的结果——现在市场的整体估值水平，已经处于一个历史较高的位置了，很多板块的估值已经超过了 <span class="num">21</span> 年的水平。</p>
+
+<p>A 股股民口中有一句老话叫<strong>"牛市不言顶"</strong>。因为二级市场的定价是由交易者决定的，而交易者中极端乐观和狂热的人，他们愿意出的高价肯定会远超我们普通人的想象。如果我们是正常人，其实没办法理解这种极端乐观的情绪到底能疯狂到什么程度，自然也就没办法判断顶部在什么时候出现。</p>
+
+<p>所以我只能判断：<strong>当前市场肯定是高估的，部分公司——特别是小盘股和个别行业的估值——肯定存在泡沫。</strong>至于泡沫会吹到什么时候爆炸，那我就不清楚了。我能做的就是提示一下风险，简单跟大家讲讲牛市的特征。</p>
+
+<h2 id="s6">六、牛市浮盈的本质</h2>
+
+<p>在大牛市中，我们账户的浮盈本质是什么？对应的风险又是什么？</p>
+
+<p>只要股价上涨就是牛市，这个大家都懂——因为公司股价是表面上的东西，数字变大了就是上涨了，一目了然。但问题是<strong>企业的内在价值可能并没有什么变化，只是公司的售价涨了而已</strong>。就像我们买别的商品一样：东西的质量没有变化，但价格比之前贵了很多，这是不是有点问题呢？</p>
+
+<p>我画了一张草图便于大家理解：蓝色的线代表公司的实际内在价值，红色的线代表公司的市值。牛市中绝大多数情况都是这样——公司的业绩确实在持续增长，但市场上的投资者过于乐观，愿意出很高的价格购买股票，导致股价暴涨。股价的涨幅远高于业绩增长——红线和蓝线之间的差距，就是<strong>估值泡沫</strong>。</p>
+
+<p>那牛市中我们盈利的逻辑是什么呢？我们现在都知道，公司的估值高低和公司股价未来会不会涨，其实没有很直接的关系，估值水平只是公司若干评估项之一。公司的股价未来会不会涨，主要取决于大家对公司的预期——<strong>只要后面还有人愿意出更高的价格，公司股价就会上涨</strong>。</p>
+
+<p>比如我们如果在箭头处买入，虽然这个时候估值已经比较高、有一定泡沫了，但未来股价还是会继续上涨，账户就可以盈利。这种盈利，就是<strong>赚市场的钱、赚后来投资者的钱</strong>——别人接了你的盘。</p>
+
+<h2 id="s7">七、没有上帝视角：散户被套的全过程</h2>
+
+<p>我们需要承担的风险是：你期望后续还有人愿意出高价，但实际上没人接盘，你就是最后一棒——那当前公司估值高于内在价值的泡沫部分，就可能是你最终亏掉的钱。</p>
+
+<p>因为我们看图是开了上帝视角的，所以知道这是中间的位置，虽然有泡沫但后续估值还会继续提高。但在实际投资中我们没开上帝视角，判断不了泡沫顶部在哪里。所以我们忍不住冲进去的时候，可能就买在了一个较高的位置——基本已经到顶了。</p>
+
+<p>散户的心态是："我好不容易鼓起勇气追进来了，不涨 <span class="num">20</span> 个点我是不会走的。"但这个时候股价上涨已经是强弩之末，开始高位震荡，<strong>这种情况下很容易套人</strong>。而且因为散户对公司没有研究，如果仓位比较大，会搞得自己寝食难安。后面股价一跌，心理上就会出问题：股价下跌只是浮亏，如果这个时候卖出就变成实亏，我们潜意识会阻止这样做，结果就是越套越死，跌多了账户都不想打开看。</p>
+
+<p>一直到股价下跌把估值泡沫全部挤完，甚至还会出现一定超跌，跌到跌无可跌的时候，耐心和期望才被耗尽——结果就是<strong>割肉割到最低点</strong>。</p>
+
+<h2 id="s8">八、21 年进场的兄弟：割在最低点</h2>
+
+<p>就像去年 <span class="num">9</span> 月的最后一波大跌。我知道 <span class="num">21</span> 年有很多新股民进场，当年追高白马股被套，一直坚持到 <span class="num">24</span> 年，结果 <span class="num">24</span> 年上半年也是大熊市，到 <span class="num">8</span> 月又来一次暴跌。很多人就在这次暴跌中忍不了了，直接选择割肉离场，留下一句"缅 A 狗都不玩"。</p>
+
+<p>结果就是一个月后来了一波<strong>史诗级行情</strong>，这帮低位割肉的兄弟，我估计心态就原地爆炸了，这辈子可能就告别股市了。</p>
+
+<p>其实这个时候告别也不是什么坏事。最怕的就是现在看到大盘新高了，甚至超越了 <span class="num">21</span> 年的最高点，然后不服输又冲进来。</p>
+
+<h2 id="s9">九、成长股投资的难点：以半导体为例</h2>
+
+<p>现在处于财报期，很多公司的中报已经发布了。我挑了几个半导体公司的财报看了一下——增长确实是有，但是跟股价涨幅比起来低于预期。</p>
+
+<p>半导体行业听起来很唬人，但实际上国内半导体行业还处于起步阶段，大多数公司业绩只有几十亿，甚至十几亿的小公司。这波半导体行情属于<strong>国产替代</strong>：市场需求不是慢慢爬上去的，而是已经比较大了，之前由国外产品满足，现在因为各种原因国外产品不可靠了，需要换国产，于是市场需求一下子空出来，订单都给到国内厂商，造成国内半导体公司的业绩指数级增长。</p>
+
+<p>比如市值高达 <span class="num">5000亿</span> 的<strong>寒武纪</strong>。大家感兴趣可以查一下它的一季报和马上要发布的中报，看下业绩多少、增长情况怎么样。今年公司是爆单了，增长确实挺大：一季度业绩 <span class="num">11个亿</span>，市场预估今年业绩规模应该在 <span class="num">70亿</span> 左右——过去 <span class="num">4</span>–<span class="num">5</span> 年它其实都是 <span class="num">6</span>–<span class="num">7亿</span> 的规模。</p>
+
+<p>成长期创新型行业的投资难点就在这里：市场需求在快速扩大的时候，股价也在飙涨，我们很难判断业绩指数级增长的持续性。</p>
+
+<h3>成熟期 vs 成长期</h3>
+
+<p>成熟期行业的公司投资比较简单，只要算好公司的估值、做好产品力研究，基本就大差不差。但成长期行业的投资，需要去预判行业未来的发展趋势，这是非常难的——如果不是行业内的专家，外人很难理解行业趋势。</p>
+
+<p>特别是在市场行情比较火热的时候，公司估值大多数都存在泡沫，因为大家预期这个行业未来还能持续高增长，所以估值给得比较高。公司业绩在高增长，估值也同样高增长，业绩在不断消化估值泡沫——<strong>只要业绩能持续高速增长，那这个高估就是合理的；前提是你真的懂，能算到公司未来能增长多久。</strong></p>
+
+<p>但现实情况是，公司长期保持高增长不太现实。市场需求可能很大，但总归有饱和的一天；而且只要一个行业增长快、利润高，就会吸引新玩家入场，最终导致竞争加剧。另外还涉及政策因素，比如万一国外产品还是可以用的呢？诸多因素都会导致行业在某一阶段增速放缓。</p>
+
+<p>如果成长性行业的公司一旦高增长放缓，<strong>之前积累的估值泡沫就会一下全部挤压出来</strong>。如果你不幸在业绩拐点的时候买入，那可能就要赔相当大一笔钱。</p>
+
+<h2 id="s10">十、PCB：像不像 2022 年的光伏？</h2>
+
+<p>这个是有现成案例的。大家现在是不是看到做 PCB 的公司，这两年股价涨得特别多？你就说像不像 <span class="num">2022</span> 年的光伏行业？</p>
+
+<p>PCB 这三个字母听起来有点高大上，但换个中文名字就懂了——它叫<strong>印刷电路板</strong>。只要是理工科的大学生，都曾经在寝室里手搓过 PCB。基础的 PCB 技术含量其实并不高，高端的 PCB 还有点技术含量，但远没有到那种技术垄断的地步（比如像台积电那样"这东西只能找你做，其他家生产不出来"）。PCB 行业还不至于，东西大家都能生产。</p>
+
+<p>所以当前国内 PCB 市场需求爆发，我感觉看上去更像是一种<strong>产能转移和新兴行业初期带来的需求增长</strong>，我觉得是比较像 <span class="num">2022</span> 年光伏行业的。</p>
+
+<h2 id="s11">十一、光伏行业的前车之鉴</h2>
+
+<p>当年光伏行业有多火，大家应该知道吧？国家从战略层面提出了明确的规划要求：<span class="num">2030</span> 年实现碳达峰，力争 <span class="num">2060</span> 年前实现碳中和。光伏行业作为绿色能源的核心解决方案，在 <span class="num">2022</span> 年半年那个时间点看，简直就是前途一片光明、形势大好。</p>
+
+<p>但当时绝大多数人都没想到——<em>我们中国人做生意实在是太卷了</em>。一个新兴行业，在两年时间里直接给你从蓝海干成红海，需求直接从爆发干成产能过剩。</p>
+
+<div class="pull">就算你不懂生意，难道还不懂国内企业的竞争吗？<br>任何行业只要钱好赚、利润高，<br>马上就会吸引一大批竞争者，<br>一两年时间直接把产能不足干成产能过剩。</div>
+
+<p>所以我们可以看到，光伏行业的大牛市中也是股价提前就直接暴涨，很快就拉到相对高位，中途能买进去的时间窗比较短——散户还没搞明白行业是怎么一回事，公司股价就已经给你拉到高位了。</p>
+
+<h3>行业内专家 vs 行业外散户</h3>
+
+<p>能够在早期就买进去的人，一般都是行业内的专家，或者长期跟踪这个行业的专业研究者，自身对行业非常熟悉，知道行业未来需求会暴涨，所以能提前买进去。</p>
+
+<p>如果是行业外的人，一般是等到公司股价暴涨、已经产生了造富效应才会注意到，这个时候再买进去就很可能已经是高位了。</p>
+
+<p>然后行业内专家能提前观察到行业发展趋势——比如观察到竞争者变多、行业需求增长放缓、产品毛利率开始降低，这时候专家就逐渐开始止盈退出，他们的卖出会导致公司股价下跌。<strong>但行业外的散户不懂</strong>，他们会以为是"千金难买牛回头"，趁着股价大跌赶紧加仓。结果就是公司后续业绩开始下跌，股价遇到"戴维斯双杀"，散户以为下跌只是阶段性调整，结果抄底抄在脖子上，最后损失惨重。</p>
+
+<blockquote>
+  <p>这并不是很遥远的案例，就是前两年才发生的投资案例，现在已经盖棺定论了。我不知道最近追半导体的人，当年有没有追过光伏。</p>
+</blockquote>
+
+<h2 id="s12">十二、新兴行业不适合散户</h2>
+
+<p>这里再强调一下：这种有创新技术的新兴行业，并不是不能投资，而是<strong>不适合散户投资</strong>。因为其中的信息差太大了，我们不懂的人要承担非常高的额外风险。</p>
+
+<p>必须是对行业理解非常深、最好是行业内的专家，才能把握行业的发展节奏：在行业需求爆发的前期就买进去，在行业拐点之前止盈退出。而对于行业不了解的散户，只是看到公司股价涨了、看到别人赚钱自己眼红了，最后忍不住追进去，<strong>被套在高点的概率是比较大的</strong>。</p>
+
+<p>又或者说你觉得自己是天选之人，运气总是非常好，每次追热点都能买在比较靠前的位置，然后后面有行情为你抬轿，最后又能精准逃顶——那这个钱确实该你赚。</p>
+
+<h2 id="s13">十三、结语：享受泡沫，但要有觉悟</h2>
+
+<p>反正现在确实算牛市。老话说得好——<strong>牛市不言顶</strong>。我们确实可以享受一段时间的估值泡沫，但是享受估值泡沫的同时，一定要做好该有的思想觉悟：</p>
+
+<blockquote>
+  <p>如果后续牛市见顶，在牛熊转换的阶段被套在了高点，一定不要再骂股市了——股市又不是没涨，自己没有把握好，能怪谁呢？</p>
+</blockquote>
+
+<p>反正该提醒的都提醒了，牛市不言顶嘛，下周我们就一起享受一下泡沫呗。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>

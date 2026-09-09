@@ -1,0 +1,5 @@
+This is a sample text file for testing the file analysis service.
+
+It contains multiple lines of text to demonstrate how the service works.
+
+You can use this file to test the file analysis functionality.

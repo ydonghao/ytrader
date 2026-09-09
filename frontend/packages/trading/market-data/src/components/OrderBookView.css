@@ -1,0 +1,91 @@
+.order-book {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.order-book__empty {
+  padding: 2rem;
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.order-book__header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.order-book__header span:last-child {
+  text-align: right;
+}
+
+.order-book__asks,
+.order-book__bids {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-book__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
+
+.order-book__depth {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  opacity: 0.15;
+}
+
+.order-book__depth--bid {
+  left: 0;
+  background: var(--color-danger);
+}
+
+.order-book__depth--ask {
+  right: 0;
+  background: var(--color-success);
+}
+
+.order-book__row span:last-child {
+  text-align: right;
+}
+
+.order-book__price {
+  position: relative;
+}
+
+.order-book__row--bid .order-book__price {
+  color: var(--color-danger);
+}
+
+.order-book__row--ask .order-book__price {
+  color: var(--color-success);
+}
+
+.order-book__quantity,
+.order-book__total {
+  position: relative;
+  color: var(--color-text);
+}
+
+.order-book__spread {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}

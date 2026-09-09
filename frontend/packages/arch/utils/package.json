@@ -1,0 +1,11 @@
+{
+  "name": "@ytrader/arch-utils",
+  "version": "0.0.1",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "devDependencies": {
+    "@ytrader/config-tsconfig": "0.0.1",
+    "@ytrader/config-eslint": "0.0.1"
+  }
+}

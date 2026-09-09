@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>优质公司股价低估，为何还会下跌？</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">投资学习笔记</div>
+  <h1 class="title">优质公司股价低估，为何还会下跌？</h1>
+  <div class="meta">
+    <span>股市本就不理智</span>
+    <span>少数交易者决定定价</span>
+    <span>基金赎回的恶性循环</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>半年报天雷滚滚，优质公司也在跌</li>
+    <li>第一点：股票市场本就不理智</li>
+    <li>A 股 vs 港股：中芯国际差了三倍</li>
+    <li>第二点：理解股票的定价机制</li>
+    <li>极端价格由极端情绪的人交易出来</li>
+    <li>缩量阴跌：割肉的人在交易</li>
+    <li>第三点：基金背后的间接资金</li>
+    <li>牛市抱团 vs 熊市赎回的恶性循环</li>
+    <li>该怎么办：相信自己的判断</li>
+    <li>只要经营没问题，低估持续不会太久</li>
+    <li>多读财报，加强识别能力</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、半年报天雷滚滚，优质公司也在跌</h2>
+
+<p>优质公司的股价明显被低估，为何还会继续下跌？最近一段时间这种情况特别多。大盘经过长期持续低迷，很多优质公司的股价其实已经跌到了历史最低位，已经非常便宜了，但这段时间还在持续阴跌。</p>
+
+<p>本周是上市公司发布半年报最后的期限，所以最近半年报也是天雷滚滚。在半年报不及预期的情况下，就造成了股市进一步的杀跌，其中也包括一些非常优质的公司。</p>
+
+<p>这个时候很多人就产生疑问：明明公司经营是 OK 的，业绩也是 OK 的，按现在的股价计算，哪怕按分红做现金流折算，也能算出股价很便宜——<strong>那为什么股价还在跌？还有人在卖？难道市场就这么不理智吗？</strong></p>
+
+<p>今年行情这么差的情况下，我今年还是略微保持浮盈的，所以这方面的理解应该是 OK 的。今天就跟大家分享一下我的理解。</p>
+
+<h2 id="s2">二、第一点：股票市场本就不理智</h2>
+
+<p>首先第一点，<strong>股票市场确实是不理智的，股价严重偏离公司实际价值是常态</strong>。这个观点很容易证明。</p>
+
+<p>就拿 A 股跟港股举例：因为税收的区别——港股的分红有红利税，A 股在一定条件下分红是免税的（A 股持有超过一年就是免税的，对中长线投资者来说基本就等同于免税）——所以同一家公司在 A 股跟港股上市，一般合理的差异在 <span class="num">20%</span> 左右。</p>
+
+<p>但是你经常可以看到，同一家公司在 A 股、港股两地上市，它的价格差异非常大。</p>
+
+<h3>中芯国际的例子：差了三倍</h3>
+
+<p>我们可以看一下中芯国际的股价：它在 A 股卖 <span class="num">47</span> 块钱一股，而在港股只卖 <span class="num">16</span> 块钱一股，<strong>足足差了三倍</strong>。我不敢说是哪个交易所有问题，但你把这两个交易所的情况放在一起看，绝对有一个是不对的。</p>
+
+<p>所以股价的不合理，在股票交易市场属于一个很普遍的现象，我们首先要正视这个前提。</p>
+
+<h2 id="s3">三、第二点：理解股票的定价机制</h2>
+
+<p>第二点，我们要理解股票交易的定价机制。股票也是商品，遵循商品的定价方式。举个例子大家就明白了：</p>
+
+<p>比如说有一个小区有 <span class="num">1000</span> 套房子，那这个小区的房价，<strong>就取决于最近交易的那一套的价格</strong>，其他 <span class="num">999</span> 套不交易的是不参与定价的。挂牌价也只是一个参考——比如说我把自己的一套房子挂个 <span class="num">1000</span> 万，难道就真的值 <span class="num">1000</span> 万吗？那肯定不是这样的，得实际成交了、真的卖出去了才算数。</p>
+
+<p>股票的交易也遵循这个逻辑。比如我们看茅台的股票，最近几天它的换手率都不高，平均下来就是 <span class="num">0.2%</span> 左右——也就是说，<em>只有少部分的参与者通过交易对它进行了定价，而其他不交易的人是不参与定价的</em>，哪怕是大股东。从交易频率上讲，价值投资者的交易频率比价格投机者的交易频率要低得多，特别是在极端的情况下，基本都是投机者在交易。</p>
+
+<h3>极端价格由极端情绪的人交易出来</h3>
+
+<p>当股价过于低估的时候，比较理智的投资者会测算，会发现有些公司的价格实在是低估，即便是拿着长期吃分红、长期都是赚钱的，所以当前的价格就没有卖的必要了。</p>
+
+<p>但不是所有股票交易者都是理智的。很多买股票的人自己没有基本面的分析能力，股价一下跌他就慌了，又不知道该怎么去分析，就比较容易在低估值的时候割肉——特别是那种跟着别人一起买的人，股价一跌自己就没主意了，扛不住就低价卖了。</p>
+
+<p>还有就是那种情绪比较极端的人。因为股民的基数很大，所以极端情绪的人虽然占比不多，但在大基数下数量也是挺多的。</p>
+
+<div class="pull">股票价格在最高估的时候，<br>就是一群极度乐观的人追高买出来的；<br>股票价格在最低的时候，<br>就是情绪最悲观的人割肉割出来的。</div>
+
+<p>我们是不是经常觉得股价涨成这样、或者跌成这样，跌得我们看不懂？那其实是对的，因为我们都是正常情绪的人，那种极端情绪下产生的结果，我们看不懂就很正常。<strong>所以很多优质公司在低位的时候还会缩量阴跌，就是这部分人在交易。</strong></p>
+
+<h2 id="s4">四、第三点：基金背后的间接资金</h2>
+
+<p>第三点，很多股票存在大量间接购买的资金，特别是大型公司基本都被指数收录了。所以当大家买基金的时候，基本就是间接买了这些公司的股票。</p>
+
+<p>我们思考一下，什么样的人会买基金？有两个特点：</p>
+
+<ul>
+  <li><strong>对风险偏好比较低的人</strong>——担心股票风险大，但又想投资，就退而求其次去买基金；</li>
+  <li><strong>自身没有分析能力的人</strong>——相信"专业的人做专业的事"，选择基金经理或者直接去买指数。</li>
+</ul>
+
+<h3>牛市抱团：基金无脑买入吹大泡泡</h3>
+
+<p>在 <span class="num">2019</span> 年之后，出现了股市白马股的疯牛行情，从那个时候起，就有大量的资金通过基金进入股市。当时很多公司的股票能涨出那么大的泡沫，也是因为基金无脑抱团导致的。</p>
+
+<p>因为基金被基民购买的时候，大家很少会把基金拆开来看，分析基金经理是如何布局的——如果有这个能力，那他早就自己操盘了，就不会买基金。大家只会看哪个基金涨得好、哪个基金经理的名气大，就跟风买。其实这个时候，可能这个基金持有的股票泡沫已经很大了，但买基金的人还会继续增多，基金经理只能不断地加仓，<strong>硬生生地把泡泡吹得更大了</strong>。当时有职业道德一点的基金经理基本都封盘了，不让大家追高；但更多的基金为了赚钱，在市场热度最高的时候还发新基金——送来的钱不赚白不赚嘛。</p>
+
+<h3>熊市赎回：被迫低位卖出的恶性循环</h3>
+
+<p>在熊市的时候，基金对股市的影响也是这样的，只不过方向反过来。</p>
+
+<p>这个时候基金配置的公司股价已经很低了，正常操盘的话其实没有必要在这个点割肉，反而应该去加仓——因为能用低廉的价格买入优质资产。但买基金的人看不了这么细，他只知道自己买的基金一跌再跌、持续阴跌，这一天天都在跌，不知道什么时候是个头。</p>
+
+<p>之前都说了，买基金的人普遍风险接受度都不高，一遇到下跌就很容易赎回。最后实在忍不住就赎回了，基金经理没办法——有人赎回的话，他就必须在低位卖出股票来应对赎回的流动性。<em>结果这低位一赎回，就会导致它持有的公司股价变得更低，那基金的净值就会更差，结果就是导致更多的人赎回，然后基金就被迫在低位卖出更多的股票以应对赎回</em>——就形成一个恶性循环。</p>
+
+<p>这个和 <span class="num">2020</span> 年末股价为何明显高估还会暴涨，是一个逻辑。那毕竟才过去 <span class="num">3</span> 年不到，我们总要从经验教训中学到一些什么。</p>
+
+<h2 id="s5">五、所以，低位阴跌基本就这几个原因</h2>
+
+<p>所以当我们持有优质公司的股价，在持续低估位还在下跌的时候，特别是在缩量的情况下，<strong>基本上就这几个原因</strong>。</p>
+
+<h2 id="s6">六、该怎么办：相信自己的判断</h2>
+
+<p>那这个时候该怎么办？很简单，<strong>我们要相信自己的判断</strong>。</p>
+
+<p>做股票投资的人对性格其实是有要求的。股票市场的消息跟观点太多了，如果不能做到足够自信，就很容易被各种消息淹没，然后自我迷失，不知道该怎么操作。</p>
+
+<p>我自己就属于比较自信的性格，我从来不怀疑自己的能力——我当然知道自己的能力有很多不足的地方，但我也同样知道，我自己的优势也是远超常人的。我就相信自己的判断，即使是最后错了，那我也刷到经验了。</p>
+
+<h3>前提是具备基本面分析能力</h3>
+
+<p>那这个时候你可能会问：那我持有的公司是优质公司吗？这个问题就属于对基本面分析能力的问题，是需要长期学习和锻炼的，那就属于另外的范畴了。<strong>对公司基本面的分析，是投资股票的核心准入能力</strong>。如果这方面不达标的话……所以这次分享的前提就是：默认大家是具备一定的基本面分析能力的，可以识别出优质的公司。</p>
+
+<h2 id="s7">七、只要经营没问题，低估持续不会太久</h2>
+
+<p>我过去十多年的经历告诉我：<em>只要公司经营没问题，股价低估的持续时间都不会太久，最后一定会涨上来的</em>，所以不用过于担心。</p>
+
+<p>另外从现金流的角度看，只要公司正常经营，那股价跌就跌吧，其实对大家是没有什么影响的——反正每年给的分红钱一分也不会少。也许还有机会，可以用低价买入更多的被动现金流。</p>
+
+<h3>就像前两年我买农行的情况</h3>
+
+<p>就像前两年我买农行的情况一样，当时的农行股息都已经 <span class="num">7%</span> 了，股价再跌，我就再多买一点，多拿几年，靠分红都能把这个钱赚回来。所以不用太担心优质公司股价下跌的问题。</p>
+
+<h2 id="s8">八、多读财报，加强识别能力</h2>
+
+<p>这两天所有上市公司的半年报都要公布，我们可以多花点时间在阅读财报上。<strong>多阅读财报，可以加强我们识别优质公司的能力，也能提高我们长期持股的信心</strong>，是一件很重要的事。</p>
+
+<p>那今天的分享就到这儿，大家可以多花点时间看财报，我们下期再见。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>

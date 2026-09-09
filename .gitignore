@@ -1,0 +1,76 @@
+# macOS AppleDouble files
+._*
+
+# IDE
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Node
+node_modules/
+
+# LSP cache
+.lsp/
+.clj-kondo/
+
+# Pytest cache
+.pytest_cache/
+
+# Environment
+.env
+
+# Playwright MCP session artifacts (logs/yml/png)
+.playwright-mcp/
+
+# Code graph & agent runtime artifacts
+.codegraph/
+.reasonix/
+.zcode/
+
+# Temp / screenshots
+tmp/
+
+# UI design review snapshots at repo root
+dashboard-after.png
+dashboard-before.png
+dashboard-check.png
+full-layout-current.png
+intel-current-state.png
+intel-harmonization-check.png
+intel-layout-audit.png
+layout-harmonized-v1.png
+manage-filter-closeup.png
+manage-tab-after.png
+manage-tab-before.png
+
+# Runtime logs
+logs/
+
+# Build artifacts
+*.tsbuildinfo
+
+# Runtime sync / backfill progress state (do not track)
+backend/.backfill_all_progress.json
+backend/conf/.national_team_backfill_progress.json
+backend/src/data/sync_progress.json
+
+backend.log
+.superpowers/
+frontend.log
+
+# 本地敏感配置与备份（开源脱敏）
+backend/conf/config.local.yaml
+backend/conf/config.yaml.bak.*
+
+# IDE / 系统产物
+.idea/
+.DS_Store
+.claude/
+.lsp/
+.clj-kondo/
+backend/logs/
+.worktrees

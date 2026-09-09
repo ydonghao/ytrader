@@ -1,0 +1,30 @@
+docker run -d \
+  --name timescaledb \
+  --privileged \
+  -p 5432:5432 \
+  -e POSTGRES_PASSWORD=postgres \
+  -e PGDATA=/var/lib/postgresql/data/pgdata \
+  -v /data/postgresql/data:/var/lib/postgresql/data \
+  --restart unless-stopped \
+  --shm-size=2g \
+  --memory=8g \
+  --cpus=4 \
+  --ulimit memlock=-1 \
+  timescale/timescaledb:2.26.0-pg17 \
+  -c shared_preload_libraries=timescaledb \
+  -c timescaledb.telemetry_level=off \
+  -c max_connections=200 \
+  -c shared_buffers=2GB \
+  -c effective_cache_size=6GB \
+  -c maintenance_work_mem=1GB \
+  -c checkpoint_completion_target=0.9 \
+  -c wal_buffers=16MB \
+  -c default_statistics_target=500 \
+  -c random_page_cost=1.1 \
+  -c effective_io_concurrency=200 \
+  -c work_mem=10MB \
+  -c min_wal_size=2GB \
+  -c max_wal_size=8GB \
+  -c max_worker_processes=8 \
+  -c max_parallel_workers_per_gather=4 \
+  -c timescaledb.max_background_workers=8

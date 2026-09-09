@@ -1,0 +1,39 @@
+{
+  "name": "@ytrader/web",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "rsbuild dev",
+    "build": "rsbuild build",
+    "preview": "rsbuild preview",
+    "lint": "eslint src --ext .ts,.tsx"
+  },
+  "dependencies": {
+    "@ytrader/arch-hooks": "0.0.1",
+    "@ytrader/arch-i18n": "0.0.1",
+    "@ytrader/arch-utils": "0.0.1",
+    "@ytrader/common-components": "0.0.1",
+    "@ytrader/config-rsbuild": "0.0.1",
+    "@ytrader/trading-market-data": "0.0.1",
+    "@ytrader/trading-portfolio": "0.0.1",
+    "autoprefixer": "^10.4.27",
+    "echarts": "^5.6.0",
+    "echarts-for-react": "^3.0.6",
+    "prismjs": "^1.30.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "react-router-dom": "^7.0.0",
+    "react-simple-code-editor": "^0.14.1",
+    "recharts": "^2.13.0",
+    "zustand": "^5.0.0"
+  },
+  "devDependencies": {
+    "@rsbuild/core": "^1.1.0",
+    "@types/prismjs": "^1.26.6",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "@ytrader/config-eslint": "0.0.1",
+    "@ytrader/config-tsconfig": "0.0.1",
+    "typescript": "^5.5.0"
+  }
+}

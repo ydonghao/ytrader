@@ -1,0 +1,24 @@
+{
+  "name": "@ytrader/root",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "rushx dev",
+    "build": "rush build",
+    "test": "rush test",
+    "lint": "rush lint",
+    "clean": "rush clean"
+  },
+  "engines": {
+    "node": ">=21.0.0",
+    "pnpm": ">=8.15.0"
+  },
+  "devDependencies": {
+    "@microsoft/rush": "^5.147.1",
+    "@types/node": "^20.17.0"
+  },
+  "dependencies": {
+    "lightweight-charts": "^5.1.0"
+  },
+  "packageManager": "pnpm@8.15.0+sha512.ea45517d5285d123eac02c3793505fa1fd6da90a2fc60d1e8d9e0c1e9292886ecfaff513f062b9d1cc8021bb8615033b1ac5bea3b2ee3fc165a6d7034bbe6b03"
+}

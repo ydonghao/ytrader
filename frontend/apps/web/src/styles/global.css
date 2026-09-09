@@ -1,0 +1,380 @@
+:root {
+  /* ── Colors — Apple Dark Theme ────────────────────────────── */
+  /* Surfaces */
+  --color-background: #1d1d1f;
+  --color-surface: #2c2c2e;
+  --color-surface-hover: #3a3a3c;
+  --color-surface-elevated: #343436;
+
+  /* Text hierarchy */
+  --color-text: #f5f5f7;
+  --color-text-secondary: #a1a1a6;
+  --color-text-tertiary: #86868b;
+  --color-text-quaternary: #6e6e73;
+
+  /* Borders & separators */
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.14);
+
+  /* Transparent fills */
+  --color-fill: rgba(255, 255, 255, 0.04);
+  --color-fill-secondary: rgba(255, 255, 255, 0.08);
+  --color-fill-tertiary: rgba(255, 255, 255, 0.12);
+
+  /* Primary accent — Apple system blue */
+  --color-accent: #0a84ff;
+  --color-accent-light: rgba(10, 132, 255, 0.12);
+  --color-accent-hover: rgba(10, 132, 255, 0.20);
+
+  /* Semantic colors */
+  --color-success: #30d158;
+  --color-success-light: rgba(48, 209, 88, 0.12);
+  --color-danger: #ff453a;
+  --color-danger-light: rgba(255, 69, 58, 0.12);
+  --color-warning: #ffd60a;
+  --color-warning-light: rgba(255, 214, 10, 0.12);
+
+  /* Category colors */
+  --color-orange: #ff9f0a;
+  --color-orange-light: rgba(255, 159, 10, 0.12);
+  --color-purple: #bf5af2;
+  --color-purple-light: rgba(191, 90, 242, 0.12);
+  --color-teal: #64d2ff;
+  --color-teal-light: rgba(100, 210, 255, 0.12);
+
+  /* Semantic helpers */
+  --color-overlay: rgba(0, 0, 0, 0.55);   /* modal/reader backdrop */
+  --color-wechat: #07c160;                /* WeChat brand green */
+
+  /* Price direction — A股红涨绿跌，全站唯一定义点 */
+  --color-up: #ff453a;
+  --color-up-light: rgba(255, 69, 58, 0.12);
+  --color-down: #30d158;
+  --color-down-light: rgba(48, 209, 88, 0.12);
+  --color-flat: #a1a1a6;
+
+  /* Chart palette — 供 lib/chartTheme.ts 与内联图表色引用 */
+  --chart-1: #0a84ff;
+  --chart-2: #30d158;
+  --chart-3: #ff9f0a;
+  --chart-4: #bf5af2;
+  --chart-5: #64d2ff;
+  --chart-6: #ff453a;
+  --chart-7: #ffd60a;
+  --chart-8: #5e5ce6;
+
+  /* ── Typography scale ────────────────────────────────────── */
+  --text-xs: 0.6875rem;    /* 11px — captions, badges */
+  --text-sm: 0.8125rem;    /* 13px — secondary labels */
+  --text-base: 0.9375rem;  /* 15px — body */
+  --text-lg: 1.125rem;     /* 18px — card titles */
+  --text-xl: 1.375rem;     /* 22px — section headers */
+  --text-2xl: 1.75rem;     /* 28px — page titles */
+  --text-3xl: 2.25rem;     /* 36px — hero metrics */
+
+  --leading-tight: 1.15;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 510;
+  --font-weight-semibold: 590;
+  --font-weight-bold: 680;
+
+  /* Font stacks */
+  --font-display: 'JetBrains Mono', monospace;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-number: 'JetBrains Mono', monospace;
+
+  /* ── Spacing scale (4px base) ────────────────────────────── */
+  --space-0: 0;
+  --space-1: 0.25rem;   /*  4px */
+  --space-2: 0.5rem;    /*  8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+
+  /* ── Border radius — one consistent system ──────────────── */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-pill: 100px;
+  --radius-card: var(--radius-lg);  /* canonical card radius — pages should prefer this */
+
+  /* ── Shadows — tinted to base, warm cast ────────────────── */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.32);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.38);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.44);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.52);
+
+  /* Glow rings — used sparingly for semantic callouts */
+  --shadow-glow-accent: 0 0 0 1px rgba(10, 132, 255, 0.3), 0 0 16px rgba(10, 132, 255, 0.12);
+  --shadow-glow-success: 0 0 0 1px rgba(48, 209, 88, 0.3), 0 0 16px rgba(48, 209, 88, 0.12);
+  --shadow-glow-purple: 0 0 0 1px rgba(191, 90, 242, 0.3), 0 0 16px rgba(191, 90, 242, 0.12);
+
+  /* ── Transitions ─────────────────────────────────────────── */
+  --transition-fast: 0.12s ease;
+  --transition-normal: 0.2s ease;
+  --transition-slow: 0.35s ease;
+  --transition-spring: 400ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ── Z-index scale ───────────────────────────────────────── */
+  --z-base: 1;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Reset & Base
+   ═══════════════════════════════════════════════════════════════ */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--leading-normal);
+  background: var(--color-background);
+  color: var(--color-text);
+  min-height: 100vh;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: var(--text-base);
+}
+
+code,
+pre {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Card surfaces
+   ═══════════════════════════════════════════════════════════════ */
+
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  padding: var(--space-5);
+  transition: border-color var(--transition-normal),
+              box-shadow var(--transition-normal);
+}
+
+.card--filled {
+  background: var(--color-surface);
+  border: none;
+}
+
+.card--ghost {
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.card--ghost:hover {
+  background: var(--color-fill);
+  border-color: var(--color-border);
+}
+
+.card:hover {
+  border-color: var(--color-border-strong);
+}
+
+.card--interactive {
+  cursor: pointer;
+}
+
+.card--interactive:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-glow-accent);
+}
+
+.card--interactive:active {
+  transform: scale(0.985);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Scrollbar — Apple thin
+   ═══════════════════════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Focus & Selection
+   ═══════════════════════════════════════════════════════════════ */
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Micro-interactions
+   ═══════════════════════════════════════════════════════════════ */
+
+button,
+[role="button"],
+select {
+  transition: transform var(--transition-fast),
+              opacity var(--transition-fast);
+}
+
+button:active:not(:disabled),
+[role="button"]:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Animations
+   ═══════════════════════════════════════════════════════════════ */
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes skeleton-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Utility classes
+   ═══════════════════════════════════════════════════════════════ */
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.num {
+  font-family: var(--font-number);
+  font-variant-numeric: tabular-nums;
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-fill) 25%,
+    var(--color-fill-secondary) 40%,
+    var(--color-fill) 55%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.8s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+.animate-enter {
+  animation: fade-in-up 0.4s var(--transition-spring) both;
+}
+
+/* ── Price direction utilities — A股红涨绿跌 ── */
+.is-up { color: var(--color-up); }
+.is-down { color: var(--color-down); }
+.is-flat { color: var(--color-flat); }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ── Page-level loading placeholder ── */
+.page-loading {
+  padding: 48px 0;
+  text-align: center;
+  color: var(--color-text-secondary);
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>指数基金定投实盘教学第11期</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">投资学习笔记</div>
+  <h1 class="title">指数基金定投实盘教学第11期</h1>
+  <div class="meta">
+    <span>三季报数据汇总</span>
+    <span>各指数估值分化的判断</span>
+    <span>建仓期反而希望估值别涨太快</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>本期延迟两天：等三季报数据</li>
+    <li>三季报整体业绩确实很差</li>
+    <li>沪深300与上证50：估值已处于历史低点</li>
+    <li>大公司韧性比小公司强</li>
+    <li>中证500：业绩仍在下行</li>
+    <li>创业板与科创板：业绩意外亮眼</li>
+    <li>建仓期的理想与现实</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、本期延迟两天：等三季报数据</h2>
+
+<p>这里是指数基金定投实盘教学的第<span class="num">11</span>期。这一期的更新比平时晚了两天，因为这两天我们在搜集所有上市公司三季报的数据情况，并做了一些程序上的分析。我想等数据出来之后，再跟大家讲一下这一期的情况。</p>
+
+<p>这几天股市还可以，所以这个策略在这周的前三天，我把数据统计进去之后，还是有比较大的回暖。不过依然有一定的浮亏，但整体上来讲，还是在计划之内的。</p>
+
+<h2 id="s2">二、三季报整体业绩确实很差</h2>
+
+<p>我前几天看财报时，凭眼睛扫了一眼，就觉得三季度的业绩很差，因此导致股市下跌。这两天通过计算机去汇总分析，发现确实是整个中国市场三季度的企业业绩都非常差，已经反映到财报上去了。</p>
+
+<h2 id="s3">三、沪深300与上证50：估值已处于历史低点</h2>
+
+<p>我们看沪深300的业绩走势图就能看到，其实不是目前才这样——从去年下半年开始到现在，差不多有<span class="num">1</span>年半的时间，整个沪深300的大部分上市公司增长都比较乏力，没有什么很大的增速，每个季度涨一点点。沪深300这还是头部的公司，增速都只有这么多，所以整体变化不大。</p>
+
+<p>但反过来看，它的业绩确实只是增速慢，并没有真正下跌。所以从沪深300的估值上看，目前确实处在一个估值的低点，反正从数学上计算是这样的。</p>
+
+<p>至于说是不是真的低点，我认为目前这个点向下的概率远远低于向上的概率。我们读概率论就好了，也不必较真说它一定是低点，这不现实——它确实还是有向下的可能，只是可能性已经不高了。我们尽量做大概率的事情，整体期望值是正的就可以。</p>
+
+<p>上证50的情况跟沪深300差不多。上证50就是所有行业的头部公司，业绩其实稍微也是有一点增长，只是增速很慢。今年它的股价跌得太厉害，导致估值下跌，但实际上业绩跌得不是很多。所以上证50的估值情况跟沪深300我觉得差不多，都属于一个历史底部。</p>
+
+<h2 id="s4">四、大公司韧性比小公司强</h2>
+
+<p>头部公司的业绩还比较好，但小公司就会差很多。我们再来看中证500的数据：<strong>大公司的韧性比小公司要好。</strong></p>
+
+<ul>
+  <li>大公司体量比较大，能稳得住；</li>
+  <li>大公司很多都有完整的供应链体系。如果公司发生危机，一些成本压力、渠道上的压力，可以向上下游去转移。</li>
+</ul>
+
+<p>所以大公司一般更"抗揍"。而小公司遇到行情不好的时候，就会跌得比较厉害。</p>
+
+<h2 id="s5">五、中证500：业绩仍在下行</h2>
+
+<p>看中证500的业绩走势会发现，从去年到现在，它一直处在一个下行的状态。至于这个下行是否已经结束，后面持续跟踪就好了。</p>
+
+<p>中证500的估值我们就先不看了，因为意义不大。在业绩下跌的情况下，这个定投就当纯投机，或者当一个对照去看就好了。</p>
+
+<h2 id="s6">六、创业板与科创板：业绩意外亮眼</h2>
+
+<p>科创板和创业板倒是让我觉得很意外，这两个板块的业绩倒是非常好。我发现实际情况是：<strong>传统行业和一般消费比较低迷，但国家鼓励的高科技行业，比如新能源车、光伏，业绩都比较好。</strong>而创业板和科创板，刚好主要就是这些公司。</p>
+
+<h3>创业板50</h3>
+
+<p>创业板50的增速比较快，起码跟沪深300比起来是快的。它的估值目前也处在一个低点，因为股价跌得多，但实际上业绩反而还在增长。所以创业板50的定投，我认为应该坚持——目前是一个低点，最好多收集一些筹码。</p>
+
+<h3>科创板</h3>
+
+<p>科创板跟创业板类似，业绩涨得比较厉害，因为科创板半导体公司比较多，刚好也是国家比较支持的。它的估值方面，由于科创板是<span class="num">19</span>年成立的，数据比较少，准确度不如前面几个，但也能看出处在一个低点。虽然它的绝对估值比较高，但考虑到科创50的增速比较快——<em>高增速确实可以消化高估值</em>——所以它目前也是一个安全的情况。</p>
+
+<h2 id="s7">七、建仓期的理想与现实</h2>
+
+<p>整体策略上，我们暂时没有看出有什么问题，继续往下投就好了。反正现在还在建仓期。</p>
+
+<p>我其实不希望现在一下涨太多，最好是在这个建仓期，整个市场的估值都保持在一个低点，等我们建仓结束的时候，那个时候再拉上去，那才是最好的。不过这只是理想情况，实际操作的话我们就见招拆招，每周回顾一下就可以了。</p>
+
+<p>本期内容就到这里，谢谢大家。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化<br>
+  指数基金定投实盘教学 · 系列
+</footer>
+
+</div>
+</body>
+</html>

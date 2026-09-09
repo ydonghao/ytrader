@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>股市中的大坑，炒预期和追市场热点</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">投资误区 · 预期与热点</div>
+  <h1 class="title">股市中的大坑，炒预期和追市场热点</h1>
+  <div class="meta">
+    <span>炒股不是炒预期，而是炒预期差</span>
+    <span>热点背后是一条产业链</span>
+    <span>普通人的四个破局原则</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>"炒股就是炒预期"是错的</li>
+    <li>正确逻辑：股价反映预期，炒的是预期差</li>
+    <li>新手眼里的好预期，多半是被带节奏</li>
+    <li>高位追预期只有两个结果</li>
+    <li>真正的预期差必须领先市场</li>
+    <li>迈瑞医疗：疫情预期的泡沫消化</li>
+    <li>利用市场预期赚钱的三种情况</li>
+    <li>散户的预期从何而来</li>
+    <li>制造热点的是一条产业链</li>
+    <li>券商为什么天天喊机会</li>
+    <li>开过公司的人不信热点</li>
+    <li>大浪潮的赢家几乎不是热门上市公司</li>
+    <li>避开90%的坑：四个原则</li>
+    <li>把持股周期拉长到年</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、"炒股就是炒预期"这句话是错的</h2>
+
+<p>很多人在评论区跟我说，"炒股票就是炒预期"。前几天我发了一个视频，跟大家讲了一下小米的商业模式和估值分析，结果底下一堆人跟我讲说"看基本面没用啊，现在炒股都是炒预期"，还有人直接问我说，小米的芯片、AI 机器人这些大热点你怎么不讲呢？要是把这些都算上的话，那万亿估值都不过分。</p>
+
+<p>其实我一看就明白，这就是绝大多数新手最容易踩的坑。<strong>新手都特别喜欢追热点和讲预期，觉得只要故事够大，股价就能一直涨。</strong></p>
+
+<div class="pull">股市里面最害人的，就是把预期当成确定性，<br>把故事当成业绩。大家亏钱往往就亏在这个地方。</div>
+
+<p>所以我今天就把这里的逻辑跟大家彻底讲清楚。</p>
+
+<p>首先我要纠正一个流传极广的错误说法——"炒股就是炒预期"。这句话不仅是错的，而且是不完整的。真正完整、能帮你赚钱的逻辑是：<em>股价反映的是市场对公司的预期，我们炒股要盈利，炒的其实是预期差。</em></p>
+
+<h2 id="s2">二、什么叫预期，什么叫预期差</h2>
+
+<p>我先做个名词解释。什么叫预期？就是大家对这家公司未来的业绩和增长，提前做出一个判断。那什么叫预期差呢？就是<strong>你的判断和市场当前的共识不一样，而且比市场更早、更准</strong>。</p>
+
+<p>比如说大家预期一家公司未来的业绩会大增，哪怕现在的业绩一般，我们也会提前买入。买的人多、卖的人少，供需失衡，股价就会上涨。新股民只看到表象——股价因为预期上涨了——于是简单总结说"炒股就是炒预期，只要大家一致看好股价就会一直涨"。</p>
+
+<p>但这里有个致命的问题：绝大多数新手根本不具备独立分析公司的能力，你眼里的好预期根本不是你自己研究出来的，而是被媒体、大 V、涨停板、龙虎榜这些东西给你灌输的——用大白话讲，<strong>就是你被带节奏了</strong>。等你都能轻松地听到、看懂、相信这个逻辑的时候，市场的共识早就已经形成了，并且已经充分反映在股价里了，股价大概率就已经涨过一轮了。你这个时候再冲进去，那就不是去投资，那就是去当接盘侠的。</p>
+
+<h2 id="s3">三、高位追预期，只有两个结果</h2>
+
+<p>那这个时候你对公司有好的预期也没什么用了，因为你的预期基本等于市场所有人的预期，就没有形成一个预期差。当前的股价由于预期的原因已经涨上去了，把未来的增长提前透支了。你在高位买入之后，只会面临两个结果：</p>
+
+<ul>
+  <li><strong>第一种，运气比较好。</strong>公司的业绩真的按预期高增长了，但股价早就提前涨完了，你在高估值的地方买，预期收益率是很低的，而且还要承担很大的风险。</li>
+  <li><strong>第二种，比较坑爹。</strong>公司的业绩后续没有增长，大幅低于预期，那公司的股价就会大幅杀跌，基本上从哪里涨起来的就会跌回到哪里去，甚至跌得更低。高位买入，直接深度套牢。</li>
+</ul>
+
+<h2 id="s4">四、真正的预期差，必须领先市场</h2>
+
+<p>所以正确盈利的逻辑只有一个：<strong>你必须在市场形成一致预期之前，靠自己的独立研究，提前判断出公司未来高增长的可能性。</strong>你的判断要领先当前的市场判断，这个才叫预期差；然后在股价还没启动之前买进去，你才能拿到比较可观的收益。</p>
+
+<h2 id="s5">五、案例：迈瑞医疗，疫情预期的泡沫消化</h2>
+
+<p>光讲理论有点空，我拿一个真实案例给你们讲透。我选的是一个医疗器械的龙头公司，叫迈瑞医疗。</p>
+
+<p>我们先看一下迈瑞医疗的业绩趋势图。这家公司是 <span class="num">2018</span> 年上市的，上市之后公司业绩就持续增长，一直保持到 <span class="num">24</span> 年底才导致业绩同比下滑了一些——之前一直都是每年能保持 <span class="num">20%</span> 左右的增长比例。</p>
+
+<p>这个案例我们主要看它疫情期间的股价表现。看到这家公司的业绩增长情况，大家会觉得它的股价表现应该怎么样？是不是会觉得公司的股价在上市之后应该是一直保持增长的，和业绩趋势保持一致？<strong>但真实的股价走势完全出乎大家意料。</strong></p>
+
+<p>我们可以把这家公司的市值和业绩走势叠到一个坐标系中去观察，会发现一个非常割裂的现象：公司的股价在上市之后确实大涨了，但股价的涨幅远远高于公司业绩增长幅度。然后公司的股价在 <span class="num">21</span> 年就达到一个顶峰，市值一度接近 <span class="num">6000亿</span>的规模。21 年实际上是一个股价拐点，在这之后公司股价就一直下跌，已经持续跌了 <span class="num">5年</span>时间，虽然中间有无数次小反弹，但整体趋势一直是向下的。</p>
+
+<h3>为什么会出现这种奇葩的股价走势</h3>
+
+<p>主要原因很简单，就是<strong>市场当年给的预期太高了，股价一次性把未来很多年的增长全给透支完了</strong>。</p>
+
+<p>当年疫情爆发的时候，呼吸机的需求暴增，所有人就反应过来了：迈瑞医疗是卖呼吸机的呀，它的产品肯定要卖爆啊。所以市场的预期迅速达成一致，然后大家纷纷买入、资金疯狂涌入，股价一下就被拉上去了。后面的几年时间，迈瑞的业绩确实在持续增长，但是业绩增长的速度远远消化不了当年 <span class="num">6000亿</span>的超高估值。所以股价只能一路回落，靠时间慢慢消化估值泡沫，一直回归到合理估值才算完。现在我看了一下，应该还是偏贵了一点。</p>
+
+<h3>想赚大钱，只有一种机会</h3>
+
+<p>想在这种股票上赚大钱，就只有一种机会：就是在 <span class="num">2019</span> 年底的时候，在疫情刚刚出现的前几天，大家还没有反应过来、市场还没有形成一致预期的时候，你就已经提前判断出迈瑞的产品要大卖，然后提前买入。这个时候<strong>你有预期，但市场还没有</strong>，这就产生了预期差。如果后面你的判断是对的，那你就可以赚一波大的。</p>
+
+<p>等到 <span class="num">2020</span> 年 6 月份的时候，全网都知道呼吸机供不应求、所有人都超级看好的时候，市场的预期形成，反应到股价上——这个时候就已经开始产生估值泡沫了。你这个时候去看，你的预期已经比市场的预期要晚了。如果从长期投资的角度去看，这个时候进场的长期收益率是负的。</p>
+
+<p>如果你运气好，抢在股价拐点之前提前止盈离场，那确实还能赚一点点；但如果你运气不好，当年没有及时卖出，那你不就套进去了吗？又或者说当时的你坚定地认为这家公司值得长期持有，那就完犊子了——现在都已经 <span class="num">2026</span> 年了，当年高位买入的人现在还没有解套呢。</p>
+
+<h2 id="s6">六、用一句大白话总结预期与预期差</h2>
+
+<p>看完迈瑞医疗这个案例，我再把预期和预期差的规律总结成一句大白话跟大家讲：</p>
+
+<blockquote>
+  <p><strong>公司的股价走势，会反映当前市场对公司未来的预期。</strong>我们站在投资者的角度去操作，如果要实现盈利的话，我们的预期一定要早于市场的预期形成预期差，并且我们的预期是正确的，才有可能获利。</p>
+  <p>如果你认为炒股就是炒预期，而忽略了你的预期和市场预期之间的差异，甚至你的预期比市场的预期还要晚，你再去操作，大概率就是去高位站岗的。</p>
+</blockquote>
+
+<p>市场的真实链条就是这样的：少数有研究能力的人往往会先发现商业机会形成预期差，然后他们提前买入，最终收益是最大的；然后机构会陆续跟进，股价会继续上涨；等到散户、媒体、大 V 全部都在吹的时候，市场的预期就已经拉满了，股价也基本上要见顶了——你这个时候再进场，那就是来接盘的。</p>
+
+<h2 id="s7">七、利用市场预期赚钱的三种情况</h2>
+
+<p>那我们如何利用市场的预期来赚钱呢？有以下三种情况：</p>
+
+<ul>
+  <li><strong>第一种，预期还没有被充分定价。</strong>这个商业机会你先看到了，市场还没反应过来，你趁着市场预期没有形成之前提前买进去。</li>
+  <li><strong>第二种，预期被证伪。</strong>大家觉得这个生意很好，但实际上这家公司很垃圾，你就可以提前止盈或者做空来盈利。</li>
+  <li><strong>第三种，预期被超预期打破。</strong>大家觉得这个生意很一般，但你觉得这个生意其实非常好，结果你判断的是对的，公司未来的业绩大幅增长，那股价也会跟着大涨。</li>
+</ul>
+
+<h2 id="s8">八、散户的预期，到底从何而来</h2>
+
+<p>讲完预期和预期差，我再告诉你们一个更扎心的事情：散户的预期到底是怎么来的呢？</p>
+
+<p><span class="num">90%</span> 的新手股民，不是靠自己深度研究公司得出的判断，而是<strong>被热点催生、被情绪裹挟</strong>——往往是看到了股票涨停了、看到新闻在刷屏、看到股票群、短视频、股票论坛都在吹，以及看到自己身边的人都在买。<em>你看到的机会，大多数是别人故意让你看到的。</em></p>
+
+<div class="pull">如果是真的有稳赚的机会，正常人都是自己悄悄地买嘛，<br>甚至是加杠杆地买——谁会满世界喊你来分钱呢？<br>所以别人主动塞给你的机会，大概率是坑。</div>
+
+<h2 id="s9">九、制造热点的是一条产业链</h2>
+
+<p>那到底是谁在制造和鼓吹这些热点呢？制造热点的不是单一角色，而是一条产业链：</p>
+
+<ul>
+  <li><strong>产业资本和大股东</strong>：他们都有减持套现的需求，所以要做高市值。</li>
+  <li><strong>游资和机构</strong>：负责点火、拉涨停板，制造出赚钱效应。</li>
+  <li><strong>券商分析师和所谓投研圈</strong>：负责讲故事、造新名词、包装赛道，把一个普通的公司包装成国家战略、颠覆式创新。这帮人就会误导你，让你以为自己是价值投资，而不是追涨。</li>
+  <li><strong>财经自媒体大 V 和股票社群</strong>：负责扩散情绪，把局部的热度扩散成全局的热度。自媒体不一定是机构和游资的帮凶，但他们大多数是流量导向的，讲热点比较容易吸引流量，所以也会不自觉地加入到这个炒热点的链条中来。</li>
+</ul>
+
+<p>其实说白了，热点就是大家一起编故事，然后一起推高股价，一起吸引散户来高位接盘。</p>
+
+<h3>游资和机构炒热点，不是他们坏，是立场决定行为</h3>
+
+<p>游资和机构炒热点，不是他们坏，是立场决定行为。因为他们的经营目标就是对客户的资金负责、对收益率负责，怎么搞钱最快就怎么弄——利用情绪割韭菜就是最稳妥的方法。他们的行为逻辑就是：低价买入公司的股票，然后开始讲故事和制造热点；股价形成上涨趋势之后就开始吹逻辑，最后就是把垃圾公司的股票高价卖给最狂热的散户。</p>
+
+<h2 id="s10">十、券商为什么天天喊机会</h2>
+
+<p>那券商为什么也天天喊机会、吹热点呢？是因为券商的商业模式天然就鼓励你多交易。证券公司靠什么赚钱？<strong>他们赚的就是你的交易佣金，以及融资融券的利息。</strong></p>
+
+<p>我统计过三个典型券商的收入构成。除了头部券商像中信证券这种，它的主要收入来源是自营投资业务之外，其他大部分中小型券商的主要收入来源都是股票经纪类业务，用大白话说就是赚你的交易佣金，还有融资融券的利息。要是大家都是长期投资者，买了之后就不交易了，而且不加杠杆，那券商还赚什么钱呢？</p>
+
+<p>所以他们就会不断地给你讲热点，而且特别喜欢讲新的热点，这样你才会因为追热点而不停地换股，你每次交易券商就可以赚一次佣金；而鼓吹牛市就会提高市场的杠杆率，那他们就可以赚融资融券的利息。所以我们总会看到券商说"永远有机会"，市场下跌也会告诉你"有结构性行情，要积极把握"，几乎从来不会看到券商说让你空仓休息。券商这样搞也不是害你，是立场决定了它的话术，它也只是想赚钱而已。</p>
+
+<h2 id="s11">十一、开过公司的人，不信热点</h2>
+
+<p>这里我再给大家讲一个非常现实的商业认知：就是<strong>自己开过公司、做过实业的人，基本不相信单纯的热点和新概念</strong>；而大多数散户没有开过公司，所以会低估技术落地的难度，觉得有个新技术就能轻松赚钱一样。</p>
+
+<p>开过公司的人都清楚这一点：你技术可行，不代表产品可行；产品可行，不代表成本可行；成本可行，不代表规模化可行；规模化可行，不代表有利润；有利润呢，也不一定能够持续产生竞争优势。<em>从概念，到新技术，再到稳定赚钱盈利，中间还隔着产品、供应链、管理、渠道、客户、现金流、竞争——中间隔着无数道地狱难度的关卡。</em></p>
+
+<p>没有做过生意的人，眼里就总盯着新概念、新故事、新风口；而做过生意的人，主要就是看有没有真实的需求、有没有客户的订单、能不能持续产生利润。开过公司的人不信热点、不信新技术，不是保守，是我们见过商业的真实难度，知道概念落地有多难。散户疯狂追求新技术和热点，不是勇敢，是根本就没开过公司，不知道做生意有多难。</p>
+
+<h2 id="s12">十二、大浪潮的赢家，几乎不是热门上市公司</h2>
+
+<p>还有一个更残酷的真相：每一轮大技术浪潮里面跑出来的赢家，<strong>几乎都不是当时热门的上市公司</strong>，历史已经反复证明了这一点。</p>
+
+<ul>
+  <li>互联网崛起了，赢的不是传统的电信公司，而是腾讯；</li>
+  <li>电商时代，赢的也不是传统的线下零售巨头，而是京东、淘宝、拼多多；</li>
+  <li>现在 AI 行情大热，最有潜力的公司，也不是现在已经被炒上天的这些老面孔，反而是没有上市的字节跳动——目前掏出来的 AI 应用看起来是最厉害的。</li>
+</ul>
+
+<h2 id="s13">十三、避开90%的坑：四个原则</h2>
+
+<p>面对热点和所谓的预期，我们普通人怎么破局呢？记住我的四个原则，就能避开市场 <span class="num">90%</span> 的坑。</p>
+
+<ol>
+  <li><strong>不看一致预期。</strong>市场全部都看好、都在吹、都在买，那就等于预期已经拉满了，你看到的利好早就体现在股价里了。</li>
+  <li><strong>不迷信、不盲从任何新名词。</strong>凡是你听不懂的赛道、新概念、新故事，<span class="num">99%</span> 都是为了方便拉高出货编出来的。10 年前的创业板一哥贾跃亭的乐视网，大家应该还记得吧？贾老板那一句"为梦想窒息"，谁听了不迷糊啊；贾老板当年造了很多词，那句"生态化反"，我到现在都没搞明白是啥意思。</li>
+  <li><strong>不要因为大家都买而去跟风买。</strong>"别人贪婪你恐惧"，这不是鸡汤，这是经验和数学。人多的地方，收益率一定被摊薄了，风险一定是最高的，想想当年的房地产投资是不是这个道理。</li>
+  <li><strong>不要把短期波动当成长期逻辑。</strong>今天涨、明天利好、后天涨停，和一家公司 3 年之后值多少钱，是没有任何关系的。</li>
+</ol>
+
+<h2 id="s14">十四、做预期差，不是炒预期，更不是追热点</h2>
+
+<p>最后我再强调一下：<strong>我们做的是预期差，不是炒预期，更不是追热点。</strong>我们赚的是这种钱——就是现在没人看好、没人关注，但公司未来会变好、业绩会兑现，而股价还没有反应——这个才是预期差。</p>
+
+<p>研究公司时，我们看的是真实业绩、商业模式、持续利润，还有核心竞争力；不听故事，不去炒概念，也不去赌什么赛道。<em>大盘暴跌、板块冷清、没有人关注、券商不推荐，往往才是长期的最佳买点；而那种全场狂欢、情绪沸腾，就是我们离场兑现利润的时候，不是进场的时候。</em></p>
+
+<h3>再给你一个思路：把持股周期拉长</h3>
+
+<p>再给你一个思路，就是把持股的周期拉长，以年为单位。一旦你用 3 年、5 年的视角看公司，所有短期的热点、波动、情绪，都是噪音。</p>
+
+<p>那今天的分享就到这里，这应该是我春节前最后一期内容，就提前给大家拜个早年，我们春节后见。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化<br>
+  投资误区 · 系列
+</footer>
+
+</div>
+</body>
+</html>

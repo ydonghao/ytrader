@@ -1,0 +1,59 @@
+# CI —— 两道与本地开发相同的验证门:
+#   1. backend : uv 装依赖 + 接线门(import src/main, 不连DB)
+#   2. frontend: pnpm 装依赖 + rsbuild 生产构建
+# 说明: 全量 pytest 有既有失败且多数用例依赖本地 TimescaleDB,
+# 不纳入 CI 门;待测试面治理后再加。
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: 后端接线门
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: backend/uv.lock
+
+      - run: uv python install 3.13
+      - run: uv sync --frozen
+
+      - name: import gate
+        run: uv run python -c "import src; import main; print('import ok')"
+
+  frontend:
+    name: 前端构建门
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      # pnpm 版本取自 frontend/package.json 的 packageManager 字段(8.15.0)
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: frontend/package.json
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: frontend/pnpm-lock.yaml
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter web build

@@ -1,0 +1,11 @@
+node_modules/
+.pnpm-store/
+dist/
+.lib/
+.tmp/
+.rush/
+common/temp/
+common/changes/
+*.local
+.env.local
+.env.*.local

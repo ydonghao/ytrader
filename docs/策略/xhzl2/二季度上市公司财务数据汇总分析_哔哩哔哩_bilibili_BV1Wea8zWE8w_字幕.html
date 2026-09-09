@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>二季度上市公司财务数据汇总分析</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">投资学习笔记</div>
+  <h1 class="title">二季度上市公司财务数据汇总分析</h1>
+  <div class="meta">
+    <span>A股2025年半年报：业绩原地踏步、K型分化</span>
+    <span>大公司企稳、小公司业绩与股价背离</span>
+    <span>热门行业普遍涨出泡沫</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>整体感觉：原地踏步中的K型分化</li>
+    <li>二级市场的反常：小公司业绩差股价却猛涨</li>
+    <li>整体数据：业绩71.8万亿、利润5.24万亿</li>
+    <li>数据是怎么统计出来的</li>
+    <li>沪深300：业绩没涨、股价大涨的背离</li>
+    <li>沪深300市盈率已到高位</li>
+    <li>指数分级科普：沪深300/中证500/1000/2000</li>
+    <li>中证500：估值超过21年最高点</li>
+    <li>中证1000：估值已达近8年最高点</li>
+    <li>创业板/科创板：增长预期已被股价透支</li>
+    <li>进出口数据：贸易顺差8.2万亿</li>
+    <li>热门行业：半导体、元器件、银行、白酒、家电、汽车、医药</li>
+    <li>总结：警惕没有业绩支撑的上涨</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、整体感觉：原地踏步中的K型分化</h2>
+
+<p>今天跟大家分享一下 A 股所有上市公司 <span class="num">2025</span> 年半年报的财务数据汇总分析。半年报发布截止日期是 <span class="num">8月30日</span>，上周五全部发布完毕，所以这周就在整理数据。初步过完一遍，今天拿出来和大家分享。</p>
+
+<p>整体感觉和一季度差不多：<strong>公司整体业绩基本属于原地踏步，但细节上出现了 K 型分化</strong>。</p>
+
+<ul>
+  <li><strong>大型公司</strong>：业绩基本企稳，还略有回暖。</li>
+  <li><strong>小型公司</strong>：业绩依然很差，大多数利润都是下滑的。</li>
+</ul>
+
+<p>汇总起来看，就是<strong>大公司的业绩增长弥补了小公司的业绩下滑</strong>，所以整体上保持业绩平稳。</p>
+
+<h2 id="s2">二、二级市场的反常：小公司业绩差股价却猛涨</h2>
+
+<p>但是在上半年二级市场的表现上，又是相反的——这点很有意思。</p>
+
+<ul>
+  <li><strong>大公司</strong>的股价虽然略有一点增长，但<strong>增长幅度是跑输大盘的</strong>。</li>
+  <li><strong>小公司</strong>的业绩虽然都很差，<strong>股价却猛涨</strong>。</li>
+</ul>
+
+<p>所以这波行情的赚钱效应其实很差——大多数投资者买的还是大型、优质公司更多一些。</p>
+
+<h2 id="s3">三、整体数据：业绩71.8万亿、利润5.24万亿</h2>
+
+<p>我们看整体数据：业绩基本原地踏步，同比增长 <span class="num">0.5%</span> 左右。俗话说"苍蝇再小也是块肉"，总比下跌强。</p>
+
+<blockquote>
+  <p>A 股整体业绩规模汇总：<strong><span class="num">71.8万亿</span></strong>；利润：<strong><span class="num">5.24万亿</span></strong>。</p>
+  <p>从 2022 年开始，A 股的整体业绩规模就一直保持在这个水平。我其实挺好奇的，想看一下这个规模要保持多久。</p>
+</blockquote>
+
+<h2 id="s4">四、数据是怎么统计出来的</h2>
+
+<p>总有朋友问我这个数据是哪里来的，今天简单讲一下。</p>
+
+<p>这个数据是我用数据库统计出来的——MySQL，网上有很多数据接口可以直接用。流程是：</p>
+
+<ol>
+  <li><strong>先统计单个公司的数据。</strong>这里有一个细节：半年报数据是六个月的，需要换算成年度数据。我用的算法是<strong>滚动业绩</strong>——取财报期最近四个季度的数据汇总。比如看一家公司的半年报，加上去年下半年的业绩，刚好凑成一年。</li>
+  <li><strong>给公司打标签</strong>，比如行业标签和指数标签。</li>
+  <li><strong>按标签汇总统计</strong>。比如沪深300指数的业绩，就是把 300 家成分股的业绩汇总；行业 PE 的算法，就是行业的总市值除以对应周期的总利润。</li>
+  <li><strong>用 BI 工具把数据转化为图表</strong>，看起来就很直观。</li>
+</ol>
+
+<p>算法其实很简单，简单的东西不容易出错，也很有参考价值。</p>
+
+<h2 id="s5">五、沪深300：业绩没涨、股价大涨的背离</h2>
+
+<p>沪深300指数是 A 股最重要的一个指数，类似于标普500对美股的意义。300 家公司占 A 股公司总数 <span class="num">6%</span> 不到，但业绩占 A 股总量的 <span class="num">60%</span> 多，所以是最能代表 A 股的指数。我们投成绩基本上都以沪深300作为参考基数。</p>
+
+<p>沪深300的二季度滚动业绩还是一样——<strong>没有增长，原地踏步</strong>。不过这也不是坏事，起码没下跌。股市有句话讲得好：<strong>利空出尽就是利好，再差也就这样，那就耐心等待呗</strong>。</p>
+
+<h3>股价与业绩的背离已经出现</h3>
+
+<p>把沪深300的市值数据叠加到业绩数据上对比观察，比较有意思的是：<strong>沪深300公司的股价已经开始上涨了</strong>。这个我在看一季度财报时就指出来了——最近一年沪深300整体业绩没增长，但公司股价涨了不少，出现了业绩和股价的背离。二季度这种情况继续延续，公司股价加速上涨。</p>
+
+<p>如果公司业绩也能跟上来，那是最舒服的——生意越来越好，公司自然比以前更值钱，浮盈赚得很踏实。<strong>但二季度财务数据出来后，公司业绩还是没变化，那当前这个股价大涨就要打个问号了：有没有可能是泡沫？</strong></p>
+
+<p>我当然希望不是泡沫，但<strong>业绩跟不上股价，这是有风险的</strong>，我们要坦然面对。</p>
+
+<h2 id="s6">六、沪深300市盈率已到高位</h2>
+
+<p>看沪深300的市盈率趋势图。二季度沪深300整体利润没增加，市盈率算法是总市值除以总利润——所以在利润没变的情况下，市值大幅增长，市盈率就被涨到高位了。</p>
+
+<blockquote>
+  <p>数据截止到上周五：<strong>沪深300市盈率 <span class="num">14.13</span></strong>，已经高于均值一个标准差，和 2017 年最高点、2021 年高位都到同一水平了。</p>
+</blockquote>
+
+<p><strong>高估值不一定代表一定会下跌，但我们要从概率论的角度去看待这个问题</strong>：高估值下跌的概率一定比低估值大，高估值也透支未来的预期收益率。这不是我个人主观判断，是客观数据告诉我们的结论。</p>
+
+<h2 id="s7">七、指数分级科普：沪深300/中证500/1000/2000</h2>
+
+<p>接着看其他指数，从大往小看——先看大公司，再分析中型公司，最后看小公司，大家就知道这波行情的特征了。</p>
+
+<p>可能有朋友不清楚指数的划分，简单解释一下。目前 A 股上市公司总数大概 <span class="num">5400</span> 家，按综合质量排序分段：</p>
+
+<ul>
+  <li><strong>沪深300</strong>：A 股排名前 300 的公司，各行业的龙头都在里面。</li>
+  <li><strong>中证500</strong>：不是排名前 500，而是排名 <span class="num">300~800</span> 之间的 500 家公司，行业第二梯队和细分领域头部公司一般在里面。</li>
+  <li><strong>中证1000</strong>：排名 <span class="num">800~1800</span> 的公司，在整体市场中还是相对靠前的位置。</li>
+  <li><strong>中证2000</strong>：排名 <span class="num">1800~3800</span> 之间的公司，名不见经传的小公司基本都在这个区间，综合规模在 <span class="num">100亿</span> 以下。</li>
+  <li><strong>再往后</strong>：基本都是来凑数的，很多在被退市边缘徘徊，说不定过几年就"查无此人了"。</li>
+</ul>
+
+<h2 id="s8">八、中证500：估值超过21年最高点</h2>
+
+<p>看完沪深300，顺着往下看中证500。中证500的业绩数据和沪深300差不多，今年二季度也是原地踏步。<strong>但中证500的整体股价涨幅明显比沪深300大得多——今年越是小公司，股价涨得越好。</strong></p>
+
+<p>同样的问题：业绩没怎么涨，那股价上涨的结果就是<strong>估值虚高</strong>。看中证500的市盈率趋势图，问题很明显——<strong>估值已经超过了 2021 年最高点的水平</strong>。虽然 2021 年也是结构性牛市（当年涨的主要是以白马股为主的沪深300），但这个信息也能说明一些问题。</p>
+
+<div class="pull">我们要相信客观数据给我们的提示。<br>主观思路会受到各种信息影响，<br>但客观数据不会。<br>中证500估值目前超过21年最高点，<br>这就是在阐述一个事实。</div>
+
+<p>至于听不听得进去、要不要注意风险，大家自己多考虑一下。</p>
+
+<h2 id="s9">九、中证1000：估值已达近8年最高点</h2>
+
+<p>最后看中证1000的数据。这规模的公司业绩就很差了——中证1000的公司利润从 2022 年开始就一直下跌，没停过，今年半年报也不例外，<strong>这都第 4 年了</strong>。中证2000的公司利润更差（我没专门统计，但随机抽查过一些财报，基本就是这个结论）。</p>
+
+<p>但今年的行情就是这样：<strong>业绩稳定的大型公司市值就小涨一点，业绩持续下滑的小公司们股价倒是猛涨</strong>。看中证1000的市盈率趋势图，估值上涨幅度比中证500更高——<strong>现在计算出来的估值水平已经是近 8 年的最高点了</strong>。</p>
+
+<p>高估值不代表未来股价一定会下跌，这是一个概率问题，但<strong>预期收益率一定是不高的</strong>。要不要规避风险，大家自己想清楚。</p>
+
+<h2 id="s10">十、创业板/科创板：增长预期已被股价透支</h2>
+
+<p>接着看创业板。今年比较火的板块，一个是 AI 相关的制造业，一个是创新药，这两个行业的公司基本都在创业板和科创板。所以可以看到<strong>创业板的业绩确实有一点重回增长的迹象，但股价已经暴涨——业绩的增长预期全部反映到股价上去了</strong>。</p>
+
+<p>这个专题我写了也有几年了。去年这个时候（讲2024年中报时）股市还没开始涨，当时我就提到过创业板业绩和股价走势背离的问题：<strong>去年这时是创业板股价长期下跌，但实际上业绩保持增长——去年这时候反而是机会比较好的</strong>。等到现在这个局面，公司业绩虽然上涨了，但股价涨得更多，业绩增长已经充分反映到股价上去了——好机会的时间窗就已经过了。</p>
+
+<h3>科创板：走势更极端的创业板</h3>
+
+<p>科创板就类似一个走势更极端的创业板。我们在 2009 年成立创业板时，定位和现在的科创板差不多，所以两个板块风格类似。</p>
+
+<p>有些行业确实踩到风口了，行业内的公司都能吃到红利，业绩确实可以增长。但可能是前面几年苦日子过得太久，好不容易出来一个确定性比较好的投资机会，<strong>资金就像几年没开过荤一样一下扑上来，结果股价猛涨，把业绩增长的预期都消耗完了</strong>。统计的业绩数据摆在这里——公司业绩确实涨了，但涨得并不多，匹配不了股价的涨幅。</p>
+
+<h2 id="s11">十一、进出口数据：贸易顺差8.2万亿</h2>
+
+<p>看一下上半年进出口数据。因为今年 4 月份有贸易战的问题，所以要持续监控这个数据。上半年进出口数据整体还可以，能保持稳定增长，看来没受贸易战太多影响——4 月份时还挺担心这个问题的。</p>
+
+<blockquote>
+  <p>贸易顺差数据还在持续增长，现在已经到了 <strong><span class="num">8.2万亿</span></strong>。这个数据我们保持每个月看一次，这样安稳发展就可以。<strong>照这样下去，今年应该不用太担心贸易战对经济的影响。</strong></p>
+</blockquote>
+
+<h2 id="s12">十二、热门行业数据：半导体、元器件、银行、白酒、家电、汽车、医药</h2>
+
+<h3>半导体：业绩增长，但估值容易涨出泡沫</h3>
+
+<p>先看最火的半导体。半导体的业绩一直是增长的，不过<strong>半导体行业的投资难度非常高，其实不适合新手</strong>。半导体属于高科技行业，理解起来难度很大，很多散户除了能说一句"我看好半导体的前景"之外，也说不出其他的分析结论。</p>
+
+<p>另外半导体行业的估值一直给得比较高。行业规模其实不大，汇总起来只有 <span class="num">6000亿</span> 规模，但现在市值给了 <span class="num">6万亿</span>，市盈率更没法看。你说它高增长吧，数据摆在这里——增长确实有，但也就这样。<strong>估值很容易涨出泡沫，涨的时候很爽，跌的时候也很要命</strong>。不能只看贼吃肉，不看贼挨打——前几年半导体暴跌时，搞得多少人直接亏得底裤都没了。所以对新手来说，看看就行了；要参与就要做很深入的研究，做好充足的心理准备。</p>
+
+<h3>元器件（PCB）：从机会变成风险</h3>
+
+<p>再看与半导体挂钩的元器件行业，主要是 PCB 类产品。受半导体行业影响，需求开始大涨，做 PCB 的公司这两年股价涨得特别多——<strong>像不像 2022 年的光伏行业？</strong></p>
+
+<p>PCB（印制电路板）懂的人应该很多——理工科大学生当年都在寝室里手搓过 PCB。它的技术含量其实并不高，高端 PCB 有点技术含量，但远没到那种"技术紊乱"的地步（像台积电那种只能找它做、其他家生产不出来）。PCB 行业还不至于——大家都能生产。所以当前国内 PCB 市场需求爆发，我感觉就是一个<strong>产能转移和新兴行业初期带来的需求增长</strong>。</p>
+
+<p>元器件行业也是去年讲 2024 年半年报时就提到过——当时业绩持续增长，但公司市值都没涨，机会很好。<strong>现在结论反过来了：公司业绩确实增长了，但股价涨得更多——这就从机会变成了风险大于机会。</strong></p>
+
+<h3>银行：业绩企稳，估值钟摆明显</h3>
+
+<p>银行是今年的大热门板块。银行的半年报只能说是业绩企稳——今年一季度比较差，二季度找补回来一点，整体上是一个企稳状态（同比没涨也没跌）。银行问题之前出专题讲过，今天就不啰嗦了。</p>
+
+<p>银行的市值也进入高位回调阶段，除了个别公司还在往上冲一下之外，大部分都开始回调了。看银行的市盈率，<strong>估值钟摆的现象很明显</strong>。如果公司业绩不能大幅增长，大概率要估值回归——现在只是看用横盘方式还是下跌方式来消化估值，这个我们不预测，持续观察就行。</p>
+
+<h3>白酒：实体消费不行，唯一亮点是估值低</h3>
+
+<p>白酒是消费行业的典型代表——如果白酒行业不行，基本就代表居民消费水平疲软，其他消费类公司业绩基本也不太行。白酒一季报其实还可以，<strong>二季报低于预期</strong>。</p>
+
+<p>白酒现在没啥可分析的：实体消费不行、居民消费降低、企业商业活动变少了，白酒消费的场景就变少了。<strong>白酒目前唯一的亮点就是估值低，股息率还比较高</strong>：茅台都有 <span class="num">3.5%</span>，五粮液高一点有 <span class="num">4.5%</span> 左右。这个板块还不错，因为估值低——但也<strong>有可能是低估值陷阱</strong>。</p>
+
+<h3>家用电器：业绩与市值稳定增长，但对补贴有依赖</h3>
+
+<p>家用电器今年表现不错。它是对散户相当友好的行业——公司产品我们在日常中都能接触到，大部分公司业务很好理解。如果对公司产品比较熟悉、觉得产品有竞争力，对公司的判断一般也是 OK 的。家用电器板块的业绩增长和市值增长都比较稳定，两者都缓慢持续增长，对散户来说持仓感觉比较好。</p>
+
+<p>当然这两年家电业绩好，<strong>其中一个核心原因是补贴给得比较多</strong>。大家可能会担心明年补贴减少业绩会不会下滑——这点就列为一个风险。识别出风险就要对估值提出更高要求，用大白话讲就是<strong>不要追高，等便宜点再买，买得便宜才能对冲风险可能造成的损失</strong>。</p>
+
+<h3>汽车：业绩持续增长，市值必然跟上</h3>
+
+<p>国产车这几年业绩都不错。从 2022 年下半年开始，汽车行业业绩持续增长，每个季度都在增长。我之前讲过：<strong>如果不想承担太高风险，可以等业绩出现明显趋势时再动手</strong>。</p>
+
+<p>汽车行业在 2022 年三季度就开始持续增长了，但行业市值在 2023、2024 年都出现过比较低估的时间窗——<strong>所以不用担心市场不给机会，多点耐心一定能找到合适的机会</strong>。现在市值不就涨上去了吗？只要业绩在增长，市值一定跟着涨。</p>
+
+<p>行业的发展周期一般比较长，不是一两年就结束；而市场的牛熊周期通常比行业景气周期要短，所以<strong>大概率是能蹲到低点的</strong>。</p>
+
+<h3>医药：能力圈外，只摆数据</h3>
+
+<p>最后看上次没讲、大家呼声比较高的医药行业。其他行业如果有兴趣可以在评论区留言，我可以单独把业绩图发出来。</p>
+
+<p>我之前没讲医药，<strong>因为我完全不懂这个行业</strong>。我们每个人都有自己的能力圈，这个行业我一点都不懂，也没啥兴趣。所以只能把行业数据摆在这里，直接给大家看，也解读不了什么。</p>
+
+<p>医药行业这几年业绩不是很稳定，好像跟集采有关系。一季度业绩比较差，二季度还可以——别问我为什么，我也不知道。医药行业的市盈率走势倒是挺有节奏的：除了 2021 年的"病态行情"之外，估值基本围绕均值做钟摆活动——低于均值一个标准差就企稳回升，高于均值一个标准差就回调。<strong>当然这只是观察到的统计数据，并不能当成规律。</strong></p>
+
+<h2 id="s13">十三、总结：警惕没有业绩支撑的上涨</h2>
+
+<p>最后做个小总结。</p>
+
+<ul>
+  <li><strong>整体情况和一季度差不多</strong>。一季数据比我预想的稍好一点；半年报只能说是符合预期——能保持原地踏步就不错了。</li>
+  <li><strong>细节上看</strong>：大型公司普遍业绩企稳，略微有一点点增长；但小型公司的业绩都很差，还在持续下跌中。我认为这也符合经济规律——小公司大多数是大公司的供应商，只有大公司先稳定了，才会带着小公司一起发展。</li>
+</ul>
+
+<h3>警惕小公司股价大涨</h3>
+
+<p>但是<strong>小公司的股价最近半年都涨得特别多</strong>。我挑了一些小公司仔细看过——业绩就是很稀烂，但股价涨得挺好。<strong>这其实是非常危险的情况</strong>：很多人不会分析公司，就喜欢追涨。这种股票涨的时候很爽，但行情过了之后一旦跌起来，基本会导致巨亏——<strong>没有业绩的公司跌起来是没有底的，甚至可能退市，那就是百分之百的亏损了</strong>。</p>
+
+<h3>热门行业普遍涨出泡沫</h3>
+
+<p>分行业看，之前持续跟踪几个业绩比较好的行业，公司市值普遍都涨得非常多，大多数都长出一些泡沫。看来就是市场之前低迷了三四年，没什么像样的机会，现在好不容易出了几个确定性好的机会，<strong>资金就开始猛冲</strong>。公司业绩确实增长了，但增长的比例也就那样——<strong>股价涨得太夸张了</strong>。</p>
+
+<div class="pull">通常股市泡沫就是这样形成的。<br>其实也不算什么新鲜事——<br>每次股市有大行情，基本都是这个剧本。<br>新人多经历几次就知道了。</div>
+
+<p>今天的分享就到这。暑假过完，后面空闲时间会多一些，更新频率我尽量恢复到一周一次。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化
+</footer>
+
+</div>
+</body>
+</html>

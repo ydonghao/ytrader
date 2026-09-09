@@ -1,0 +1,9 @@
+{
+  "extends": "./base.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "outDir": "./lib",
+    "types": ["node"]
+  },
+  "include": ["src/**/*.ts"]
+}

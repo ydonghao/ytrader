@@ -1,0 +1,152 @@
+.analytics {
+  padding: 1.5rem 2rem;
+}
+
+.analytics__section {
+  margin-bottom: 2.5rem;
+}
+
+.analytics__section-title {
+  font-size: var(--text-base);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.5px solid var(--color-border);
+}
+
+/* ── Metric Cards ─────────────────────────────────────────────────────────── */
+
+.analytics-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.analytics-metric {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  transition: border-color var(--transition-normal);
+}
+
+.analytics-metric:hover {
+  border-color: var(--color-fill-tertiary);
+}
+
+.analytics-metric--up .analytics-metric__value {
+  color: var(--color-success);
+}
+
+.analytics-metric--down .analytics-metric__value {
+  color: var(--color-danger);
+}
+
+.analytics-metric__label {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.analytics-metric__value {
+  display: block;
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.analytics-metric__sub {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  margin-top: 0.25rem;
+}
+
+/* ── Charts ───────────────────────────────────────────────────────────────── */
+
+.analytics-chart-card {
+  margin-bottom: 1rem;
+}
+
+.analytics-chart__container {
+  width: 100%;
+  min-height: 160px;
+}
+
+.analytics-chart__container--sm {
+  min-height: 120px;
+}
+
+/* ── Table ────────────────────────────────────────────────────────────────── */
+
+.analytics-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.analytics-table th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.analytics-table td {
+  padding: 0.625rem 0.75rem;
+  color: var(--color-text);
+  border-bottom: 0.5px solid var(--color-border);
+}
+
+.analytics-table tbody tr:hover {
+  background: var(--color-fill);
+}
+
+.analytics-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.text-positive {
+  color: var(--color-success) !important;
+}
+
+.text-negative {
+  color: var(--color-danger) !important;
+}
+
+/* ── P&L Badge ────────────────────────────────────────────────────────────── */
+
+.pnl-badge {
+  display: inline-block;
+  font-family: var(--font-mono, monospace);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+.pnl-badge--positive {
+  color: var(--color-success);
+  background: var(--color-success-light);
+}
+
+.pnl-badge--negative {
+  color: var(--color-danger);
+  background: var(--color-danger-light);
+}
+
+.pnl-badge--neutral {
+  color: var(--color-text-secondary);
+  background: var(--color-fill);
+}

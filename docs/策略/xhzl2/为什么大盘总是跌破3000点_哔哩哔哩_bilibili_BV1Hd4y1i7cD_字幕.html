@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>为什么大盘总是跌破3000点</title>
+<style>
+/* 阅读型排版 - 股票投资学习系列共享样式 */
+:root{
+  --bg:#faf8f5; --paper:#ffffff; --ink:#2c2c2c; --ink-soft:#5a5a5a;
+  --accent:#8b3a3a; --accent-soft:#b56b5a; --rule:#e6dfd6; --highlight:#f3ece0;
+  --maxw:720px;
+}
+*{box-sizing:border-box;}
+html{ -webkit-font-smoothing:antialiased; }
+body{
+  margin:0; padding:0; background:var(--bg); color:var(--ink);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC","SimSun",serif;
+  font-size:18px; line-height:1.85; letter-spacing:.01em;
+}
+.wrap{ max-width:var(--maxw); margin:0 auto; padding:48px 28px 120px; }
+header.masthead{ text-align:center; padding:32px 0 40px; border-bottom:1px solid var(--rule); margin-bottom:48px;}
+.kicker{ display:inline-block; font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; letter-spacing:.18em; color:var(--accent); text-transform:uppercase; margin-bottom:14px; }
+h1.title{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:34px; line-height:1.35; margin:0 0 18px; font-weight:700; letter-spacing:.02em; }
+.meta{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:13px; color:var(--ink-soft); }
+.meta span+span::before{ content:" · "; color:var(--rule); }
+h2{ font-family:"Source Han Serif SC","Noto Serif CJK SC",serif; font-size:22px; margin:56px 0 18px; padding-left:14px; border-left:4px solid var(--accent); font-weight:700; line-height:1.4; }
+h3{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-size:17px; color:var(--accent); margin:34px 0 12px; font-weight:600; letter-spacing:.04em;}
+p{ margin:0 0 20px; text-align:justify; }
+p.lead{ font-size:19px; color:var(--ink); }
+blockquote{ margin:24px 0; padding:18px 22px; background:var(--highlight); border-left:3px solid var(--accent-soft); color:#4a4035; border-radius:0 6px 6px 0; }
+blockquote p{ margin:0; }
+.pull{ font-size:21px; text-align:center; color:var(--accent); margin:36px 0; font-weight:600; line-height:1.6; padding:0 8px; }
+ul,ol{ margin:0 0 22px; padding-left:1.6em; }
+li{ margin:0 0 8px; }
+strong{ color:var(--accent); font-weight:700; }
+em{ font-style:normal; background:linear-gradient(transparent 62%, #ffe9b3 62%); padding:0 2px; }
+.num{ font-family:"PingFang SC","Helvetica Neue",sans-serif; font-variant-numeric:tabular-nums; }
+.toc{ background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:20px 24px; margin:0 0 48px; }
+.toc h4{ margin:0 0 12px; font-family:"PingFang SC",sans-serif; font-size:14px; letter-spacing:.12em; color:var(--ink-soft); text-transform:uppercase;}
+.toc ol{ margin:0; padding-left:1.3em; columns:2; column-gap:32px; }
+.toc li{ font-family:"PingFang SC",sans-serif; font-size:14px; color:var(--ink-soft); margin-bottom:6px; break-inside:avoid; }
+.toc a{ color:var(--ink-soft); text-decoration:none; }
+.toc a:hover{ color:var(--accent); }
+footer.colophon{ margin-top:64px; padding-top:24px; border-top:1px solid var(--rule); font-family:"PingFang SC",sans-serif; font-size:12px; color:var(--ink-soft); text-align:center; }
+table{ width:100%; border-collapse:collapse; margin:22px 0; font-family:"PingFang SC",sans-serif; font-size:15px; }
+th,td{ border:1px solid var(--rule); padding:8px 12px; text-align:left; }
+th{ background:var(--highlight); color:var(--accent); font-weight:600; }
+@media (max-width:520px){
+  .wrap{ padding:28px 18px 80px; } h1.title{ font-size:26px; }
+  .toc ol{ columns:1; } h2{ font-size:20px; } body{ font-size:17px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">行为金融学 · 市场心理</div>
+  <h1 class="title">为什么大盘总是跌破3000点</h1>
+  <div class="meta">
+    <span>整数关口从来不是真正的支撑</span>
+    <span>行为心理学在股市中的反应</span>
+    <span>2016年熔断的前车之鉴</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h4>本文要点</h4>
+  <ol>
+    <li>跌破3000点与基本面关系不大</li>
+    <li>整数关口从未成为真正的支撑</li>
+    <li>一个完整的心理推演过程</li>
+    <li>2016年熔断制度引发的千股跌停</li>
+    <li>趋势线、箱体上下沿同理</li>
+    <li>推荐书：《理性的非理性金融》</li>
+    <li>本周弱势行情，等消息与三季报</li>
+    <li>现在更像2018年底，机会大于风险</li>
+  </ol>
+</nav>
+
+<h2 id="s1">一、跌破3000点，与基本面关系不大</h2>
+
+<p>今天大盘又跌破 <span class="num">3000</span> 点了，我估计今天各种股票论坛上已经炸开了锅。但在我看来，大盘跌破 3000 点跟基本面的关系不是很大，更多的是我们这些投资者的心理因素在起作用。</p>
+
+<p>像 <span class="num">3000</span> 点、<span class="num">2800</span> 点、还有 <span class="num">3500</span> 点这种整数关口，就从来没有成为过真正的支撑点。其实到这个点位之后，它基本上都会被跌破——只有少数是跌破之后震荡了很久，有的是跌破之后一下就拉起来。这种现象，更多的是一种<strong>行为心理学在股市中的反应</strong>。</p>
+
+<h2 id="s2">二、一个完整的心理推演过程</h2>
+
+<p>这件事我们可以推演一下，它其实跟我们每个人的心态是有关联的。</p>
+
+<p>比如说前几天，当指数还在 <span class="num">3000</span> 点以上的时候，关于"3000点整数关口"的这套理论就已经开始影响很多人的操作了。大家会想：已经到 3000 点以上了，那这次会不会跟 4 月份一样跌破 3000？那本来我准备抄底的，就先不抄了，先观望一下，等到 3000 点以下我再抄。</p>
+
+<p>这么一观望、这么想想的人多了，那本来应该有的买盘就一下消失了。结果买盘消失、卖盘没变，卖方多于买方，就会引起又一批人的心理反应：既然下跌了，那可能真的会跌破 3000 点了，那我本来是要持股的，现在就先割肉吧，等 3000 点以下我再接回来。结果又会导致卖盘的增加——卖盘增加、买盘减少，指数肯定会接着跌。</p>
+
+<div class="pull">等到指数跌到 3000 点上方的时候，大家都在观望，<br>都不动，就看着指数想"快点跌，等到 3000 点我们再出手"。</div>
+
+<p>这时市场交易就很弱，交易弱就会延续眼前的走势，买盘就没了。一直等到指数跌破之后，可能才会有些买盘进来。这次就又强化了大家的观点：哦，原来整数关口是支撑不住的。等下次再遇到这种整数关口，以上的这种心理可能就会重复来一遍。</p>
+
+<p>所以今天这种大盘跌破 3000 点，我觉得其实跟基本面关系不大，更多是跟这种心理上的因素有关。</p>
+
+<h2 id="s3">三、2016年熔断制度引发的千股跌停</h2>
+
+<p>而且本身下周是要开会，现在大资金基本上也不愿意回来。这种行为心理学的现象，上一次比较典型的是 <span class="num">2016</span> 年，当时搞了一个熔断制度，结果熔断制度导致了千股跌停——其实也是一种心理现象引起的。</p>
+
+<p>之前如果没有熔断制度，大家就正常交易，无非跌多了可能还会有抄底的，跌都不会跌得那么倔。当时证监会是为了保护投资者，出台了一个熔断制度：如果说大盘一旦跌到多少，整个市场就暂停交易。它的初衷是好的。</p>
+
+<p>但实际执行的时候，结果一出来这个制度，大盘马上就跌停了。当时是出现一个千股跌停的盛况——那时候有 <span class="num">2000</span> 多家上市公司，千股跌停，相当于整个市场一半的股票都跌停了，非常夸张。结果过了几天之后，证监会就把这个熔断制度又取消了。</p>
+
+<blockquote>
+  <p>因为如果没有熔断，大家就正常交易；可一旦出了熔断制度，它就会对投资人的心理造成影响：</p>
+  <p>本来有些人只是考虑要不要卖，但他会想——如果再不卖，万一熔断了我就卖不出去了，所以会提前下卖单；而准备抄底的人会想——今天会不会熔断？如果熔断的话我买进去可能也交易不了，那我就先不买。</p>
+  <p>结果这么一正一负，导致大盘真的就下跌了，然后直接熔断。这就是当年的一个活生生的案例。</p>
+</blockquote>
+
+<p>主要是经历过当时这种情况的话，多少对这种理论还是比较清楚的。</p>
+
+<h2 id="s4">四、趋势线、箱体上下沿同理</h2>
+
+<p>然后这个理论也适用于个股。个股的趋势线，也就是很多那种震荡箱体的上沿线和下沿线，一般股市的走势就会根据这上下沿来做趋势走动，其实也是同样的情况。</p>
+
+<h3>推荐一本书</h3>
+
+<p>关于这个话题，我可以给大家推荐一本书，叫《理性的非理性金融》。这本书讲了很多关于行为经济学在股市中的应用。声明一下，我不是卖书的，没有链接，大家感兴趣的话自己去网上买。</p>
+
+<h2 id="s5">五、本周弱势行情，等消息与三季报</h2>
+
+<p>这一周的话就别折腾了，我觉得混过去就可以了。估计如果没有重大消息提前泄露，它就是一个弱势行情——因为现在都在等消息，没有消息的话，这些资金也不知道怎么动。</p>
+
+<p>再就是等三季报。三季报估计是在 <span class="num">20多号</span>才会陆续出来，差不多就是那个时间点。现在基本上大的资金，从国庆之前出去的，都在等这个点；等这个点明确之后再回来，再看有没有资金进场，市场可能才会到一个真正的底部。现在基本上就是磨底的阶段。</p>
+
+<h2 id="s6">六、现在更像2018年底，机会大于风险</h2>
+
+<p>不过我觉得现在有点像 <span class="num">2018</span> 年底的时候，<strong>机会是比风险要多很多的</strong>。真正的风险其实是去年年初的时候——那个时候你买了之后拿到现在，基本上都是腰斩。所以判断高低其实还是很重要的，现在肯定是低点，3000 点以下没有悲观的股民。</p>
+
+<p>反正今天就分享一下，我们下期再见。</p>
+
+<footer class="colophon">
+  本文档整理自视频字幕 · 内容忠于原意，仅作排版与结构优化<br>
+  行为金融学 · 系列
+</footer>
+
+</div>
+</body>
+</html>
