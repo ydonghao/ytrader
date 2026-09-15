@@ -63,7 +63,7 @@ class _IdxValRepo:
     def __init__(self, rows):
         self._rows = rows
 
-    def get_index_range(self, symbol, start, end):
+    def get_index_range(self, symbol, start, end, source=None):
         return self._rows
 
 

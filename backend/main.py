@@ -34,6 +34,7 @@ from src.api.router.report_router import router as report_router
 from src.api.router.llm_config_router import router as llm_config_router
 from src.api.router.perm_portfolio_router import router as perm_portfolio_router
 from src.api.router.watchlist_router import router as watchlist_router
+from src.api.router.replay_router import router as replay_router
 from src.api.router.boom_router import router as boom_router
 from src.api.router.board_router import router as board_router
 from src.api.router.log_router import router as log_router
@@ -139,6 +140,12 @@ async def lifespan(app: FastAPI):
         from src.infra.database.watchlist.models import (  # noqa: F401
             WatchlistGroup,
             WatchlistItem,
+        )
+        # Import replay models so create_all picks up replay_session /
+        # replay_trade tables on first connection.
+        from src.infra.database.replay.models import (  # noqa: F401
+            ReplaySession,
+            ReplayTrade,
         )
         # Import board model so create_all picks up analysis_board table
         # on first connection.
@@ -324,6 +331,7 @@ def create_app():
     app.include_router(llm_config_router, prefix="/api/v1")  # /api/v1/llm
     app.include_router(perm_portfolio_router, prefix="/api/v1")  # /api/v1/perm-portfolio
     app.include_router(watchlist_router, prefix="/api/v1")  # /api/v1/watchlist
+    app.include_router(replay_router, prefix="/api/v1")  # /api/v1/replay
     app.include_router(boom_router, prefix="/api/v1")  # /api/v1/boom
     app.include_router(board_router, prefix="/api/v1")  # /api/v1/board
     app.include_router(log_router, prefix="/api/v1")  # /api/v1/logs

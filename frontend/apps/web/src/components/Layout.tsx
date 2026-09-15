@@ -54,6 +54,7 @@ const navGroups: NavGroup[] = [
     items: [
       {path: '/trading', label: '交易', icon: Icon.trading},
       {path: '/lt-backtest', label: '回测实验室', icon: Icon.backtest},
+      {path: '/replay', label: '时光机', icon: Icon.star},
       {path: '/perm-portfolio', label: '永久组合', icon: Icon.portfolio},
     ],
   },

@@ -28,6 +28,7 @@ import {lazy, Suspense} from 'react';
 // AI workspace pages (lazy — they're heavy: chat UI, consoles, logs)
 const NationalTeam = lazy(() => import('./pages/NationalTeam').then(m => ({default: m.NationalTeam})));
 const PermPortfolio = lazy(() => import('./pages/PermPortfolio').then(m => ({default: m.PermPortfolio})));
+const Replay = lazy(() => import('./pages/replay/ReplayPage').then(m => ({default: m.ReplayPage})));
 const Board = lazy(() => import('./pages/Board').then(m => ({default: m.Board})));
 const EarningsRadar = lazy(() => import('./pages/EarningsRadar').then(m => ({default: m.EarningsRadar})));
 import './App.css';
@@ -67,6 +68,7 @@ export const App: React.FC = () => {
           <Route path="/watchlist" element={<Watchlist />} />
           <Route path="/national-team" element={<Suspense fallback={<div className="page-loading">加载中…</div>}><NationalTeam /></Suspense>} />
           <Route path="/perm-portfolio" element={<Suspense fallback={<div className="page-loading">加载中…</div>}><PermPortfolio /></Suspense>} />
+          <Route path="/replay" element={<Suspense fallback={<div className="page-loading">加载中…</div>}><Replay /></Suspense>} />
           <Route path="/board" element={<Suspense fallback={<div className="page-loading">加载中…</div>}><Board /></Suspense>} />
           <Route path="/earnings-radar" element={<Suspense fallback={<div className="page-loading">加载中…</div>}><EarningsRadar /></Suspense>} />
           <Route path="/agent-config" element={<Navigate to="/settings" replace />} />

@@ -787,7 +787,7 @@ def index_valuation_percentile(
     if scope == "sw":
         rows = repo.get_sw_range(code, start, end)
     else:
-        rows = repo.get_index_range(code, start, end)
+        rows = repo.get_index_range(code, start, end, source="computed")
 
     if not rows:
         return responses.success({
@@ -2274,7 +2274,7 @@ def market_cap_growth_index(code: str, years: int = 10) -> Any:
                 "net_profit": None if partial else r.net_profit_sum,
             })
         mv_rows = create_index_valuation_repository().get_index_range(
-            code, start, end,
+            code, start, end, source="computed",
         )
         monthly = [
             {"date": r.trade_date, "total_mv": r.total_mv} for r in mv_rows
