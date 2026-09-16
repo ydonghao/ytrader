@@ -136,5 +136,23 @@ export const ReplayKlineChart: React.FC<ReplayKlineChartProps> = ({
     // height 变化时 markers 插件随图表重建，需重设
   }, [trades, height]);
 
+  useEffect(() => {
+    // 复盘默认视口停在最新几百根 K 线，早期买卖点会被留在屏幕外
+    const chart = chartRef.current;
+    if (!chart || trades.length === 0 || bars.length === 0) return;
+    const tset = new Set(trades.map((t) => toTime(t.trade_date)));
+    const i0 = bars.findIndex((b) => tset.has(toTime(b.trade_date)));
+    let i1 = -1;
+    for (let i = bars.length - 1; i >= 0; i--) {
+      if (tset.has(toTime(bars[i].trade_date))) { i1 = i; break; }
+    }
+    if (i0 < 0 || i1 < i0) return;
+    const pad = Math.max(15, Math.round((i1 - i0) * 0.15));
+    chart.timeScale().setVisibleLogicalRange({
+      from: Math.max(0, i0 - pad),
+      to: Math.min(bars.length - 1, i1 + pad),
+    });
+  }, [trades, bars, height]);
+
   return <div ref={ref} style={{height}} />;
 };

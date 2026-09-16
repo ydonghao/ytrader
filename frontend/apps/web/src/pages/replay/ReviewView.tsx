@@ -43,7 +43,8 @@ export const ReviewView: React.FC = () => {
     const benchRet = b0 && b1 ? b1.close / b0.close - 1 : null;
     return {
       total,
-      annualized: annualizedReturn(initial, final, days),
+      // 短窗口年化是幂外推，14 天 +88% 会外推出天文数字，不足半年不展示
+      annualized: days >= 126 ? annualizedReturn(initial, final, days) : null,
       mdd: maxDrawdown(nav),
       winRate: winRate(trades),
       trips: roundTrips(trades).length,

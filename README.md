@@ -10,6 +10,10 @@
 
 > 🎯 **项目立场**:为价值投资与稳定盈利的方式持续投入;有优秀策略欢迎共享——[提 Issue](https://github.com/ydonghao/ytrader/issues) 即可参与共建。
 
+![时光机 30 秒演示](docs/screenshots/replay-demo.gif)
+
+*时光机实拍演示：2024-09-20 起飞 → 加股东方财富并下单买入 → 2x 自动播放亲历 9·24 行情 → 揭晓复盘，总收益 +88.09%、跑赢沪深 300 超额 +63.20%（真实历史数据，拟真撮合）*
+
 ![行情页](docs/screenshots/market.png)
 
 ## 💡 为什么选 YTrader
@@ -58,15 +62,19 @@
 - **AI 交易助手**:接任意 OpenAI 兼容大模型(智谱 / MiniMax / DeepSeek / OpenAI……),做你的盘中研究副驾驶
 
 <details>
-<summary>📸 更多截图(财务分析 / 回测 / 持仓看板 / 财报雷达)</summary>
+<summary>📸 更多截图(时光机复盘 / 财务分析 / 回测 / 持仓看板 / 财报雷达)</summary>
 
-| 财务报表与估值中心 | 回测实验室 |
+| 时光机 · 揭晓复盘(买卖点标注 + 净值 vs 基准) | 财务报表与估值中心 |
 |---|---|
-| ![财务](docs/screenshots/financial.png) | ![回测](docs/screenshots/lt-backtest.png) |
+| ![复盘](docs/screenshots/replay-review.png) | ![财务](docs/screenshots/financial.png) |
 
-| 持仓分析看板 | 财报雷达 |
+| 回测实验室 | 持仓分析看板 |
 |---|---|
-| ![看板](docs/screenshots/board.png) | ![雷达](docs/screenshots/earnings-radar.png) |
+| ![回测](docs/screenshots/lt-backtest.png) | ![看板](docs/screenshots/board.png) |
+
+| 财报雷达 | |
+|---|---|
+| ![雷达](docs/screenshots/earnings-radar.png) | |
 
 </details>
 
