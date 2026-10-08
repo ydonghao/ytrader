@@ -639,6 +639,161 @@ def setup_scheduler() -> AsyncIOScheduler:
         coalesce=True,
     )
 
+    # ── 持仓论点重估（每日 17:35，业绩同步 17:00 / boom 17:30 之后）────
+    # active 论点：新财报(formal/express/preannounce)触发重估 +
+    # 目标估值带到价检测；幂等（reeval 唯一约束 + band 事件去重）。
+    def _run_thesis_reeval_daily():
+        from src.domain.market.thesis.service import run_daily
+        try:
+            summary = run_daily()
+            if summary.get("reevaluated") or summary.get(
+                "band_alerts"
+            ):
+                log.info("[THESIS_DAILY] %s", summary)
+        except Exception as e:
+            log.error("[THESIS_DAILY] failed: %s", e)
+
+    sched.add_job(
+        _run_thesis_reeval_daily,
+        CronTrigger(hour=17, minute=35, timezone="Asia/Shanghai"),
+        id="thesis_reeval_daily",
+        name="持仓论点每日重估",
+        replace_existing=True,
+        misfire_grace_time=3600,
+        max_instances=1,
+        coalesce=True,
+    )
+
+    # ── 温度计日快照（每日 17:40，论点重估后）─────────────────────
+    def _run_thermometer_daily():
+        from src.domain.market.thesis.thermometer_service import (
+            sync_thermometer_daily,
+        )
+        try:
+            row = sync_thermometer_daily()
+            if row:
+                log.info("[THERMOMETER_DAILY] %s", row.get("level"))
+        except Exception as e:
+            log.error("[THERMOMETER_DAILY] failed: %s", e)
+
+    sched.add_job(
+        _run_thermometer_daily,
+        CronTrigger(hour=17, minute=40, timezone="Asia/Shanghai"),
+        id="thermometer_daily",
+        name="全市场温度日快照",
+        replace_existing=True,
+        misfire_grace_time=3600,
+        max_instances=1,
+        coalesce=True,
+    )
+
+    # ── 全市场排雷 Z 扫描（周六 06:00，financial_full_weekly 05:00 后）──
+    # 批量 Altman Z（仅 z；M 需两期 detail 成本高不做全市场），
+    # 幂等 upsert mine_screening_result。
+    def _run_mine_market_scan():
+        from src.domain.market.thesis.mine_sweep import scan_market
+        try:
+            summary = scan_market()
+            log.info("[MINE_SCAN] %s", summary)
+        except Exception as e:
+            log.error("[MINE_SCAN] failed: %s", e)
+
+    sched.add_job(
+        _run_mine_market_scan,
+        CronTrigger(
+            day_of_week="sat", hour=6, minute=0,
+            timezone="Asia/Shanghai",
+        ),
+        id="mine_market_scan",
+        name="全市场排雷Z扫描(每周六)",
+        replace_existing=True,
+        misfire_grace_time=7200,
+        max_instances=1,
+        coalesce=True,
+    )
+
+    # ── 资本事件同步（周六 06:30，回购5s+增减持全量~90s）──────────────
+    # akshare stock_repurchase_em + stock_ggcg(全部) → capital_event
+    # 幂等 upsert（五元组唯一）。
+    def _run_capital_event_sync():
+        from src.domain.market.sync.providers.akshare_provider import (
+            AkshareProvider,
+        )
+        from src.infra.database.portfolio.thesis_repository import (
+            create_thesis_repository,
+        )
+        try:
+            rows = AkshareProvider().fetch_capital_events()
+            n = create_thesis_repository().upsert_capital_events(rows)
+            log.info("[CAPITAL_EVENT_SYNC] upsert %s/%s", n, len(rows))
+        except Exception as e:
+            log.error("[CAPITAL_EVENT_SYNC] failed: %s", e)
+
+    sched.add_job(
+        _run_capital_event_sync,
+        CronTrigger(
+            day_of_week="sat", hour=6, minute=30,
+            timezone="Asia/Shanghai",
+        ),
+        id="capital_event_sync",
+        name="资本事件同步(回购+增减持,每周六)",
+        replace_existing=True,
+        misfire_grace_time=10800,
+        max_instances=1,
+        coalesce=True,
+    )
+
+    # ── 行业分析三件套(破净率16:40/资金流17:05/景气分17:20)────────────────
+    def _run_industry_pb_break_daily():
+        from src.domain.market.sync.jobs import industry_pb_break_sync
+        try:
+            from conf import app_config
+            if not app_config.industry_analysis.enabled:
+                return
+            industry_pb_break_sync.run(days=2)
+        except Exception as e:  # noqa: BLE001
+            log.error("[INDUSTRY_PB_BREAK_DAILY] failed: %s", e)
+
+    def _run_industry_fund_flow_daily():
+        from src.domain.market.sync.jobs import industry_fund_flow_sync
+        try:
+            from conf import app_config
+            if not app_config.industry_analysis.enabled:
+                return
+            industry_fund_flow_sync.run()
+        except Exception as e:  # noqa: BLE001
+            log.error("[INDUSTRY_FLOW_DAILY] failed: %s", e)
+
+    def _run_industry_prosperity_daily():
+        from src.domain.market.sync.jobs import industry_prosperity_sync
+        try:
+            from conf import app_config
+            if not app_config.industry_analysis.enabled:
+                return
+            industry_prosperity_sync.run()
+        except Exception as e:  # noqa: BLE001
+            log.error("[INDUSTRY_PROSPERITY_DAILY] failed: %s", e)
+
+    for _jid, _fn, _hm, _name in (
+        ("industry_pb_break_daily", _run_industry_pb_break_daily,
+         (16, 40), "行业破净率每日聚合"),
+        ("industry_fund_flow_daily", _run_industry_fund_flow_daily,
+         (17, 5), "行业资金流每日落库"),
+        ("industry_prosperity_daily", _run_industry_prosperity_daily,
+         (17, 20), "行业景气分每日重算"),
+    ):
+        sched.add_job(
+            _fn,
+            CronTrigger(hour=_hm[0], minute=_hm[1],
+                        timezone="Asia/Shanghai"),
+            id=_jid,
+            name=_name,
+            replace_existing=True,
+            misfire_grace_time=3600,
+            max_instances=1,
+            coalesce=True,
+        )
+
     # ── 国家队持仓回填（每日凌晨2点，每次3个季度，全市场口径）──────────────
     def _run_national_team_backfill():
         import subprocess
@@ -693,6 +848,28 @@ def setup_scheduler() -> AsyncIOScheduler:
         coalesce=True,
     )
 
+    # ── 日度化 computed sw 估值（数据治理 1.2，16:12）─────────────────
+    def _run_sw_computed_daily():
+        from src.domain.market.sync.jobs.index_valuation_sync import (
+            compute_and_save_sw_computed,
+        )
+        try:
+            compute_and_save_sw_computed()
+        except Exception as e:
+            log.error("[SW_COMPUTED_DAILY] failed: %s", e)
+
+    sched.add_job(
+        _run_sw_computed_daily,
+        CronTrigger(hour=16, minute=12, day_of_week="mon-fri",
+                    timezone="Asia/Shanghai"),
+        id="sw_computed_daily",
+        name="sw估值日度化computed",
+        replace_existing=True,
+        misfire_grace_time=10800,
+        max_instances=1,
+        coalesce=True,
+    )
+
     # ── 指标告警检查（P1b，工作日 16:15 收盘+估值更新后）────────────
     sched.add_job(
         check_metric_alerts,
@@ -707,6 +884,80 @@ def setup_scheduler() -> AsyncIOScheduler:
         max_instances=1,
         coalesce=True,
     )
+
+    # ── 投资周报（周日 20:00，四期P3；存研究笔记 __weekly__）────────
+    def _run_weekly_report():
+        from src.domain.market.thesis.weekly_report import (
+            collect_and_save,
+        )
+        try:
+            collect_and_save()
+        except Exception as e:
+            log.error("[WEEKLY_REPORT] failed: %s", e)
+
+    sched.add_job(
+        _run_weekly_report,
+        CronTrigger(day_of_week="sun", hour=20, minute=0,
+                    timezone="Asia/Shanghai"),
+        id="weekly_report",
+        name="投资周报生成",
+        replace_existing=True,
+        misfire_grace_time=10800,
+        max_instances=1,
+        coalesce=True,
+    )
+
+    # ── 数据健康体检（每日 18:30，所有写入 job 之后）──────────────────
+    def _run_data_health_daily():
+        from src.domain.market.health.runner import run_daily
+        try:
+            run_daily()
+        except Exception as e:
+            log.error("[DATA_HEALTH_DAILY] failed: %s", e)
+        # 阶段三自愈(默认干跑,只建议+审计;一周无误报后
+        # 设 YTRADER_HEAL_DRYRUN=0 开真回补)
+        try:
+            from src.domain.market.health.heal import run_heal
+            run_heal()
+        except Exception as e:
+            log.error("[DATA_HEAL] failed: %s", e)
+
+    sched.add_job(
+        _run_data_health_daily,
+        CronTrigger(hour=18, minute=30, timezone="Asia/Shanghai"),
+        id="data_health_daily",
+        name="数据健康体检",
+        replace_existing=True,
+        misfire_grace_time=7200,
+        max_instances=1,
+        coalesce=True,
+    )
+
+    # ── 数据治理阶段二: job 执行留痕(事件监听,不侵入各 job) ──────────
+    from apscheduler.events import (
+        EVENT_JOB_ERROR,
+        EVENT_JOB_EXECUTED,
+    )
+
+    def _on_job_event(event):
+        from src.infra.database.market.job_run_log import (
+            create_job_run_log_repository,
+        )
+        try:
+            status = "error" if event.code == EVENT_JOB_ERROR else "success"
+            err = None
+            if status == "error" and getattr(event, "exception", None):
+                err = f"{type(event.exception).__name__}: {event.exception}"
+            create_job_run_log_repository().add(
+                job_id=event.job_id, status=status,
+                error_summary=err,
+                scheduled_at=getattr(event, "scheduled_run_time", None),
+            )
+        except Exception as e:  # noqa: BLE001
+            log.warning("[JOB_RUN_LOG] 写入失败: %s", e)
+
+    sched.add_listener(_on_job_event,
+                       EVENT_JOB_EXECUTED | EVENT_JOB_ERROR)
 
     return sched
 

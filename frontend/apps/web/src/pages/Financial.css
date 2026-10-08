@@ -331,76 +331,25 @@
 /* 顶部 Header */
 .fin-header__search {
   flex: 1;
-  max-width: 400px;
+  max-width: 460px;
   min-width: 200px;
-}
-
-/* 股票搜索框 */
-.fin-search {
-  position: relative;
-  width: 100%;
-}
-
-.fin-search__input {
-  width: 100%;
-  background: var(--color-surface);
-  color: var(--color-text);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  padding: 0.5rem 0.875rem;
-  font-size: var(--text-sm);
-  outline: none;
-  transition: border-color var(--transition-fast);
-  box-sizing: border-box;
-}
-
-.fin-search__input:focus {
-  border-color: var(--color-accent);
-}
-
-.fin-search__dropdown {
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 0;
-  right: 0;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-lg);
-  z-index: 100;
-  max-height: 320px;
-  overflow-y: auto;
-}
-
-.fin-search__item {
   display: flex;
-  gap: 0.75rem;
-  padding: 0.5rem 0.875rem;
-  cursor: pointer;
-  transition: background var(--transition-fast);
+  align-items: center;
+  gap: 12px;
 }
 
-.fin-search__item:hover {
-  background: var(--color-surface-hover);
+/* 买入体检入口（个股研究工作流收口，课程21集） */
+.fin-checklist-link {
+  white-space: nowrap;
+  font-size: 13px;
+  color: var(--accent, #4c9aff);
+  text-decoration: none;
+  padding: 4px 10px;
+  border: 1px solid var(--accent, #4c9aff);
+  border-radius: 999px;
 }
-
-.fin-search__symbol {
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  color: var(--color-accent);
-  font-weight: 600;
-}
-
-.fin-search__name {
-  font-size: var(--text-sm);
-  color: var(--color-text-secondary);
-}
-
-.fin-search__empty {
-  padding: 1rem;
-  text-align: center;
-  color: var(--color-text-secondary);
-  font-size: var(--text-sm);
+.fin-checklist-link:hover {
+  opacity: 0.8;
 }
 
 /* 当前选中 + 快捷股票 */

@@ -229,13 +229,6 @@ export const Market: React.FC = () => {
                       >
                         查看财务 →
                       </Button>
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => navigate(`/valuation?symbol=${selected}`)}
-                      >
-                        估值分位 →
-                      </Button>
                     </div>
                   </>
                 ) : (

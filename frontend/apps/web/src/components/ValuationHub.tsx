@@ -49,6 +49,11 @@ function fetchJson(url: string): Promise<any> {
   return fetch(url).then((r) => r.json()).catch(() => null);
 }
 
+/** fetchJson + 解包 {code,msg,data} 信封：失败/非 0 返回 null。 */
+function fetchData(url: string): Promise<any> {
+  return fetchJson(url).then((j: any) => (j && j.code === 0 ? j.data : null));
+}
+
 function useSummary(symbol: string) {
   const [rows, setRows] = useState<SummaryRow[] | null>(null);
 
@@ -243,6 +248,158 @@ const SUB_TABS: Array<{key: SubTab; label: string}> = [
   {key: 'multiples', label: '⑤ 乘数历史'},
 ];
 
+function BuyPointCard({symbol}: {symbol: string}) {
+  const [d, setD] = useState<any>(null);
+  useEffect(() => {
+    setD(null);
+    fetchJson(`/financial/buy-point-map/${symbol}`).then(setD);
+  }, [symbol]);
+  if (!d || !d.sample_count) return null;
+  const label: Record<string, string> = {
+    '252': '1年', '756': '3年', '1260': '5年',
+  };
+  return (
+    <div className="vh-sens">
+      <h4>历史买点地图（{d.metric} 在 {d.current_value?.toFixed(1)}
+        ±{(d.band * 100).toFixed(0)}% 时买入）</h4>
+      <table className="thesis-table">
+        <thead>
+          <tr><th>持有期</th><th>样本</th><th>平均</th><th>中位</th>
+            <th>胜率</th><th>P10</th><th>P90</th></tr>
+        </thead>
+        <tbody>
+          {Object.entries(d.by_horizon).map(([h, v]: any) => (
+            <tr key={h}>
+              <td>{label[h] ?? h + '日'}</td>
+              <td>{v.n}</td>
+              <td className={v.avg_pct > 0 ? 'pos' : 'neg'}>
+                {v.avg_pct != null ? v.avg_pct + '%' : '—'}</td>
+              <td>{v.median_pct != null ? v.median_pct + '%' : '—'}</td>
+              <td>{v.win_rate != null ? v.win_rate + '%' : '—'}</td>
+              <td className="neg">{v.p10 != null ? v.p10 + '%' : '—'}</td>
+              <td className="pos">{v.p90 != null ? v.p90 + '%' : '—'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p className="dim">{d.note}</p>
+    </div>
+  );
+}
+
+function FairRangeCard({symbol}: {symbol: string}) {
+  const [d, setD] = useState<any>(null);
+  useEffect(() => {
+    setD(null);
+    fetchData(`${API_BASE}/financial/fair-range/${symbol}`).then(setD);
+  }, [symbol]);
+  if (!d) return <StateView state="loading" text="公允区间计算中…" />;
+  if (d.median_ratio == null)
+    return <StateView state="empty" text="估值方法数据不足（需≥3法）" />;
+  const pos = Math.max(0, Math.min(100,
+    (1.0 - d.low_ratio) / (d.high_ratio - d.low_ratio) * 100));
+  return (
+    <div className="vh-fair">
+      <h4>五法综合公允区间</h4>
+      <div className="vh-fair__bar">
+        <div className="vh-fair__range"
+             style={{left: 0, width: '100%'}} />
+        <div className="vh-fair__median"
+             style={{left: `${(d.median_ratio - d.low_ratio) /
+                        (d.high_ratio - d.low_ratio) * 100}%`}}
+             title={`中位 ${d.median_ratio}`} />
+        <div className="vh-fair__now" style={{left: `${pos}%`}}
+             title="现价=1.0" />
+      </div>
+      <div className="vh-fair__labels mono">
+        <span>{d.low_ratio}</span>
+        <span>中位 {d.median_ratio}</span>
+        <span>{d.high_ratio}</span>
+      </div>
+      <p className="vh-fair__verdict">
+        现价位置 {pos.toFixed(0)}% ·{' '}
+        <b className={`vh-fair__verdict--${d.verdict}`}>
+          {d.verdict === 'undervalued' ? '低估'
+           : d.verdict === 'overvalued' ? '高估' : '合理区间'}
+        </b>
+        <span className="dim">（{d.methods_used} 法可得；ratio=公允/现价）</span>
+      </p>
+    </div>
+  );
+}
+
+function ReverseDcfCard({symbol}: {symbol: string}) {
+  const [d, setD] = useState<any>(null);
+  useEffect(() => {
+    setD(null);
+    fetchData(`${API_BASE}/financial/reverse-dcf/${symbol}`).then(setD);
+  }, [symbol]);
+  if (!d) return null;
+  return (
+    <div className="vh-fair">
+      <h4>市场隐含预期（Reverse DCF）</h4>
+      {d.status === 'ok' ? (
+        <>
+          <p style={{fontSize: 'var(--text-lg)'}}>
+            当前价格定价的永续增长：
+            <b style={{color: 'var(--color-accent)'}}>
+              {' '}{d.implied_growth_pct}%
+            </b>
+          </p>
+          <p className="dim">
+            FCF 收益率 {d.fcf_yield_pct}% · 假设 WACC {(
+              (d.assumptions?.wacc ?? 0) * 100).toFixed(0)}% / 阶段增长 {(
+              (d.assumptions?.stage_growth ?? 0) * 100).toFixed(0)}%
+          </p>
+        </>
+      ) : (
+        <p className="dim">{d.message ?? '无法反解'}</p>
+      )}
+    </div>
+  );
+}
+
+function DcfSensitivityCard({symbol}: {symbol: string}) {
+  const [d, setD] = useState<any>(null);
+  useEffect(() => {
+    setD(null);
+    fetchData(`${API_BASE}/financial/dcf/${symbol}/sensitivity`).then(setD);
+  }, [symbol]);
+  if (!d) return null;
+  return (
+    <div className="vh-sens">
+      <h4>DCF 敏感性（上行 %，行=WACC / 列=永续增长）</h4>
+      <table className="thesis-table">
+        <thead>
+          <tr>
+            <th>WACC\g</th>
+            {d.growths.map((g: number) => <th key={g}>{(g * 100).toFixed(0)}%</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {d.waccs.map((w: number, i: number) => (
+            <tr key={w}>
+              <td className="mono">{(w * 100).toFixed(0)}%</td>
+              {(d.upside_pct_grid[i] as (number | null)[]).map(
+                (v, j) => (
+                  <td key={j} className="mono"
+                      style={{
+                        background: v == null ? 'transparent'
+                          : v > 0 ? 'rgba(47,158,68,0.12)'
+                          : 'rgba(226,106,106,0.12)',
+                      }}>
+                    {v == null ? '—' : `${v > 0 ? '+' : ''}${v}%`}
+                  </td>
+                ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p className="dim">假设敏感性是 DCF 的本性：结论只看区间，不看单点。</p>
+    </div>
+  );
+}
+
 export function ValuationHub({symbol}: {symbol: string}) {
   const [subTab, setSubTab] = useState<SubTab>('overview');
   const summary = useSummary(symbol);
@@ -279,6 +436,10 @@ export function ValuationHub({symbol}: {symbol: string}) {
                     </button>
                   ))}
                 </div>
+                <ReverseDcfCard symbol={symbol} />
+                <BuyPointCard symbol={symbol} />
+                <FairRangeCard symbol={symbol} />
+                <DcfSensitivityCard symbol={symbol} />
                 <div className="dcf-panel__note">
                   课程口径：估值只能给出大致正确的范围，五法各测一遍、交叉验证，
                   综合评估出相对合理的价格区间；单法结论不构成投资依据。

@@ -44,7 +44,7 @@ function lineLevel(line: string): string {
   return 'INFO';
 }
 
-export const SystemLogs: React.FC = () => {
+const LogsPanel: React.FC = () => {
   const [files, setFiles] = useState<LogFile[]>([]);
   const [selectedFile, setSelectedFile] = useState<string | null>(null);
   const [lines, setLines] = useState<string[]>([]);
@@ -293,6 +293,85 @@ export const SystemLogs: React.FC = () => {
           )}
         </section>
       </div>
+    </div>
+  );
+};
+
+
+/* ── 数据治理阶段二: 双 Tab(日志/数据健康) ─────────────────────────── */
+
+function DataHealthPanel() {
+  const [health, setHealth] = useState<any>(null);
+  const [runs, setRuns] = useState<any[]>([]);
+  useEffect(() => {
+    fetch(`${API_BASE}/data-health`).then(r => r.json())
+      .then(d => d.code === 0 && setHealth(d.data)).catch(() => {});
+    fetch(`${API_BASE}/jobs/runs`).then(r => r.json())
+      .then(d => d.code === 0 && setRuns(d.data || [])).catch(() => {});
+  }, []);
+  const tone = (st: string) => st === 'ok' ? 'var(--color-success)'
+    : st === 'fail' ? 'var(--color-danger)' : 'var(--color-warning)';
+  return (
+    <div className="dh-panel">
+      {health && (
+        <>
+          <h3>数据健康（{health.summary.total} 项：
+            <span style={{color: 'var(--color-danger)'}}>{health.summary.fail} 异常</span>
+            <span style={{color: 'var(--color-warning)'}}> / {health.summary.warn} 警告</span>）
+          </h3>
+          <table className="thesis-table">
+            <thead><tr><th>检查</th><th>表</th><th>级别</th><th>状态</th><th>说明</th></tr></thead>
+            <tbody>
+              {health.checks.map((c: any) => (
+                <tr key={c.check_id}>
+                  <td className="mono">{c.check_id}</td>
+                  <td>{c.table}</td>
+                  <td>{c.severity}</td>
+                  <td style={{color: tone(c.status), fontWeight: 600}}>{c.status}</td>
+                  <td style={{fontSize: 'var(--text-xs)'}}>{c.message}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
+      {runs.length > 0 && (
+        <>
+          <h3 style={{marginTop: 'var(--space-3)'}}>job 近30天成功率</h3>
+          <table className="thesis-table">
+            <thead><tr><th>job</th><th>次数</th><th>失败</th><th>成功率</th><th>最近执行</th></tr></thead>
+            <tbody>
+              {runs.map((j: any) => (
+                <tr key={j.job_id}>
+                  <td className="mono">{j.job_id}</td>
+                  <td>{j.total}</td>
+                  <td>{j.errors}</td>
+                  <td style={{color: j.success_rate != null && j.success_rate < 100
+                    ? 'var(--color-danger)' : 'inherit'}}>
+                    {j.success_rate ?? '—'}%
+                  </td>
+                  <td>{j.last_run?.slice(0, 16)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
+    </div>
+  );
+}
+
+export const SystemLogs: React.FC = () => {
+  const [tab, setTab] = useState<'logs' | 'health'>('logs');
+  return (
+    <div style={{padding: 'var(--space-4)'}}>
+      <div style={{display: 'flex', gap: 'var(--space-2)', marginBottom: 'var(--space-3)'}}>
+        <button className={`lab-tab${tab === 'logs' ? ' lab-tab--active' : ''}`}
+                onClick={() => setTab('logs')}>系统日志</button>
+        <button className={`lab-tab${tab === 'health' ? ' lab-tab--active' : ''}`}
+                onClick={() => setTab('health')}>数据健康</button>
+      </div>
+      {tab === 'logs' ? <LogsPanel /> : <DataHealthPanel />}
     </div>
   );
 };

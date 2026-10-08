@@ -1,0 +1,170 @@
+/* Start page — workflow map / scenarios / cheat sheet */
+.start-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: var(--space-6);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.start-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin: 0 0 10px;
+}
+
+/* 工作流地图:横向六层 */
+.start-workflow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px;
+}
+.start-stage {
+  background: var(--color-bg-secondary, rgba(255, 255, 255, 0.03));
+  border: 0.5px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-md, 8px);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.start-stage__title {
+  font-weight: 600;
+  color: var(--color-text);
+}
+.start-stage__role {
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+}
+.start-stage__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+.start-stage__links a {
+  font-size: 12px;
+  color: var(--color-accent);
+  text-decoration: none;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-light);
+}
+.start-stage__links a:hover {
+  background: var(--color-accent-hover);
+}
+
+/* 场景卡 */
+.start-scenarios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 12px;
+}
+.start-scenario {
+  background: var(--color-bg-secondary, rgba(255, 255, 255, 0.03));
+  border: 0.5px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-md, 8px);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.start-scenario__question {
+  font-weight: 600;
+  color: var(--color-text);
+}
+.start-scenario__answer {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+.start-scenario__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+.start-scenario__primary {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-decoration: none;
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-light);
+}
+.start-scenario__primary:hover {
+  background: var(--color-accent-hover);
+}
+.start-scenario__secondary {
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+  text-decoration: none;
+  padding: 4px 8px;
+}
+.start-scenario__secondary:hover {
+  color: var(--color-text-secondary);
+  text-decoration: underline;
+}
+
+/* 速查表 */
+.start-filter {
+  width: 100%;
+  max-width: 360px;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--color-text);
+  font-size: 13px;
+}
+.start-cheatsheet {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.start-cheatsheet-group h3 {
+  font-size: 13px;
+  color: var(--color-text-tertiary);
+  margin: 0 0 6px;
+}
+.start-cheatsheet-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.start-cheatsheet-table td {
+  padding: 6px 10px 6px 0;
+  border-bottom: 0.5px solid rgba(255, 255, 255, 0.05);
+}
+.start-cheatsheet-table a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+}
+.start-cheatsheet-table a:hover {
+  color: var(--color-accent);
+}
+.start-cheatsheet-desc {
+  color: var(--color-text-tertiary);
+}
+
+/* 口径速记 */
+.start-calibration {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+.start-calibration summary {
+  cursor: pointer;
+  color: var(--color-text-tertiary);
+  font-weight: 500;
+}
+.start-calibration ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}

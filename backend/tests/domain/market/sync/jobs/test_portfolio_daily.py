@@ -39,11 +39,14 @@ class _FakeFxRepo:
 
 
 def test_run_uses_full_for_new_symbol_incremental_for_existing(monkeypatch):
-    bars = [
-        type("B", (), {"symbol": "VOO", "market": "US"})(),
-        type("B", (), {"symbol": "sh510300", "market": "A"})(),
+    instruments = [
+        type("I", (), {"symbol": "VOO", "market": "US"})(),
+        type("I", (), {"symbol": "sh510300", "market": "A"})(),
     ]
-    monkeypatch.setattr(mod, "_load_universe_bars", lambda: bars)
+    monkeypatch.setattr(mod, "_load_instruments", lambda: instruments)
+    monkeypatch.setattr(
+        mod, "_collect_fx_pairs", lambda items: [],
+    )
     fake_service = _FakeService()
     monkeypatch.setattr(mod, "_build_service",
                         lambda prov, tracker: fake_service)

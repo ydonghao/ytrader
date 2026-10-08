@@ -19,6 +19,7 @@ const base: SvgProps = {
 export const Icons = {
   /* ── Navigation (mirrors Layout.tsx nav) ── */
   dashboard: (<svg {...base}><rect x="1" y="1" width="6" height="6" rx="1" /><rect x="9" y="1" width="6" height="6" rx="1" /><rect x="1" y="9" width="6" height="6" rx="1" /><rect x="9" y="9" width="6" height="6" rx="1" /></svg>),
+  compass: (<svg {...base}><circle cx="8" cy="8" r="6.5" /><polygon points="10.8,5.2 9.4,9.4 5.2,10.8 6.6,6.6" /></svg>),
   market: (<svg {...base}><polyline points="1,12 5,6 8,9 15,2" /><polyline points="11,2 15,2 15,6" /></svg>),
   trading: (<svg {...base}><path d="M2 14h12M4 10V6M8 10V3M12 10V5" /></svg>),
   strategies: (<svg {...base}><polygon points="8,1 15,14 1,14" /></svg>),
@@ -31,6 +32,17 @@ export const Icons = {
   intel: (<svg {...base}><path d="M2 12a6 6 0 0012 0" /><line x1="8" y1="2" x2="8" y2="8" /><circle cx="8" cy="1.5" r="1" /></svg>),
   alerts: (<svg {...base}><path d="M8 1a5 5 0 015 5v3l1 2H2l1-2V6a5 5 0 015-5z" /><path d="M6 13a2 2 0 004 0" /></svg>),
   settings: (<svg {...base}><circle cx="8" cy="8" r="2.5" /><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3.05 3.05l1.41 1.41M11.54 11.54l1.41 1.41M3.05 12.95l1.41-1.41M11.54 4.46l1.41-1.41" /></svg>),
+  bank: (<svg {...base}><polyline points="1.5,6 8,1.5 14.5,6" /><path d="M4 6.5V14M8 6.5V14M12 6.5V14" /><line x1="2" y1="14" x2="14" y2="14" /></svg>),
+  shield: (<svg {...base}><path d="M8 1.5l5.5 2v4c0 3.6-2.4 6.1-5.5 7-3.1-.9-5.5-3.4-5.5-7v-4l5.5-2z" /></svg>),
+  funnel: (<svg {...base}><path d="M1.5 2h13l-5 6v5.5l-3 1.5V8l-5-6z" /></svg>),
+  layers: (<svg {...base}><polygon points="8,1.5 14.5,5 8,8.5 1.5,5" /><polyline points="1.5,8.5 8,12 14.5,8.5" /><polyline points="1.5,11.5 8,15 14.5,11.5" /></svg>),
+  radar: (<svg {...base}><circle cx="8" cy="8" r="5.5" /><line x1="8" y1="0.5" x2="8" y2="3" /><line x1="8" y1="13" x2="8" y2="15.5" /><line x1="0.5" y1="8" x2="3" y2="8" /><line x1="13" y1="8" x2="15.5" y2="8" /><circle cx="8" cy="8" r="0.5" fill="currentColor" /></svg>),
+  compare: (<svg {...base}><path d="M3 5h9M9.5 2.5L12 5l-2.5 2.5" /><path d="M13 11H4M6.5 8.5L4 11l2.5 2.5" /></svg>),
+  checklist: (<svg {...base}><path d="M1.5 4l1.5 1.5L5.5 2.5" /><line x1="8" y1="4.5" x2="14.5" y2="4.5" /><path d="M1.5 11l1.5 1.5L5.5 9.5" /><line x1="8" y1="11.5" x2="14.5" y2="11.5" /></svg>),
+  pulse: (<svg {...base}><path d="M1 8.5h3l2-5 3.5 9.5 2-4.5h3" /></svg>),
+  history: (<svg {...base}><polyline points="1.2,3.2 1.2,7.2 5.2,7.2" /><path d="M2.8 10.5a6 6 0 1 0 2.14-6.24L1.2 7.2" /></svg>),
+  layout: (<svg {...base}><rect x="1.5" y="2" width="13" height="12" rx="1.5" /><line x1="5.5" y1="2" x2="5.5" y2="14" /></svg>),
+  infinity: (<svg {...base}><path d="M4.5 5.5a2.5 2.5 0 100 5c2 0 5-5 7-5a2.5 2.5 0 110 5c-2 0-5-5-7-5z" /></svg>),
 
   /* ── UI primitives ── */
   chevronDown: (<svg {...base}><polyline points="4,6 8,10 12,6" /></svg>),

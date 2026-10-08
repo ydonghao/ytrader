@@ -20,26 +20,31 @@ from src.api.router.market_router import router as market_router
 from src.api.router.trading_router import router as trading_router
 from src.api.router.strategy_router import router as strategy_router
 from src.api.router.system_router import router as system_router
-from src.api.router.ai_chat_router import router as ai_chat_router
 from src.api.router.alerts_router import router as alerts_router
 from src.api.router.settings_router import router as settings_router
 from src.api.router.risk_router import router as risk_router
-from src.api.router.t_trading_router import router as t_trading_router
 from src.api.router.lt_backtest_router import router as lt_backtest_router
+from src.api.router.thesis_router import router as thesis_router
 from src.api.router.screener_router import router as screener_router
 from src.api.router.factors_router import router as factors_router
 from src.api.router.financial_router import router as financial_router
+from src.api.router.management_promise_router import (
+    router as management_promise_router,
+)
+from src.api.router.argument_router import router as argument_router
 from src.api.router.ws_router import router as ws_router, tick_broadcaster
-from src.api.router.report_router import router as report_router
 from src.api.router.llm_config_router import router as llm_config_router
 from src.api.router.perm_portfolio_router import router as perm_portfolio_router
 from src.api.router.watchlist_router import router as watchlist_router
 from src.api.router.replay_router import router as replay_router
 from src.api.router.boom_router import router as boom_router
+from src.api.router.industry_router import router as industry_router
+from src.api.router.course_portfolio_router import router as course_portfolio_router
 from src.api.router.board_router import router as board_router
 from src.api.router.log_router import router as log_router
 from src.api.router.macro_router import router as macro_router
 from src.api.router.national_team_router import router as national_team_router
+from src.api.router.checklist_router import router as checklist_router
 from src.infra.scheduler import setup_scheduler, get_scheduler
 from src.api.middleware.logging_middleware import LoggingMiddleware, TraceIdMiddleware
 from fastapi import status
@@ -121,6 +126,11 @@ async def lifespan(app: FastAPI):
         from src.infra.database.market.boom import (  # noqa: F401
             BoomCandidateTable, BoomKeywordTable, BoomScanHitTable,
         )
+        # Industry analysis: import models so create_all picks up 3 tables
+        from src.infra.database.market.industry_analysis import (  # noqa: F401
+            IndustryFundFlowTable, IndustryPbBreakTable,
+            IndustryProsperityTable,
+        )
         # Import portfolio models so create_all picks up the 5 permanent
         # portfolio tables (instrument/definition/holding/nav/nav_item).
         from src.infra.database.portfolio.models import (  # noqa: F401
@@ -135,6 +145,46 @@ async def lifespan(app: FastAPI):
         from src.infra.database.strategy.models import (  # noqa: F401
             PortfolioBacktestResult,
         )
+        # Import course portfolio models so create_all picks up
+        # course_portfolio / course_portfolio_leg tables (自动建组合).
+        from src.infra.database.portfolio.course_models import (  # noqa: F401
+            CoursePortfolio,
+            CoursePortfolioLeg,
+        )
+        # Import thesis models so create_all picks up 持仓论点体系 4 表
+        # (investment_thesis / thesis_condition / thesis_reeval /
+        #  thesis_event).
+        from src.infra.database.market.data_health import (  # noqa: F401
+            DataHealthResult,
+        )
+        from src.infra.database.market.job_run_log import JobRunLog  # noqa: F401
+        from src.infra.database.portfolio.thesis_models import (  # noqa: F401
+            CapitalEvent,
+            InvestmentThesis,
+            MarketThermometerDaily,
+            MineScreeningResult,
+            PassDecision,
+            ResearchNote,
+            ThesisCondition,
+            ThesisEvent,
+            ThesisJournal,
+            ThesisLadderFill,
+            ThesisReeval,
+            ThesisReviewLog,
+        )
+        # 二期F5: 既有表幂等加列(无 Alembic)
+        from src.infra.database.portfolio.thesis_repository import (
+            create_thesis_repository as _create_thesis_repo,
+        )
+        try:
+            _create_thesis_repo().ensure_thesis_ladder_column()
+        except Exception as e:
+            print(f"[thesis] ensure entry_ladder column: {e}")
+        # 决策日志补全: confidence/catalysts 幂等加列
+        try:
+            _create_thesis_repo().ensure_journal_columns()
+        except Exception as e:
+            print(f"[thesis] ensure journal columns: {e}")
         # Import watchlist models so create_all picks up watchlist_group /
         # watchlist_item tables on first connection.
         from src.infra.database.watchlist.models import (  # noqa: F401
@@ -147,6 +197,13 @@ async def lifespan(app: FastAPI):
             ReplaySession,
             ReplayTrade,
         )
+        from src.infra.database.replay.repository import (
+            ensure_replay_columns,
+        )
+        try:
+            ensure_replay_columns()
+        except Exception as e:  # noqa: BLE001
+            print(f"[replay] ensure v3 columns: {e}")
         # Import board model so create_all picks up analysis_board table
         # on first connection.
         from src.infra.database.board.models import (  # noqa: F401
@@ -156,6 +213,18 @@ async def lifespan(app: FastAPI):
         # stock_valuation / stock_dividend tables on first connection.
         from src.infra.database.market.valuation import (  # noqa: F401
             StockValuation,
+        )
+        # 估值假设版本表（2026-10 假设版本化）
+        from src.infra.database.market.valuation_assumption import (  # noqa: F401
+            ValuationAssumption,
+        )
+        # 管理层承诺表（2026-10 言行追踪 V1）
+        from src.infra.database.market.management_promise import (  # noqa: F401
+            ManagementPromise,
+        )
+        # AI 陪练论证库表（2026-10 六层第⑥件）
+        from src.infra.database.market.argument_note import (  # noqa: F401
+            ArgumentNote,
         )
         from src.infra.database.market.dividend import (  # noqa: F401
             StockDividend,
@@ -169,6 +238,11 @@ async def lifespan(app: FastAPI):
         from src.infra.database.market.market_sentiment import (  # noqa: F401
             NorthFlowDaily,
             MarginBalanceDaily,
+        )
+        # Import checklist model so create_all picks up
+        # stock_checklist_item table on first connection.
+        from src.infra.database.market.checklist import (  # noqa: F401
+            StockChecklistItem,
         )
         from src.infra.database.market.fundamental_report import (  # noqa: F401
             FundamentalReport,
@@ -317,26 +391,29 @@ def create_app():
     app.include_router(trading_router, prefix="/api/v1")  # /api/v1/trade
     app.include_router(strategy_router, prefix="/api/v1")  # /api/v1/strategy
     app.include_router(system_router, prefix="/api/v1")   # /api/v1/system
-    app.include_router(ai_chat_router, prefix="/api/v1")  # /api/v1/ai/chat
     app.include_router(alerts_router, prefix="/api/v1")  # /api/v1/alerts
     app.include_router(settings_router, prefix="/api/v1")  # /api/v1/settings
     app.include_router(risk_router, prefix="/api/v1")      # /api/v1/risk
-    app.include_router(t_trading_router, prefix="/api/v1")  # /api/v1/t-trading
     app.include_router(lt_backtest_router, prefix="/api/v1")  # /api/v1/lt-backtest
+    app.include_router(thesis_router, prefix="/api/v1")  # /api/v1/thesis
     app.include_router(screener_router, prefix="/api/v1")  # /api/v1/screener
     app.include_router(factors_router, prefix="/api/v1")    # /api/v1/factors
     app.include_router(financial_router, prefix="/api/v1")  # /api/v1/financial
     app.include_router(ws_router)  # /ws/market/tick/{symbol}
-    app.include_router(report_router, prefix="/api/v1")  # /api/v1/report
     app.include_router(llm_config_router, prefix="/api/v1")  # /api/v1/llm
     app.include_router(perm_portfolio_router, prefix="/api/v1")  # /api/v1/perm-portfolio
     app.include_router(watchlist_router, prefix="/api/v1")  # /api/v1/watchlist
     app.include_router(replay_router, prefix="/api/v1")  # /api/v1/replay
     app.include_router(boom_router, prefix="/api/v1")  # /api/v1/boom
+    app.include_router(industry_router, prefix="/api/v1")  # /api/v1/industry
+    app.include_router(course_portfolio_router, prefix="/api/v1")  # /api/v1/course-portfolio
     app.include_router(board_router, prefix="/api/v1")  # /api/v1/board
     app.include_router(log_router, prefix="/api/v1")  # /api/v1/logs
     app.include_router(macro_router, prefix="/api/v1")  # /api/v1/macro
     app.include_router(national_team_router, prefix="/api/v1")  # /api/v1/national-team
+    app.include_router(checklist_router, prefix="/api/v1")  # /api/v1/checklist
+    app.include_router(management_promise_router, prefix="/api/v1")  # /api/v1/management-promises
+    app.include_router(argument_router, prefix="/api/v1")  # /api/v1/arguments
     app_logger.info("Routers registered.")
 
     return app

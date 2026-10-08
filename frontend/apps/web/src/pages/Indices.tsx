@@ -1,5 +1,5 @@
 /**
- * Indices page — A-share index overview (broad-based + SW industry)
+ * Market temperature page — 3 tabs: thermometer / index valuation / PB-break timing
  *
  * Data: GET /market/indices   (market_index + sw_index, latest close & chg)
  *       GET /market/kline/{symbol}?interval=1d   (single index daily kline,
@@ -21,7 +21,11 @@ import {
 } from 'recharts';
 import { getApiBase } from '../lib/api';
 import { axisProps, colorDown, colorUp, gridProps } from '../lib/chartTheme';
-import { PageHeader, StateView } from '../components/ui';
+import { PageHeader, StateView, Tabs } from '../components/ui';
+import { ThermometerCard } from '../components/ThermometerCard';
+import { PbBreakTab } from '../components/industry/PbBreakTab';
+import { IndustryDetailDrawer } from '../components/industry/IndustryDetailDrawer';
+import { useIndustryOverview } from '../hooks/useIndustryAnalysis';
 import { MarketCapGrowthChart } from '../components/MarketCapGrowthChart';
 import { useMarketCapGrowth } from '../hooks/useMarketCapGrowth';
 import { IndexPeChart } from '../components/IndexPeChart';
@@ -201,6 +205,16 @@ const ChartTooltip: React.FC<{ active?: boolean; payload?: any[] }> = ({ active,
 
 // ── Page ─────────────────────────────────────────────────────────────────────
 export const Indices: React.FC = () => {
+  type ThermoTab = 'thermo' | 'indices' | 'pb';
+  const [tab, setTab] = useState<ThermoTab>(() => {
+    const t = new URLSearchParams(window.location.search).get('tab');
+    return t === 'indices' || t === 'pb' ? t : 'thermo';
+  });
+  const [picked, setPicked] = useState<string | null>(null);
+  const industryOverview = useIndustryOverview(8);
+  const industries = (industryOverview.data?.rows ?? [])
+    .map((r) => ({ sw_code: r.sw_code, name: r.name }));
+
   const [quotes, setQuotes] = useState<IndexQuote[]>([]);
   const [selected, setSelected] = useState<string>('sh000300');
   const [bars, setBars] = useState<KlineBar[]>([]);
@@ -343,8 +357,16 @@ export const Indices: React.FC = () => {
 
   return (
     <div className="indices">
-      <PageHeader title="指数行情" subtitle="A 股核心宽基 / 行业 / 主题指数" />
+      <PageHeader title="市场温度" subtitle="温度计 · 指数估值水位 · 破净率择时" />
 
+      <Tabs active={tab} onChange={(k) => setTab(k as ThermoTab)} tabs={[
+        {key: 'thermo', label: '温度计'},
+        {key: 'indices', label: '指数水位'},
+        {key: 'pb', label: '破净率择时'},
+      ]} />
+      {tab === 'thermo' && <ThermometerCard variant="full" />}
+      {tab === 'indices' && (
+        <>
       {/* ── 筛选条 ── */}
       <section className="indices__filters">
         {/* 分类切换 */}
@@ -663,6 +685,10 @@ export const Indices: React.FC = () => {
           </tbody>
         </table>
       </section>
+        </>
+      )}
+      {tab === 'pb' && <PbBreakTab industries={industries} onPick={setPicked} />}
+      {picked && <IndustryDetailDrawer swCode={picked} onClose={() => setPicked(null)} />}
     </div>
   );
 };

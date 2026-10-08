@@ -75,6 +75,32 @@ class ReplayRepository:
             sess.add(row)
             return True
 
+    def save_state_with_trades(
+        self,
+        session_id: int,
+        current_date: date,
+        cash: float,
+        state: dict,
+        trades: list[ReplayTrade],
+    ) -> bool:
+        """v3: 推进/撮合的原子落库（spec §6 单事务：state 与 fills 同事务）。
+
+        拆成 add_trade + save_state 两笔事务时，中途崩溃会出现「状态推进了
+        但成交丢失」（或反之）的错账；单事务下要么都落要么都不落。
+        """
+        with self._db.session_scope() as sess:
+            row = sess.get(ReplaySession, session_id)
+            if row is None:
+                return False
+            row.current_date = current_date
+            row.cash = cash
+            row.state = state  # 整体赋值（JSONB 原地 mutate 不会被跟踪）
+            row.updated_at = datetime.now()
+            sess.add(row)
+            for t in trades:
+                sess.add(t)
+            return True
+
     def bump_current_date(self, session_id: int, new_date: date) -> bool:
         """advance 推进服务端日历游标（不碰 cash/state，防防抖存档窗口期重复推进）。"""
         with self._db.session_scope() as sess:
@@ -123,3 +149,27 @@ class ReplayRepository:
                     .order_by(ReplayTrade.trade_date, ReplayTrade.id)
                 ).all()
             )
+
+
+def ensure_replay_columns() -> None:
+    """v3: 给已存在的 replay 表补新列（无 Alembic 兜底，幂等）。
+
+    SQLModel.metadata.create_all 不会给已存在的表加新列，故用
+    ALTER TABLE ADD COLUMN IF NOT EXISTS，app 启动时调用。
+    """
+    from sqlalchemy import text
+
+    db = _get_db_connection()
+    with db.session_scope() as s:
+        s.exec(text(
+            "ALTER TABLE replay_session ADD COLUMN IF NOT EXISTS "
+            "mode VARCHAR DEFAULT 'free'"
+        ))
+        s.exec(text(
+            "ALTER TABLE replay_trade ADD COLUMN IF NOT EXISTS "
+            "order_type VARCHAR DEFAULT 'market'"
+        ))
+        s.exec(text(
+            "ALTER TABLE replay_trade ADD COLUMN IF NOT EXISTS "
+            "confidence INTEGER"
+        ))

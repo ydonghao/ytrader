@@ -115,23 +115,71 @@ def test_dividend_pb_proxy():
 
 # ── F-Score 选股 ──────────────────────────────────────────────────────────
 
+# 标准 9 因子需要两个年报期（12-31）合并快照（fetch_fscore_annual_history 形状）
+ANNUAL_HIST = {
+    "A": [   # 全因子改善 → 9/9
+        {"report_date": date(2023, 12, 31), "net_profit": 90.0,
+         "total_assets": 1000.0, "ocf": 80.0, "revenue": 900.0,
+         "gross_margin": 0.30, "short_loan": 100.0, "long_loan": 100.0,
+         "current_assets": 400.0, "current_liabilities": 300.0,
+         "share_capital": 100.0, "total_liabilities": 500.0},
+        {"report_date": date(2024, 12, 31), "net_profit": 100.0,
+         "total_assets": 1000.0, "ocf": 150.0, "revenue": 1000.0,
+         "gross_margin": 0.35, "short_loan": 50.0, "long_loan": 50.0,
+         "current_assets": 450.0, "current_liabilities": 300.0,
+         "share_capital": 100.0, "total_liabilities": 400.0},
+    ],
+    "C": [   # 全面恶化 → 仅 ROA>0/OCF>0 → 2/9
+        {"report_date": date(2023, 12, 31), "net_profit": 20.0,
+         "total_assets": 1000.0, "ocf": 30.0, "revenue": 950.0,
+         "gross_margin": 0.10, "short_loan": 150.0, "long_loan": 150.0,
+         "current_assets": 300.0, "current_liabilities": 400.0,
+         "share_capital": 100.0, "total_liabilities": 600.0},
+        {"report_date": date(2024, 12, 31), "net_profit": 10.0,
+         "total_assets": 1000.0, "ocf": 5.0, "revenue": 900.0,
+         "gross_margin": 0.09, "short_loan": 200.0, "long_loan": 200.0,
+         "current_assets": 250.0, "current_liabilities": 450.0,
+         "share_capital": 120.0, "total_liabilities": 700.0},
+    ],
+}
+
+
+def _mock_annual_hist(symbols, as_of=None, **kw):
+    return {s: ANNUAL_HIST.get(s, []) for s in symbols}
+
+
+@patch("src.domain.market.strategy.longterm.screener.fetch_fscore_annual_history", _mock_annual_hist)
 @patch("src.domain.market.strategy.longterm.screener.fetch_financial_history", _mock_fin_hist)
 @patch("src.domain.market.strategy.longterm.screener.fetch_latest_financials", _mock_fin)
 @patch("src.domain.market.strategy.longterm.screener.fetch_latest_valuations", _mock_val)
 def test_fscore_quality_ranking():
-    """A(质量改善) F-Score 应高，C(质量恶化) F-Score 应低。"""
-    # 只用 A 和 C（有历史）
+    """A(全因子改善,9/9) 标准 F-Score 应高于 C(恶化,2/9)。"""
+    # 只用 A 和 C（有年报历史）
     result = screener.screen(
         mode="fscore", symbols=["A", "C"], as_of=TODAY, top_n=5,
         filters={"min_fscore": 0},  # 放宽门槛看打分
     )
     syms = [item.symbol for item in result.ranked_list]
-    if syms:
-        # A 的 ROE/净利率都在改善，负债降 → F-Score 应 ≥ C
-        a_item = next((i for i in result.ranked_list if i.symbol == "A"), None)
-        c_item = next((i for i in result.ranked_list if i.symbol == "C"), None)
-        if a_item and c_item:
-            assert a_item.fscore >= c_item.fscore
+    assert syms, "fscore 模式应产出候选（A/C 均有年报数据）"
+    a_item = next((i for i in result.ranked_list if i.symbol == "A"), None)
+    c_item = next((i for i in result.ranked_list if i.symbol == "C"), None)
+    assert a_item is not None and c_item is not None
+    assert a_item.fscore == 9
+    assert c_item.fscore == 2
+    assert a_item.fscore >= c_item.fscore
+
+
+@patch("src.domain.market.strategy.longterm.screener.fetch_fscore_annual_history", _mock_annual_hist)
+@patch("src.domain.market.strategy.longterm.screener.fetch_financial_history", _mock_fin_hist)
+@patch("src.domain.market.strategy.longterm.screener.fetch_latest_financials", _mock_fin)
+@patch("src.domain.market.strategy.longterm.screener.fetch_latest_valuations", _mock_val)
+def test_fscore_default_threshold_is_nine_scale():
+    """默认门槛 5/9：C(2分) 应被剔，A(9分) 保留。"""
+    result = screener.screen(
+        mode="fscore", symbols=["A", "C"], as_of=TODAY, top_n=5,
+    )
+    syms = [item.symbol for item in result.ranked_list]
+    assert "A" in syms and "C" not in syms
 
 
 # ── 自定义多因子 ──────────────────────────────────────────────────────────

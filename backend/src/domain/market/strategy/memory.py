@@ -49,7 +49,12 @@ class FinancialSituationMemory:
         self._collection: Any | None = None
         
         if _OPENAI_AVAILABLE:
-            self._client = OpenAI(base_url=backend_url)
+            # 显式占位 key：新版 openai SDK 无 key 即抛错（本地
+            # backend_url 无需真实 key，调用时才会真正校验）
+            self._client = OpenAI(
+                base_url=backend_url,
+                api_key=config.get("api_key", "not-set"),
+            )
         
         if _CHROMA_AVAILABLE:
             self._chroma_client = chromadb.Client(Settings(allow_reset=True))

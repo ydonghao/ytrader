@@ -126,3 +126,77 @@ class TestDetectFraudRedFlags:
         rep = detect_fraud_red_flags([{"revenue": 100}])
         assert rep.severity == "clean"
         assert any(f.name == "insufficient_data" for f in rep.red_flags)
+
+
+# ── 2026-10 红旗补全: 大存大贷 + 扣非占比 ─────────────────────────────────
+from src.domain.market.fundamental.fraud_signals import (
+    cash_debt_coexist,
+    non_recurring_heavy,
+)
+
+
+class TestCashDebtCoexist:
+    def test_triggered_double_high(self):
+        # 康美型:现金30%/总有息负债25%,双侧>=15%
+        curr = {"total_assets": 100.0, "monetary_funds": 30.0,
+                "short_loan": 10.0, "long_loan": 15.0}
+        r = cash_debt_coexist(curr)
+        assert r.triggered is True
+        assert "货币资金/总资产" in r.detail
+
+    def test_cash_heavy_debt_light(self):
+        # 现金多但基本无有息负债(好公司)——不触发
+        curr = {"total_assets": 100.0, "monetary_funds": 40.0,
+                "short_loan": 2.0, "long_loan": 3.0}
+        assert cash_debt_coexist(curr).triggered is False
+
+    def test_debt_heavy_cash_light(self):
+        # 高杠杆但现金少——杠杆问题归质量域,不判大存大贷
+        curr = {"total_assets": 100.0, "monetary_funds": 5.0,
+                "short_loan": 20.0, "long_loan": 15.0,
+                "bonds_payable": 10.0}
+        assert cash_debt_coexist(curr).triggered is False
+
+    def test_missing_fields(self):
+        assert cash_debt_coexist({"monetary_funds": 30.0}).triggered is False
+        assert cash_debt_coexist(
+            {"total_assets": 100.0, "monetary_funds": 30.0}
+        ).triggered is False   # 无任何有息负债科目 → 数据不足
+
+
+class TestNonRecurringHeavy:
+    def test_triggered(self):
+        # 净利100,扣非60 → 非经常性占40% >= 30%
+        r = non_recurring_heavy(
+            {"net_profit": 100.0, "net_profit_deduct": 60.0})
+        assert r.triggered is True
+
+    def test_core_earnings_healthy(self):
+        r = non_recurring_heavy(
+            {"net_profit": 100.0, "net_profit_deduct": 95.0})
+        assert r.triggered is False
+
+    def test_loss_or_missing_skip(self):
+        assert non_recurring_heavy(
+            {"net_profit": -50.0, "net_profit_deduct": -60.0}
+        ).triggered is False
+        assert non_recurring_heavy(
+            {"net_profit": 100.0}).triggered is False
+
+
+def test_aggregate_includes_new_flags():
+    periods = [
+        {"revenue": 100, "accounts_receivable": 100, "net_profit": 20,
+         "ocf": 25, "inventory": 50, "gross_margin": 0.40},
+        {"revenue": 110, "accounts_receivable": 105, "net_profit": 24,
+         "ocf": 30, "inventory": 52, "gross_margin": 0.41,
+         # 大存大贷触发:现金30%/有息负债25%
+         "total_assets": 100.0, "monetary_funds": 30.0,
+         "short_loan": 10.0, "long_loan": 15.0,
+         # 扣非触发:非经常性占50%
+         "net_profit_deduct": 12.0},
+    ]
+    rep = detect_fraud_red_flags(periods)
+    names = {f.name for f in rep.red_flags}
+    assert {"cash_debt_coexist", "non_recurring_heavy"} <= names
+    assert rep.severity == "high_risk"    # 2 项新红旗即达

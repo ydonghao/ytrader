@@ -49,3 +49,67 @@ def sync_sw_index_valuation_daily() -> int:
             )
     log.info("[sync_sw_val] saved %d industries for %s", count, today)
     return count
+
+
+def compute_and_save_sw_computed(trade_date=None) -> int:
+    """日度化 computed（数据治理 1.2）：成分股整体法调和加权。
+
+    依赖 stock_valuation(周同步) + sw_industry_member(周六同步)。
+    """
+    import datetime as dt
+    from src.domain.market.health.sw_unify import (
+        compute_sw_valuation_daily,
+    )
+    from src.infra.database.market.industry_analysis import (
+        create_industry_analysis_repository,
+    )
+    from src.infra.database.market.index_valuation import (
+        create_index_valuation_repository,
+    )
+
+    trade_date = trade_date or dt.date.today()
+    irepo = create_industry_analysis_repository()
+    v_dates = irepo.get_stock_valuation_dates(
+        trade_date - dt.timedelta(days=45), trade_date,
+    )
+    if not v_dates:
+        log.warning("[sw_computed_daily] 无估值截面, skip")
+        return 0
+    members = irepo.get_members(v_dates[-1]) if hasattr(
+        irepo, "get_members") else []
+    if not members:
+        # 行业 repo 无直取成员时用 member_valuations 截面
+        members = [
+            {"sw_code": m["sw_code_l1"], "symbol": m["symbol"]}
+            for m in irepo.get_member_valuations(v_dates[-1])
+        ]
+    vals = irepo.get_member_valuations(v_dates[-1])
+    valuations = [
+        {
+            "symbol": v["symbol"],
+            "trade_date": dt.date.fromisoformat(str(v_dates[-1])),
+            "pe_ttm": v.get("pe_ttm"), "pb": v.get("pb"),
+            "total_mv": v.get("total_mv"),
+        }
+        for v in vals
+    ]
+    rows = compute_sw_valuation_daily(members, valuations, trade_date)
+    repo = create_index_valuation_repository()
+    n = 0
+    for r in rows:
+        code = r["sw_code"]
+        # 表内约定带 sw 前缀(如 sw801010);成员表是无前缀6位
+        if not str(code).startswith("sw"):
+            code = f"sw{code}"
+        try:
+            repo.upsert_sw(
+                sw_code=code, trade_date=trade_date,
+                pe_ttm=r.get("pe_ttm"), pb=r.get("pb"),
+                source="computed",
+            )
+            n += 1
+        except Exception as e:  # noqa: BLE001
+            log.warning("[sw_computed_daily] %s failed: %s",
+                        r.get("sw_code"), e)
+    log.info("[sw_computed_daily] %s industries for %s", n, trade_date)
+    return n

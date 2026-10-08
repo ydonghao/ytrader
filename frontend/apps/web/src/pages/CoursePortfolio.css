@@ -1,0 +1,49 @@
+/* 自动建组合页 —— 全站令牌体系 */
+.course-portfolio .page-header {display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px;}
+.cp-actions {display: flex; gap: 8px; margin-left: auto;}
+.cp-error {color: var(--color-danger); background: var(--color-danger-light); padding: 8px 12px; border-radius: 8px; margin: 8px 0;}
+.cp-warning {color: var(--color-orange); background: var(--color-orange-light); padding: 6px 10px; border-radius: 8px; margin: 4px 0; font-size: 13px;}
+.cp-empty {color: var(--color-text-tertiary); padding: 32px 0; text-align: center;}
+.cp-muted {color: var(--color-text-tertiary);}
+.cp-link {color: var(--color-accent); cursor: pointer;}
+.cp-btn {border: none; border-radius: 8px; padding: 8px 16px; cursor: pointer; font-size: 13px;}
+.cp-btn--primary {background: var(--color-accent); color: #fff;}
+.cp-btn--primary:disabled {opacity: 0.5; cursor: default;}
+.cp-btn--ghost {background: var(--color-fill); color: var(--color-text); border: 1px solid var(--color-border);}
+.cp-btn--sm {padding: 2px 8px; font-size: 12px;}
+.cp-table {width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px;}
+.cp-table th, .cp-table td {text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--color-border);}
+.cp-table th {color: var(--color-text-secondary); font-weight: 500;}
+.cp-badge {display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 12px;}
+.cp-badge--planned {background: var(--color-accent-light); color: var(--color-accent);}
+.cp-badge--building {background: var(--color-warning-light); color: var(--color-orange);}
+.cp-badge--complete {background: var(--color-success-light); color: var(--color-success);}
+.cp-tone--success {background: var(--color-success-light); color: var(--color-success);}
+.cp-tone--accent {background: var(--color-accent-light); color: var(--color-accent);}
+.cp-tone--warning {background: var(--color-warning-light); color: var(--color-orange);}
+.cp-tone--danger {background: var(--color-danger-light); color: var(--color-danger);}
+.cp-tone--muted {background: var(--color-fill); color: var(--color-text-tertiary);}
+.cp-wizard h2 {font-size: 16px; margin: 16px 0 8px;}
+.cp-profiles {display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 12px 0;}
+.cp-profile-card {text-align: left; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 12px; padding: 14px; cursor: pointer; color: var(--color-text);}
+.cp-profile-card.is-active {border-color: var(--color-accent); background: var(--color-accent-light);}
+.cp-profile-name {font-weight: 600; margin-bottom: 4px;}
+.cp-profile-desc {font-size: 12px; color: var(--color-text-secondary); margin-bottom: 8px;}
+.cp-profile-weights {font-size: 13px; color: var(--color-accent);}
+.cp-form-row {display: flex; flex-wrap: wrap; gap: 16px; margin: 12px 0; align-items: end;}
+.cp-form-row label {display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--color-text-secondary);}
+.cp-form-row input, .cp-form-row select {background: var(--color-fill); border: 1px solid var(--color-border); color: var(--color-text); border-radius: 8px; padding: 6px 10px;}
+.cp-summary {background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 10px; padding: 10px 14px; font-size: 13px; margin: 8px 0;}
+.cp-cat h3 {font-size: 14px; margin: 14px 0 4px;}
+.cp-rungs {display: flex; flex-wrap: wrap; gap: 4px;}
+.cp-rung {background: var(--color-fill); border-radius: 6px; padding: 1px 6px; font-size: 12px; font-family: monospace;}
+.cp-rung.is-done {background: var(--color-success-light); color: var(--color-success); text-decoration: line-through;}
+.cp-advices {display: flex; flex-direction: column; gap: 6px; margin: 10px 0;}
+.cp-advice {padding: 8px 12px; border-radius: 8px; font-size: 13px;}
+.cp-advice--BUY_RUNG {background: var(--color-success-light); color: var(--color-success);}
+.cp-advice--TRIM {background: var(--color-warning-light); color: var(--color-orange);}
+.cp-advice--BREAKDOWN {background: var(--color-danger-light); color: var(--color-danger);}
+.cp-modal-mask {position: fixed; inset: 0; background: var(--color-overlay); display: flex; align-items: center; justify-content: center; z-index: 100;}
+.cp-modal {background: var(--color-surface-elevated); border-radius: 14px; padding: 20px; min-width: 320px;}
+
+.cp-thesis-link {display: inline-block; margin-right: 4px; text-decoration: none;}

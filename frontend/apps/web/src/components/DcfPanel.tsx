@@ -22,6 +22,11 @@ function fmtPct(v: number | null) {
   return (v >= 0 ? '+' : '') + (v * 100).toFixed(1) + '%';
 }
 
+function pctLabel(v: number | null) {
+  if (v == null || Number.isNaN(v)) return '—';
+  return (v >= 0 ? '+' : '') + v.toFixed(1) + '%';
+}
+
 export function DcfPanel({symbol}: {symbol: string}) {
   const [growthRate, setGrowthRate] = useState(0.08);
   const [terminalGrowth, setTerminalGrowth] = useState(0.03);
@@ -34,6 +39,67 @@ export function DcfPanel({symbol}: {symbol: string}) {
     wacc,
     projectionYears: years,
   });
+
+  // ── 假设版本化（2026-10）：假设随决策沉淀，可按原假设重跑对比 ──
+  const [versions, setVersions] = useState<any[]>([]);
+  const [savingVersion, setSavingVersion] = useState(false);
+  const [compare, setCompare] = useState<any>(null);
+  const [comparingId, setComparingId] = useState<number | null>(null);
+
+  const loadVersions = () => {
+    if (!symbol) { setVersions([]); return; }
+    fetch(`${API_BASE}/financial/valuation-assumptions/${symbol}`)
+      .then((r) => r.json())
+      .then((j) => j.code === 0 && setVersions(j.data))
+      .catch(() => {});
+  };
+  useEffect(loadVersions, [symbol]);  // eslint-disable-line react-hooks/exhaustive-deps
+
+  const saveVersion = () => {
+    if (!symbol || !data) return;
+    const note = window.prompt('版本备注（为什么用这组假设）', '') ?? '';
+    setSavingVersion(true);
+    fetch(`${API_BASE}/financial/valuation-assumptions/${symbol}`, {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        method: 'dcf',
+        assumptions: {
+          growth_rate: growthRate, terminal_growth: terminalGrowth,
+          wacc, projection_years: years,
+        },
+        note,
+      }),
+    })
+      .then((r) => r.json())
+      .then((j) => { if (j.code === 0) loadVersions(); })
+      .finally(() => setSavingVersion(false));
+  };
+
+  const applyVersion = (v: any) => {
+    const a = v.assumptions || {};
+    if (a.growth_rate != null) setGrowthRate(a.growth_rate);
+    if (a.terminal_growth != null) setTerminalGrowth(a.terminal_growth);
+    if (a.wacc != null) setWacc(a.wacc);
+    if (a.projection_years != null) setYears(a.projection_years);
+  };
+
+  const rerunVersion = (id: number) => {
+    setComparingId(id);
+    setCompare(null);
+    fetch(`${API_BASE}/financial/valuation-assumptions/${id}/rerun`,
+      {method: 'POST'})
+      .then((r) => r.json())
+      .then((j) => setCompare(j.code === 0 ? j.data : {error: j.msg}))
+      .finally(() => setComparingId(null));
+  };
+
+  const deleteVersion = (id: number) => {
+    if (!window.confirm('删除这个假设版本？')) return;
+    fetch(`${API_BASE}/financial/valuation-assumptions/${id}`,
+      {method: 'DELETE'})
+      .then((r) => r.json())
+      .then((j) => { if (j.code === 0) loadVersions(); });
+  };
 
   const mos = data?.margin_of_safety;
   const mosColor =
@@ -146,6 +212,10 @@ export function DcfPanel({symbol}: {symbol: string}) {
           <h3 className="dcf-panel__title">DCF 估值假设（按公司实际自行调整）</h3>
           {data && (
             <span className="dcf-title-actions">
+              <button type="button" className="dcf-copy-btn"
+                disabled={savingVersion} onClick={saveVersion}>
+                {savingVersion ? '保存中…' : '保存为版本'}
+              </button>
               <button type="button" className="dcf-copy-btn" onClick={copySummary}>
                 {copied ? '✓ 已复制' : '复制摘要'}
               </button>
@@ -178,6 +248,93 @@ export function DcfPanel({symbol}: {symbol: string}) {
           </label>
         </div>
       </div>
+
+      {versions.length > 0 && (
+        <div style={{margin: '12px 0'}}>
+          <h4 style={{margin: '0 0 6px', fontSize: 13, color: '#adbac7'}}>
+            假设版本（{versions.length}）——当时的判断依据沉淀；按原假设重跑，
+            分离"基本面变了"与"只有价格变了"
+          </h4>
+          <table style={{width: '100%', fontSize: 12, borderCollapse: 'collapse'}}>
+            <thead>
+              <tr style={{color: '#8b949e', textAlign: 'left'}}>
+                <th style={{padding: '4px 6px'}}>版本</th>
+                <th>日期</th><th>g/WACC/永续/年</th>
+                <th>保存时内在价值</th><th>保存时市值</th><th>当时MOS</th>
+                <th>备注</th><th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {versions.map((v) => {
+                const a = v.assumptions || {};
+                const o = v.output || {};
+                return (
+                  <tr key={v.id} style={{borderTop: '1px solid #21262d'}}>
+                    <td style={{padding: '4px 6px'}}>v{v.version}</td>
+                    <td>{(v.created_at || '').slice(0, 10)}</td>
+                    <td className="mono">
+                      {a.growth_rate != null ? (a.growth_rate * 100).toFixed(0) + '%' : '—'}/
+                      {a.wacc != null ? (a.wacc * 100).toFixed(0) + '%' : '—'}/
+                      {a.terminal_growth != null ? (a.terminal_growth * 100).toFixed(1) + '%' : '—'}/
+                      {a.projection_years ?? '—'}
+                    </td>
+                    <td>{fmtYi(o.intrinsic_value)}</td>
+                    <td>{fmtYi(o.market_value)}</td>
+                    <td>{fmtPct(o.margin_of_safety)}</td>
+                    <td style={{maxWidth: 160, overflow: 'hidden',
+                               textOverflow: 'ellipsis', whiteSpace: 'nowrap'}}
+                      title={v.note || ''}>{v.note || '—'}</td>
+                    <td style={{whiteSpace: 'nowrap'}}>
+                      <button type="button" className="dcf-copy-btn"
+                        onClick={() => applyVersion(v)}>套用</button>{' '}
+                      <button type="button" className="dcf-copy-btn"
+                        disabled={comparingId === v.id}
+                        onClick={() => rerunVersion(v.id)}>
+                        {comparingId === v.id ? '重跑中…' : '重跑对比'}</button>{' '}
+                      <button type="button" className="dcf-copy-btn"
+                        onClick={() => deleteVersion(v.id)}>删</button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+      {compare && (
+        <div style={{margin: '12px 0', padding: 12,
+                     border: '1px solid #30363d', borderRadius: 8}}>
+          {compare.error ? (
+            <div style={{color: '#f85149', fontSize: 13}}>❌ {compare.error}</div>
+          ) : (
+            <>
+              <h4 style={{margin: '0 0 8px', fontSize: 13}}>
+                按原假设重跑（v{compare.assumption?.version}，
+                保存于 {(compare.assumption?.created_at || '').slice(0, 10)}）
+              </h4>
+              <div style={{display: 'flex', gap: 24, flexWrap: 'wrap', fontSize: 13}}>
+                <span>内在价值 {fmtYi(compare.then?.intrinsic_value)}
+                  → <b>{fmtYi(compare.now?.intrinsic_value)}</b>
+                  {' '}({pctLabel(compare.intrinsic_delta_pct)})</span>
+                <span>市值 {fmtYi(compare.then?.market_value)}
+                  → <b>{fmtYi(compare.now?.market_value)}</b>
+                  {' '}({pctLabel(compare.market_delta_pct)})</span>
+                <span>MOS {fmtPct(compare.then?.margin_of_safety)}
+                  → <b>{fmtPct(compare.now?.margin_of_safety)}</b></span>
+                <span>基础FCF {fmtYi(compare.then?.fcf_base)}
+                  → {fmtYi(compare.now?.fcf_base)}
+                  {' '}({pctLabel(compare.fcf_delta_pct)})</span>
+              </div>
+              <p style={{margin: '8px 0 0', fontSize: 13, color: '#d29922'}}>
+                判读：{compare.driver}
+              </p>
+              <p style={{margin: '2px 0 0', fontSize: 11, color: '#6e7681'}}>
+                {compare.note}
+              </p>
+            </>
+          )}
+        </div>
+      )}
 
       {loading && <div className="dcf-panel__loading">计算中…</div>}
       {error && <div className="dcf-panel__error">❌ {error}</div>}

@@ -134,7 +134,13 @@ class LLMConfigRepository(ILLMConfigRepository):
             )
             row = session.exec(stmt).first()
             if row is None:
-                return None
+                # 兜底：仅有一行配置时视为默认（默认位可能被测试/并发
+                # 写翻动，唯一配置就是用户想要的那个）
+                rows = session.exec(select(LLMConfigTable)).all()
+                if len(rows) == 1:
+                    row = rows[0]
+                else:
+                    return None
             return _row_to_config(row, mask_key=False)
 
     def get_decrypted_config(self, config_id: str) -> LLMConfig | None:

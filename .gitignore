@@ -52,6 +52,15 @@ logs/
 
 # Build artifacts
 *.tsbuildinfo
+# tsc 意外 emit 的编译产物(前端源码全 ts/tsx;类型验证须用 tsc --noEmit)
+frontend/apps/web/src/**/*.js
+frontend/apps/web/src/**/*.js.map
+frontend/apps/web/src/**/*.d.ts
+frontend/apps/web/src/**/*.d.ts.map
+frontend/apps/web/rsbuild.config.js
+frontend/apps/web/rsbuild.config.js.map
+frontend/apps/web/rsbuild.config.d.ts
+frontend/apps/web/rsbuild.config.d.ts.map
 
 # Runtime sync / backfill progress state (do not track)
 backend/.backfill_all_progress.json

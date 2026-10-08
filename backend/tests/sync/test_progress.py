@@ -203,6 +203,7 @@ class TestProgressTrackerPersistence:
         t1 = ProgressTracker(db_path=path)
         t1.update_symbol("sina", "sh600000", "1d", SyncStatus.DONE,
                          last_sync_time="2026-04-03", rows_synced=999)
+        t1.flush()   # 延迟批量落盘契约: 持久化需显式 flush
         # 重新创建实例（模拟重启）
         t2 = ProgressTracker(db_path=path)
         last = t2.get_last_sync("sina", "sh600000", "1d")
@@ -232,3 +233,25 @@ class TestProgressTrackerPersistence:
         assert not errors
         stats = tracker.get_stats("sina", "1d")
         assert stats["total"] == 5
+
+
+def test_pending_symbols_freshness_window(tmp_path):
+    """旧轮次 DONE 不豁免新轮同步（估值断线根因的回归测试）。"""
+    import datetime as dt
+    from src.domain.market.sync.progress import (
+        ProgressTracker, SyncStatus,
+    )
+
+    t = ProgressTracker(db_path=tmp_path / "p.json")
+    old = (dt.datetime.now() - dt.timedelta(days=14)).isoformat()
+    fresh = dt.datetime.now().isoformat()
+    t.update_symbol("prov", "old_sym", "1d", SyncStatus.DONE,
+                    last_sync_time=old, rows_synced=1)
+    t.update_symbol("prov", "new_sym", "1d", SyncStatus.DONE,
+                    last_sync_time=fresh, rows_synced=1)
+    t.flush()
+    syms = ["old_sym", "new_sym", "todo_sym"]
+    assert t.get_pending_symbols("prov", "1d", syms) == ["todo_sym"]
+    assert t.get_pending_symbols(
+        "prov", "1d", syms, fresh_within_hours=36,
+    ) == ["old_sym", "todo_sym"]

@@ -118,6 +118,16 @@ class SwIndustryRepository:
                     SwIndustryMember.symbol == symbol,
                 )
             ).first()
+            if r is None and len(symbol) == 6 and symbol.isdigit():
+                # 裸 6 位代码（URL 透传/boom 候选口径）按 sh/sz 前缀重试；
+                # 返回行的 symbol 为库内规范前缀码，调用方据此归一。
+                r = s.exec(
+                    select(SwIndustryMember).where(
+                        SwIndustryMember.symbol.in_(
+                            [f"sh{symbol}", f"sz{symbol}"]
+                        ),
+                    )
+                ).first()
             return _member_dict(r) if r else None
 
     def fetch_members(self) -> list:

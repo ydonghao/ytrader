@@ -66,6 +66,9 @@ class MockProgressTracker:
     def get_last_sync(self, provider, symbol, interval):
         return self._sync_times.get((provider, symbol, interval))
 
+    def flush(self):
+        pass
+
     def update_symbol(self, provider, symbol, interval, status,
                       last_sync_time=None, last_error=None, rows_synced=0):
         if last_sync_time:

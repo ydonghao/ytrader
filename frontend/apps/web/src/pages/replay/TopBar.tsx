@@ -1,4 +1,5 @@
 import {useReplayStore, viewDate} from './store';
+import {useBlind, useDayLabel} from './BlindMask';
 
 const fmt = (v: number) =>
   v.toLocaleString('zh-CN', {maximumFractionDigits: 0});
@@ -13,6 +14,9 @@ export const TopBar: React.FC = () => {
   const error = useReplayStore((s) => s.error);
   const closeSession = useReplayStore((s) => s.closeSession);
   const reveal = useReplayStore((s) => s.reveal);
+  const dayLabel = useDayLabel();
+  const blind = useBlind();
+  const dayOrdinal = useReplayStore((s) => s.dayOrdinal);
   if (!session) return null;
   const lastNav = nav[nav.length - 1];
   const total = lastNav ? lastNav.value : session.initial_capital;
@@ -21,8 +25,13 @@ export const TopBar: React.FC = () => {
   return (
     <div className="replay-top">
       <b>✈ {session.name}</b>
-      <span className="stat">日期<b>{vd}</b></span>
-      <span className="stat">第<b>{cursor + 1}</b>/{datesLen} 个交易日</span>
+      <span className="stat">日期<b>{dayLabel(vd)}</b></span>
+      {/* 盲盒期 dates 是脱敏前的窗口长度(~301/301,无意义),改显旅程进度 */}
+      {blind && session.length_days ? (
+        <span className="stat">第<b>{dayOrdinal}</b>/{session.length_days} 天</span>
+      ) : (
+        <span className="stat">第<b>{cursor + 1}</b>/{datesLen} 个交易日</span>
+      )}
       <span className="stat">现金<b>{fmt(cash)}</b></span>
       <span className="stat">总资产<b>{fmt(total)}</b></span>
       <span className="stat">收益

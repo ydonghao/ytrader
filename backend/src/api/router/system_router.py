@@ -132,12 +132,12 @@ def _backfill_progress() -> BackfillProgress:
                 )
                 symbols_covered = int(cur.fetchone()["cnt"])
 
-                # 估算 A 股总数（假设已覆盖的即为目标）
-                # 用 covered 作为分母近似
+                # 分母用行业成分表全市场数(修复恒100%假覆盖率)
                 cur.execute(
-                    "SELECT COUNT(DISTINCT symbol) as total FROM stock_ohlcv"
+                    "SELECT COUNT(DISTINCT symbol) as total "
+                    "FROM sw_industry_member"
                 )
-                total = int(cur.fetchone()["cnt"])
+                total = int(cur.fetchone()["cnt"]) or 1
 
                 # 最近一条数据的时间
                 cur.execute(
@@ -215,6 +215,51 @@ def system_status():
 
 @router.get("/scheduler", response_model=dict)
 def get_scheduler_status():
-    """定时任务调度器状态。"""
+    """定时任务调度器状态 + 近30天成功率（数据治理阶段二）。"""
     from src.infra.scheduler import get_status
-    return {"code": 0, "msg": "ok", "data": get_status()}
+    data = get_status()
+    try:
+        from src.infra.database.market.job_run_log import (
+            create_job_run_log_repository,
+        )
+        data["run_summary"] = create_job_run_log_repository().summary(30)
+    except Exception as e:  # noqa: BLE001
+        data["run_summary_error"] = str(e)
+    return {"code": 0, "msg": "ok", "data": data}
+
+
+@router.get("/data-health", response_model=dict)
+def get_data_health():
+    """今日数据健康体检结果（summary+明细）。"""
+    from src.infra.database.market.data_health import (
+        create_data_health_repository,
+    )
+    rows = create_data_health_repository().today()
+    summary = {
+        "total": len(rows),
+        "fail": sum(1 for r in rows if r["status"] == "fail"),
+        "warn": sum(1 for r in rows if r["status"] == "warn"),
+    }
+    return {"code": 0, "msg": "ok",
+            "data": {"summary": summary, "checks": rows}}
+
+
+@router.get("/data-health/history/{check_id}", response_model=dict)
+def get_data_health_history(check_id: str):
+    """单检查近 60 天历史。"""
+    from src.infra.database.market.data_health import (
+        create_data_health_repository,
+    )
+    return {"code": 0, "msg": "ok", "data": create_data_health_repository(
+    ).history(check_id)}
+
+
+@router.get("/jobs/runs", response_model=dict)
+def get_job_runs(limit: int = 100):
+    """job 运行记录（分页）。"""
+    from src.infra.database.market.job_run_log import (
+        create_job_run_log_repository,
+    )
+    repo = create_job_run_log_repository()
+    summary = repo.summary(30)
+    return {"code": 0, "msg": "ok", "data": summary[:limit]}

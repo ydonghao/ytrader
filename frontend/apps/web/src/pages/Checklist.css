@@ -1,0 +1,36 @@
+/* 买入体检页(课程21集)。状态点四态 + A股红涨绿跌无冲突的中性徽章色。 */
+.checklist-page { display: flex; flex-direction: column; gap: 16px; }
+.chk-toolbar { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.chk-progress { display: flex; align-items: center; gap: 6px; color: var(--text-secondary, #888); font-size: 13px; }
+/* 参考区:页头"名称·市场"(Important#1),灰字不抢进度条 */
+.chk-ref { color: var(--text-secondary, #888); font-size: 13px; }
+.chk-sections { display: grid; gap: 16px; }
+.chk-section { background: var(--bg-card, #1c1f26); border: 1px solid var(--border-color, #2a2e37); border-radius: 10px; padding: 16px; }
+.chk-section__title { margin: 0 0 12px; font-size: 15px; }
+.chk-section__items { display: grid; gap: 10px; }
+.chk-item { display: flex; gap: 10px; align-items: flex-start; padding: 8px 10px; border-radius: 8px; background: rgba(255, 255, 255, 0.02); }
+.chk-item__body { flex: 1; min-width: 0; display: grid; gap: 4px; }
+.chk-item__head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.chk-item__title { font-weight: 600; font-size: 13px; }
+.chk-item__value { font-size: 13px; color: var(--text-primary, #eee); }
+.chk-item__detail { font-size: 12px; color: var(--text-secondary, #999); white-space: pre-wrap; word-break: break-word; }
+.chk-item__hint { font-size: 12px; color: var(--text-faint, #777); }
+.chk-item__date { font-size: 12px; color: var(--text-faint, #777); }
+.chk-item__date--stale { color: #d4a017; }
+.chk-dot { display: inline-block; width: 18px; height: 18px; border-radius: 50%; font-size: 11px; line-height: 18px; text-align: center; flex: none; }
+.chk-dot--ok { background: rgba(46, 160, 67, 0.25); color: #3fb950; }
+.chk-dot--watch { background: rgba(210, 153, 34, 0.25); color: #d29922; }
+.chk-dot--risk { background: rgba(248, 81, 73, 0.25); color: #f85149; }
+.chk-dot--missing { background: rgba(139, 148, 158, 0.2); color: #8b949e; }
+.chk-dot--pending { background: rgba(139, 148, 158, 0.2); color: #8b949e; }
+
+/* ── 手动项表单(Task 8)────────────────────────────────────────── */
+.chk-choices { display: flex; gap: 8px; flex-wrap: wrap; }
+.chk-choice { display: inline-flex; gap: 4px; align-items: center; padding: 3px 10px; border: 1px solid var(--border-color, #2a2e37); border-radius: 999px; font-size: 12px; cursor: pointer; }
+.chk-choice--on { border-color: #3fb950; color: #3fb950; }
+.chk-textarea { width: 100%; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-color, #2a2e37); border-radius: 6px; color: inherit; font-size: 12px; padding: 6px 8px; resize: vertical; box-sizing: border-box; }
+
+/* 手动项状态小徽章(C17:18px 圆点改徽章;自动项圆点不动) */
+.chk-badge { display: inline-flex; align-items: center; flex: none; padding: 2px 8px; border-radius: 999px; font-size: 11px; line-height: 16px; }
+.chk-badge--filled { background: rgba(46, 160, 67, 0.18); color: #3fb950; border: 1px solid rgba(63, 185, 80, 0.4); }
+.chk-badge--pending { background: rgba(139, 148, 158, 0.12); color: #8b949e; border: 1px solid rgba(139, 148, 158, 0.35); }

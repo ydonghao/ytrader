@@ -356,7 +356,10 @@ def run(
         # resume: 跳过已完成的
         pending = symbols
         if resume:
-            pending = tracker.get_pending_symbols(PROVIDER, interval, symbols)
+            # 36h 窗口：同轮崩溃重跑可续传；跨周(上周的DONE)不豁免
+            pending = tracker.get_pending_symbols(
+                PROVIDER, interval, symbols, fresh_within_hours=36,
+            )
             if len(pending) < len(symbols):
                 log.info(f"[{kind}] 断点续传：跳过 {len(symbols)-len(pending)} 已完成，剩 {len(pending)}")
 

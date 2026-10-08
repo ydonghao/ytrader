@@ -45,19 +45,15 @@ def test_strip_a_etf_prefix(prov):
 
 # ── Task 4: A股ETF fetch_daily ───────────────────────────────────────────
 def _a_etf_df():
-    """模拟 ak.fund_etf_hist_em 返回（中文列，真实结构）"""
+    """模拟 ak.fund_etf_hist_sina 返回（英文列，真实结构）"""
     return pd.DataFrame({
-        "日期": ["2026-06-19", "2026-06-20"],
-        "开盘": [1.0, 1.1],
-        "收盘": [1.1, 1.2],
-        "最高": [1.2, 1.3],
-        "最低": [0.9, 1.0],
-        "成交量": [100000, 110000],
-        "成交额": [110000.0, 132000.0],
-        "振幅": [30.0, 27.27],
-        "涨跌幅": [10.0, 9.09],
-        "涨跌额": [0.1, 0.1],
-        "换手率": [1.0, 1.1],
+        "date": ["2026-06-19", "2026-06-20"],
+        "open": [1.0, 1.1],
+        "close": [1.1, 1.2],
+        "high": [1.2, 1.3],
+        "low": [0.9, 1.0],
+        "volume": [100000, 110000],
+        "amount": [110000.0, 132000.0],
     })
 
 
@@ -66,16 +62,16 @@ def test_fetch_daily_a_etf_maps_chinese_columns(monkeypatch):
 
     captured = {}
 
-    def fake(symbol, period="daily", adjust="qfq", **kw):
+    def fake(symbol, **kw):
         captured["symbol"] = symbol
         return _a_etf_df()
 
-    monkeypatch.setattr(mod.ak, "fund_etf_hist_em", fake)
+    monkeypatch.setattr(mod.ak, "fund_etf_hist_sina", fake)
     prov = mod.AkshareProvider()
     bars = prov.fetch_daily("sh510300")
 
-    # akshare 收到的是去前缀的纯数字
-    assert captured["symbol"] == "510300"
+    # sina 源保留 sh 前缀
+    assert captured["symbol"] == "sh510300"
     assert len(bars) == 2
     b0 = bars[0]
     assert isinstance(b0, mod.OHLCVBar)
@@ -91,7 +87,7 @@ def test_fetch_daily_a_etf_maps_chinese_columns(monkeypatch):
 def test_fetch_daily_a_etf_empty_returns_empty(monkeypatch):
     import src.domain.market.sync.providers.akshare_provider as mod
     monkeypatch.setattr(
-        mod.ak, "fund_etf_hist_em",
+        mod.ak, "fund_etf_hist_sina",
         lambda *a, **k: pd.DataFrame(),
     )
     assert mod.AkshareProvider().fetch_daily("sh510300") == []
@@ -183,7 +179,7 @@ def _money_supply_df():
     return pd.DataFrame({
         "月份": ["2026年05月份", "2026年06月份"],
         "货币和准货币（M2）同比增长": [8.1, 7.8],
-        "货币(狭义货币M1)同比增长": [1.2, 1.5],
+        "货币(M1)-同比增长": [1.2, 1.5],
     })
 
 
@@ -204,7 +200,7 @@ def _retail_df():
     """模拟 ak.macro_china_consumer_goods_retail"""
     return pd.DataFrame({
         "月份": ["2026年05月份", "2026年06月份"],
-        "当月-同比增长": [2.4, 3.1],
+        "同比增长": [2.4, 3.1],
     })
 
 

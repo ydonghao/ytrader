@@ -18,6 +18,7 @@ import {
   PieChart, Pie, Cell,
 } from 'recharts';
 import { getApiBase } from '../lib/api';
+import { ensurePrefixed } from '../lib/symbol';
 import { PeriodSwitcher } from '../components/PeriodSwitcher';
 import type { Period } from '../components/PeriodSwitcher';
 import { ValuationHub } from '../components/ValuationHub';
@@ -27,8 +28,10 @@ import { FiveForcesPanel } from '../components/FiveForcesPanel';
 import { MarketCapGrowthPanel } from '../components/MarketCapGrowthPanel';
 import { CashflowAnalysisPanel } from '../components/CashflowAnalysisPanel';
 import { FundamentalReportPanel } from '../components/FundamentalReportPanel';
+import { ArgumentPanel } from '../components/ArgumentPanel';
 import { FinancialOverlayChart } from '../components/FinancialOverlayChart';
 import type { MetricDef } from '../components/FinancialOverlayChart';
+import { StockSearch } from '../components/StockSearch';
 import {
   useStockValuationHistory,
   usePriceOverlays,
@@ -37,6 +40,7 @@ import {
 } from '../hooks/useFinancialOverlays';
 import type { OverlayKey } from '../hooks/useFinancialOverlays';
 import './Financial.css';
+import { Link } from 'react-router-dom';
 import { Button, PageHeader, StateView, Tabs } from '../components/ui';
 import { CHART_COLORS, axisProps, chartBorder, chartTextSecondary, colorOrange, gridProps, tooltipProps } from '../lib/chartTheme';
 
@@ -176,72 +180,9 @@ function FinTable({ headers, rows }: { headers: string[]; rows: (string | number
   );
 }
 
-// ── Stock Search Input ────────────────────────────────────────────────────────
-
-function StockSearch({ value, onSelect }: { value: string; onSelect: (sym: string) => void }) {
-  const [query, setQuery] = useState('');
-  const [results, setResults] = useState<{ symbol: string; name: string }[]>([]);
-  const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const reqIdRef = useRef(0);
-
-  const search = useCallback(async (q: string) => {
-    if (q.trim().length < 1) { setResults([]); setLoading(false); return; }
-    const reqId = ++reqIdRef.current;
-    setLoading(true);
-    try {
-      const res = await fetch(`${API_BASE}/market/search?q=${encodeURIComponent(q)}&limit=10`);
-      const json = await res.json();
-      // 丢弃过期响应（用户又按了键）
-      if (reqId !== reqIdRef.current) return;
-      if (json.code === 0 && json.data) {
-        setResults(json.data.map((s: any) => ({ symbol: s.symbol, name: s.name || s.symbol })));
-      }
-    } catch { /* ignore */ }
-    if (reqId === reqIdRef.current) setLoading(false);
-  }, []);
-
-  // 防抖：输入变化后 200ms 才发请求，避免连续按键打满后端
-  useEffect(() => {
-    const q = query;
-    const t = setTimeout(() => search(q), 200);
-    return () => clearTimeout(t);
-  }, [query, search]);
-
-  return (
-    <div className="fin-search">
-      <input
-        className="fin-search__input"
-        placeholder="搜索股票代码/名称（如 600519 或 茅台）"
-        value={query}
-        onChange={e => { setQuery(e.target.value); setOpen(true); }}
-        onFocus={() => setOpen(true)}
-        onBlur={() => setTimeout(() => setOpen(false), 200)}
-      />
-      {open && results.length > 0 && (
-        <div className="fin-search__dropdown">
-          {results.map(r => (
-            <div
-              key={r.symbol}
-              className="fin-search__item"
-              onClick={() => { onSelect(r.symbol); setQuery(`${r.symbol} ${r.name}`); setOpen(false); }}
-            >
-              <span className="fin-search__symbol">{r.symbol}</span>
-              <span className="fin-search__name">{r.name}</span>
-            </div>
-          ))}
-        </div>
-      )}
-      {open && !loading && results.length === 0 && query.length >= 1 && (
-        <div className="fin-search__dropdown"><div className="fin-search__empty">无匹配结果</div></div>
-      )}
-    </div>
-  );
-}
-
 // ── Main Component ────────────────────────────────────────────────────────────
 
-type TabType = 'summary' | 'income' | 'balance' | 'cashflow' | 'commonsize' | 'ratios' | 'fiveforces' | 'cashflowanalysis' | 'forecast' | 'compare' | 'valuation' | 'marketcapgrowth' | 'fundamental';
+type TabType = 'summary' | 'income' | 'balance' | 'cashflow' | 'commonsize' | 'ratios' | 'fiveforces' | 'cashflowanalysis' | 'forecast' | 'compare' | 'valuation' | 'marketcapgrowth' | 'fundamental' | 'arguments';
 
 const POPULAR_SYMBOLS = ['sh600519', 'sh600036', 'sh600000', 'sz000001', 'sh601318'];
 
@@ -360,12 +301,13 @@ const SUMMARY_MARGIN_METRICS: MetricDef[] = [
 ];
 
 export const Financial: React.FC = () => {
-  // 支持从 URL query 预填 symbol（如 Market 页跳转 /financial?symbol=00700）
+  // 支持从 URL query 预填 symbol（如 Market 页跳转 /financial?symbol=00700）；
+  // 裸 6 位代码归一为 sh/sz 前缀，否则财务/估值接口全查空
   const initialSymbol = (() => {
     try {
       const params = new URLSearchParams(window.location.search);
       const s = params.get('symbol');
-      return s || 'sh600519';
+      return s ? ensurePrefixed(s) : 'sh600519';
     } catch { return 'sh600519'; }
   })();
   const [symbol, setSymbol] = useState(initialSymbol);
@@ -1040,6 +982,7 @@ export const Financial: React.FC = () => {
     { key: 'valuation', label: '估值' },
     { key: 'marketcapgrowth', label: '市值业绩' },
     { key: 'fundamental', label: 'AI基本面' },
+    { key: 'arguments', label: '论证库' },
   ];
 
   return (
@@ -1049,6 +992,30 @@ export const Financial: React.FC = () => {
         actions={
           <div className="fin-header__search">
             <StockSearch value={symbol} onSelect={setSymbol} />
+            <Link
+              to={`/checklist?symbol=${symbol}`}
+              className="fin-checklist-link"
+              title="带着当前股票进入买前检查清单（课程21集）">
+              买入体检 →
+            </Link>
+            <Link
+              to={`/thesis?symbol=${symbol}`}
+              className="fin-checklist-link"
+              title="登记持仓论点，跟踪卖出体检">
+              论点 →
+            </Link>
+            <Link
+              to={`/compare?add=${symbol}`}
+              className="fin-checklist-link"
+              title="加入标的对比工作台">
+              对比 →
+            </Link>
+            <Link
+              to={`/notes?symbol=${symbol}`}
+              className="fin-checklist-link"
+              title="该标的研究笔记">
+              笔记 →
+            </Link>
           </div>
         }
       />
@@ -1198,6 +1165,7 @@ export const Financial: React.FC = () => {
         {activeTab === 'valuation' && <ValuationHub symbol={symbol} />}
         {activeTab === 'marketcapgrowth' && <MarketCapGrowthPanel symbol={symbol} />}
         {activeTab === 'fundamental' && <FundamentalReportPanel symbol={symbol} />}
+        {activeTab === 'arguments' && <ArgumentPanel symbol={symbol} />}
       </div>
     </div>
   );

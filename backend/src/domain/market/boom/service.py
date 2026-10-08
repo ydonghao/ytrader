@@ -15,9 +15,15 @@ log = logging.getLogger("boom_radar")
 DEFAULT_CONFIG = {"min_change_pct": 50.0, "news_days_back": 7}
 
 
+def to_plain(symbol: str) -> str:
+    """剥离 sh/sz 前缀 → 纯 6 位(boom_candidate/hit 口径)。"""
+    return symbol[2:] if symbol[:2] in ("sh", "sz") else symbol
+
+
 def to_prefixed(symbol: str) -> str:
-    """纯 6 位 → 带 sh/sz 前缀(news/ohlcv 口径)。"""
-    return ("sh" if symbol.startswith(("6", "9", "5")) else "sz") + symbol
+    """→ 带 sh/sz 前缀(news/ohlcv 口径);已带前缀的输入幂等。"""
+    plain = to_plain(symbol)
+    return ("sh" if plain.startswith(("6", "9", "5")) else "sz") + plain
 
 
 def growth_filter(forecasts, min_change_pct: float) -> list:
@@ -105,16 +111,21 @@ class BoomRadarService:
                     growth = []
                 existing_syms = {f.symbol for f in pool}
                 for g in growth:
-                    if g["symbol"] in existing_syms:
+                    gsym = to_plain(g["symbol"])
+                    if gsym in existing_syms:
+                        continue
+                    # 早前 run 已入池(如预告季先落库)→ 裸 formal 行不覆盖
+                    if self.repo.get_candidate(gsym, g["report_date"]) is not None:
                         continue
                     cand_rows.append({
-                        "symbol": g["symbol"], "report_date": g["report_date"],
-                        "forecast_type": "formal", "company_name": None,
+                        "symbol": gsym, "report_date": g["report_date"],
+                        "forecast_type": "formal",
+                        "company_name": g.get("name"),
                         "announce_date": None, "change_pct": g["yoy_pct"],
                         "forecast_type_label": "单季大增",
                         "categories": [], "keyword_count": 0, "news_hit_count": 0,
                     })
-                    formal_rows.append(g["symbol"])
+                    formal_rows.append(gsym)
 
         for f in pool:
             prefixed = to_prefixed(f.symbol)

@@ -140,18 +140,32 @@ class IndexValuationRepository:
 
     def get_sw_range(
         self, sw_code: str, start: dt.date, end: dt.date,
+        source: str = "merged",
     ) -> list[SwIndexValuationDaily]:
+        """sw 估值序列。source: merged(默认, computed优先+akshare补缺,
+        2026-09 诊断中位偏差 PE2.4%/PB2.0% 后的统一口径)/computed/akshare/None。
+        """
         with self._db.session_scope() as s:
-            rows = list(s.exec(
-                select(SwIndexValuationDaily).where(
+            def _fetch(src):
+                q = select(SwIndexValuationDaily).where(
                     SwIndexValuationDaily.sw_code == sw_code,
                     SwIndexValuationDaily.trade_date >= start,
                     SwIndexValuationDaily.trade_date <= end,
                 ).order_by(SwIndexValuationDaily.trade_date.asc())
-            ).all())
-            for r in rows:
-                s.expunge(r)
-            return rows
+                if src:
+                    q = q.where(SwIndexValuationDaily.source == src)
+                rows = list(s.exec(q).all())
+                for r in rows:
+                    s.expunge(r)
+                return rows
+
+            if source != "merged":
+                return _fetch(source)
+            from src.domain.market.health.sw_unify import merge_sw_series
+            merged = merge_sw_series(
+                _fetch("computed"), _fetch("akshare"),
+            )
+            return merged
 
     def bulk_upsert_index(self, rows: list[dict]) -> int:
         return self._bulk_upsert(rows, "index_valuation_daily", "symbol")

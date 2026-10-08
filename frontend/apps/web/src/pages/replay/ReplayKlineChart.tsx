@@ -14,6 +14,9 @@ import type {ReplayBar, Trade} from './types';
 const toTime = (d: string): UTCTimestamp =>
   Math.floor(new Date(`${d}T00:00:00Z`).getTime() / 1000) as UTCTimestamp;
 
+const labelFromTs = (t: unknown, f: (d: string) => string) =>
+  f(new Date((t as number) * 1000).toISOString().slice(0, 10));
+
 const MA_COLORS = ['#f5c542', '#64d2ff', '#bf5af2', '#a1a1a6'];
 const MA_NS = [5, 10, 20, 60];
 
@@ -21,10 +24,11 @@ export interface ReplayKlineChartProps {
   bars: ReplayBar[];
   trades?: Trade[]; // 复盘模式标注买卖点
   height?: number;
+  labelFor?: (d: string) => string; // 盲盒脱敏:时间轴标签改写
 }
 
 export const ReplayKlineChart: React.FC<ReplayKlineChartProps> = ({
-  bars, trades = [], height = 420,
+  bars, trades = [], height = 420, labelFor,
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const chartRef = useRef<IChartApi | null>(null);
@@ -81,6 +85,21 @@ export const ReplayKlineChart: React.FC<ReplayKlineChartProps> = ({
       lenRef.current = 0;
     };
   }, [height]);
+
+  // 盲盒脱敏:applyOptions 动态改轴标签,不重建图表
+  // (labelFor 随 dates 增长变身份,建图 effect 只 key [height],避免每次推进重建)
+  // tickMarkFormatter 管轴刻度(否则缩放出的月份标签绕过脱敏,GUI验收实抓"2月/4月");
+  // timeFormatter 管十字光标读数
+  useEffect(() => {
+    chartRef.current?.applyOptions(labelFor ? {
+      localization: {
+        timeFormatter: (t: unknown) => labelFromTs(t, labelFor),
+      },
+      timeScale: {
+        tickMarkFormatter: (t: unknown) => labelFromTs(t, labelFor),
+      },
+    } : {});
+  }, [labelFor]);
 
   useEffect(() => {
     const candle = candleRef.current;

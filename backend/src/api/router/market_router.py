@@ -299,7 +299,9 @@ def search_symbols(q: str, market: str = None, limit: int = 20) -> list[dict]:
                             ELSE 2
                        END AS priority
                 FROM stock_info
-                WHERE (lower(symbol) LIKE %(like)s OR name LIKE %(like)s)
+                WHERE (lower(symbol) LIKE %(like)s OR name LIKE %(like)s
+                       OR regexp_replace(name, '^(XD|XR|DR)', '')
+                          LIKE %(like)s)
             """
             params: dict = {"exact": exact_pattern, "like": like_pattern, "limit": limit}
             if market in ("A", "HK"):

@@ -4,20 +4,11 @@
 import React, {useState} from 'react';
 import {Link, useLocation} from 'react-router-dom';
 import {Icons} from './icons';
+import {navGroups} from '../config/navigation';
+import {WorkflowBar} from './WorkflowBar';
 import './Layout.css';
 
 /* ── Types ── */
-interface NavItem {
-  path: string;
-  label: string;
-  icon: React.ReactNode;
-}
-
-interface NavGroup {
-  title: string;
-  items: NavItem[];
-}
-
 interface LayoutProps {
   children: React.ReactNode;
 }
@@ -25,71 +16,21 @@ interface LayoutProps {
 // Shared icon set — see components/icons.tsx
 const Icon = Icons;
 
-/* ── Inline SVG Icons (16×16 viewBox) — moved to components/icons.tsx ── */
-
-/* ── Navigation Definition (grouped) ── */
-const navGroups: NavGroup[] = [
-  {
-    title: '总览',
-    items: [
-      {path: '/dashboard', label: '总览', icon: Icon.dashboard},
-      {path: '/market', label: '行情', icon: Icon.market},
-      {path: '/indices', label: '指数', icon: Icon.globe},
-      {path: '/watchlist', label: '自选股', icon: Icon.star},
-    ],
-  },
-  {
-    title: '研究',
-    items: [
-      {path: '/financial', label: '财务报表', icon: Icon.financial},
-      {path: '/earnings-radar', label: '财报雷达', icon: Icon.analytics},
-      {path: '/screener', label: '选股器', icon: Icon.strategies},
-      {path: '/macro', label: '宏观政策', icon: Icon.analytics},
-      {path: '/national-team', label: '国家队', icon: Icon.analytics},
-      {path: '/reports', label: '报告', icon: Icon.reports},
-    ],
-  },
-  {
-    title: '交易',
-    items: [
-      {path: '/trading', label: '交易', icon: Icon.trading},
-      {path: '/lt-backtest', label: '回测实验室', icon: Icon.backtest},
-      {path: '/replay', label: '时光机', icon: Icon.star},
-      {path: '/perm-portfolio', label: '永久组合', icon: Icon.portfolio},
-    ],
-  },
-  {
-    title: '分析',
-    items: [
-      {path: '/analytics', label: '分析', icon: Icon.analytics},
-      {path: '/board', label: '看板', icon: Icon.dashboard},
-      {path: '/risk', label: '风险', icon: Icon.risk},
-      {path: '/alerts', label: '预警', icon: Icon.alerts},
-    ],
-  },
-  {
-    title: 'AI / 系统',
-    items: [
-      {path: '/ai-workspace/trader', label: 'AI交易助手', icon: Icon.intel},
-      {path: '/settings', label: '设置', icon: Icon.settings},
-      {path: '/system-logs', label: '系统日志', icon: Icon.terminal},
-    ],
-  },
-];
-
 /* ── Component ── */
 export const Layout: React.FC<LayoutProps> = ({children}) => {
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
-  const [collapsedGroups, setCollapsedGroups] = useState<Set<string>>(new Set());
+  const [collapsedGroups, setCollapsedGroups] = useState<Set<string>>(
+    () => new Set(navGroups.filter((g) => !g.defaultOpen).map((g) => g.id))
+  );
 
-  const toggleGroup = (title: string) => {
+  const toggleGroup = (id: string) => {
     setCollapsedGroups((prev) => {
       const next = new Set(prev);
-      if (next.has(title)) {
-        next.delete(title);
+      if (next.has(id)) {
+        next.delete(id);
       } else {
-        next.add(title);
+        next.add(id);
       }
       return next;
     });
@@ -115,19 +56,18 @@ export const Layout: React.FC<LayoutProps> = ({children}) => {
 
         <nav className="sidebar__nav">
           {navGroups.map((group) => (
-            <div key={group.title} className="sidebar__group">
+            <div key={group.id} className="sidebar__group">
               {!collapsed && (
                 <button
                   className="sidebar__group-title"
-                  onClick={() => toggleGroup(group.title)}
+                  onClick={() => toggleGroup(group.id)}
+                  aria-expanded={!collapsedGroups.has(group.id)}
                 >
                   <span>{group.title}</span>
-                  {collapsedGroups.has(group.title)
-                    ? Icon.chevronRight
-                    : Icon.chevronDown}
+                  {collapsedGroups.has(group.id) ? Icon.chevronRight : Icon.chevronDown}
                 </button>
               )}
-              {!collapsedGroups.has(group.title) &&
+              {(collapsed || !collapsedGroups.has(group.id)) &&
                 group.items.map((item) => {
                   const isActive = location.pathname === item.path;
                   return (
@@ -135,11 +75,16 @@ export const Layout: React.FC<LayoutProps> = ({children}) => {
                       key={item.path}
                       to={item.path}
                       className={`sidebar__item ${isActive ? 'sidebar__item--active' : ''}`}
-                      title={collapsed ? item.label : undefined}
+                      title={collapsed ? `${item.label}——${item.desc}` : undefined}
                     >
-                      <span className="sidebar__item-icon">{item.icon}</span>
+                      <span className="sidebar__item-icon">
+                        {Icons[item.icon]}
+                      </span>
                       {!collapsed && (
-                        <span className="sidebar__item-label">{item.label}</span>
+                        <span className="sidebar__item-text">
+                          <span className="sidebar__item-label">{item.label}</span>
+                          <span className="sidebar__item-desc">{item.desc}</span>
+                        </span>
                       )}
                       {isActive && <span className="sidebar__item-indicator" />}
                     </Link>
@@ -157,7 +102,10 @@ export const Layout: React.FC<LayoutProps> = ({children}) => {
       {/* ── Main Area ── */}
       <div className="layout__main-area">
         {/* ── Content ── */}
-        <main className="layout__content">{children}</main>
+        <main className="layout__content">
+          <WorkflowBar />
+          {children}
+        </main>
       </div>
     </div>
   );

@@ -110,3 +110,13 @@ BEGIN
         PERFORM add_compression_policy('stock_ohlcv_minute', INTERVAL '90 days', if_not_exists => TRUE);
     END IF;
 END $$;
+
+-- ── 6. stock_valuation 查询补强索引（2026-09 自动建组合性能优化）─────────────
+-- 表仅有的主键索引是 (trade_date, symbol)（首列日期），而高频访问模式全部是
+-- "按 symbol 取最新一条 / 按 symbol 取时间区间"：
+--   - 选股器/自动建组合的全市场估值快照 DISTINCT ON (symbol) ORDER BY trade_date DESC
+--     → 原计划全表并行扫描 + 1021 万行排序 ≈ 11.5s（且已越过 statement_timeout 10s 红线）
+--   - 个股 5 年 PE 序列（估值带 μ±1σ）
+-- 加 symbol 首列索引后：快照变为每股一次索引探测（毫秒级），序列区间扫描不再绕行日期首列。
+CREATE INDEX IF NOT EXISTS idx_stock_valuation_symbol_date
+    ON stock_valuation (symbol, trade_date DESC);

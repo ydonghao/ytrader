@@ -16,6 +16,7 @@ import psycopg2
 from psycopg2.extras import RealDictCursor, execute_values
 
 # 字段名 `date` 会遮蔽 datetime.date，用模块别名 dt.date 引用类型注解。
+from sqlalchemy import text
 from sqlmodel import Session, SQLModel, Field, select
 
 from src.infra.database.sql_engine.engine import (
@@ -284,6 +285,47 @@ class StockValuationRepository:
             conn.close()
         return n
 
+    def get_monthly_pe_ttm_batch(
+        self,
+        symbols: list[str],
+        start: dt.date,
+        end: dt.date,
+    ) -> dict[str, list[float]]:
+        """批量取每股"每月末最后一个有效 pe_ttm"序列（升序）。
+
+        估值带 μ±1σ 只需要月度粒度。相比逐股 get_range 拉回全部日线
+        （约1200行/股）再在 Python 侧降采样，本方法在 SQL 侧完成
+        DISTINCT ON (symbol, 月) 且不经过 ORM 水合，每股只返回 ~60 行。
+        走 idx_stock_valuation_symbol_date (symbol, trade_date DESC)。
+        """
+        if not symbols:
+            return {}
+        out: dict[str, list[float]] = {}
+        with self._db.session_scope() as s:
+            rows = s.execute(
+                text(
+                    """
+                    SELECT symbol, pe_ttm FROM (
+                        SELECT DISTINCT ON (symbol, date_trunc('month', trade_date))
+                            symbol, pe_ttm, trade_date
+                        FROM stock_valuation
+                        WHERE symbol = ANY(:syms)
+                          AND trade_date >= :start AND trade_date <= :end
+                          AND pe_ttm IS NOT NULL AND pe_ttm > 0
+                        ORDER BY symbol, date_trunc('month', trade_date), trade_date DESC
+                    ) t
+                    ORDER BY symbol, trade_date
+                    """
+                ),
+                {
+                    "syms": list(dict.fromkeys(symbols)),
+                    "start": start,
+                    "end": end,
+                },
+            ).fetchall()
+            for sym, pe in rows:
+                out.setdefault(sym, []).append(float(pe))
+        return out
 
 # ======== 工厂函数（遵循 index_ohlcv 单例 + 工厂约定） ========
 

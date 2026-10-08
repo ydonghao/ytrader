@@ -52,7 +52,7 @@ def db_cursor(db_connection):
 
 @pytest.fixture(scope='session')
 def api_base_url() -> str:
-    return os.environ.get('YTRADER_API_BASE', 'http://localhost:8001/api/v1')
+    return os.environ.get('YTRADER_API_BASE', 'http://localhost:12100/api/v1')
 
 
 @pytest.fixture(scope='session')

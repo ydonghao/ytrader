@@ -236,6 +236,10 @@ _DETAIL_SUBJECT_MAP = {
     "advance_receipts": ["预收账款", "预收款项"],
     "bonds_payable": ["应付债券"],
     "cash_from_sales": ["销售商品、提供劳务收到的现金"],
+    # 2026-10 红旗补全：标准 9 因子 F-Score / 大存大贷需要
+    "current_assets": ["流动资产合计"],
+    "current_liabilities": ["流动负债合计"],
+    "share_capital": ["股本", "实收资本", "实收资本（或股本）"],
 }
 
 
@@ -372,6 +376,81 @@ def fetch_financial_history(
     return out
 
 
+def fetch_fscore_annual_history(
+    symbols: list[str],
+    as_of: Optional[date] = None,
+    lag_days: int = FINANCIAL_LAG_DAYS,
+) -> dict[str, list[dict]]:
+    """
+    每个标的最近**两个年报期**（12-31）三大报表合并快照，升序。
+
+    供标准 9 因子 Piotroski F-Score（classic_models.piotroski_f_score）：
+    年报口径避免季报累计值同比失真。含固定列 + detail 扁平化
+    （bonds_payable/non_current_liab_due_within_1y/current_assets/
+    current_liabilities/share_capital）。
+    """
+    if not symbols:
+        return {}
+    as_of = as_of or date.today()
+    cutoff = as_of - timedelta(days=lag_days)
+    out: dict[str, list[dict]] = {}
+    fields = ", ".join(_SNAPSHOT_FIELDS)
+    try:
+        conn = _get_conn()
+    except Exception:
+        return out
+    try:
+        with conn.cursor(cursor_factory=RealDictCursor) as cur:
+            cur.execute(
+                f"""
+                WITH annual AS (
+                    SELECT symbol, report_date,
+                           ROW_NUMBER() OVER (
+                               PARTITION BY symbol ORDER BY report_date DESC
+                           ) AS rn
+                    FROM (
+                        SELECT DISTINCT symbol, report_date
+                        FROM stock_financial_detail
+                        WHERE symbol = ANY(%s)
+                          AND report_date <= %s
+                          AND EXTRACT(MONTH FROM report_date) = 12
+                    ) t
+                )
+                SELECT d.symbol, d.report_date, d.statement_type,
+                       {fields}, d.detail
+                FROM stock_financial_detail d
+                JOIN annual a
+                  ON d.symbol = a.symbol AND d.report_date = a.report_date
+                WHERE a.rn <= 2
+                ORDER BY d.symbol, d.report_date
+                """,
+                (list(symbols), cutoff),
+            )
+            for r in cur.fetchall():
+                sym = r["symbol"]
+                rows = out.setdefault(sym, [])
+                slot = rows[-1] if (
+                    rows and rows[-1]["report_date"] == _as_date(
+                        r["report_date"])
+                ) else None
+                if slot is None:
+                    slot = {"report_date": _as_date(r["report_date"])}
+                    rows.append(slot)
+                for k in _SNAPSHOT_FIELDS:
+                    v = r.get(k)
+                    if v is not None and slot.get(k) is None:
+                        slot[k] = v
+                if r.get("detail") is not None:
+                    for k, v in _flatten_detail(r["detail"]).items():
+                        if v is not None and slot.get(k) is None:
+                            slot[k] = v
+    except Exception as e:
+        log.warning(f"fetch_fscore_annual_history 失败: {e}")
+    finally:
+        conn.close()
+    return out
+
+
 def fetch_universe_symbols(market: str = "A", exclude_st: bool = True) -> list[str]:
     """
     从 stock_info 拉取标的池（默认沪深A股，可剔 ST）。
@@ -396,3 +475,79 @@ def fetch_universe_symbols(market: str = "A", exclude_st: bool = True) -> list[s
         return []
     finally:
         conn.close()
+
+
+def fetch_annual_revenues(
+    symbols: list[str],
+    as_of: Optional[date] = None,
+    lag_days: int = FINANCIAL_LAG_DAYS,
+) -> dict[str, list[dict]]:
+    """批量取每个标的最近两份年报营收(12-31报告期, 供营收同比)。
+
+    Returns:
+        {symbol: [{"report_date": date, "revenue": float}, ...]} 按报告期降序,
+        每标的最多 2 条;无年报的标的不出现。
+    """
+    if not symbols:
+        return {}
+    as_of = as_of or date.today()
+    cutoff = as_of - __import__("datetime").timedelta(days=lag_days)
+    out: dict[str, list[dict]] = {}
+    try:
+        conn = _get_conn()
+    except Exception:
+        return out
+    try:
+        with conn.cursor(cursor_factory=RealDictCursor) as cur:
+            cur.execute(
+                """
+                SELECT symbol, report_date, revenue FROM (
+                    SELECT symbol, report_date, revenue,
+                           ROW_NUMBER() OVER (
+                               PARTITION BY symbol
+                               ORDER BY report_date DESC
+                           ) AS rn
+                    FROM stock_financial_detail
+                    WHERE statement_type = 'income'
+                      AND report_date <= %s
+                      AND EXTRACT(MONTH FROM report_date) = 12
+                      AND revenue IS NOT NULL
+                      AND symbol = ANY(%s)
+                ) t
+                WHERE rn <= 2
+                ORDER BY symbol, report_date DESC
+                """,
+                (cutoff, list(symbols)),
+            )
+            for r in cur.fetchall():
+                out.setdefault(r["symbol"], []).append(
+                    {"report_date": _as_date(r["report_date"]),
+                     "revenue": r.get("revenue")}
+                )
+    except Exception as e:
+        log.warning(f"fetch_annual_revenues 失败: {e}")
+    finally:
+        conn.close()
+    return out
+
+
+def fetch_symbol_names(symbols: list[str]) -> dict[str, str]:
+    """批量取标的中文名。{symbol: name};查不到的不出现。"""
+    if not symbols:
+        return {}
+    try:
+        conn = _get_conn()
+    except Exception:
+        return {}
+    try:
+        with conn.cursor() as cur:
+            cur.execute(
+                "SELECT symbol, name FROM stock_info WHERE symbol = ANY(%s)",
+                (list(symbols),),
+            )
+            return {r[0]: r[1] for r in cur.fetchall()}
+    except Exception as e:
+        log.warning(f"fetch_symbol_names 失败: {e}")
+    finally:
+        conn.close()
+    return {}

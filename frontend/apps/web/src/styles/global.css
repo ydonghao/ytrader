@@ -378,3 +378,13 @@ button:active:not(:disabled),
   text-align: center;
   color: var(--color-text-secondary);
 }
+
+/* 路由级稳定骨架：与内容区等高，消除 fallback→页面高度跳变 */
+.page-loading--stable {
+  min-height: 60vh;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}

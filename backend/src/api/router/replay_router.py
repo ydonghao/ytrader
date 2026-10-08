@@ -53,8 +53,9 @@ def _kline(symbol: str, asof: str = Query(...), limit: int = Query(300)):
 
 
 @router.get("/advance")
-def _advance(session_id: int = Query(...), days: int = Query(1)):
-    return h.advance(session_id, days)
+def _advance(session_id: int = Query(...), days: int = Query(1),
+             step: str = Query(None)):
+    return h.advance(session_id, days, step)
 
 
 @router.get("/valuation/{symbol}")
@@ -69,3 +70,42 @@ def _board(
     limit: int = Query(50),
 ):
     return h.board(asof, type, limit)
+
+
+@router.get("/instrument/{symbol}")
+def _instrument(symbol: str):
+    return h.instrument(symbol)
+
+
+@router.get("/news")
+def _news(
+    asof: str = Query(...),
+    days: int = Query(3),
+    limit: int = Query(20),
+):
+    return h.news(asof, days, limit)
+
+
+@router.get("/sessions/{session_id}/view")
+def _view(session_id: int):
+    return h.view(session_id)
+
+
+@router.post("/sessions/{session_id}/pool")
+def _add_pool(session_id: int, body: dict):
+    return h.add_pool(session_id, body)
+
+
+@router.post("/sessions/{session_id}/orders")
+def _orders(session_id: int, body: dict):
+    return h.place_order(session_id, body)
+
+
+@router.get("/leaderboard")
+def _leaderboard():
+    return h.leaderboard()
+
+
+@router.get("/training-log")
+def _training_log():
+    return h.training_log()

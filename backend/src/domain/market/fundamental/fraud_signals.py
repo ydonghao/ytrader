@@ -11,8 +11,15 @@
     存货异常积压     存货增速 >> 营收增速 → 滞销/隐藏减值
     毛利率突变       毛利率大幅波动 → 会计政策/成本操纵嫌疑
 
+加两个单期红旗（2026-10 补全）：
+
+    大存大贷         货币资金与有息负债双高 → 康美/康得新型造假前兆
+    扣非占比过高     非经常性损益撑利润 → 主业持续性存疑
+
 输入为相邻两期财报快照（fetch_financial_snapshot 风格的 dict，含
-revenue/accounts_receivable/net_profit/ocf/inventory/gross_margin）。
+revenue/accounts_receivable/net_profit/ocf/inventory/gross_margin；
+大存大贷另需 monetary_funds/short_loan/long_loan/bonds_payable/
+non_current_liab_due_within_1y/total_assets，扣非另需 net_profit_deduct）。
 全部纯函数，无 DB/IO 依赖。
 """
 from __future__ import annotations
@@ -180,6 +187,9 @@ def detect_fraud_red_flags(periods: list[dict]) -> FraudReport:
         profit_cashflow_divergence(curr, prev),
         inventory_anomaly(curr, prev),
         gross_margin_swing(curr, prev),
+        # 单期红旗（只看最新期资产负债表/利润表结构）
+        cash_debt_coexist(curr),
+        non_recurring_heavy(curr),
     ]
     triggered = [f for f in rep.red_flags if f.triggered]
     rep.triggered_count = len(triggered)
@@ -190,3 +200,52 @@ def detect_fraud_red_flags(periods: list[dict]) -> FraudReport:
     else:
         rep.severity = "clean"
     return rep
+
+
+def cash_debt_coexist(curr: dict, *, ratio_threshold: float = 0.15) -> RedFlag:
+    """大存大贷（存贷双高）：货币资金/总资产 与 有息负债/总资产 双高。
+
+    课程/案例逻辑（康美、康得新）：账上大量货币资金却同时背负大量有息
+    负债，财务费用为正还借钱，说明"钱"可能不存在或被占用——A股最典型
+    的造假前兆之一。双侧占比均 >= 阈值（默认 15%）触发。
+    """
+    ta = curr.get("total_assets")
+    cash = curr.get("monetary_funds")
+    if not ta or cash is None:
+        return RedFlag("cash_debt_coexist", False, "数据不足")
+    debt = None
+    parts = [curr.get(k) for k in
+             ("short_loan", "long_loan", "bonds_payable",
+              "non_current_liab_due_within_1y")]
+    if any(p is not None for p in parts):
+        debt = sum(p for p in parts if p is not None)
+    if debt is None:
+        return RedFlag("cash_debt_coexist", False, "数据不足（缺有息负债科目）")
+    cash_ratio = cash / ta
+    debt_ratio = debt / ta
+    triggered = cash_ratio >= ratio_threshold and debt_ratio >= ratio_threshold
+    return RedFlag(
+        "cash_debt_coexist", triggered,
+        f"货币资金/总资产 {cash_ratio:.1%}，有息负债/总资产 {debt_ratio:.1%}"
+        f"（双高阈值 {ratio_threshold:.0%}）",
+    )
+
+
+def non_recurring_heavy(curr: dict, *, threshold: float = 0.3) -> RedFlag:
+    """扣非占比红旗：非经常性损益占净利润比重过高 → 利润质量低。
+
+    (净利 − 扣非净利)/|净利| >= 阈值（默认 30%）触发：主业不赚钱，
+    利润靠卖资产/政府补助/公允价值变动撑起来，持续性存疑。
+    亏损或扣非数据缺失不评估。
+    """
+    np_ = curr.get("net_profit")
+    npd = curr.get("net_profit_deduct")
+    if np_ is None or npd is None or np_ <= 0:
+        return RedFlag("non_recurring_heavy", False, "数据不足或亏损")
+    share = (np_ - npd) / np_
+    triggered = share >= threshold
+    return RedFlag(
+        "non_recurring_heavy", triggered,
+        f"非经常性损益占净利 {share:.1%}（阈值 {threshold:.0%}），"
+        f"扣非净利 {npd:.0f} vs 净利 {np_:.0f}",
+    )

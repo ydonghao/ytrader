@@ -1,0 +1,81 @@
+.thesis-page {padding: var(--space-4);}
+.thesis-list {display: flex; flex-direction: column; gap: var(--space-3);}
+.thesis-card {
+  border: 1px solid var(--color-border); border-radius: 8px;
+  padding: var(--space-3); cursor: pointer;
+  background: var(--color-bg-secondary, transparent);
+}
+.thesis-card:hover {border-color: var(--color-accent);}
+.thesis-card--stale {border-color: var(--color-warning);}
+.thesis-card__head {display: flex; align-items: center; gap: var(--space-3); font-weight: 600;}
+.thesis-card__text {margin: var(--space-2) 0 0; color: var(--color-text-secondary);}
+.thesis-card__band {font-size: var(--text-xs);}
+.thesis-table {width: 100%; border-collapse: collapse; font-size: var(--text-sm);}
+.thesis-table th, .thesis-table td {padding: 6px 10px; border-bottom: 1px solid var(--color-border); text-align: left;}
+.cond-status--holding {color: var(--color-success);}
+.cond-status--breached {color: var(--color-danger);}
+.cond-status--unknown {color: var(--color-text-tertiary);}
+.thesis-dialog__mask {
+  position: fixed; inset: 0; background: rgba(0, 0, 0, .5);
+  display: flex; align-items: center; justify-content: center; z-index: 100;
+}
+.thesis-dialog {
+  background: var(--color-bg, #1a1a1a); border-radius: 10px;
+  padding: var(--space-4); width: min(680px, 92vw);
+  max-height: 86vh; overflow-y: auto;
+}
+.thesis-dialog__row {margin: var(--space-3) 0; display: flex; flex-direction: column; gap: var(--space-1);}
+.thesis-dialog__grid {display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-2);}
+.thesis-dialog__band {display: flex; gap: var(--space-2); align-items: center;}
+.thesis-dialog__cond {display: flex; gap: var(--space-1); margin-bottom: var(--space-1);}
+.thesis-dialog__cond input, .thesis-dialog__cond select {flex: 1; min-width: 0;}
+.thesis-dialog__error {color: var(--color-danger);}
+.thesis-dialog__actions {display: flex; gap: var(--space-2); margin-top: var(--space-3);}
+.thesis-detail__head {display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap;}
+.thesis-detail__stale {
+  color: var(--color-warning); border: 1px solid var(--color-warning);
+  border-radius: 6px; padding: var(--space-2); margin: var(--space-2) 0;
+}
+.thesis-detail__section {margin: var(--space-4) 0;}
+.thesis-detail__decision {display: flex; gap: var(--space-2);}
+.thesis-sellcheck__alert {
+  color: var(--color-danger); border: 1px solid var(--color-danger);
+  border-radius: 6px; padding: var(--space-2); margin-bottom: var(--space-2);
+}
+.thesis-sellcheck__grid {display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3);}
+.thesis-detail__close {display: flex; gap: var(--space-2); margin-top: var(--space-4);}
+.thesis-closed__toggle {
+  background: none; border: none; color: var(--color-text-secondary);
+  cursor: pointer; margin-top: var(--space-4);
+}
+.dim {color: var(--color-text-tertiary);}
+
+.thesis-review-banner {
+  display: flex; align-items: center; gap: var(--space-2);
+  color: var(--color-warning); border: 1px solid var(--color-warning);
+  border-radius: 6px; padding: var(--space-2); margin-bottom: var(--space-3);
+}
+.thesis-review {margin-top: var(--space-4);}
+.thesis-review__body {display: flex; flex-direction: column; gap: var(--space-3); margin-top: var(--space-2);}
+.journal-kind {
+  padding: 1px 8px; border-radius: 4px; font-size: var(--text-xs);
+  border: 1px solid var(--color-border);
+}
+.journal-kind--decision {color: var(--color-accent);}
+.journal-kind--close {color: var(--color-danger);}
+.journal-kind--created {color: var(--color-success);}
+.journal-kind--note {color: var(--color-text-tertiary);}
+
+.thesis-dialog__size {
+  border: 1px solid var(--color-border); border-radius: 8px;
+  padding: var(--space-3); margin: var(--space-2) 0;
+}
+.thesis-dialog__size-head {display: flex; align-items: center; gap: var(--space-2); margin-bottom: var(--space-1);}
+.size-tier {
+  padding: 1px 10px; border-radius: 4px; font-size: var(--text-xs);
+  border: 1px solid var(--color-border);
+}
+.size-tier--strong {color: var(--color-success); border-color: var(--color-success);}
+.size-tier--medium {color: var(--color-accent); border-color: var(--color-accent);}
+.size-tier--weak {color: var(--color-text-tertiary);}
+.size-suggested b {font-size: var(--text-lg);}

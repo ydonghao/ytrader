@@ -3,13 +3,11 @@ import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {KlineChart} from '@ytrader/trading-market-data';
 import {getApiBase} from '../lib/api';
+import {ensurePrefixed} from '../lib/symbol';
 import {Button, Modal, StateView} from './ui';
 import type {BoomCandidate, BoomHit} from '../hooks/useBoomRadar';
 
 const API_BASE = getApiBase();
-
-/** 纯6位 → sh/sz 前缀(与 Market/Financial 页一致)。 */
-const prefixed = (s: string) => (/^[695]/.test(s) ? 'sh' : 'sz') + s;
 
 interface Detail extends BoomCandidate {
   hits: BoomHit[];
@@ -78,14 +76,14 @@ export function BoomDrillModal({symbol, reportDate, onClose}: Props) {
               加入自选
             </Button>
             <Button variant="secondary" size="sm"
-                    onClick={() => navigate(`/financial?symbol=${prefixed(symbol)}`)}>
+                    onClick={() => navigate(`/financial?symbol=${ensurePrefixed(symbol)}`)}>
               财务报表
             </Button>
             {addMsg && <span className="bdm-addmsg">{addMsg}</span>}
           </div>
           <div className="bdm-section">
             <div className="bdm-section-title">日K行情</div>
-            <KlineChart symbol={prefixed(symbol)} interval="1d" height={320} />
+            <KlineChart symbol={ensurePrefixed(symbol)} interval="1d" height={320} />
           </div>
           {detail.llm_score != null && (
             <div className="bdm-section">

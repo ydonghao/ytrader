@@ -25,6 +25,7 @@ export const ReviewView: React.FC = () => {
   const selected = useReplayStore((s) => s.selectedSymbol);
   const selectSymbol = useReplayStore((s) => s.selectSymbol);
   const closeSession = useReplayStore((s) => s.closeSession);
+  const score = session?.state?.score ?? null;
 
   const stats = useMemo(() => {
     if (!session || nav.length === 0) return null;
@@ -79,6 +80,19 @@ export const ReviewView: React.FC = () => {
           区间<b>{session.start_date} ~ {nav[nav.length - 1]?.date}</b>
         </span>
         <span style={{flex: 1}} />
+        <button
+          className="replay-btn"
+          disabled={pool.length === 0}
+          title="当前股票池与整段旅程区间，交给回测实验室跑长期回测"
+          onClick={() => {
+            // 复盘页跳转：区间取 旅程起点 → nav 末点（无 nav 则起点当天）
+            const end = nav[nav.length - 1]?.date ?? session.start_date;
+            window.open(`/lt-backtest?symbols=${
+              encodeURIComponent(pool.join(','))}&start=${
+              session.start_date}&end=${end}`, '_blank');
+          }}>
+          丢给回测实验室
+        </button>
         <button className="replay-btn" onClick={closeSession}>
           返回旅程列表
         </button>
@@ -100,6 +114,45 @@ export const ReviewView: React.FC = () => {
               <span className="value" style={{color}}>{value}</span>
             </div>
           ))}
+        </div>
+      )}
+      {score && (
+        <div className="replay-panel" style={{marginBottom: 10}}>
+          <h4>🎯 拟真考核评分
+            <span style={{fontSize: 12, color: '#86868b', marginLeft: 8}}>
+              总分 = 超额收益分(80) + 换手纪律分(20)
+            </span>
+          </h4>
+          <div style={{display: 'flex', gap: 24, alignItems: 'baseline',
+            flexWrap: 'wrap'}}>
+            <b style={{fontSize: 34}}>{score.total.toFixed(1)}</b>
+            <span>超额分 {score.excess_score.toFixed(1)}
+              （年化超额 {score.annual_excess_pct >= 0 ? '+' : ''}
+              {score.annual_excess_pct}%）</span>
+            <span>纪律分 {score.turnover_score.toFixed(1)}
+              （年化换手 {score.annual_turnover}x）</span>
+          </div>
+          <div className="replay-hint" style={{marginTop: 6}}>
+            只披露不打分：平仓胜率{' '}
+            {score.disclosures.closed_win_rate == null
+              ? '—'
+              : `${(score.disclosures.closed_win_rate * 100).toFixed(0)}%`
+                + `(${score.disclosures.closed_trips}次)`}
+            {' '}· 最大回撤{' '}
+            {score.disclosures.max_drawdown == null ? '—'
+              : `-${(score.disclosures.max_drawdown * 100).toFixed(1)}%`}
+            （基准{' '}
+            {score.disclosures.benchmark_max_drawdown == null ? '—'
+              : `-${(score.disclosures.benchmark_max_drawdown * 100)
+                .toFixed(1)}%`}）
+            {' '}· 平均现金占比{' '}
+            {score.disclosures.avg_cash_ratio == null ? '—'
+              : `${(score.disclosures.avg_cash_ratio * 100).toFixed(0)}%`}
+            {' '}· 最大单票仓位{' '}
+            {score.disclosures.max_position_weight == null ? '—'
+              : `${(score.disclosures.max_position_weight * 100)
+                .toFixed(0)}%`}
+          </div>
         </div>
       )}
       <div className="replay-panel" style={{marginBottom: 10, height: 220}}>
@@ -142,7 +195,8 @@ export const ReviewView: React.FC = () => {
         <table className="replay-table">
           <thead>
             <tr>
-              <th>日期</th><th>标的</th><th>方向</th><th>价格</th>
+              <th>日期</th><th>标的</th><th style={{width: 76}}>名称</th>
+              <th>方向</th><th>价格</th>
               <th>股数</th><th>佣金</th><th>印花税</th><th>理由</th>
             </tr>
           </thead>
@@ -151,6 +205,7 @@ export const ReviewView: React.FC = () => {
               <tr key={t.id ?? i}>
                 <td>{t.trade_date}</td>
                 <td>{t.symbol}</td>
+                <td>{names[t.symbol] ?? ''}</td>
                 <td className={t.side === 'buy' ? 'is-up' : 'is-down'}>
                   {t.side === 'buy' ? '买入' : '卖出'}
                 </td>

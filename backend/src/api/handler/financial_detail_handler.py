@@ -7,6 +7,7 @@
 与 financial_router.py 中的 mock demo 端点（/statement/{symbol} 等）共存：
 真实数据端点用 /detail/ 前缀区分。
 """
+import json
 import logging
 import time
 from concurrent.futures import ThreadPoolExecutor
@@ -1257,6 +1258,9 @@ def moat_report(symbol: str) -> Any:
 
     trend = gross_margin_trend(gm_series)
     pp = pricing_power_score(gm_series)
+    if pp is not None:
+        pp = {"score": pp.score, "verdict": pp.verdict,
+              "breakdown": pp.breakdown}
     # 当前基本面（取最新一期的 ROE/负债率作 fin）
     latest = periods[-1] if periods else {}
     fin = {
@@ -1267,6 +1271,13 @@ def moat_report(symbol: str) -> Any:
     # ROE 已直接可得 → 用作 moat 资本回报 proxy（roic 缺失时）
     roe = latest.get("roe_weighted") or latest.get("roe_diluted")
     m = moat_score(gm_series, fin, roic=roe)
+    if m is not None:
+        m = {"score": m.score, "verdict": m.verdict,
+             "pricing_power": {"score": m.pricing_power.score,
+                               "verdict": m.pricing_power.verdict,
+                               "breakdown": m.pricing_power.breakdown}
+             if m.pricing_power is not None else None,
+             "breakdown": m.breakdown}
 
     return responses.success({
         "symbol": symbol,
@@ -1288,11 +1299,13 @@ def moat_report(symbol: str) -> Any:
 def fraud_signals_report(symbol: str) -> Any:
     """财务造假/异常红旗检测（《股票投资课程》21 检查清单）。
 
-    取最近两期财报（合并利润表+资产负债表关键字段），检测四类红旗：
+    取最近两期财报（合并利润表+资产负债表关键字段），检测六类红旗：
       - 营收-应收背离（压货冲业绩）
       - 净利-现金流背离（利润含金量低）
       - 存货异常积压
       - 毛利率突变（会计操纵嫌疑）
+      - 大存大贷（货币资金与有息负债双高，单期）
+      - 扣非占比过高（非经常性损益撑利润，单期）
     severity: clean / watch / high_risk（>=2 项触发）。
     """
     from src.domain.market.fundamental.fraud_signals import detect_fraud_red_flags
@@ -1316,8 +1329,10 @@ def fraud_signals_report(symbol: str) -> Any:
                     ORDER BY report_date DESC LIMIT 2
                 )
                 SELECT report_date, statement_type, revenue, net_profit,
-                       gross_profit, gross_margin, accounts_receivable,
-                       inventory, ocf
+                       net_profit_deduct, gross_profit, gross_margin,
+                       accounts_receivable, inventory, ocf,
+                       monetary_funds, total_assets, short_loan,
+                       long_loan, detail
                 FROM stock_financial_detail
                 WHERE symbol = %s AND report_date IN (SELECT report_date FROM periods)
                 ORDER BY report_date
@@ -1339,11 +1354,27 @@ def fraud_signals_report(symbol: str) -> Any:
         d = r["report_date"]
         key = d.isoformat() if hasattr(d, "isoformat") else str(d)
         slot = by_date.setdefault(key, {})
-        for k in ("revenue", "net_profit", "gross_profit", "gross_margin",
-                  "accounts_receivable", "inventory", "ocf"):
+        for k in ("revenue", "net_profit", "net_profit_deduct",
+                  "gross_profit", "gross_margin", "accounts_receivable",
+                  "inventory", "ocf", "monetary_funds", "total_assets",
+                  "short_loan", "long_loan"):
             v = r.get(k)
             if v is not None and k not in slot:
                 slot[k] = float(v)
+        dd = r.get("detail")
+        if isinstance(dd, dict):
+            for k, cand in (
+                ("bonds_payable", ("应付债券",)),
+                ("non_current_liab_due_within_1y",
+                 ("一年内到期的非流动负债",)),
+            ):
+                if k in slot:
+                    continue
+                for c in cand:
+                    v = dd.get(c)
+                    if isinstance(v, (int, float)):
+                        slot[k] = float(v)
+                        break
     periods = list(by_date.values())
     if len(periods) < 2:
         return responses.error(f"无 {symbol} 足够的财报期数（需至少 2 期）")
@@ -1355,7 +1386,8 @@ def fraud_signals_report(symbol: str) -> Any:
         "red_flags": [f.__dict__ for f in rep.red_flags],
         "triggered_count": rep.triggered_count,
         "severity": rep.severity,
-        "note": "severity: clean(0) / watch(1) / high_risk(>=2)。需相邻两期对比。",
+        "note": "severity: clean(0) / watch(1) / high_risk(>=2)。"
+                "前四项需相邻两期对比；大存大贷/扣非占比看最新期。",
     })
 
 
@@ -1702,7 +1734,7 @@ def m_score_report(symbol: str) -> Any:
                     ORDER BY report_date DESC LIMIT 2
                 )
                 SELECT report_date, statement_type, revenue, accounts_receivable,
-                       gross_profit, gross_margin, current_assets, total_assets,
+                       gross_profit, gross_margin, total_assets,
                        net_profit, ocf, total_liabilities, detail
                 FROM stock_financial_detail
                 WHERE symbol = %s AND report_date IN (SELECT report_date FROM periods)
@@ -1725,12 +1757,17 @@ def m_score_report(symbol: str) -> Any:
         key = d.isoformat() if hasattr(d, "isoformat") else str(d)
         slot = by_date.setdefault(key, {"_detail": {}})
         for k in ("revenue", "accounts_receivable", "gross_profit", "gross_margin",
-                  "current_assets", "total_assets", "net_profit", "ocf", "total_liabilities"):
+                  "total_assets", "net_profit", "ocf", "total_liabilities"):
             v = r.get(k)
             if v is not None and k not in slot:
                 slot[k] = float(v)
+        # 流动资产合计不在固定列（表里无 current_assets 列,2026-10 修:
+        # 原 SQL 直选该列导致端点自建立即 500）,从 detail JSONB 取
         dd = r.get("detail")
         if isinstance(dd, dict):
+            v = dd.get("流动资产合计")
+            if isinstance(v, (int, float)) and "current_assets" not in slot:
+                slot["current_assets"] = float(v)
             slot["_detail"].update(dd)
     periods = list(by_date.values())
     if len(periods) < 2:
@@ -1749,6 +1786,104 @@ def m_score_report(symbol: str) -> Any:
         "components": m.components,
         "note": "M>-1.78 操纵嫌疑 / -1.78~-2.22 观察 / <-2.22 clean。"
                 "partial=True 表示缺折旧/销管费(DEPI/SGAI)项，精度降低。",
+    })
+
+
+def f_score_report(symbol: str) -> Any:
+    """Piotroski F-Score 标准 9 因子（2000）——《股票投资课程》补强。
+
+    取最近两个**年报期**（12-31）对比（季报累计值同比会失真）：
+    盈利(ROA>0/ΔROA>0/CFO>0/应计质量) + 杠杆(有息负债率降/流动比率升/
+    不增发) + 效率(毛利率升/周转率升)，0~9 分。
+    strong>=8 / good>=6 / mediocre>=4 / weak<4。
+    """
+    from src.domain.market.fundamental.classic_models import piotroski_f_score
+
+    import psycopg2
+    from psycopg2.extras import RealDictCursor
+    from src.infra.database.sql_engine.dsn import get_dsn
+
+    try:
+        conn = psycopg2.connect(get_dsn())
+    except Exception as e:  # noqa: BLE001
+        return responses.error(f"数据库连接失败: {e}")
+    try:
+        with conn.cursor(cursor_factory=RealDictCursor) as cur:
+            cur.execute(
+                """
+                WITH annual AS (
+                    SELECT DISTINCT report_date FROM stock_financial_detail
+                    WHERE symbol = %s AND EXTRACT(MONTH FROM report_date) = 12
+                    ORDER BY report_date DESC LIMIT 2
+                )
+                SELECT report_date, statement_type, revenue, net_profit,
+                       gross_profit, gross_margin, total_assets,
+                       total_liabilities, ocf, short_loan, long_loan,
+                       detail
+                FROM stock_financial_detail
+                WHERE symbol = %s AND report_date IN (
+                    SELECT report_date FROM annual)
+                ORDER BY report_date
+                """,
+                (symbol, symbol),
+            )
+            rows = cur.fetchall()
+    except Exception as e:  # noqa: BLE001
+        return responses.error(f"查询失败: {e}")
+    finally:
+        try:
+            conn.close()
+        except Exception:  # noqa: BLE001
+            pass
+
+    by_date: dict = {}
+    for r in rows:
+        d = r["report_date"]
+        key = d.isoformat() if hasattr(d, "isoformat") else str(d)
+        slot = by_date.setdefault(key, {})
+        for k in ("revenue", "net_profit", "gross_profit", "gross_margin",
+                  "total_assets", "total_liabilities", "ocf",
+                  "short_loan", "long_loan"):
+            v = r.get(k)
+            if v is not None and k not in slot:
+                slot[k] = float(v)
+        dd = r.get("detail")
+        if isinstance(dd, dict):
+            for k, cands in (
+                ("current_assets", ("流动资产合计",)),
+                ("current_liabilities", ("流动负债合计",)),
+                ("share_capital", ("股本", "实收资本", "实收资本（或股本）")),
+                ("bonds_payable", ("应付债券",)),
+                ("non_current_liab_due_within_1y",
+                 ("一年内到期的非流动负债",)),
+            ):
+                if k in slot:
+                    continue
+                for c in cands:
+                    v = dd.get(c)
+                    if isinstance(v, (int, float)):
+                        slot[k] = float(v)
+                        break
+    periods = list(by_date.values())
+    if len(periods) < 2:
+        return responses.error(
+            f"无 {symbol} 足够的年报期数（标准 9 因子需最近两个 12-31 年报）")
+
+    curr, prev = periods[-1], periods[-2]
+    f = piotroski_f_score(curr, prev)
+    if f is None:
+        return responses.error(f"{symbol} 数据不足（需两期总资产/净利/营收）")
+    return responses.success({
+        "symbol": symbol,
+        "periods": list(by_date.keys()),
+        "score": f.score,
+        "evaluated": f.evaluated,
+        "partial": f.partial,
+        "verdict": f.verdict,
+        "components": f.components,
+        "note": "Piotroski 9 因子（年报两期对比）：strong>=8 / good>=6 / "
+                "mediocre>=4 / weak<4。partial=True 表示有因子缺数据未计分，"
+                "score 是 evaluated 个因子里的通过数。",
     })
 
 
@@ -1997,6 +2132,7 @@ def industry_peers(symbol: str, level: int = 2, limit: int = 13) -> Any:
         return responses.error(f"查询失败: {e}")
     if not m:
         return responses.error(f"{symbol} 无申万行业归属（非 A 股成分或未同步）")
+    symbol = m["symbol"]  # 采纳库内规范前缀码（裸 6 位入参归一）
 
     sw_code = m["sw_code_l2"] if level == 2 else m["sw_code_l1"]
     degraded, note = False, None
@@ -2749,6 +2885,7 @@ def comps_valuation(symbol: str, level: int = 2) -> Any:
         return responses.error(
             f"{symbol} 无申万行业归属（非 A 股成分或未同步）"
         )
+    symbol = m["symbol"]  # 采纳库内规范前缀码（裸 6 位入参归一）
 
     sw_code = m["sw_code_l2"] if level == 2 and m.get("sw_code_l2") \
         else m["sw_code_l1"]
@@ -2820,3 +2957,113 @@ def comps_valuation(symbol: str, level: int = 2) -> Any:
         "高低，须与 DCF/DDM/净资产等绝对估值交叉验证。"
     )
     return responses.success(data)
+
+
+# ── 估值假设版本化（2026-10：假设随决策沉淀，可按原假设重跑对比） ─────────
+
+def _assumption_repo():
+    from src.infra.database.market.valuation_assumption import (
+        create_valuation_assumption_repository,
+    )
+    return create_valuation_assumption_repository()
+
+
+_DCF_ASSUMPTION_KEYS = ("growth_rate", "terminal_growth",
+                        "wacc", "projection_years")
+
+
+def _dcf_params(assumptions: dict) -> dict:
+    """白名单提取 DCF 假设参数（缺省回落 handler 默认）。"""
+    out = {}
+    for k in _DCF_ASSUMPTION_KEYS:
+        v = (assumptions or {}).get(k)
+        if v is not None:
+            out[k] = int(v) if k == "projection_years" else float(v)
+    return out
+
+
+def _dcf_output(symbol: str, params: dict) -> Optional[dict]:
+    """按假设跑一次 DCF，取输出快照（失败返回 None）。
+
+    dcf_valuation 返回 JSONResponse（responses.success 的实际形状），
+    按 thesis service._data 同款模式解析；测试替身直接给 dict 也兼容。
+    """
+    merged = {"growth_rate": 0.08, "terminal_growth": 0.03,
+              "wacc": 0.09, "projection_years": 10}
+    merged.update(params)
+    resp = dcf_valuation(symbol, **merged)
+    try:
+        body = (json.loads(resp.body) if hasattr(resp, "body") else resp)
+        if not isinstance(body, dict) or body.get("code") != 0:
+            return None
+        d = body.get("data") or {}
+    except Exception:  # noqa: BLE001
+        return None
+    return {k: d.get(k) for k in (
+        "intrinsic_value", "market_value", "margin_of_safety",
+        "fcf_base", "report_date", "fcf_method",
+    )}
+
+
+def list_valuation_assumptions(symbol: str,
+                               method: Optional[str] = None) -> Any:
+    """某标的的假设版本列表（按 method 分组、版本倒序）。"""
+    return responses.success(
+        _assumption_repo().list(symbol, method=method)
+    )
+
+
+def save_valuation_assumption(symbol: str, payload: dict) -> Any:
+    """保存一组假设为新版本；dcf 方法由服务端即时计算输出快照。"""
+    method = (payload.get("method") or "dcf").strip().lower()
+    assumptions = payload.get("assumptions")
+    if not isinstance(assumptions, dict) or not assumptions:
+        return responses.error("assumptions 应为非空对象")
+    output = None
+    if method == "dcf":
+        params = _dcf_params(assumptions)
+        if not params:
+            return responses.error(
+                "dcf 假设需至少含 "
+                "growth_rate/terminal_growth/wacc/projection_years 之一"
+            )
+        output = _dcf_output(symbol, params)
+    row = _assumption_repo().add(
+        symbol.lower(), method, assumptions,
+        output=output,
+        note=(payload.get("note") or "").strip() or None,
+    )
+    return responses.success(row)
+
+
+def delete_valuation_assumption(row_id: int) -> Any:
+    ok = _assumption_repo().delete(row_id)
+    if not ok:
+        return responses.error("假设版本不存在")
+    return responses.success({"deleted": True})
+
+
+def rerun_valuation_assumption(row_id: int) -> Any:
+    """按保存的假设用**当前**财务数据重跑，与存档输出对比。
+
+    intrinsic_delta = 基本面变化（判断驱动）；
+    market_delta = 价格变化（情绪驱动）。v1 仅支持 dcf。
+    """
+    from src.domain.market.fundamental.dcf import compare_dcf_versions
+
+    row = _assumption_repo().get(row_id)
+    if not row:
+        return responses.error("假设版本不存在")
+    if row["method"] != "dcf":
+        return responses.error("v1 仅支持 dcf 方法重跑")
+    now = _dcf_output(row["symbol"], _dcf_params(row["assumptions"]))
+    if now is None or now.get("intrinsic_value") is None:
+        return responses.error("重跑失败：当前数据不足")
+    compare = compare_dcf_versions(row.get("output") or {}, now)
+    compare["assumption"] = {
+        "id": row["id"], "symbol": row["symbol"],
+        "method": row["method"], "version": row["version"],
+        "assumptions": row["assumptions"], "note": row["note"],
+        "created_at": row["created_at"],
+    }
+    return responses.success(compare)

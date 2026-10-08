@@ -8,6 +8,8 @@ import {
 } from '@ytrader/common-components';
 import { getApiBase } from '../lib/api';
 import { PageHeader, StateView } from '../components/ui';
+import {ThesisEventsSection} from './ThesisEvents';
+import {UnifiedInbox} from './UnifiedInbox';
 import './Alerts.css';
 
 const API_BASE = getApiBase();
@@ -528,6 +530,11 @@ export const Alerts: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* ── 持仓论点事件（重估/破位/到价） ─────────────────────────── */}
+      <ThesisEventsSection />
+
+      <UnifiedInbox />
     </div>
   );
 };

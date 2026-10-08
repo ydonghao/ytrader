@@ -1,0 +1,25 @@
+/* ThermometerCard — 市场温度计组件样式 */
+.thermo-card {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: var(--space-3); border-radius: 8px;
+  padding: var(--space-3); margin-bottom: var(--space-3);
+  border: 1px solid var(--color-border); font-size: var(--text-sm);
+}
+.thermo-card__label {font-weight: 600; font-size: var(--text-md);}
+.thermo-card--deep_cold {border-color: var(--color-success); background: rgba(47, 158, 68, .08);}
+.thermo-card--cold {border-color: var(--color-success);}
+.thermo-card--neutral {border-color: var(--color-border);}
+.thermo-card--warm {border-color: var(--color-warning);}
+.thermo-card--hot {border-color: var(--color-danger); background: rgba(226, 106, 106, .08);}
+.thermo-card__band {margin-left: auto; font-weight: 600;}
+.thermo-card__row {display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3);}
+.thermo-card__toggle {margin-left: auto; font-size: var(--text-xs); color: var(--color-text-tertiary);}
+
+/* compact:一行精简条(Link 渲染) */
+.thermo-card--compact {
+  text-decoration: none; color: inherit;
+}
+.thermo-card--compact:hover {border-color: var(--color-accent, #5e5ce6);}
+
+/* 组件自包含:full 模式回测行弱化样式(页面级 .dim 不保证存在) */
+.thermo-card .dim {color: var(--color-text-secondary);}

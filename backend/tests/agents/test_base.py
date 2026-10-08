@@ -23,8 +23,8 @@ def test_truncate_content_short():
 def test_truncate_content_long():
     text = "a" * 5000
     result = truncate_content(text, 3000)
-    assert len(result) == 3003  # 3000 + "..."
-    assert result.endswith("...")
+    # 设计改为 no-op 直通(1M 上下文模型), 见实现注释
+    assert result is text
 
 
 def test_agent_node_decorator():

@@ -1,4 +1,5 @@
 import {useMemo} from 'react';
+import {useDayLabel} from './BlindMask';
 import {kdj, macd, rsiWilder, sma} from './engine/indicators';
 import {useReplayStore, viewDate} from './store';
 import type {ReplayBar} from './types';
@@ -20,6 +21,7 @@ export const GaugePanel: React.FC = () => {
     (s.selectedSymbol ? s.barsBySymbol[s.selectedSymbol] : undefined) ??
     NO_BARS);
   const vd = useReplayStore(viewDate);
+  const dayLabel = useDayLabel(); // 盲盒期真实日期脱敏为「第N天」
   const vis = useMemo(
     () => bars.filter((b) => !vd || b.trade_date <= vd),
     [bars, vd],
@@ -54,7 +56,7 @@ export const GaugePanel: React.FC = () => {
   ];
   return (
     <div className="replay-panel">
-      <h4>指标仪表（{vd} 口径）</h4>
+      <h4>指标仪表（{dayLabel(vd)} 口径）</h4>
       <div className="replay-gauges">
         {gauges.map(([label, value]) => (
           <div key={label} className="replay-gauge">

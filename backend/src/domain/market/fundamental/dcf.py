@@ -226,3 +226,93 @@ DEFAULT_GROWTH_RATE = 0.08
 DEFAULT_TERMINAL_GROWTH = 0.03
 DEFAULT_WACC = 0.09
 DEFAULT_PROJECTION_YEARS = 10
+
+
+def dcf_sensitivity_grid(
+    latest_fcf: float,
+    waccs: list,
+    growths: list,
+    growth_rate: float = 0.08,
+    projection_years: int = 10,
+) -> list:
+    """WACC×永续增长敏感性网格（行=wacc 升序，列=g 升序）。
+
+    单元格=内在值（总口径）；wacc<=g 的组合无意义 → None。
+    """
+    out = []
+    for w in waccs:
+        row = []
+        for g in growths:
+            try:
+                row.append(dcf_intrinsic_value(
+                    latest_fcf, growth_rate=growth_rate,
+                    terminal_growth=g, wacc=w,
+                    projection_years=projection_years,
+                ))
+            except Exception:
+                row.append(None)
+        out.append(row)
+    return out
+
+
+def compare_dcf_versions(then: dict, now: dict) -> dict:
+    """同一组假设下"保存时 vs 现在"的估值对比（假设版本化）。
+
+    then/now: dcf 输出快照（intrinsic_value/market_value/
+    margin_of_safety/fcf_base/report_date）。
+
+    解读：intrinsic_delta 反映基本面变化（判断驱动），
+    market_delta 反映价格变化（情绪驱动）——
+    intrinsic 不变而市值下跌 = 市场在送安全边际；
+    intrinsic 下滑而市值坚挺 = 判断依据已变、原买入理由需重估。
+    """
+    def _pct(curr, base):
+        if curr is None or base in (None, 0):
+            return None
+        return round((curr / base - 1.0) * 100, 2)
+
+    iv_t = (then or {}).get("intrinsic_value")
+    iv_n = (now or {}).get("intrinsic_value")
+    mv_t = (then or {}).get("market_value")
+    mv_n = (now or {}).get("market_value")
+    fcf_t = (then or {}).get("fcf_base")
+    fcf_n = (now or {}).get("fcf_base")
+    intrinsic_delta_pct = _pct(iv_n, iv_t)
+    market_delta_pct = _pct(mv_n, mv_t)
+    fcf_delta_pct = _pct(fcf_n, fcf_t)
+
+    driver = None
+    if intrinsic_delta_pct is None or market_delta_pct is None:
+        driver = "数据不足"
+    elif abs(intrinsic_delta_pct) < 10 and abs(market_delta_pct) < 1:
+        driver = "无变化：财报与价格都未更新"
+    elif abs(intrinsic_delta_pct) < 10:
+        # 内在价值基本没动（<10%），价格变动全是情绪
+        driver = ("情绪驱动：市值下跌" if market_delta_pct < 0
+                  else "情绪驱动：市值上涨")
+    elif market_delta_pct < intrinsic_delta_pct - 10:
+        driver = "跌出安全边际：基本面改善但价格更便宜"
+    elif market_delta_pct > intrinsic_delta_pct + 10:
+        driver = "透支：价格涨得比基本面快"
+    else:
+        driver = "同步：价格与基本面同向同幅"
+    return {
+        "then": {
+            "intrinsic_value": iv_t, "market_value": mv_t,
+            "margin_of_safety": (then or {}).get("margin_of_safety"),
+            "fcf_base": fcf_t,
+            "report_date": (then or {}).get("report_date"),
+        },
+        "now": {
+            "intrinsic_value": iv_n, "market_value": mv_n,
+            "margin_of_safety": (now or {}).get("margin_of_safety"),
+            "fcf_base": fcf_n,
+            "report_date": (now or {}).get("report_date"),
+        },
+        "intrinsic_delta_pct": intrinsic_delta_pct,
+        "market_delta_pct": market_delta_pct,
+        "fcf_delta_pct": fcf_delta_pct,
+        "driver": driver,
+        "note": "intrinsic_delta=基本面变化(判断驱动)；"
+                "market_delta=价格变化(情绪驱动)。",
+    }

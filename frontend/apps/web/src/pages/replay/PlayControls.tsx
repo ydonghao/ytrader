@@ -6,7 +6,12 @@ export const PlayControls: React.FC = () => {
   const speed = useReplayStore((s) => s.speed);
   const cursor = useReplayStore((s) => s.cursor);
   const datesLen = useReplayStore((s) => s.dates.length);
-  const {advance, stepBack, play, pause, setSpeed} = useReplayStore.getState();
+  const mode = useReplayStore((s) => s.mode);
+  const segIdx = useReplayStore((s) => s.segIdx);
+  const segCount = useReplayStore((s) => s.segCount);
+  const travelComplete = useReplayStore((s) => s.travelComplete);
+  const {advance, stepBack, play, pause, setSpeed} =
+    useReplayStore.getState();
 
   useEffect(() => {
     if (!playing) return;
@@ -17,6 +22,7 @@ export const PlayControls: React.FC = () => {
   }, [playing, speed]);
 
   const atReview = cursor < datesLen - 1;
+  const exam = mode === 'exam';
   return (
     <div className="replay-panel replay-controls">
       <button className="replay-btn" disabled={cursor <= 0}
@@ -24,10 +30,19 @@ export const PlayControls: React.FC = () => {
         ◀
       </button>
       <button className="replay-btn primary"
-        onClick={() => void advance()}>
-        下一天 ▶
+        disabled={travelComplete}
+        onClick={() => void advance(exam ? 'seg' : undefined)}>
+        {exam ? `下一时段 ▶ (${segIdx + 1}/${segCount})` : '下一天 ▶'}
       </button>
+      {exam && (
+        <button className="replay-btn" disabled={travelComplete}
+          title="快进:走完今日剩余时段(挂单照常检查),跳到明日开盘"
+          onClick={() => void advance('day')}>
+          快进到明日 ⏭
+        </button>
+      )}
       <button className="replay-btn"
+        disabled={travelComplete}
         onClick={() => (playing ? pause() : play())}>
         {playing ? '⏸ 暂停' : '▶ 自动'}
       </button>

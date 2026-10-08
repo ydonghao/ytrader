@@ -23,9 +23,13 @@ from .data_loader import (
     FINANCIAL_LAG_DAYS,
     fetch_financial_history,
     fetch_financial_snapshot,
+    fetch_fscore_annual_history,
     fetch_latest_financial_detail,
     fetch_latest_financials,
     fetch_latest_valuations,
+)
+from src.domain.market.fundamental.classic_models import (
+    piotroski_f_score,
 )
 from .strategies.value_utils import (
     rank_cross_section,
@@ -274,9 +278,12 @@ def _screen_fscore(
     symbols, val_map, fin_map, as_of, top_n, filters,
 ) -> list[ScreenItem]:
     max_pb = filters.get("pb_max", 3.0)
-    min_fscore = filters.get("min_fscore", 3)
+    # 标准 9 因子口径（2026-10 起），默认门槛 5/9；旧简化版 0~5 已退役
+    min_fscore = filters.get("min_fscore", 5)
 
-    # F-Score 需要两期财报对比
+    # 标准 9 因子需两个年报期（12-31）三大报表合并快照
+    annual_hist = fetch_fscore_annual_history(symbols, as_of)
+    # 指标表历史仅用于快照展示字段（roe/debt_ratio）
     fin_hist = fetch_financial_history(symbols, as_of, lookback_reports=4)
 
     score_map: dict[str, float] = {}
@@ -290,50 +297,31 @@ def _screen_fscore(
         pb = val.get("pb")
         if pb is None or pb <= 0 or pb > max_pb:
             continue
-        rows = fin_hist.get(sym, [])
-        fscore = _fscore(rows)
-        if fscore is None or fscore < min_fscore:
+        rows = annual_hist.get(sym, [])
+        if len(rows) < 2:
+            continue
+        f = piotroski_f_score(rows[-1], rows[-2])
+        if f is None:
+            continue
+        fscore = f.score
+        if fscore < min_fscore:
             continue
         score_map[sym] = float(fscore)
         pb_map[sym] = pb
-        cur_fin = rows[-1] if rows else {}
+        cur_fin = (fin_hist.get(sym) or [{}])[-1]
+        cur_ann = rows[-1]
+        ta = cur_ann.get("total_assets")
+        tl = cur_ann.get("total_liabilities")
         snap[sym] = {"pe_ttm": val.get("pe_ttm"), "pb": pb,
                      "roe": cur_fin.get("roe_weighted"),
-                     "debt_ratio": cur_fin.get("debt_ratio"),
+                     "debt_ratio": (tl / ta * 100
+                                    if ta and tl is not None
+                                    else cur_fin.get("debt_ratio")),
                      "fscore": fscore}
 
     return _finalize(snap, score_map, pb_map, top_n,
                      roe_rank_desc=True, ey_rank_desc=False,  # pb 低更好
-                     reason=f"F-Score≥{min_fscore}+低PB")
-
-
-def _fscore(rows: list[dict]) -> Optional[int]:
-    """
-    简化 F-Score（0~5），需最近两期。
-    与 FScoreValueStrategy._fscore 同逻辑（一致性）。
-    """
-    if len(rows) < 2:
-        return None
-    cur, prev = rows[-1], rows[-2]
-    score = 0
-    roe_cur = cur.get("roe_weighted") or cur.get("roe_diluted")
-    roe_prev = prev.get("roe_weighted") or prev.get("roe_diluted")
-    nm_cur = cur.get("net_margin")
-    nm_prev = prev.get("net_margin")
-    dr_cur = cur.get("debt_ratio")
-    dr_prev = prev.get("debt_ratio")
-
-    if roe_cur is not None and roe_cur > 0:
-        score += 1
-    if roe_cur is not None and roe_prev is not None and roe_cur > roe_prev:
-        score += 1
-    if nm_cur is not None and nm_cur > 0:
-        score += 1
-    if nm_cur is not None and nm_prev is not None and nm_cur > nm_prev:
-        score += 1
-    if dr_cur is not None and dr_prev is not None and dr_cur < dr_prev:
-        score += 1
-    return score
+                     reason=f"F-Score(标准9因子)≥{min_fscore}+低PB")
 
 
 # ── 模式4：自定义多因子筛选 ────────────────────────────────────────────────

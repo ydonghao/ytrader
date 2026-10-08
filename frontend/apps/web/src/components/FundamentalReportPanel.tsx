@@ -10,6 +10,7 @@ import {LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLi
 import {getApiBase} from '../lib/api';
 import {useFundamentalAnalysis} from '../hooks/useFundamentalAnalysis';
 import {useFundamentalAnalysisHistory} from '../hooks/useFundamentalAnalysisHistory';
+import {AiInsightPanel} from './AiInsightPanel';
 import './FundamentalReportPanel.css';
 import { CHART_COLORS, axisProps, chartBorderStrong, tooltipProps } from '../lib/chartTheme';
 
@@ -137,19 +138,18 @@ export function FundamentalReportPanel({symbol}: {symbol: string}) {
     });
   };
 
-  if (loading) {
-    return (
-      <div className="fa-panel__loading">
-        AI 分析中（读取真实财报 + 推理，约 10-30 秒）…
-      </div>
-    );
-  }
-  if (error) return <div className="fa-panel__error">{error}</div>;
+  // loading/error 由 AiInsightPanel 壳统一渲染；data 为空（未输入代码等）时壳内展示空态
   if (!data) {
-    return <div className="fa-panel__empty">输入股票代码生成基本面报告</div>;
+    return (
+      <AiInsightPanel title="AI 基本面报告" source="LLM" loading={loading} error={error}>
+        <div className="fa-panel__empty">输入股票代码生成基本面报告</div>
+      </AiInsightPanel>
+    );
   }
 
   return (
+    <AiInsightPanel title="AI 基本面报告" source="LLM" loading={loading} error={error}>
+    {/* 主内容零改动：原 loading/error 之后的主内容 JSX 原样迁入壳内容槽（缩进保持，便于 diff 核对） */}
     <div className="fa-panel">
       <div className="fa-panel__header">
         <div className="fa-score" style={{color: scoreColor(data.overall_score)}}>
@@ -325,5 +325,6 @@ export function FundamentalReportPanel({symbol}: {symbol: string}) {
         </div>
       )}
     </div>
+    </AiInsightPanel>
   );
 }

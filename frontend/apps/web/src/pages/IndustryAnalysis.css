@@ -1,0 +1,78 @@
+/* 行业分析页 — ia- 前缀,全部走 global.css 令牌 */
+
+/* ── 页面与 Tab 容器 ── */
+.ia-page { padding: 16px; max-width: 1280px; margin: 0 auto; }
+.ia-tab { display: block; }
+
+/* ── 工具条 ── */
+.ia-toolbar { display: flex; gap: 10px; align-items: center; margin: 12px 0; flex-wrap: wrap; }
+.ia-select { background: var(--color-surface); color: var(--color-text);
+  border: 1px solid var(--color-border); border-radius: var(--radius-sm, 8px);
+  padding: 6px 10px; font-size: var(--text-sm); }
+.ia-hint { font-size: var(--text-xs); color: var(--color-warning); }
+
+/* ── 指标卡片 ── */
+.ia-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 12px; }
+.ia-card-label { font-size: var(--text-xs); color: var(--color-text-secondary); }
+.ia-card-value { font-size: 24px; font-weight: var(--font-weight-bold); margin: 4px 0; }
+.ia-card-value.is-up { color: var(--color-up); }
+.ia-card-sub { font-size: var(--text-xs); color: var(--color-text-tertiary); }
+.ia-linklike { background: none; border: none; color: var(--color-text-secondary);
+  cursor: pointer; padding: 8px 2px; font-size: var(--text-sm); }
+.ia-linklike:hover { color: var(--color-text); }
+
+/* ── 热力表(Task 13)── */
+.ia-heat-wrap { overflow-x: auto; }
+.ia-heat { width: 100%; border-collapse: collapse; font-size: var(--text-xs); }
+.ia-heat th { position: sticky; top: 0; background: var(--color-surface);
+  padding: 8px 6px; text-align: right; cursor: pointer; white-space: nowrap;
+  color: var(--color-text-secondary); border-bottom: 1px solid var(--color-border-strong); }
+.ia-heat th:first-child, .ia-heat td:first-child { text-align: left; position: sticky; left: 0; }
+.ia-heat td { padding: 7px 6px; text-align: right; white-space: nowrap;
+  border-bottom: 1px solid var(--color-border); }
+.ia-heat tbody tr { cursor: pointer; }
+.ia-heat tbody tr:hover { background: var(--color-surface); }
+.ia-heat .num { font-variant-numeric: tabular-nums; }
+
+/* ── 年限切换反馈:受影响列表头角标 + 单元格闪烁 ── */
+.ia-win-mark { font-style: normal; font-size: 10px; margin-left: 2px;
+  color: var(--color-warning); vertical-align: super; cursor: help; }
+/* 动画期间 background-color 覆盖内联热力底色(级联中 animation > inline),
+   结束后回落原色;box-shadow 内描边不与底色冲突 */
+.ia-heat td.is-flash { animation: ia-win-flash 1.5s ease-out; }
+@keyframes ia-win-flash {
+  0% { background-color: var(--color-warning-light);
+       box-shadow: inset 0 0 0 2px var(--color-warning); }
+  60% { box-shadow: inset 0 0 0 1px var(--color-warning); }
+  100% { box-shadow: inset 0 0 0 0 transparent; }
+}
+
+/* ── 景气分层徽章 ── */
+/* 令牌注: brief 的 --color-warning-bg 在 global.css 不存在;
+   --color-warning-light(rgba(255,214,10,.12)) 与 brief 回退值完全一致,故采用之 */
+.ia-tier { display: inline-block; padding: 1px 8px; border-radius: var(--radius-pill);
+  font-size: var(--text-xs); }
+.ia-tier--1 { background: var(--color-down-light); color: var(--color-down); }
+.ia-tier--2 { background: var(--color-warning-light); color: var(--color-warning); }
+.ia-tier--3 { background: var(--color-up-light); color: var(--color-up); }
+
+/* ── 抽屉(Task 14)── */
+.ia-drawer-section { margin-bottom: 16px; }
+.ia-drawer-title { font-size: var(--text-sm); font-weight: var(--font-weight-bold);
+  margin-bottom: 8px; color: var(--color-text-secondary); }
+.ia-chain { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.ia-chain-chip { padding: 3px 10px; border-radius: var(--radius-pill);
+  background: var(--color-surface); border: 1px solid var(--color-border);
+  font-size: var(--text-xs); }
+.ia-chain-self { border-color: var(--color-warning); color: var(--color-warning); }
+.ia-arrow { color: var(--color-text-tertiary); }
+.ia-subscore { display: flex; align-items: center; gap: 8px; margin: 4px 0; }
+.ia-subscore-bar { height: 8px; border-radius: 4px; background: var(--color-surface);
+  flex: 1; overflow: hidden; }
+.ia-subscore-fill { height: 100%; background: var(--color-warning); }
+
+/* ── 板块强弱 Tab(Task 13)── */
+.ia-strength-grid { display: grid; grid-template-columns: minmax(320px, 2fr) minmax(420px, 3fr); gap: 12px; align-items: start; }
+.ia-chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+.ia-select.is-active { border-color: var(--color-warning); color: var(--color-warning); }
+@media (max-width: 960px) { .ia-strength-grid { grid-template-columns: 1fr; } }

@@ -213,6 +213,16 @@ class BoomRadarConfig(BaseModel):
     llm_daily_limit: int = 30         # 每日 LLM 深读上限(二期用)
 
 
+class IndustryAnalysisConfig(BaseModel):
+    """行业分析(破净率/景气分/资金流)配置"""
+    enabled: bool = True
+    pct_window_years: int = 8          # 估值分位窗口(评分口径恒定)
+    weights: dict[str, float] = {      # 四分项权重(和为1)
+        "profit": 0.35, "valuation": 0.25,
+        "momentum": 0.25, "flow": 0.15,
+    }
+
+
 class AppConfig(BaseModel):
     server: ServerConfig
     database: DatabaseConfig
@@ -225,6 +235,7 @@ class AppConfig(BaseModel):
     macro_universe: MacroUniverseConfig = MacroUniverseConfig()
     screener: ScreenerConfig = ScreenerConfig()
     boom_radar: BoomRadarConfig = BoomRadarConfig()
+    industry_analysis: IndustryAnalysisConfig = IndustryAnalysisConfig()
 
 
 # ======== 配置加载工具 ========

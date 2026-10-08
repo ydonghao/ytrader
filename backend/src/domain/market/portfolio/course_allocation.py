@@ -279,66 +279,10 @@ def fire_coverage(
 
 
 # ── 3.7 买卖一致性——入场论点监控（卖出触发）──────────────────────────────────
-
-@dataclass
-class ThesisCondition:
-    """单条量化入场论点（用于论点破即卖）。"""
-
-    metric: str          # 指标名（与 current_metrics 字典 key 对齐）
-    operator: str        # ">=" / ">" / "<=" / "<" / "=="
-    threshold: float
-    label: str = ""
-
-
-@dataclass
-class ThesisMonitorResult:
-    """论点监控结果。"""
-
-    breached: list[ThesisCondition] = field(default_factory=list)
-    held: list[ThesisCondition] = field(default_factory=list)
-    recommend_sell: bool = False
-
-
-def evaluate_thesis(
-    conditions: list[ThesisCondition],
-    current_metrics: dict,
-) -> ThesisMonitorResult:
-    """买卖一致性原则（doc 26）：入场时记录的量化论点，任一破即建议卖出。
-
-    用法：买入时固化一组量化论点（如"营收增速维持>=10%"、"ROE>=15%"、
-    "资产负债率<=60%"），之后定期用最新指标评估；论点一旦失守，
-    说明当初买入的逻辑已不成立，按一致性原则应卖出。
-
-    Args:
-        conditions:      入场论点条件列表。
-        current_metrics: 当前指标字典 {metric_name: value}。
-
-    Returns:
-        ThesisMonitorResult：``breached`` 为已破条件，``recommend_sell``
-        当且仅当存在任一 breached。
-    """
-    _OPS = {
-        ">=": lambda a, b: a >= b,
-        ">": lambda a, b: a > b,
-        "<=": lambda a, b: a <= b,
-        "<": lambda a, b: a < b,
-        "==": lambda a, b: a == b,
-    }
-    res = ThesisMonitorResult()
-    for c in conditions:
-        op = _OPS.get(c.operator)
-        v = current_metrics.get(c.metric)
-        if op is None or v is None:
-            res.held.append(c)  # 无法评估视为暂未触发（保守不卖）
-            continue
-        try:
-            ok = op(v, c.threshold)
-        except TypeError:
-            res.held.append(c)
-            continue
-        if ok:
-            res.held.append(c)
-        else:
-            res.breached.append(c)
-    res.recommend_sell = len(res.breached) > 0
-    return res
+# 2026-09-27 迁移至 fundamental/thesis_monitor.py（持仓论点体系复用），
+# 此处 re-export 保持既有导入兼容。
+from src.domain.market.fundamental.thesis_monitor import (  # noqa: F401,E402
+    ThesisCondition,
+    ThesisMonitorResult,
+    evaluate_thesis,
+)

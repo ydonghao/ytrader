@@ -46,7 +46,7 @@ backend/
 ├── conf/settings.py            # Pydantic config 单例 → app_config
 └── src/
     ├── api/                    # API 层 — HTTP 端点
-    │   ├── router/             #   30 个 Router 文件, 前缀 /api/v1/
+    │   ├── router/             #   28 个 Router 文件, 前缀 /api/v1/
     │   ├── handler/            #   请求处理器
     │   ├── middleware/         #   LoggingMiddleware, TraceIdMiddleware
     │   └── model/              #   请求/响应 Pydantic 模型

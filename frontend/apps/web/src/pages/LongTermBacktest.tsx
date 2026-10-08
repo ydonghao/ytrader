@@ -5,8 +5,7 @@
  * 7 种经典长期投资算法的量化回测：双动量 / 均线趋势 / 全天候 / 估值定投 /
  * 神奇公式 / F-Score 价值 / 红利。多标的组合、定期调仓、对比基准。
  *
- * 面向想从做T升级到长期投资的人：用历史数据亲眼看每个门派怎么赚钱、
- * 风险多大、跑赢/跑输基准多少。
+ * 用历史数据亲眼看每个门派怎么赚钱、风险多大、跑赢/跑输基准多少。
  */
 import React, {useState, useEffect} from 'react';
 import {
@@ -16,7 +15,6 @@ import {
 import {getApiBase} from '../lib/api';
 import {Button, PageHeader, StateView, Tabs} from '../components/ui';
 import {BacktestHistory} from './lt-backtest/BacktestHistory';
-import {TTrading} from './TTrading';
 import {EfficientFrontier} from './lt-backtest/EfficientFrontier';
 import {WalkForward} from './lt-backtest/WalkForward';
 import './LongTermBacktest.css';
@@ -112,19 +110,17 @@ const FAMILY_COLORS: Record<string, string> = {
 
 // ── 主组件 ────────────────────────────────────────────────────────────────────
 export const LongTermBacktest: React.FC = () => {
-  // 顶层 Tab：长期回测 / 做T实验室（?tab=ttrading 直达做T）
-  const [topTab, setTopTab] = useState<'lt' | 'ttrading'>(() =>
-    new URLSearchParams(window.location.search).get('tab') === 'ttrading' ? 'ttrading' : 'lt');
   const [tab, setTab] = useState<TabKey>('lab');
   const [algos, setAlgos] = useState<AlgoMeta[]>([]);
   const [selectedAlgo, setSelectedAlgo] = useState('dual_momentum');
   const [expandedAlgo, setExpandedAlgo] = useState<string | null>(null);
 
-  // 公共参数
-  const [symbols, setSymbols] = useState('sh000300');
+  // 公共参数（?symbols=&start=&end= 支持 replay 舱「丢给回测实验室」预填）
+  const qp = new URLSearchParams(window.location.search);
+  const [symbols, setSymbols] = useState(qp.get('symbols') || 'sh000300');
   const [benchmark, setBenchmark] = useState('sh000300');
-  const [startDate, setStartDate] = useState('2020-01-01');
-  const [endDate, setEndDate] = useState('2025-12-31');
+  const [startDate, setStartDate] = useState(qp.get('start') || '2020-01-01');
+  const [endDate, setEndDate] = useState(qp.get('end') || '2025-12-31');
   const [initialCapital, setInitialCapital] = useState(1000000);
 
   // 算法参数（动态）
@@ -205,20 +201,6 @@ export const LongTermBacktest: React.FC = () => {
   }
 
   return (
-    <div className="lt-backtest-lab">
-      <div className="lt-backtest-lab__tabs">
-        <button
-          className={`lab-tab${topTab === 'lt' ? ' lab-tab--active' : ''}`}
-          onClick={() => setTopTab('lt')}>
-          长期回测
-        </button>
-        <button
-          className={`lab-tab${topTab === 'ttrading' ? ' lab-tab--active' : ''}`}
-          onClick={() => setTopTab('ttrading')}>
-          做T实验室
-        </button>
-      </div>
-      {topTab === 'lt' ? (
     <div className="lt-backtest">
       <PageHeader
         title="长期回测实验室"
@@ -527,10 +509,6 @@ export const LongTermBacktest: React.FC = () => {
         </div>
       )}
       </>
-      )}
-    </div>
-      ) : (
-        <TTrading />
       )}
     </div>
   );

@@ -119,3 +119,17 @@
 .watchlist__tab-drag:active {
   cursor: grabbing;
 }
+
+/* 行内买入体检入口（个股级研究工具，不放全局菜单） */
+.watchlist__checklist-link {
+  font-size: 12px;
+  color: var(--accent, #4c9aff);
+  text-decoration: none;
+  padding: 2px 8px;
+  border: 1px solid var(--accent, #4c9aff);
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.watchlist__checklist-link:hover {
+  opacity: 0.8;
+}

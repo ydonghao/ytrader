@@ -8,7 +8,7 @@ import json
 import logging
 import threading
 from dataclasses import asdict, dataclass
-from datetime import datetime
+from datetime import datetime, timedelta
 from enum import Enum
 from pathlib import Path
 from typing import Optional
@@ -160,13 +160,32 @@ class ProgressTracker:
         provider: str,
         interval: str,
         all_symbols: list[str],
+        fresh_within_hours: float | None = None,
     ) -> list[str]:
-        """返回还未完成同步的 symbol 列表（用于断点续传）"""
+        """返回未完成同步的 symbol 列表（断点续传）。
+
+        fresh_within_hours：只把近 N 小时内标记的 DONE 视为已完成。
+        None=永久豁免（旧行为）。周任务必须传窗口——否则历史轮次的
+        DONE 会让后续每周同步全部跳过、零写入（2026-09-02 起
+        stock_valuation 断线三周的根因）。
+        """
         key = self._make_key(provider, interval)
-        done = set(
-            s for s, state in self._data.get(key, {}).get("symbols", {}).items()
-            if state.get("status") == SyncStatus.DONE.value
-        )
+        cutoff = None
+        if fresh_within_hours is not None:
+            cutoff = (
+                datetime.now() - timedelta(hours=fresh_within_hours)
+            ).isoformat()
+        done = set()
+        for sym, state in (
+            self._data.get(key, {}).get("symbols", {}).items()
+        ):
+            if state.get("status") != SyncStatus.DONE.value:
+                continue
+            if cutoff is not None:
+                t = state.get("last_sync_time")
+                if not t or t < cutoff:
+                    continue   # 旧轮次的 DONE 不豁免本周
+            done.add(sym)
         return [s for s in all_symbols if s not in done]
 
     def mark_done(self, provider: str, symbol: str, interval: str, last_sync_time: str, rows: int):

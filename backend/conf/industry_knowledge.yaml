@@ -1,0 +1,219 @@
+# 申万一级行业知识层——投资难易度三层分级与产业链(用户笔记初拟,可随时手改)
+# tier: 1=消费者容易分析最好投资 / 2=需专业分析最好业内人士 / 3=消息短时效高精力
+"801010":
+  name: 农林牧渔
+  tier: 2
+  retail_suitable: medium
+  approach: 猪周期主导,看能繁母猪存栏与猪价;种业看政策
+  upstream: [化肥农药, 饲料]
+  downstream: [食品饮料, 商贸零售]
+"801020":
+  name: 煤炭
+  tier: 2
+  retail_suitable: low
+  approach: 跟大宗商品(煤价)走,看长协价与库存,周期思维
+  upstream: []
+  downstream: [电力, 钢铁, 基础化工, 建筑材料]
+"801030":
+  name: 基础化工
+  tier: 2
+  retail_suitable: low
+  approach: 中游制造,看下游需求与产品价差,专业性较强
+  upstream: [煤炭, 石油石化]
+  downstream: [农林牧渔, 纺织服饰, 建筑材料, 电力设备]
+"801040":
+  name: 钢铁
+  tier: 2
+  retail_suitable: low
+  approach: 下游是地产/建筑,看地产周期与钢价库存
+  upstream: [煤炭, 有色金属(铁矿)]
+  downstream: [建筑装饰, 汽车, 机械设备, 家用电器]
+"801050":
+  name: 有色金属
+  tier: 2
+  retail_suitable: low
+  approach: 跟全球大宗(铜铝金)走,金融属性强,研究好了不如做期货
+  upstream: [煤炭, 电力]
+  downstream: [电力设备, 电子, 汽车, 建筑装饰]
+"801080":
+  name: 电子
+  tier: 2
+  retail_suitable: low
+  approach: 半导体周期+创新周期,看库存与稼动率
+  upstream: [基础化工, 有色金属]
+  downstream: [家用电器, 汽车, 计算机, 通信]
+"801110":
+  name: 家用电器
+  tier: 1
+  retail_suitable: high
+  approach: 消费属性+地产后周期,看白电格局与原材料成本
+  upstream: [有色金属, 钢铁, 基础化工]
+  downstream: [商贸零售, 房地产(精装)]
+"801120":
+  name: 食品饮料
+  tier: 1
+  retail_suitable: high
+  approach: 消费者最容易分析,看品牌/渠道/提价能力,白酒看批价
+  upstream: [农林牧渔, 基础化工(包装)]
+  downstream: [商贸零售, 社会服务]
+"801130":
+  name: 纺织服饰
+  tier: 1
+  retail_suitable: medium
+  approach: 看品牌与库存周期,门槛较低
+  upstream: [农林牧渔(棉), 基础化工(化纤)]
+  downstream: [商贸零售]
+"801140":
+  name: 轻工制造
+  tier: 2
+  retail_suitable: medium
+  approach: 家居看地产后周期,造纸看浆价
+  upstream: [基础化工, 农林牧渔]
+  downstream: [房地产, 商贸零售]
+"801150":
+  name: 医药生物
+  tier: 2
+  retail_suitable: low
+  approach: 专业性非常强,政策(集采)影响大,非专业人士不建议
+  upstream: [基础化工(原料药), 基础化工(CXO耗材)]
+  downstream: [社会服务(医疗), 商贸零售(药店)]
+"801160":
+  name: 公用事业
+  tier: 2
+  retail_suitable: medium
+  approach: 类债属性,看电价水价与股息率
+  upstream: [煤炭, 电力设备]
+  downstream: [全行业(用电用水)]
+"801170":
+  name: 交通运输
+  tier: 2
+  retail_suitable: medium
+  approach: 看运价周期(航运/航空)与流量恢复
+  upstream: [煤炭(油料), 机械设备(运力)]
+  downstream: [全行业(物流)]
+"801180":
+  name: 房地产
+  tier: 2
+  retail_suitable: low
+  approach: 政策强驱动,高杠杆,看销售与融资政策
+  upstream: [建筑装饰, 建筑材料]
+  downstream: [家用电器, 建筑材料, 轻工制造]
+"801200":
+  name: 商贸零售
+  tier: 2
+  retail_suitable: medium
+  approach: 看客流与线上化冲击,格局变化快
+  upstream: [食品饮料, 纺织服饰, 家用电器]
+  downstream: [消费者]
+"801210":
+  name: 社会服务
+  tier: 2
+  retail_suitable: medium
+  approach: 看连锁化率与单店模型
+  upstream: []
+  downstream: [消费者]
+"801230":
+  name: 综合
+  tier: 3
+  retail_suitable: low
+  approach: 业务杂难以跟踪,不建议
+  upstream: []
+  downstream: []
+"801710":
+  name: 建筑材料
+  tier: 2
+  retail_suitable: low
+  approach: 下游地产/建筑,看价格与产能利用率
+  upstream: [煤炭, 基础化工]
+  downstream: [房地产, 建筑装饰]
+"801720":
+  name: 建筑装饰
+  tier: 2
+  retail_suitable: low
+  approach: 下游投资周期,垫资模式现金流差
+  upstream: [建筑材料, 钢铁]
+  downstream: [房地产, 公用事业]
+"801730":
+  name: 电力设备
+  tier: 2
+  retail_suitable: low
+  approach: 行业门槛高,技术迭代快(光伏/锂电),看技术路线与产能
+  upstream: [有色金属, 基础化工, 电子]
+  downstream: [公用事业, 汽车]
+"801740":
+  name: 国防军工
+  tier: 3
+  retail_suitable: low
+  approach: 不以盈利为主要目的,订单驱动,消息时效短
+  upstream: [钢铁, 有色金属, 电子]
+  downstream: [国家订单]
+"801750":
+  name: 计算机
+  tier: 2
+  retail_suitable: low
+  approach: 技术迭代快(AI产业链核心),看订单与产品化程度,主题多
+  upstream: [电子]
+  downstream: [全行业(数字化)]
+"801760":
+  name: 传媒
+  tier: 2
+  retail_suitable: medium
+  approach: 内容行业,看爆款与政策监管
+  upstream: [电子(设备), 通信]
+  downstream: [消费者]
+"801770":
+  name: 通信
+  tier: 2
+  retail_suitable: low
+  approach: 运营商稳+设备商跟资本开支周期
+  upstream: [电子]
+  downstream: [计算机, 传媒]
+"801780":
+  name: 银行
+  tier: 1
+  retail_suitable: high
+  approach: 高度标准化,看净息差/不良率,学习一次受用
+  upstream: [央行(流动性)]
+  downstream: [全行业(信贷)]
+"801790":
+  name: 非银金融
+  tier: 1
+  retail_suitable: medium
+  approach: 券商看市场beta,保险看利差损,较标准
+  upstream: [银行]
+  downstream: [全行业(资金融通)]
+"801880":
+  name: 汽车
+  tier: 2
+  retail_suitable: medium
+  approach: 看车型周期与电动化渗透率,价格战频繁
+  upstream: [钢铁, 有色金属, 电子, 基础化工]
+  downstream: [商贸零售, 社会服务(出行)]
+"801890":
+  name: 机械设备
+  tier: 2
+  retail_suitable: low
+  approach: 中游,看下游资本开支与订单
+  upstream: [钢铁, 有色金属]
+  downstream: [电力设备, 建筑, 汽车]
+"801960":
+  name: 石油石化
+  tier: 2
+  retail_suitable: low
+  approach: 跟油价,上游看桶油成本,炼化看价差
+  upstream: []
+  downstream: [基础化工, 交通运输, 基础化工(化纤)]
+"801970":
+  name: 环保
+  tier: 3
+  retail_suitable: low
+  approach: 非盈利导向,依赖政府支付,谨慎
+  upstream: [机械设备, 基础化工]
+  downstream: [政府订单]
+"801980":
+  name: 美容护理
+  tier: 1
+  retail_suitable: medium
+  approach: 消费属性强,看品牌力与渠道
+  upstream: [基础化工(原料)]
+  downstream: [商贸零售, 社会服务]

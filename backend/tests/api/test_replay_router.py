@@ -285,6 +285,27 @@ class TestReplaySlicing:
             if sid is not None:
                 _cleanup(client, sid)
 
+    def test_advance_indices(self, client, trade_day):
+        sid = None
+        try:
+            r = _create(client, name="TS_idx", start_date=trade_day)
+            assert r.json()["code"] == 0, r.text
+            sid = r.json()["data"]["id"]
+            r = client.get("/api/v1/replay/advance",
+                           params={"session_id": sid, "days": 3})
+            assert r.json()["code"] == 0, r.text
+            data = r.json()["data"]
+            idx = data["indices"]
+            assert set(idx) == {"sh000001", "sz399001",
+                                "sz399006", "sh000300"}
+            for sym, bars in idx.items():
+                assert len(bars) >= 1
+                for b in bars:
+                    assert b["trade_date"] in data["dates"]
+        finally:
+            if sid is not None:
+                _cleanup(client, sid)
+
 
 class TestReplayValuationBoard:
     def test_valuation(self, client, dyn_symbol, trade_day):
@@ -328,4 +349,69 @@ class TestReplayValuationBoard:
     def test_board_bad_type(self, client, trade_day):
         r = client.get("/api/v1/replay/board",
                        params={"asof": trade_day, "type": "hack"})
+        assert r.json()["code"] != 0
+
+
+class TestReplayInfo:
+    def test_instrument(self, client, dyn_symbol):
+        r = client.get(f"/api/v1/replay/instrument/{dyn_symbol}")
+        assert r.json()["code"] == 0, r.text
+        data = r.json()["data"]
+        assert data["symbol"] == dyn_symbol.lower()
+        assert data["name"]  # 非空
+        # 展示名不得带除权日前缀（XD/XR/DR），即便源数据被写坏
+        assert not re.match(r"^(XD|XR|DR)", data["name"])
+        assert data["industry"] is None or isinstance(data["industry"], str)
+
+    def test_instrument_unknown(self, client):
+        r = client.get("/api/v1/replay/instrument/sh999999")
+        assert r.json()["code"] != 0
+
+    def test_news_asof_and_leakage(self, client, trade_day):
+        """红线：asof 之后的新闻绝不可见。"""
+        from src.infra.database.sql_engine.dsn import get_dsn
+        conn = psycopg2.connect(get_dsn())
+        tag = f"TS_NEWS_{dt.date.today().isoformat()}"
+        urls = []
+        try:
+            with conn.cursor() as cur:
+                # (日, 时刻): 09:00+08 两种取日结果一致; 07:00+08 北京日期
+                # 03-14 但 UTC 日期 03-13, 是区分取日口径的临界样本
+                for i, (day, hm) in enumerate([
+                    ("2020-03-12", "09:00:00+08"),
+                    ("2020-03-14", "09:00:00+08"),
+                    ("2020-03-14", "07:00:00+08"),
+                ]):
+                    url = f"{tag}-{i}"
+                    urls.append(url)
+                    cur.execute(
+                        "INSERT INTO intel_news (title, url, source, "
+                        "source_type, category, importance, published_at, "
+                        "fetched_at) VALUES (%s,%s,'TS','backfill',"
+                        "'finance',%s,%s,now())",
+                        (f"{tag} 头条{i}", url, 5 - i,
+                         f"{day} {hm}"),
+                    )
+            conn.commit()
+        finally:
+            pass
+        try:
+            r = client.get("/api/v1/replay/news",
+                           params={"asof": "2020-03-13", "days": 3})
+            assert r.json()["code"] == 0, r.text
+            titles = [x["title"] for x in r.json()["data"]]
+            assert f"{tag} 头条0" in titles   # asof 前一天,可见
+            assert f"{tag} 头条1" not in titles  # asof 后一天,必须不可见
+            assert f"{tag} 头条2" not in titles  # 北京 03-14 凌晨,必须不可见
+        finally:
+            with conn.cursor() as cur:
+                cur.execute("DELETE FROM intel_news WHERE url LIKE %s",
+                            (tag + "%",))
+            conn.commit()
+            conn.close()
+
+    def test_news_reject_future(self, client):
+        tomorrow = (dt.date.today() + dt.timedelta(days=1)).isoformat()
+        r = client.get("/api/v1/replay/news",
+                       params={"asof": tomorrow})
         assert r.json()["code"] != 0

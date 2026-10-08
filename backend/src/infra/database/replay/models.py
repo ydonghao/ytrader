@@ -26,6 +26,7 @@ class ReplaySession(SQLModel, table=True):
     initial_capital: float
     cash: float  # 冗余快照，列表页展示用
     benchmark_symbol: str = "sh000300"
+    mode: str = "free"  # free=自由模式 | exam=拟真考核(v3)
     # {pool: [symbol], positions: [{symbol,shares,cost_price,buy_date}],
     #  nav: [{date, value}]}
     state: dict[str, Any] = Field(
@@ -50,4 +51,6 @@ class ReplayTrade(SQLModel, table=True):
     fee: float  # 佣金
     tax: float = 0.0  # 印花税（卖出）
     note: Optional[str] = None  # 下单理由，复盘回看
+    confidence: Optional[int] = None  # 下单信心度 1~5（校准统计原料）
+    order_type: str = "market"  # market=市价 | limit=限价(v3 exam 撮合来源)
     created_at: datetime = Field(default_factory=datetime.now)

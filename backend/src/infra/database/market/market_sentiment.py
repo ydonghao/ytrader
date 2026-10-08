@@ -51,7 +51,10 @@ def _bulk_upsert(table_name: str, rows: list[dict], fields: list[tuple]) -> int:
     if not rows:
         return 0
     cols = [f for _, f in fields]
-    placeholders = ", ".join(f"EXCLUDED.{c}" for _, c in fields[1:])  # 主键不更新
+    # 主键不更新; DO UPDATE SET 需要 col=EXCLUDED.col 赋值对
+    placeholders = ", ".join(
+        f"{c} = EXCLUDED.{c}" for _, c in fields[1:]
+    )
     col_list = ", ".join(cols)
     values = []
     for r in rows:

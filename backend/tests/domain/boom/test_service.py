@@ -40,6 +40,12 @@ def test_to_prefixed():
     assert to_prefixed("300750") == "sz300750"
 
 
+def test_to_prefixed_idempotent():
+    """已带前缀的输入不得产生双重前缀(szsh600519)。"""
+    assert to_prefixed("sh600519") == "sh600519"
+    assert to_prefixed("sz300750") == "sz300750"
+
+
 # ── 流水线 ──────────────────────────────────────────────
 class FakeRepo:
     def __init__(self):
@@ -206,6 +212,15 @@ class FakeForecastRepoFormal(FakeForecastRepo):
                  "q_np": 1.2e9, "q_np_prev": 5e8, "yoy_pct": 140.0}]
 
 
+class FakeForecastRepoFormalPrefixed(FakeForecastRepoFormal):
+    """stock_financial_detail 口径:返回带 sh/sz 前缀的代码。"""
+
+    def get_quarter_yoy_growth(self, report_date, min_pct):
+        self.formal_calls.append((report_date, min_pct))
+        return [{"symbol": "sh600111", "report_date": dt.date(2026, 9, 30),
+                 "q_np": 1.2e9, "q_np_prev": 5e8, "yoy_pct": 140.0}]
+
+
 def test_formal_window_adds_candidates():
     repo = FakeRepo()
     fr = FakeForecastRepoFormal()
@@ -217,6 +232,43 @@ def test_formal_window_adds_candidates():
     formal = [c for c in repo.candidates if c["forecast_type"] == "formal"]
     assert formal and formal[0]["symbol"] == "000333"
     assert formal[0]["forecast_type_label"] == "单季大增"
+
+
+def test_formal_window_normalizes_prefixed_symbol():
+    """正式窗上游带前缀(sh600111)→ 入池必须归一为纯 6 位。"""
+    repo = FakeRepo()
+    fr = FakeForecastRepoFormalPrefixed()
+    svc = BoomRadarService(repo, fr, FakeNewsSync(), FakeNewsRepo(),
+                           {"min_change_pct": 50.0})
+    svc.run_daily(today=dt.date(2026, 10, 25))
+    formal = [c for c in repo.candidates if c["forecast_type"] == "formal"]
+    assert formal and formal[0]["symbol"] == "600111"
+
+
+def test_formal_window_skips_existing_candidate():
+    """同(symbol, report_date)已有候选(如早前预告)→ 裸 formal 行不覆盖。"""
+    repo = FakeRepo()
+    existing = {"symbol": "000333", "report_date": dt.date(2026, 9, 30),
+                "forecast_type": "preannounce", "company_name": "美的",
+                "announce_date": dt.date(2026, 10, 12), "change_pct": 60.0,
+                "forecast_type_label": "预增", "categories": ["supply_tight"],
+                "keyword_count": 3, "news_hit_count": 1}
+    repo.candidates.append(existing)
+
+    def get_candidate(sym, rd):
+        for c in repo.candidates:
+            if c["symbol"] == sym and c["report_date"] == rd:
+                return SimpleNamespace(**c)
+        return None
+
+    repo.get_candidate = get_candidate
+    fr = FakeForecastRepoFormal()
+    svc = BoomRadarService(repo, fr, FakeNewsSync(), FakeNewsRepo(),
+                           {"min_change_pct": 50.0})
+    stats = svc.run_daily(today=dt.date(2026, 10, 25))
+    assert stats["formal_added"] == 0
+    assert not [c for c in repo.candidates if c["forecast_type"] == "formal"]
+    assert existing in repo.candidates          # 预告行原样保留(池路径不受影响)
 
 
 # ── 终审修复:3/8 月正式窗(非预告季)可达 ───────────────

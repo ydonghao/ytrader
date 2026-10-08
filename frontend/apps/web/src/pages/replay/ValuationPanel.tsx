@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import * as api from './api';
+import {useDayLabel} from './BlindMask';
 import {useReplayStore, viewDate} from './store';
 import type {ValuationInfo, ValuationMetric} from './types';
 
@@ -27,6 +28,7 @@ const Row: React.FC<{label: string; m: ValuationMetric | null}> = ({label, m}) =
 export const ValuationPanel: React.FC = () => {
   const symbol = useReplayStore((s) => s.selectedSymbol);
   const vd = useReplayStore(viewDate);
+  const dayLabel = useDayLabel(); // 盲盒期真实日期脱敏为「第N天」
   const [info, setInfo] = useState<ValuationInfo | null>(null);
   useEffect(() => {
     if (!symbol || !vd) return;
@@ -39,7 +41,7 @@ export const ValuationPanel: React.FC = () => {
   }, [symbol, vd]);
   return (
     <div className="replay-panel">
-      <h4>估值（截至 {vd}）</h4>
+      <h4>估值（截至 {dayLabel(vd)}）</h4>
       <div className="replay-gauges">
         <Row label="PE(TTM)" m={info?.pe_ttm ?? null} />
         <Row label="PB" m={info?.pb ?? null} />

@@ -96,3 +96,74 @@ class TestBeneishMScore:
     def test_missing_core_returns_none(self):
         bad = {"revenue": 100}  # 缺 total_assets 等
         assert beneish_m_score(bad, bad) is None
+
+
+# ── 2026-10 红旗补全: 标准 9 因子 Piotroski F-Score ───────────────────────
+from src.domain.market.fundamental.classic_models import piotroski_f_score
+
+
+class TestPiotroskiFScore:
+    def _prev(self):
+        return {"net_profit": 90.0, "total_assets": 1000.0, "ocf": 80.0,
+                "revenue": 900.0, "gross_margin": 0.30,
+                "short_loan": 100.0, "long_loan": 100.0,
+                "current_assets": 400.0, "current_liabilities": 300.0,
+                "share_capital": 100.0}
+
+    def _curr(self):
+        # 全因子改善: ROA 9%→10%, OCF 150, 杠杆 20%→10%,
+        # 流动比率 1.33→1.50, 股本不变, 毛利率 30%→35%, 周转 0.90→1.00
+        return {"net_profit": 100.0, "total_assets": 1000.0, "ocf": 150.0,
+                "revenue": 1000.0, "gross_margin": 0.35,
+                "short_loan": 50.0, "long_loan": 50.0,
+                "current_assets": 450.0, "current_liabilities": 300.0,
+                "share_capital": 100.0}
+
+    def test_all_nine_pass(self):
+        f = piotroski_f_score(self._curr(), self._prev())
+        assert f is not None
+        assert f.score == 9 and f.evaluated == 9
+        assert f.partial is False and f.verdict == "strong"
+
+    def test_deteriorating_low_score(self):
+        prev = {"net_profit": 20.0, "total_assets": 1000.0, "ocf": 30.0,
+                "revenue": 950.0, "gross_margin": 0.10,
+                "short_loan": 150.0, "long_loan": 150.0,
+                "current_assets": 300.0, "current_liabilities": 400.0,
+                "share_capital": 100.0}
+        curr = {"net_profit": 10.0, "total_assets": 1000.0, "ocf": 5.0,
+                "revenue": 900.0, "gross_margin": 0.09,
+                "short_loan": 200.0, "long_loan": 200.0,
+                "current_assets": 250.0, "current_liabilities": 450.0,
+                "share_capital": 120.0}   # 增发
+        f = piotroski_f_score(curr, prev)
+        assert f.score == 2   # 仅 ROA>0 / OCF>0
+        assert f.verdict == "weak"
+
+    def test_partial_when_shares_missing(self):
+        curr = {k: v for k, v in self._curr().items()
+                if k != "share_capital"}
+        prev = {k: v for k, v in self._prev().items()
+                if k != "share_capital"}
+        f = piotroski_f_score(curr, prev)
+        assert f.evaluated == 8 and f.partial is True
+        assert f.score == 8   # 其余 8 项全过
+        assert f.components["no_share_dilution"]["pass"] is None
+
+    def test_leverage_fallback_to_total_liabilities(self):
+        # 有息负债四项全缺 → 退化用资产负债率口径
+        curr = {k: v for k, v in self._curr().items()
+                if k not in ("short_loan", "long_loan")}
+        prev = {k: v for k, v in self._prev().items()
+                if k not in ("short_loan", "long_loan")}
+        curr["total_liabilities"] = 400.0   # 40%
+        prev["total_liabilities"] = 500.0   # 50% → 下降,过
+        f = piotroski_f_score(curr, prev)
+        assert f.components["leverage_decreasing"]["pass"] is True
+        assert "资产负债率" in f.components["leverage_decreasing"]["why"]
+
+    def test_core_missing_returns_none(self):
+        prev_no_ta = {k: v for k, v in self._prev().items()
+                      if k != "total_assets"}
+        assert piotroski_f_score(self._curr(), prev_no_ta) is None
+        assert piotroski_f_score({}, self._prev()) is None

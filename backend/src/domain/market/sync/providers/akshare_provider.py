@@ -1839,6 +1839,29 @@ class AkshareProvider(SyncProvider):
         out.sort(key=lambda x: (x["report_date"], x["statement_type"]))
         return out
 
+    def fetch_capital_events(self) -> list:
+        """回购 + 增减持全量（第6期V2，周任务用；ggcg 全量约90s）。
+
+        返回标准化行（domain/market/thesis/capital_events.normalize_*）。
+        """
+        import pandas as pd
+        from src.domain.market.thesis.capital_events import (
+            normalize_ggcg,
+            normalize_repurchase,
+        )
+        rows: list = []
+        try:
+            df = ak.stock_repurchase_em()   # 一次返回全量（内部分页）
+            rows += normalize_repurchase(df.to_dict("records"))
+        except Exception as e:
+            log.warning("fetch_capital_events repurchase 失败: %s", e)
+        try:
+            df2 = ak.stock_ggcg_em(symbol="全部")
+            rows += normalize_ggcg(df2.to_dict("records"))
+        except Exception as e:
+            log.warning("fetch_capital_events ggcg 失败: %s", e)
+        return rows
+
     def fetch_earnings_batch(self, report_date: str) -> dict:
         """业绩预告 + 业绩快报（全市场批量，按报告期 date）。"""
         d = str(report_date).replace("-", "")

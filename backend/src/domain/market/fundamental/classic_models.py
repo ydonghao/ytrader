@@ -8,6 +8,8 @@
         >2.99 安全 / 1.81~2.99 灰色 / <1.81 高破产风险
     Beneish M-Score  盈余操纵 8 因子（1999）
         M = -4.84 + ...（8 项指数）；M > -1.78 操纵嫌疑
+    Piotroski F-Score 财务质量 9 因子（2000）
+        盈利/杠杆/效率三组各 3 项；0~9 分，≥8 强质量
 
 与 fraud_signals（规则红旗）互补：M-Score 是统计模型，对系统性盈余管理更敏感。
 
@@ -220,4 +222,156 @@ def beneish_m_score(
         components={"DSRI": dsri, "GMI": gmi, "AQI": aqi, "SGI": sgi,
                     "DEPI": depi, "SGAI": sgai, "TATA": tata, "LVGI": lvgi},
         verdict=verdict,
+    )
+
+
+# ── Piotroski F-Score（财务质量 9 因子）─────────────────────────────────────
+
+@dataclass
+class PiotroskiFScore:
+    score: int          # 通过因子数（0~9）
+    evaluated: int      # 可评估因子数（缺数据的因子不计入）
+    partial: bool       # 是否有因子缺数据（评分口径降级）
+    components: dict    # {因子名: {"pass": True/False/None, "why": str}}
+    verdict: str        # strong(>=8) / good(>=6) / mediocre(>=4) / weak(<4)
+
+
+def _interest_debt(snap: dict) -> Optional[float]:
+    """有息负债 = 短借+长借+应付债券+一年内到期非流动负债（缺失项跳过）。"""
+    keys = ("short_loan", "long_loan", "bonds_payable",
+            "non_current_liab_due_within_1y")
+    parts = [snap.get(k) for k in keys]
+    if all(p is None for p in parts):
+        return None
+    return sum(p for p in parts if p is not None)
+
+
+def _gm_ratio(snap: dict) -> Optional[float]:
+    gm = snap.get("gross_margin")
+    if gm is not None:
+        # 兼容两种口径：百分比(如 30.0) 或比率(0.3)——只用于两期同口径比较
+        return gm
+    gp, rev = snap.get("gross_profit"), snap.get("revenue")
+    return (gp / rev) if (gp is not None and rev and rev > 0) else None
+
+
+def piotroski_f_score(curr: dict, prev: dict) -> Optional[PiotroskiFScore]:
+    """Piotroski F-Score（2000）标准 9 因子——需**相邻两个年报**快照。
+
+    盈利：ROA>0 / ΔROA>0 / CFO>0 / 应计质量(CFO ROA > 会计 ROA)
+    杠杆：有息负债率下降 / 流动比率上升 / 未增发股本
+    效率：毛利率上升 / 总资产周转率上升
+
+    Args:
+        curr/prev: 两个年报期快照。用到的键：net_profit / total_assets /
+            ocf / revenue / gross_margin(或 gross_profit) / short_loan /
+            long_loan / bonds_payable / non_current_liab_due_within_1y /
+            current_assets / current_liabilities / share_capital。
+            有息负债四项全缺时退化用 total_liabilities 口径；股本缺则
+            该因子置 None（partial）。
+
+    Returns:
+        PiotroskiFScore；两期总资产/净利/营收任一缺失返回 None。
+        缺数据的因子 pass=None 不计分（evaluated<9, partial=True），
+        避免"数据越少分越高"的偏置。
+    """
+    ta_c, ta_p = curr.get("total_assets"), prev.get("total_assets")
+    np_c, np_p = curr.get("net_profit"), prev.get("net_profit")
+    rev_c, rev_p = curr.get("revenue"), prev.get("revenue")
+    if not ta_c or not ta_p or np_c is None or np_p is None \
+            or not rev_c or not rev_p:
+        return None
+
+    def _factor(passed, why):
+        return {"pass": passed, "why": why}
+
+    components: dict = {}
+    roa_c = np_c / ta_c
+    roa_p = np_p / ta_p
+
+    # 1 ROA > 0
+    components["roa_positive"] = _factor(
+        roa_c > 0, f"ROA {roa_c:.1%}")
+    # 2 ΔROA > 0
+    components["roa_improving"] = _factor(
+        roa_c > roa_p, f"ROA {roa_p:.1%} → {roa_c:.1%}")
+    # 3 CFO > 0
+    ocf = curr.get("ocf")
+    if ocf is None:
+        components["cfo_positive"] = _factor(None, "缺 OCF")
+    else:
+        components["cfo_positive"] = _factor(
+            ocf > 0, f"OCF/总资产 {ocf / ta_c:.1%}")
+    # 4 应计质量：CFO ROA > 会计 ROA
+    if ocf is None:
+        components["accrual_quality"] = _factor(None, "缺 OCF")
+    else:
+        cfo_roa = ocf / ta_c
+        components["accrual_quality"] = _factor(
+            cfo_roa > roa_c,
+            f"CFO ROA {cfo_roa:.1%} vs ROA {roa_c:.1%}")
+
+    # 5 有息负债率下降（全缺退化为资产负债率口径）
+    debt_c, debt_p = _interest_debt(curr), _interest_debt(prev)
+    lev_note = "有息负债率"
+    if debt_c is None and debt_p is None:
+        debt_c = curr.get("total_liabilities")
+        debt_p = prev.get("total_liabilities")
+        lev_note = "资产负债率(有息科目缺失退化)"
+    if debt_c is None or debt_p is None:
+        components["leverage_decreasing"] = _factor(None, "缺负债科目")
+    else:
+        lev_c, lev_p = debt_c / ta_c, debt_p / ta_p
+        components["leverage_decreasing"] = _factor(
+            lev_c < lev_p, f"{lev_note} {lev_p:.1%} → {lev_c:.1%}")
+
+    # 6 流动比率上升
+    def _cr(snap):
+        ca, cl = snap.get("current_assets"), snap.get("current_liabilities")
+        return (ca / cl) if (ca is not None and cl and cl > 0) else None
+    cr_c, cr_p = _cr(curr), _cr(prev)
+    if cr_c is None or cr_p is None:
+        components["current_ratio_improving"] = _factor(None, "缺流动资产/负债")
+    else:
+        components["current_ratio_improving"] = _factor(
+            cr_c > cr_p, f"流动比率 {cr_p:.2f} → {cr_c:.2f}")
+
+    # 7 未增发（股本未增加）
+    sh_c, sh_p = curr.get("share_capital"), prev.get("share_capital")
+    if sh_c is None or sh_p is None:
+        components["no_share_dilution"] = _factor(None, "缺股本科目")
+    else:
+        components["no_share_dilution"] = _factor(
+            sh_c <= sh_p, f"股本 {sh_p:.0f} → {sh_c:.0f}")
+
+    # 8 毛利率上升
+    gm_c, gm_p = _gm_ratio(curr), _gm_ratio(prev)
+    if gm_c is None or gm_p is None:
+        components["gross_margin_improving"] = _factor(None, "缺毛利率")
+    else:
+        components["gross_margin_improving"] = _factor(
+            gm_c > gm_p, f"毛利率 {gm_p:.1%} → {gm_c:.1%}"
+            if max(abs(gm_c), abs(gm_p)) <= 1
+            else f"毛利率 {gm_p:.1f}% → {gm_c:.1f}%")
+
+    # 9 总资产周转率上升
+    at_c, at_p = rev_c / ta_c, rev_p / ta_p
+    components["asset_turnover_improving"] = _factor(
+        at_c > at_p, f"周转率 {at_p:.2f} → {at_c:.2f}")
+
+    passes = [v["pass"] for v in components.values()]
+    score = sum(1 for p in passes if p is True)
+    evaluated = sum(1 for p in passes if p is not None)
+    partial = any(p is None for p in passes)
+    if score >= 8:
+        verdict = "strong"
+    elif score >= 6:
+        verdict = "good"
+    elif score >= 4:
+        verdict = "mediocre"
+    else:
+        verdict = "weak"
+    return PiotroskiFScore(
+        score=score, evaluated=evaluated, partial=partial,
+        components=components, verdict=verdict,
     )

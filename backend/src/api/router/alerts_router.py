@@ -137,6 +137,98 @@ def delete_alert(alert_id: int):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@router.get("/unified")
+def unified_inbox(limit: int = Query(50, ge=1, le=200)):
+    """统一收件箱：价格/指标告警(已触发) + 论点事件，按时间倒序合并。"""
+    from src.infra.database.portfolio.thesis_repository import (
+        create_thesis_repository,
+    )
+
+    items: list = []
+
+    def _t(v):
+        return v.isoformat() if v else None
+
+    try:
+        for a in create_alert_repository().list_alerts(
+            status="triggered", limit=limit,
+        ):
+            items.append({
+                "kind": "price",
+                "symbol": getattr(a, "symbol", None),
+                "message": "{} {}".format(
+                    "上穿" if getattr(a, "direction", "") == "above"
+                    else "下穿",
+                    getattr(a, "target_price", None),
+                ),
+                "time": _t(getattr(a, "triggered_at", None)
+                           or getattr(a, "created_at", None)),
+            })
+    except Exception as e:
+        log.error("unified_inbox price 失败: %s", e)
+
+    try:
+        for a in create_alert_repository().list_metric_alerts(
+            status="triggered", limit=limit,
+        ):
+            items.append({
+                "kind": "metric",
+                "symbol": getattr(a, "symbol", None),
+                "message": "{} {} {}".format(
+                    getattr(a, "metric_kind", ""),
+                    "above" if getattr(a, "direction", "") == "above"
+                    else "below",
+                    getattr(a, "threshold", None),
+                ),
+                "time": _t(getattr(a, "triggered_at", None)
+                           or getattr(a, "created_at", None)),
+            })
+    except Exception as e:
+        log.error("unified_inbox metric 失败: %s", e)
+
+    try:
+        repo = create_thesis_repository()
+        symbol_map = {
+            t["id"]: t["symbol"] for t in repo.list_theses()
+        }
+        kind_label = {
+            "reeval_done": "财报重估",
+            "condition_breached": "论点破位",
+            "price_band_reached": "估值带到价",
+            "mine_detected": "排雷告警",
+        }
+        for e in repo.list_events(limit=limit):
+            detail = e.get("detail") or {}
+            if e.get("kind") == "reeval_done":
+                msg = "重估结论 {}".format(detail.get("verdict"))
+            elif e.get("kind") == "condition_breached":
+                msg = "破位: {}".format(
+                    "、".join(detail.get("breached") or [])
+                )
+            elif e.get("kind") == "price_band_reached":
+                msg = "现值 {} 进入卖出带".format(
+                    detail.get("current")
+                )
+            else:
+                msg = "；".join(detail.get("reasons") or []) or "排雷告警"
+            items.append({
+                "kind": "thesis",
+                "symbol": symbol_map.get(e.get("thesis_id")),
+                "message": "[{}] {}".format(
+                    kind_label.get(e.get("kind"), e.get("kind")), msg,
+                ),
+                "time": e.get("created_at"),
+                "read": e.get("read"),
+                "event_id": e.get("id"),
+            })
+    except Exception as e:
+        log.error("unified_inbox thesis 失败: %s", e)
+
+    items = [i for i in items if i.get("time")]
+    items.sort(key=lambda i: i["time"], reverse=True)
+    return {"code": 0, "msg": "ok", "data": items[:limit]}
+
+
 @router.get("/check/{symbol}")
 def check_alerts(symbol: str):
     """

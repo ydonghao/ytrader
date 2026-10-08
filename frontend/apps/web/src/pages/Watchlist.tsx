@@ -1,4 +1,5 @@
 import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import {Link} from 'react-router-dom';
 import {getApiBase} from '../lib/api';
 import {useIntervalWhenVisible} from '../hooks/useIntervalWhenVisible';
 import {StockSelect} from '../components/MarketPage/StockSelect';
@@ -549,6 +550,18 @@ export const Watchlist: React.FC = () => {
                       </TableCell>
                       <TableCell>
                         <div className="watchlist__row-actions">
+                          <Link
+                            to={`/checklist?symbol=${it.symbol}`}
+                            className="watchlist__checklist-link"
+                            title="买前检查清单（课程21集）">
+                            体检
+                          </Link>
+                          <Link
+                            to={`/thesis?symbol=${it.symbol}`}
+                            className="watchlist__checklist-link"
+                            title="登记/查看持仓论点（卖出体检）">
+                            论点
+                          </Link>
                           <Button
                             size="sm"
                             variant="ghost"

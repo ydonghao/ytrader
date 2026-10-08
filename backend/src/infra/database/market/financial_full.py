@@ -447,7 +447,12 @@ class FinancialDetailRepository:
         end: Optional[dt.date] = None,
         limit: int = 200,
     ) -> list[StockFinancialDetail]:
-        """返回某 symbol 某报表的报告期序列（升序），可选区间。默认上限 200 期。"""
+        """返回某 symbol 某报表的报告期序列（升序），可选区间。
+
+        limit 语义 = **最近 N 期**（先按报告期倒序取 N 条再正序返回）。
+        原 asc+limit 返回的是最老 N 期——AI基本面/论证库的上下文装配
+        长期拿到 2001-2003 的上古数据（2026-10 修）。
+        """
         limit = max(1, min(int(limit), 500))
         with self._db.session_scope() as s:
             stmt = select(StockFinancialDetail).where(
@@ -458,9 +463,11 @@ class FinancialDetailRepository:
                 stmt = stmt.where(StockFinancialDetail.report_date >= start)
             if end is not None:
                 stmt = stmt.where(StockFinancialDetail.report_date <= end)
-            stmt = stmt.order_by(StockFinancialDetail.report_date.asc()).limit(limit)
+            stmt = stmt.order_by(
+                StockFinancialDetail.report_date.desc()).limit(limit)
             # 在 session 内 expunge，使对象可安全在 session 外使用
             rows = list(s.exec(stmt).all())
+            rows.sort(key=lambda r: r.report_date)
             for r in rows:
                 s.expunge(r)
             return rows
@@ -672,12 +679,21 @@ class EarningsForecastRepository:
             with conn.cursor(cursor_factory=RealDictCursor) as cur:
                 cur.execute(sql, params)
                 rows = [dict(r) for r in cur.fetchall()]
+                if rows:
+                    # 附带股票名称（boom formal 候选 company_name 回填）
+                    cur.execute(
+                        "SELECT symbol, name FROM stock_info "
+                        "WHERE symbol = ANY(%(syms)s)",
+                        {"syms": [r["symbol"] for r in rows]},
+                    )
+                    names = {r["symbol"]: r["name"] for r in cur.fetchall()}
         finally:
             conn.close()
         for r in rows:
             q_np, q_prev = float(r["q_np"]), float(r["q_np_prev"])
             r["yoy_pct"] = round((q_np - q_prev) / abs(q_prev) * 100, 2)
             r["report_date"] = report_date
+            r["name"] = names.get(r["symbol"])
         return rows
 
     def bulk_upsert(self, rows: list[dict]) -> int:

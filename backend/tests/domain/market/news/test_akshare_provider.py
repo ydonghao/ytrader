@@ -3,12 +3,20 @@ AkshareNewsProvider 测试
 =========================
 """
 from datetime import datetime
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
+import pandas as pd
 import pytest
 
 from src.domain.market.news.models import NewsArticle
 from src.domain.market.news.providers.akshare_provider import AkshareNewsProvider
+
+
+def _news_df(rows=None):
+    """构造 stock_news_em 形状的 DataFrame（实现用 itertuples 迭代）。"""
+    return pd.DataFrame(rows or [], columns=[
+        "关键词", "新闻标题", "新闻内容", "发布时间", "文章来源", "新闻链接",
+    ])
 
 
 class TestAkshareNewsProvider:
@@ -23,20 +31,14 @@ class TestAkshareNewsProvider:
         """fetch_news 返回新闻列表"""
         provider = AkshareNewsProvider()
 
-        mock_df = MagicMock()
-        mock_df.__iter__ = MagicMock(return_value=iter([
-            {
-                "关键词": "苹果,手机",
-                "新闻标题": "苹果发布新手机",
-                "新闻内容": "苹果公司今日发布新一代iPhone",
-                "发布时间": "2024-01-15 10:00:00",
-                "文章来源": "新浪财经",
-                "新闻链接": "https://finance.sina.com.cn/news/123.html",
-            }
-        ]))
-        mock_df.columns = [
-            "关键词", "新闻标题", "新闻内容", "发布时间", "文章来源", "新闻链接"
-        ]
+        mock_df = _news_df([{
+            "关键词": "苹果,手机",
+            "新闻标题": "苹果发布新手机",
+            "新闻内容": "苹果公司今日发布新一代iPhone",
+            "发布时间": "2024-01-15 10:00:00",
+            "文章来源": "新浪财经",
+            "新闻链接": "https://finance.sina.com.cn/news/123.html",
+        }])
 
         with patch("akshare.stock_news_em", return_value=mock_df):
             result = provider.fetch_news(symbol="sh600000", max_results=10)
@@ -53,11 +55,7 @@ class TestAkshareNewsProvider:
         """fetch_news 处理空数据"""
         provider = AkshareNewsProvider()
 
-        mock_df = MagicMock()
-        mock_df.__iter__ = MagicMock(return_value=iter([]))
-        mock_df.columns = [
-            "关键词", "新闻标题", "新闻内容", "发布时间", "文章来源", "新闻链接"
-        ]
+        mock_df = _news_df([])
 
         with patch("akshare.stock_news_em", return_value=mock_df):
             result = provider.fetch_news(symbol="sh600000", max_results=10)
@@ -69,20 +67,14 @@ class TestAkshareNewsProvider:
         """fetch_stock_news 返回新闻列表"""
         provider = AkshareNewsProvider()
 
-        mock_df = MagicMock()
-        mock_df.__iter__ = MagicMock(return_value=iter([
-            {
-                "关键词": "业绩,增长",
-                "新闻标题": "某公司业绩增长",
-                "新闻内容": "某公司发布年报，业绩大幅增长",
-                "发布时间": "2024-01-15 10:00:00",
-                "文章来源": "东方财富",
-                "新闻链接": "https://www.eastmoney.com/news/456.html",
-            }
-        ]))
-        mock_df.columns = [
-            "关键词", "新闻标题", "新闻内容", "发布时间", "文章来源", "新闻链接"
-        ]
+        mock_df = _news_df([{
+            "关键词": "业绩,增长",
+            "新闻标题": "某公司业绩增长",
+            "新闻内容": "某公司发布年报，业绩大幅增长",
+            "发布时间": "2024-01-15 10:00:00",
+            "文章来源": "东方财富",
+            "新闻链接": "https://www.eastmoney.com/news/456.html",
+        }])
 
         with patch("akshare.stock_news_em", return_value=mock_df):
             result = provider.fetch_stock_news(symbol="sh600000", days_back=7)
@@ -95,20 +87,14 @@ class TestAkshareNewsProvider:
         """字段映射正确"""
         provider = AkshareNewsProvider()
 
-        mock_df = MagicMock()
-        mock_df.__iter__ = MagicMock(return_value=iter([
-            {
-                "关键词": "关键词1,关键词2",
-                "新闻标题": "测试标题",
-                "新闻内容": "测试内容正文",
-                "发布时间": "2024-01-15 10:00:00",
-                "文章来源": "测试来源",
-                "新闻链接": "https://example.com/news/1",
-            }
-        ]))
-        mock_df.columns = [
-            "关键词", "新闻标题", "新闻内容", "发布时间", "文章来源", "新闻链接"
-        ]
+        mock_df = _news_df([{
+            "关键词": "关键词1,关键词2",
+            "新闻标题": "测试标题",
+            "新闻内容": "测试内容正文",
+            "发布时间": "2024-01-15 10:00:00",
+            "文章来源": "测试来源",
+            "新闻链接": "https://example.com/news/1",
+        }])
 
         with patch("akshare.stock_news_em", return_value=mock_df):
             result = provider.fetch_news(symbol="sh600000")

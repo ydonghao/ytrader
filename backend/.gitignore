@@ -147,3 +147,8 @@ Thumbs.db
 
 # Local config files
 config.local.yaml
+# Backfill progress artifacts (run outputs, not committed)
+.replay_news_backfill_progress.json
+
+# 年报 PDF 下载缓存(言行追踪V2,运行产物不提交)
+data/annual_reports/

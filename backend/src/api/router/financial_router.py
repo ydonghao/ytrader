@@ -4,7 +4,7 @@ Financial Data API Router
 Provides financial statement analysis (income statement, balance sheet, cash flow)
 for A-share stocks from TimescaleDB via financial_detail_handler (real data).
 """
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Body, HTTPException, Query
 from pydantic import BaseModel
 from typing import Optional, List
 import threading
@@ -769,6 +769,11 @@ from src.api.handler.financial_detail_handler import (
     liquidity_report,
     z_score_report,
     m_score_report,
+    f_score_report,
+    list_valuation_assumptions,
+    save_valuation_assumption,
+    delete_valuation_assumption,
+    rerun_valuation_assumption,
     concentration_report,
     common_size,
     ratios,
@@ -1059,6 +1064,172 @@ def _bank_report(symbol: str):
     return bank_report(symbol)
 
 
+@router.get("/dcf/{symbol}/sensitivity")
+def dcf_sensitivity(symbol: str,
+                    wacc_lo: float = 0.08, wacc_hi: float = 0.12,
+                    g_lo: float = 0.01, g_hi: float = 0.05,
+                    steps: int = 5):
+    """DCF 敏感性：WACC×永续增长网格（upside 口径，二期F3a）。"""
+    import json
+    from src.api.handler.financial_detail_handler import (
+        dcf_valuation,
+    )
+
+    try:
+        from src.pkg import responses
+    except Exception:
+        return {"code": 1, "msg": "internal"}
+
+    d = json.loads(
+        dcf_valuation(symbol).body
+    ).get("data") or {}
+    assumptions = d.get("assumptions") or {}
+    base_fcf = d.get("fcf_base")
+    mv = d.get("market_value")
+    growth_rate = assumptions.get("growth_rate", 0.08)
+    years = int(assumptions.get("projection_years", 10) or 10)
+    if not base_fcf or not mv:
+        return responses.error(f"{symbol} 缺 FCF/市值数据")
+
+    from src.domain.market.fundamental.dcf import dcf_sensitivity_grid
+
+    waccs = [round(wacc_lo + (wacc_hi - wacc_lo) * i / (steps - 1), 4)
+             for i in range(steps)] if steps > 1 else [wacc_lo]
+    gs = [round(g_lo + (g_hi - g_lo) * i / (steps - 1), 4)
+          for i in range(steps)] if steps > 1 else [g_lo]
+    grid = dcf_sensitivity_grid(
+        base_fcf, waccs, gs,
+        growth_rate=growth_rate, projection_years=years,
+    )
+    upside_grid = [
+        [round((v / mv - 1.0) * 100, 1) if v and mv else None
+         for v in row]
+        for row in grid
+    ]
+    return responses.success({
+        "symbol": symbol, "waccs": waccs, "growths": gs,
+        "upside_pct_grid": upside_grid,
+        "note": "行=WACC,列=永续增长;值为内在/市值−1(%)。",
+    })
+
+
+@router.get("/reverse-dcf/{symbol}")
+def reverse_dcf(symbol: str, wacc: float = 0.09,
+                growth_rate: float = 0.08):
+    """Reverse DCF：当前价格隐含的永续增长预期（三期G1）。"""
+    import json
+    from src.pkg import responses
+    from src.domain.market.fundamental.reverse_dcf import (
+        implied_terminal_growth,
+    )
+    from src.api.handler.financial_detail_handler import dcf_valuation
+
+    body = json.loads(dcf_valuation(
+        symbol, wacc=wacc, growth_rate=growth_rate,
+    ).body)
+    d = body.get("data") or {}
+    fcf, mv = d.get("fcf_base"), d.get("market_value")
+    if not fcf or not mv:
+        return responses.error(f"{symbol} 缺 FCF/市值")
+    out = implied_terminal_growth(
+        mv, wacc=wacc, growth_rate=growth_rate,
+        latest_fcf=fcf,
+        projection_years=int(
+            (d.get("assumptions") or {}).get("projection_years", 10)
+        ),
+    )
+    out["symbol"] = symbol
+    out["market_value"] = mv
+    return responses.success(out)
+
+
+@router.get("/buy-point-map/{symbol}")
+def buy_point_map(symbol: str, metric: str = "pe_ttm",
+                  band: float = 0.10, years: int = 8):
+    """历史买点地图：当前估值±band内的历史买入远期收益分布。"""
+    import datetime as dt
+    import json
+    import psycopg2
+    from psycopg2.extras import RealDictCursor
+    from src.pkg import responses
+    from src.domain.market.fundamental.buy_point_map import (
+        buy_point_map as bpm_fn,
+    )
+    from src.infra.database.sql_engine.dsn import get_dsn
+
+    end = dt.date.today()
+    start = end - dt.timedelta(days=int(years * 365.25))
+    try:
+        conn = psycopg2.connect(get_dsn())
+        with conn.cursor(cursor_factory=RealDictCursor) as cur:
+            cur.execute(
+                "SELECT trade_date::text AS d, " + metric +
+                " AS m FROM stock_valuation "
+                "WHERE symbol=%s AND trade_date BETWEEN %s AND %s "
+                "AND " + metric + " IS NOT NULL "
+                "ORDER BY trade_date", (symbol, start, end),
+            )
+            val = [{"trade_date": r["d"], metric: float(r["m"])}
+                   for r in cur.fetchall()]
+            cur.execute(
+                "SELECT trade_date::text AS d, close_ FROM stock_ohlcv "
+                "WHERE symbol=%s AND trade_date BETWEEN %s AND %s "
+                "ORDER BY trade_date", (symbol, start, end),
+            )
+            px = [{"trade_date": r["d"], "close": float(r["close_"])}
+                  for r in cur.fetchall()]
+        conn.close()
+    except Exception as e:
+        return responses.error(f"查询失败: {e}")
+    if not val or not px:
+        return responses.error(f"{symbol} 估值或价格历史不足")
+    out = bpm_fn(val, px, metric=metric, band=band)
+    out["symbol"] = symbol
+    return responses.success(out)
+
+
+@router.get("/fair-range/{symbol}")
+def fair_range(symbol: str):
+    """五法综合公允区间（二期F3b）。"""
+    import json
+    from src.pkg import responses
+    from src.domain.market.fundamental.portfolio_risk import (
+        fair_value_range,
+    )
+    from src.api.handler.financial_detail_handler import (
+        asset_value_report, comps_valuation, dcf_valuation,
+        ddm_valuation,
+    )
+
+    def _data(fn):
+        try:
+            body = json.loads(fn(symbol).body)
+            return body.get("data") if body.get("code") == 0 else {}
+        except Exception:
+            return {}
+
+    def _ratio(d, iv_key="intrinsic_value"):
+        iv, mv = d.get(iv_key), d.get("market_value")
+        return iv / mv - 1.0 if iv and mv and mv > 0 else None
+
+    upsides = {
+        "dcf": _ratio(_data(dcf_valuation)),
+        "ddm": _ratio(_data(ddm_valuation)),
+        "asset": _ratio(_data(asset_value_report), "implied_value"),
+        "comps": None,
+    }
+    try:
+        pe = (_data(comps_valuation).get("multiples")
+              or {}).get("pe_ttm") or {}
+        upsides["comps"] = pe.get("upside")
+    except Exception:
+        pass
+    out = fair_value_range(upsides)
+    out["symbol"] = symbol
+    out["upside_by_method"] = upsides
+    return responses.success(out)
+
+
 @router.get("/peg/{symbol}")
 def _peg(
     symbol: str,
@@ -1139,6 +1310,39 @@ def _m_score(symbol: str):
     《股票投资课程》21 检查清单补强：统计模型，与 fraud-signals 规则红旗互补。
     """
     return m_score_report(symbol)
+
+
+@router.get("/f-score/{symbol}")
+def _f_score(symbol: str):
+    """Piotroski F-Score 标准 9 因子（年报两期；0~9，strong>=8）。
+
+    2026-10 红旗补全：替换 screener 里的简化 0~5 版本。
+    """
+    return f_score_report(symbol)
+
+
+@router.get("/valuation-assumptions/{symbol}")
+def _list_valuation_assumptions(symbol: str, method: Optional[str] = None):
+    """估值假设版本列表（按 method 分组、版本倒序）。"""
+    return list_valuation_assumptions(symbol, method)
+
+
+@router.post("/valuation-assumptions/{symbol}")
+def _save_valuation_assumption(symbol: str, payload: dict = Body(...)):
+    """保存一组估值假设为新版本（dcf 服务端即时算输出快照）。"""
+    return save_valuation_assumption(symbol, payload)
+
+
+@router.delete("/valuation-assumptions/{row_id}")
+def _delete_valuation_assumption(row_id: int):
+    """删除一个假设版本。"""
+    return delete_valuation_assumption(row_id)
+
+
+@router.post("/valuation-assumptions/{row_id}/rerun")
+def _rerun_valuation_assumption(row_id: int):
+    """按存档假设用当前数据重跑，对比基本面变化 vs 价格变化。"""
+    return rerun_valuation_assumption(row_id)
 
 
 @router.get("/concentration/{symbol}")

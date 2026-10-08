@@ -15,6 +15,7 @@ const pct = (bars: ReplayBar[], vd: string | null) => {
 export const PoolPanel: React.FC = () => {
   const pool = useReplayStore((s) => s.pool);
   const names = useReplayStore((s) => s.names);
+  const industries = useReplayStore((s) => s.industries);
   const barsBySymbol = useReplayStore((s) => s.barsBySymbol);
   const positions = useReplayStore((s) => s.positions);
   const selected = useReplayStore((s) => s.selectedSymbol);
@@ -40,7 +41,11 @@ export const PoolPanel: React.FC = () => {
           <div key={sym}
             className={`replay-pool-item${sym === selected ? ' active' : ''}`}
             onClick={() => selectSymbol(sym)}>
-            <span>{names[sym] ? `${names[sym]} ` : ''}{sym}</span>
+            <span>{names[sym] ? `${names[sym]} ` : ''}{sym}
+              {industries[sym] && (
+                <span className="replay-ind-tag">{industries[sym]}</span>
+              )}
+            </span>
             <span className={p == null ? '' : p >= 0 ? 'is-up' : 'is-down'}>
               {p == null ? '—' : `${p >= 0 ? '+' : ''}${p.toFixed(2)}%`}
             </span>
@@ -66,7 +71,7 @@ export const PoolPanel: React.FC = () => {
               return (
                 <tr key={p.symbol} style={{cursor: 'pointer'}}
                   onClick={() => selectSymbol(p.symbol)}>
-                  <td>{p.symbol}</td>
+                  <td>{names[p.symbol] ?? p.symbol}</td>
                   <td>{p.shares}</td>
                   <td>{p.cost_price.toFixed(2)}</td>
                   <td>{last == null ? '—' : last.toFixed(2)}</td>
